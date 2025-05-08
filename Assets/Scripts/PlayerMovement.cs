@@ -80,16 +80,16 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift) && currentStamina > 0) { rb.AddForce(moveDirection.normalized * sprintSpeed * 10f, ForceMode.Force);
             currentStamina--;
             sprintStopTime = Time.time;
-            //Debug.Log("Stamina: " + currentStamina);
+            Debug.Log("Stamina: " + currentStamina);
         }
         else 
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-            // Stamina starts regenning after a specific amount of seconds if it's not max.
+            // Stamina starts regenning after a specific amount of seconds if the player isn't trying to sprint and the stamina isn't max.
             if (Time.time - sprintStopTime >= staminaRegenBufferTime && currentStamina < maxStamina)
             {
                 currentStamina += staminaRegenSpeed;
-                //Debug.Log("Stamina: " + currentStamina);
+                Debug.Log("Stamina: " + currentStamina);
             }
         }
     }
