@@ -8,7 +8,13 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     private float backUpMoveSpeed;
-    [SerializeField] float moveSpeed;
+    [SerializeField] float moveSpeed = 3.5f;
+    [SerializeField] float sprintSpeed = 4.75f;
+    [SerializeField] float maxStamina = 100f;
+    float currentStamina;
+    [SerializeField] int staminaRegenBufferTime = 5;
+    float sprintStopTime;
+    [SerializeField] float staminaRegenSpeed = 0.33f;
     [SerializeField] float groundDrag;
     float horizontalInput;
     float verticalInput;
@@ -24,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         backUpMoveSpeed = moveSpeed;
+        currentStamina = maxStamina;
         rb = GetComponent<Rigidbody>();
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -70,7 +77,21 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if(Input.GetKey(KeyCode.LeftShift) && currentStamina > 0) { rb.AddForce(moveDirection.normalized * sprintSpeed * 10f, ForceMode.Force);
+            currentStamina--;
+            sprintStopTime = Time.time;
+            //Debug.Log("Stamina: " + currentStamina);
+        }
+        else 
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            // Stamina starts regenning after a specific amount of seconds if it's not max.
+            if (Time.time - sprintStopTime >= staminaRegenBufferTime && currentStamina < maxStamina)
+            {
+                currentStamina += staminaRegenSpeed;
+                //Debug.Log("Stamina: " + currentStamina);
+            }
+        }
     }
 
     public void SetEnabledMove(bool enable)
