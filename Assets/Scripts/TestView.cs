@@ -10,7 +10,7 @@ public class TestView : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI fpsCount;
     [SerializeField]
-    private float fpsInterval = 2f;
+    private float fpsInterval = 0.1f;
     private int fpsSampleRate = 10;
 
 
