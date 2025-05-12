@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class PlayerMovement : MonoBehaviour
     private float backUpMoveSpeed;
     [SerializeField] float moveSpeed = 3.5f;
     [SerializeField] float sprintSpeed = 4.75f;
+    bool playerSprinting = false;
+
     [SerializeField] float maxStamina = 100f;
     float currentStamina;
     [SerializeField] int staminaRegenBufferTime = 5;
     float sprintStopTime;
     [SerializeField] float staminaRegenSpeed = 0.33f;
+
     [SerializeField] float groundDrag;
     float horizontalInput;
     float verticalInput;
@@ -26,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
 
     [SerializeField] AudioSource footstepsSound;
+
+    public static event Action<bool> OnMoveStatusChange;
 
     void Start()
     {
@@ -80,7 +86,15 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift) && currentStamina > 0) { rb.AddForce(moveDirection.normalized * sprintSpeed * 10f, ForceMode.Force);
             currentStamina--;
             sprintStopTime = Time.time;
-            Debug.Log("Stamina: " + currentStamina);
+            //Debug.Log("Stamina: " + currentStamina);
+
+            // Update the status of the player's sprint if doesn't match and send out a delegate to make the view bobbing amplitude match.
+            if(playerSprinting != false && OnMoveStatusChange != null)
+            {
+                //Debug.Log("Player started sprinting.");
+                playerSprinting = false;
+                OnMoveStatusChange(playerSprinting);
+            }
         }
         else 
         {
@@ -89,7 +103,14 @@ public class PlayerMovement : MonoBehaviour
             if (Time.time - sprintStopTime >= staminaRegenBufferTime && currentStamina < maxStamina)
             {
                 currentStamina += staminaRegenSpeed;
-                Debug.Log("Stamina: " + currentStamina);
+                //Debug.Log("Stamina: " + currentStamina);
+            }
+
+            if (playerSprinting != true && OnMoveStatusChange != null)
+            {
+                //Debug.Log("Player stopped sprinting.");
+                playerSprinting = true;
+                OnMoveStatusChange(playerSprinting);
             }
         }
     }

@@ -454,6 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1549251687}
   - component: {fileID: 1549251686}
+  - component: {fileID: 1549251688}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -523,6 +524,19 @@ Transform:
   - {fileID: 1608654419}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1549251688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549251685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f214f193a50360d49bd3cab2a3b364b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseSprintAmplitude: 10
 --- !u!1 &1608654418
 GameObject:
   m_ObjectHideFlags: 3
@@ -920,6 +934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ThisIsGround.m_Bits
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: noiseSprintAmplitude
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -996891249125717969, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
