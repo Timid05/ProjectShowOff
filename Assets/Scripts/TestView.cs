@@ -34,9 +34,7 @@ public class TestView : MonoBehaviour
 
         if (Time.time - lastDisplayTime >= fpsInterval)
         {
-            Debug.Log ("FPS given: " + string.Join (", ", sampleFPS));
             float averageFPS = (int)sampleFPS.Average();
-            Debug.Log("calculated FPS: " + averageFPS);
             fpsCount.text = "FPS: " + averageFPS;
             lastDisplayTime = Time.time;
             sampleCount = 0;
