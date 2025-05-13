@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
+using System;
 
 public class FlashlightActions : MonoBehaviour
 {
     new Light light;
     HDAdditionalLightData lightHD;
+    SphereCollider sphereCollider;
+    List<GameObject> witteWievenInFlashRange;
+
+    public static event Action<bool> OnFlashlightStatusChange;
 
     float regularIntensity;
     float regularOuterAngle;
@@ -23,6 +28,10 @@ public class FlashlightActions : MonoBehaviour
     {
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
+        sphereCollider = gameObject.GetComponent<SphereCollider>();
+
+        witteWievenInFlashRange = new List<GameObject>();
+
         light.enabled = false;
         regularOuterAngle = light.spotAngle;
         regularIntensity = lightHD.intensity;
@@ -35,7 +44,7 @@ public class FlashlightActions : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                light.enabled = !light.enabled;
+                ChangeFlashlightStatus();
             }
             else if (light.enabled && Input.GetKeyDown(KeyCode.Mouse1)) { Flashbang(); }
 
@@ -45,8 +54,9 @@ public class FlashlightActions : MonoBehaviour
                 if (lightHD.intensity != flashbangIntensity && light.spotAngle != flashbangOuterAngle) { FlashbangAnimation(); }
                 else
                 {
-                    // Once flashbang animation has finished (AKA values have reached frashbang levels), disable flashlight until cooldown is over.
-                    light.enabled = false;
+                    // Once flashbang animation has finished (AKA values have reached frashbang levels), disable flashlight until cooldown is over and remove all Witte Wieven in range.
+                    ChangeFlashlightStatus();
+                    FlashlightDispell();
                     Flashbang();
                     flashlightCooldownActive = true;
                     StartCoroutine(FlashlightCooldown());
@@ -62,6 +72,14 @@ public class FlashlightActions : MonoBehaviour
         yield return new WaitForSeconds(flashlightCooldownTime);
         flashlightCooldownActive = false;
         Debug.Log("Flashlight cooldown ended.");
+
+    }
+
+    void ChangeFlashlightStatus()
+    {
+        light.enabled = !light.enabled;
+        // Send out delegate so that Witte Wieven can change visibility as well.
+        if(OnFlashlightStatusChange != null) { OnFlashlightStatusChange(light.enabled); }
 
     }
 
@@ -83,11 +101,38 @@ public class FlashlightActions : MonoBehaviour
     void FlashbangAnimation()
     {
         //Play flashbang "animation" by increasing light values until they reach the flashbang amounts.
-        //Debug.Log("Playing flashbang animation.");
 
         lightHD.intensity = Mathf.Lerp(lightHD.intensity, flashbangIntensity, flashbangPercentage);
         light.spotAngle = Mathf.Lerp(light.spotAngle, flashbangOuterAngle, flashbangPercentage);
 
         flashbangPercentage += flashbangSpeed * Time.deltaTime;
+    }
+
+    void FlashlightDispell()
+    {
+        //Remove all Witte Wieven that are in range of the flashbang.
+        foreach(GameObject witteWief in witteWievenInFlashRange)
+        {
+            Destroy(witteWief);
+        }
+        witteWievenInFlashRange.Clear();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("WitteWieven"))
+        {
+            Debug.LogFormat("Witte wief {0} in flash range.", other.gameObject.name);
+            witteWievenInFlashRange.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("WitteWieven"))
+        {
+            Debug.LogFormat("Witte wief {0} out of flash range.", other.gameObject.name);
+            witteWievenInFlashRange.Remove(other.gameObject);
+        }
     }
 }
