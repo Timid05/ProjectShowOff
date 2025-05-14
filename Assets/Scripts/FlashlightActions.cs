@@ -15,6 +15,11 @@ public class FlashlightActions : MonoBehaviour
 
     float regularIntensity;
     float regularOuterAngle;
+
+    [SerializeField] float tanfanaIntensity = 600000f;
+    [SerializeField] float tanfanaOuterAngle = 135f;
+    [SerializeField] float tanfanaColor = 3800f;
+
     [SerializeField] float flashbangIntensity = 400000f;
     [SerializeField] float flashbangOuterAngle = 45f;
     [SerializeField] float flashbangSpeed = 1f;
@@ -118,11 +123,20 @@ public class FlashlightActions : MonoBehaviour
         witteWievenInFlashRange.Clear();
     }
 
+    //TODO: Connect this to a delegate from the Tanfana choice
+    void HolyFlashlight()
+    {
+        // Replace normal flashbang values with the higher tanfana ones.
+        flashbangIntensity = tanfanaIntensity;
+        flashbangOuterAngle = tanfanaOuterAngle;
+        light.colorTemperature = tanfanaColor;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("WitteWieven"))
         {
-            Debug.LogFormat("Witte wief {0} in flash range.", other.gameObject.name);
+            //Debug.LogFormat("Witte wief {0} in flash range.", other.gameObject.name);
             witteWievenInFlashRange.Add(other.gameObject);
         }
     }
@@ -131,7 +145,7 @@ public class FlashlightActions : MonoBehaviour
     {
         if (other.gameObject.CompareTag("WitteWieven"))
         {
-            Debug.LogFormat("Witte wief {0} out of flash range.", other.gameObject.name);
+            //Debug.LogFormat("Witte wief {0} out of flash range.", other.gameObject.name);
             witteWievenInFlashRange.Remove(other.gameObject);
         }
     }

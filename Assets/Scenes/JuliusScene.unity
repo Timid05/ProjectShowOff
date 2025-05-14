@@ -1136,6 +1136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682f78de604cd7c45a2dc47dcd6878d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tanfanaIntensity: 600000
+  tanfanaOuterAngle: 135
+  tanfanaColor: 4400
   flashbangIntensity: 100000
   flashbangOuterAngle: 110
   flashbangSpeed: 1
