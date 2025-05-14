@@ -16,9 +16,9 @@ public class FlashlightActions : MonoBehaviour
     float regularIntensity;
     float regularOuterAngle;
 
-    [SerializeField] float tanfanaIntensity = 600000f;
-    [SerializeField] float tanfanaOuterAngle = 135f;
-    [SerializeField] float tanfanaColor = 3800f;
+    [SerializeField] float tamfanaIntensity = 600000f;
+    [SerializeField] float tamfanaOuterAngle = 135f;
+    [SerializeField] float tamfanaColor = 3800f;
 
     [SerializeField] float flashbangIntensity = 400000f;
     [SerializeField] float flashbangOuterAngle = 45f;
@@ -127,9 +127,9 @@ public class FlashlightActions : MonoBehaviour
     void HolyFlashlight()
     {
         // Replace normal flashbang values with the higher tanfana ones.
-        flashbangIntensity = tanfanaIntensity;
-        flashbangOuterAngle = tanfanaOuterAngle;
-        light.colorTemperature = tanfanaColor;
+        flashbangIntensity = tamfanaIntensity;
+        flashbangOuterAngle = tamfanaOuterAngle;
+        light.colorTemperature = tamfanaColor;
     }
 
     private void OnTriggerEnter(Collider other)
