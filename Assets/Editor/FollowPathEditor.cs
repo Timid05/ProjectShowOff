@@ -37,7 +37,7 @@ public class FollowPathEditor : Editor
         if (GUILayout.Button("+")) component.speed++;
         GUILayout.EndHorizontal();
 
-        if (component.path.Length < 2)
+        if (component.GetPath().Count < 2)
         {
             EditorGUILayout.HelpBox("This script needs at least 2 waypoints in its path to function", MessageType.Warning);
         }
@@ -49,9 +49,9 @@ public class FollowPathEditor : Editor
 
         if (component.drawPath)
         {
-            for (int i = 0; i < component.path.Length; i++)
+            for (int i = 0; i < component.GetPath().Count; i++)
             {
-                Vector3 position = component.path[i];
+                Vector3 position = component.GetPath()[i];
 
                 EditorGUI.BeginChangeCheck();
                 position = Handles.PositionHandle(position, Quaternion.identity);
@@ -64,7 +64,7 @@ public class FollowPathEditor : Editor
                 if (EditorGUI.EndChangeCheck())
                 {
                     Undo.RecordObject(component, "Moved Waypoint");          
-                    component.path[i] = position;
+                    component.GetPath()[i] = position;
                     EditorUtility.SetDirty(component);
                 }
             }

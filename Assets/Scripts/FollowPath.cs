@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
-    enum FollowType { BackAndForth, Cycle }
-    [SerializeField] 
-    FollowType followType;
-
+    public enum FollowType { BackAndForth, Cycle, Target }
+    public FollowType followType;
     [SerializeField]
-    public Vector3[] path;
+    private Transform target;
+    [SerializeField]
+    List<Vector3> path;
     [HideInInspector]
     public float speed;
     [SerializeField]
-    float offset;
+    float waypointOffset;
+    [SerializeField]
+    float targetOffset;
 
     int toWaypoint = 0;
 
@@ -23,7 +25,7 @@ public class FollowPath : MonoBehaviour
 
     void Awake()
     {
-        if (path.Length < 2)
+        if (path.Count < 2)
         {
             Debug.LogError("Too little waypoints in path");
         }
@@ -45,8 +47,8 @@ public class FollowPath : MonoBehaviour
                 movingBack = false;
                 return;
             }
-            
-            if (toWaypoint == path.Length - 1)
+
+            if (toWaypoint == path.Count - 1)
             {
                 toWaypoint--;
                 movingBack = true;
@@ -63,12 +65,12 @@ public class FollowPath : MonoBehaviour
                 toWaypoint++;
                 return;
             }
-            
+
         }
 
         toWaypoint++;
 
-        if (toWaypoint >= path.Length && followType == FollowType.Cycle)
+        if (toWaypoint >= path.Count && followType == FollowType.Cycle)
         {
             toWaypoint = 0;
         }
@@ -76,16 +78,39 @@ public class FollowPath : MonoBehaviour
         Debug.Log("Moving to waypoint " + toWaypoint);
     }
 
+    public List<Vector3> GetPath()
+    {
+        return path;
+    }
+
+    public void ClearPath()
+    {
+        path.Clear();
+    }
+
+    Vector3 direction;
     void Move()
     {
-        Vector3 direction = path[toWaypoint] - transform.position;
-
-        transform.position += (direction.normalized * speed) * Time.deltaTime;
-
-        if (direction.sqrMagnitude < offset)
+        if (followType == FollowType.Target)
         {
-            NextWaypoint();
+            direction = target.position - transform.position;
+
+            if (direction.sqrMagnitude > targetOffset)
+            {
+                transform.position += (direction.normalized * speed) * Time.deltaTime;
+            }
         }
+        else
+        {
+            direction = path[toWaypoint] - transform.position;
+            if (direction.sqrMagnitude < waypointOffset)
+            {
+                NextWaypoint();
+            }
+            transform.position += (direction.normalized * speed) * Time.deltaTime;
+        }
+
+        
     }
 
     private void OnDrawGizmosSelected()
@@ -93,7 +118,7 @@ public class FollowPath : MonoBehaviour
         //For visualizing the path in the scene view
         if (drawPath)
         {
-            for (int i = 0; i < path.Length; i++)
+            for (int i = 0; i < path.Count; i++)
             {
                 if (i != 0)
                 {
@@ -104,12 +129,43 @@ public class FollowPath : MonoBehaviour
         }
     }
 
+    private int FindNearestWaypoint()
+    {
+        int nearestWaypoint = 0;
+        float shortestDistance = 0;
 
+        for (int i = 0; i < path.Count; i++)
+        {
+            float distance = (path[i] - transform.position).sqrMagnitude;
+
+            if (shortestDistance == 0 || distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                nearestWaypoint = i;
+            }
+        }
+
+        return nearestWaypoint;
+    }
+
+
+
+    FollowType oldType;
     void Update()
     {
-        if (path.Length > 2)
+        if (path.Count > 2)
         {
             Move();
+        }
+
+        if (oldType != followType)
+        {
+            if (oldType == FollowType.Target)
+            {
+                toWaypoint = FindNearestWaypoint();
+            }
+
+            oldType = followType;
         }
     }
 }
