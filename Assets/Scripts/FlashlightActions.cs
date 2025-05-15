@@ -31,6 +31,9 @@ public class FlashlightActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerInteraction.OnCharacterTalk += FlashlightAvailability;
+        GameManager.OnAcceptTamfanaChoice += HolyFlashlight;
+
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
         sphereCollider = gameObject.GetComponent<SphereCollider>();
@@ -51,6 +54,10 @@ public class FlashlightActions : MonoBehaviour
             {
                 ChangeFlashlightStatus();
             }
+
+            //Debug option. REMOVE later.
+            if(Input.GetKeyDown(KeyCode.T)) { HolyFlashlight(); }
+
             else if (light.enabled && Input.GetKeyDown(KeyCode.Mouse1)) { Flashbang(); }
 
             // Increase flashlight values if the flashbang is active and the values haven't reached the max yet.
@@ -78,6 +85,13 @@ public class FlashlightActions : MonoBehaviour
         flashlightCooldownActive = false;
         Debug.Log("Flashlight cooldown ended.");
 
+    }
+
+    // Disable flashlight, while character is busy with something else, like talking to a character.
+    void FlashlightAvailability(bool characterBusy)
+    {
+        if(characterBusy) { flashlightCooldownActive = true; }
+        else { flashlightCooldownActive = false; }
     }
 
     void ChangeFlashlightStatus()
@@ -148,5 +162,11 @@ public class FlashlightActions : MonoBehaviour
             //Debug.LogFormat("Witte wief {0} out of flash range.", other.gameObject.name);
             witteWievenInFlashRange.Remove(other.gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInteraction.OnCharacterTalk -= FlashlightAvailability;
+        GameManager.OnAcceptTamfanaChoice -= HolyFlashlight;
     }
 }
