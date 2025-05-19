@@ -1,0 +1,10 @@
+﻿title: Tanfana
+---
+Tanfana: Do you want my assistance with finding the hellhound?
+	-> Yes
+	  Tanfana: Very well then, I'll need your soul to be able to grant my blessing. 
+	  <<TanfanaChoice>>
+	-> No
+	  Tanfana: You dare scorn me, mere mortal?
+	  Tanfana: Wait until you see my wrath, you will regret this.
+===

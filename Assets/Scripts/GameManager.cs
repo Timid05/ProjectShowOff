@@ -13,39 +13,43 @@ public class GameManager : MonoBehaviour
     public GameObject _player;
     public DialogueRunner _dialogueRunner;
     public Camera _camera;
+    AudioSource dialogueAS;
 
-    public static event Action OnAcceptTamfanaChoice;
+    public static event Action OnAcceptTanfanaChoice;
+    public static event Action<GameManager> OnGiveGManager;
 
     public Dictionary<string, GameObject> _objects = new Dictionary<string, GameObject>();
-    public Dictionary<string, NPCInteraction> _NPC = new Dictionary<string, NPCInteraction>();
+    Dictionary<string, NPCInteraction> _NPCs;
+
+    private void Awake()
+    {
+        // Receive the NPC dictionary once it's created.
+        CreateNPCDict.OnDictCreated += ReceiveNPCs;
+    }
 
     void Start()
     {
-
-        Transform[] allNPC = GameObject.FindGameObjectWithTag("AllNPC").GetComponentsInChildren<Transform>();
-        if (allNPC != null)
-        {
-            foreach (var obj in allNPC)
-            {
-                if (obj.gameObject.tag == "NPC")
-                {
-                    Debug.Log(obj.gameObject.name);
-                    _NPC.Add(obj.gameObject.name, obj.gameObject.GetComponent<NPCInteraction>());
-                }
-            }
-        }
+        dialogueAS = _dialogueRunner.GetComponentInChildren<AudioSource>();
 
         _dialogueRunner.AddFunction<string, bool>("PlayerMetNPC", PlayerMetNPC);
         _dialogueRunner.AddFunction<string, bool>("PlayerHasItem", PlayerHasItem);
         _dialogueRunner.AddFunction<string, bool>("PlayerGifItem", PlayerGifItem);
         _dialogueRunner.AddFunction<string, bool>("GoToNPC", GoToNPC);
         _dialogueRunner.AddFunction<string, bool>("GoToDialogue", GoToDialogue);
-        _dialogueRunner.AddCommandHandler("TamfanaChoice", TamfanaChoice);
+        _dialogueRunner.AddCommandHandler("TanfanaChoice", TanfanaChoice);
+
+        // Send the game manager to scripts that need it.
+        if(OnGiveGManager != null) { OnGiveGManager(this); }
     }
 
     public GameObject GetPlayer()
     {
         return _player;
+    }
+
+    void ReceiveNPCs(Dictionary<string, NPCInteraction> npcDict)
+    {
+        _NPCs = npcDict;
     }
 
     public void StartInteraction(Sprite image, AudioClip audioClip, float size, string name = null)
@@ -55,8 +59,8 @@ public class GameManager : MonoBehaviour
         if (name != null) _dialogueRunner.StartDialogue(name);
         _dialogueRunner.GetComponentInChildren<Image>().sprite = image;
         _dialogueRunner.GetComponentInChildren<Image>().GetComponent<Transform>().localScale = new Vector3(size, size, size);
-        _dialogueRunner.GetComponentInChildren<AudioSource>().clip = audioClip;
-        _dialogueRunner.GetComponentInChildren<AudioSource>().Play();
+        dialogueAS.clip = audioClip;
+        dialogueAS.Play();
     }
 
     private bool PlayerMetNPC(string NPCName)
@@ -69,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            _objects.Add(NPCName, _NPC[NPCName].gameObject);
+            _objects.Add(NPCName, _NPCs[NPCName].gameObject);
             return false;
         }
     }
@@ -86,20 +90,23 @@ public class GameManager : MonoBehaviour
     }
     private bool GoToNPC(string NPCName)
     {
-        StartInteraction(_NPC[NPCName].image.sprite, _NPC[NPCName].audioClip, _NPC[NPCName].size);
+        StartInteraction(_NPCs[NPCName].image.sprite, _NPCs[NPCName].audioClip, _NPCs[NPCName].size);
         return true;
     }
 
     private bool GoToDialogue(string Dialogue)
     {
         if (name != null) _dialogueRunner.StartDialogue(Dialogue);
-        _dialogueRunner.GetComponentInChildren<AudioSource>().Play();
+        dialogueAS.Play();
         return true;
     }
-
-    //[YarnCommand("TamfanaChoice")]
-    private void TamfanaChoice()
+    private void TanfanaChoice()
     {
-        if(OnAcceptTamfanaChoice != null) { OnAcceptTamfanaChoice(); }
+        if(OnAcceptTanfanaChoice != null) { OnAcceptTanfanaChoice(); }
+    }
+
+    private void OnDestroy()
+    {
+        CreateNPCDict.OnDictCreated -= ReceiveNPCs;
     }
 }

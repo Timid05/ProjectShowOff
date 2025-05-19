@@ -7,16 +7,27 @@ public class PlayerInteraction : MonoBehaviour
 {
     private GameManager gameManager;
     private DialogueRunner dialogueRunner;
+    Image drImage;
+    PlayerMovement playerMovement;
+    PlayerLook playerLook;
+
     public Light _light;
     public Camera _camera;
     GameObject currentNPC;
     public static event Action<bool> OnCharacterTalk;
     public Canvas _map;
 
+    private void Awake()
+    {
+        GameManager.OnGiveGManager += ReceiveGManager;
+    }
+
     void Start()
     {
-        gameManager = GameObject.FindAnyObjectByType<GameManager>();
         dialogueRunner = gameManager._dialogueRunner;
+        drImage = dialogueRunner.GetComponentInChildren<Image>();
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
+        playerLook = gameObject.GetComponent<PlayerLook>();
     }
 
     void Update()
@@ -46,6 +57,9 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // Allows script to receive the game manager in an efficient way without using FindObjectOfType
+    void ReceiveGManager(GameManager gManager) { gameManager = gManager; }
+
     public void OnCompleteDialogue()
     {
         if (currentNPC != null)
@@ -56,9 +70,9 @@ public class PlayerInteraction : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        gameObject.GetComponentInChildren<PlayerMovement>().SetEnabledMove(true);
-        gameObject.GetComponentInChildren<PlayerLook>().SetEnabledLook(true);
-        dialogueRunner.GetComponentInChildren<Image>().enabled = false;
+        playerMovement.SetEnabledMove(true);
+        playerLook.SetEnabledLook(true);
+        drImage.enabled = false;
         dialogueRunner.GetComponentInChildren<AudioSource>().Stop();
         //_light.intensity = 130000;
         // Reenable the ability to use the flashlight.
@@ -69,9 +83,14 @@ public class PlayerInteraction : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        gameObject.GetComponentInChildren<PlayerMovement>().SetEnabledMove(false);
-        gameObject.GetComponentInChildren<PlayerLook>().SetEnabledLook(false);
-        dialogueRunner.GetComponentInChildren<Image>().enabled = true;
+        playerMovement.SetEnabledMove(false);
+        playerLook.SetEnabledLook(false);
+        drImage.enabled = true;
         //_light.intensity = 50000;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnGiveGManager -= ReceiveGManager;
     }
 }

@@ -32,7 +32,7 @@ public class FlashlightActions : MonoBehaviour
     void Start()
     {
         PlayerInteraction.OnCharacterTalk += FlashlightAvailability;
-        GameManager.OnAcceptTamfanaChoice += HolyFlashlight;
+        GameManager.OnAcceptTanfanaChoice += HolyFlashlight;
 
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
@@ -167,6 +167,6 @@ public class FlashlightActions : MonoBehaviour
     private void OnDestroy()
     {
         PlayerInteraction.OnCharacterTalk -= FlashlightAvailability;
-        GameManager.OnAcceptTamfanaChoice -= HolyFlashlight;
+        GameManager.OnAcceptTanfanaChoice -= HolyFlashlight;
     }
 }

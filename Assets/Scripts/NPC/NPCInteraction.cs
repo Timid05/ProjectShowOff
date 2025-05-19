@@ -7,14 +7,21 @@ public class NPCInteraction : MonoBehaviour
     public AudioClip audioClip;
     public Image image;
     public float size;
- 
-    void Start()
+
+    private void Awake()
     {
-        _gameManager = GameObject.FindAnyObjectByType<GameManager>();
+        GameManager.OnGiveGManager += ReceiveGManager;
     }
 
     public void StartInteraction()
     {       
         _gameManager.StartInteraction(image.sprite, audioClip, size, name);
+    }
+
+    void ReceiveGManager(GameManager gManager) { _gameManager = gManager; }
+
+    private void OnDestroy()
+    {
+        GameManager.OnGiveGManager -= ReceiveGManager;
     }
 }
