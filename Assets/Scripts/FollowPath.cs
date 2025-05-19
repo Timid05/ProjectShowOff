@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
+[RequireComponent(typeof(NavMeshAgent))]
 
 public class FollowPath : MonoBehaviour
 {
-    public enum FollowType { BackAndForth, Cycle, Target }
+    public enum FollowType { BackAndForth, Cycle, Target}
     public FollowType followType;
-    [SerializeField]
-    private Transform target;
+    public Transform target;
+    public NavMeshAgent navmeshAgent;
     [SerializeField]
     List<Vector3> path;
     [HideInInspector]
@@ -25,6 +28,8 @@ public class FollowPath : MonoBehaviour
 
     void Awake()
     {
+        navmeshAgent = GetComponent<NavMeshAgent>();  
+
         if (path.Count < 2)
         {
             Debug.LogError("Too little waypoints in path");
@@ -32,6 +37,12 @@ public class FollowPath : MonoBehaviour
         else
         {
             transform.position = path[0];
+        }
+
+        if (navmeshAgent != null)
+        {
+            navmeshAgent.enabled = true;
+            navmeshAgent.SetDestination(path[0]);
         }
     }
 
@@ -45,6 +56,7 @@ public class FollowPath : MonoBehaviour
             {
                 toWaypoint++;
                 movingBack = false;
+                navmeshAgent.SetDestination(path[toWaypoint]);
                 return;
             }
 
@@ -52,17 +64,20 @@ public class FollowPath : MonoBehaviour
             {
                 toWaypoint--;
                 movingBack = true;
+                navmeshAgent.SetDestination(path[toWaypoint]);
                 return;
             }
 
             if (movingBack)
             {
                 toWaypoint--;
+                navmeshAgent.SetDestination(path[toWaypoint]);
                 return;
             }
             else
             {
                 toWaypoint++;
+                navmeshAgent.SetDestination(path[toWaypoint]);
                 return;
             }
 
@@ -73,9 +88,8 @@ public class FollowPath : MonoBehaviour
         if (toWaypoint >= path.Count && followType == FollowType.Cycle)
         {
             toWaypoint = 0;
+            navmeshAgent.SetDestination(path[toWaypoint]);
         }
-
-        Debug.Log("Moving to waypoint " + toWaypoint);
     }
 
     public List<Vector3> GetPath()
@@ -88,31 +102,43 @@ public class FollowPath : MonoBehaviour
         path.Clear();
     }
 
+    public void RemoveNearestWaypoint()
+    {
+        path.Remove(path[FindNearestWaypoint()]);
+    }
+
+    bool AtDestination()
+    {
+        if ((navmeshAgent.destination - transform.position).sqrMagnitude < waypointOffset)
+        {
+            Debug.Log("Destination reached");
+            return true;
+        }
+        else return false;
+    }
+
+    public void AddWaypoint(Vector3 point)
+    {
+        path.Add(point);
+    }
+
     Vector3 direction;
     void Move()
     {
         if (followType == FollowType.Target)
         {
-            direction = target.position - transform.position;
-
-            if (direction.sqrMagnitude > targetOffset)
+            if (navmeshAgent.destination != target.position)
             {
-                transform.position += (direction.normalized * speed) * Time.deltaTime;
+                navmeshAgent.SetDestination(target.position);
             }
+            return;
         }
-        else
+
+        if (AtDestination())
         {
-            direction = path[toWaypoint] - transform.position;
-            if (direction.sqrMagnitude < waypointOffset)
-            {
-                NextWaypoint();
-            }
-            transform.position += (direction.normalized * speed) * Time.deltaTime;
-        }
-
-        
+            NextWaypoint();
+        }      
     }
-
     private void OnDrawGizmosSelected()
     {
         //For visualizing the path in the scene view

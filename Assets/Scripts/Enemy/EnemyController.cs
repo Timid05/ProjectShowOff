@@ -1,19 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(FollowPath))]
 public class EnemyController : MonoBehaviour
 {
-    EnemyStateMachine fsm;
+    public EnemyStateMachine fsm;
     [SerializeField]
     EnemyStateMachine.State startState;
-    [SerializeField]
-    Dictionary<EnemyStateMachine.State, float> stateSpeeds = new Dictionary<EnemyStateMachine.State, float>();
+    [HideInInspector]
+    public List<EnemyStateMachine.State> states = new List<EnemyStateMachine.State>();
+    [HideInInspector]
+    public List<float> speeds = new List<float>();
+    public Dictionary<EnemyStateMachine.State, float> stateSpeeds= new Dictionary<EnemyStateMachine.State, float>();
+   
 
     void Start()
     {
-        fsm = new EnemyStateMachine(gameObject.GetComponent<FollowPath>());
+        foreach (EnemyStateMachine.State state in states)
+        {
+            stateSpeeds[state] = speeds[(int)state];
+        }
+
+        fsm = new EnemyStateMachine(gameObject.GetComponent<FollowPath>(), stateSpeeds);
         fsm.AddState(EnemyStateMachine.State.Docile, new DocileState());
         fsm.AddState(EnemyStateMachine.State.Aggressive, new AggressiveState());
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());
@@ -21,6 +31,17 @@ public class EnemyController : MonoBehaviour
         fsm.SetStartState(startState);
     }
 
+    public void EditStateSpeed(EnemyStateMachine.State state, float speed)
+    {
+        stateSpeeds[state] = speed;
+        Debug.Log("Speed set to " + stateSpeeds[state]);
+        fsm.UpdateSpeeds(stateSpeeds);
+    }
+
+    public void UpdateSpeeds()
+    {
+        fsm.UpdateSpeeds(stateSpeeds);
+    }
 
     void Update()
     {
@@ -39,9 +60,17 @@ public class EnemyController : MonoBehaviour
             fsm.SetState(EnemyStateMachine.State.Enraged);
         }
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("Editing speed");
+            EditStateSpeed(EnemyStateMachine.State.Enraged, 1);
+        }
+
         if (fsm != null)
         {
             fsm.Update();
         }
     }
 }
+
+

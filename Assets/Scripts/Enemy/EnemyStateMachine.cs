@@ -5,9 +5,12 @@ using UnityEngine;
 public class EnemyStateMachine
 {
     FollowPath followPath;
-    public EnemyStateMachine(FollowPath f)
-    {
+    Dictionary<State, float> stateSpeeds;
+
+    public EnemyStateMachine(FollowPath f, Dictionary<State, float> speeds)
+    {   
         followPath = f;
+        stateSpeeds = speeds;
     }
 
     public enum State { Docile, Enraged, Aggressive }
@@ -27,6 +30,17 @@ public class EnemyStateMachine
             Debug.LogError("State machine does not contain a script for state: " + state);
         }
         currentState.Enter(this, followPath);
+    }
+
+    public float GetSpeed(State state)
+    {
+        return stateSpeeds[state];
+    }
+
+    public void UpdateSpeeds(Dictionary<State, float> speeds)
+    {
+        stateSpeeds = speeds;
+        Debug.Log("fsm speeds updated");
     }
 
     public void SetState(State state)
