@@ -500,7 +500,6 @@ Transform:
   - {fileID: 1300140405}
   - {fileID: 782906298}
   - {fileID: 1522615005}
-  - {fileID: 989407977}
   - {fileID: 2108936329}
   - {fileID: 2033300937}
   - {fileID: 1382438877}
@@ -767,17 +766,22 @@ PrefabInstance:
         type: 3}
       propertyPath: <EastWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 681589007}
+      objectReference: {fileID: 681589008}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <WestWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 1300140406}
+      objectReference: {fileID: 1300140407}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <SouthWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 1847018949}
+      objectReference: {fileID: 1847018954}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -844,12 +848,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 214297028}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &214297030 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
+--- !u!114 &214297031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
     type: 3}
   m_PrefabInstance: {fileID: 214297028}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &253745307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -858,6 +868,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1382438879}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2076785317}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1558111326}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -924,6 +954,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 253745307}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &253745310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 253745307}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &291683466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -932,6 +974,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2108936331}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2066143986}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 592218161}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1522615007}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -998,6 +1065,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 291683466}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &291683469 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 291683466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &292351845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1010,17 +1089,22 @@ PrefabInstance:
         type: 3}
       propertyPath: <EastWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 1042500699}
+      objectReference: {fileID: 1042500700}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <WestWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 1847869157}
+      objectReference: {fileID: 1847869158}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <SouthWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 681589007}
+      objectReference: {fileID: 681589008}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -1087,12 +1171,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 292351845}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &292351847 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
+--- !u!114 &292351848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
     type: 3}
   m_PrefabInstance: {fileID: 292351845}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &344328624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1408,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1558111326}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1382438879}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 291683469}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -1384,6 +1494,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 592218158}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &592218161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 592218158}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &607057803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1392,6 +1514,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 622475026}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2076785317}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2066143986}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -1458,6 +1600,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 607057803}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &607057806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 607057803}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &622475023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1466,6 +1620,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1522615007}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 607057806}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2066143986}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1924024364}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -1532,6 +1711,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 622475023}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &622475026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 622475023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &677790288
 GameObject:
   m_ObjectHideFlags: 1
@@ -1592,17 +1783,22 @@ PrefabInstance:
         type: 3}
       propertyPath: <EastWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 1847018949}
+      objectReference: {fileID: 1847018954}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <WestWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 214297030}
+      objectReference: {fileID: 214297031}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <NorthWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 292351847}
+      objectReference: {fileID: 292351848}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -1669,12 +1865,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 681589005}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &681589007 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
+--- !u!114 &681589008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
     type: 3}
   m_PrefabInstance: {fileID: 681589005}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &736778756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,6 +1960,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1847869158}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1522615007}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2108936331}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1300140407}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -1824,12 +2051,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 782906297}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &782906299 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
+--- !u!114 &782906300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
     type: 3}
   m_PrefabInstance: {fileID: 782906297}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &882335671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,80 +2274,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889645491}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &989407976
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 47259199}
-    m_Modifications:
-    - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_Name
-      value: Waypoint (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -19.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 34.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a49759631f628ba46a75f9beff05d435, type: 3}
---- !u!4 &989407977 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
-    type: 3}
-  m_PrefabInstance: {fileID: 989407976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &998359735
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,17 +2470,22 @@ PrefabInstance:
         type: 3}
       propertyPath: <WestWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 2033300938}
+      objectReference: {fileID: 2033300939}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <NorthWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 292351847}
+      objectReference: {fileID: 292351848}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <SouthWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 1847869157}
+      objectReference: {fileID: 1847869158}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -2388,12 +2552,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1042500697}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1042500699 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
+--- !u!114 &1042500700 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
     type: 3}
   m_PrefabInstance: {fileID: 1042500697}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1057130663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,6 +3060,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1522615007}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 782906300}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 214297031}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -2956,12 +3146,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1300140404}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1300140406 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
+--- !u!114 &1300140407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
     type: 3}
   m_PrefabInstance: {fileID: 1300140404}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1349639954 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7895946088576098565, guid: 7f29e5f7ffdea4a6793cefb278b61f0c,
@@ -3078,6 +3274,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2033300939}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 253745310}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 592218161}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -3144,6 +3360,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1382438876}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1382438879 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 1382438876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1522615004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3152,6 +3380,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 782906300}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 622475026}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 291683469}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1300140407}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -3218,6 +3471,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1522615004}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1522615007 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 1522615004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1549251685
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,6 +3584,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 592218161}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2076785317}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 253745310}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2066143986}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -3385,6 +3675,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1558111324}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1558111326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 1558111324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1608654418
 GameObject:
   m_ObjectHideFlags: 3
@@ -3968,12 +4270,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1847018949 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
-    type: 3}
-  m_PrefabInstance: {fileID: 1682748175563691210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1847018953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
@@ -3986,7 +4282,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1682748175563691210}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847018949}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
@@ -4004,17 +4300,22 @@ PrefabInstance:
         type: 3}
       propertyPath: <EastWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 292351847}
+      objectReference: {fileID: 292351848}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <NorthWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 1042500699}
+      objectReference: {fileID: 1042500700}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <SouthWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 782906299}
+      objectReference: {fileID: 782906300}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -4081,12 +4382,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1847869155}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1847869157 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
+--- !u!114 &1847869158 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
     type: 3}
   m_PrefabInstance: {fileID: 1847869155}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1924024361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4099,6 +4406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <EndWaypoint>k__BackingField
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
@@ -4166,6 +4478,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1924024361}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1924024364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 1924024361}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1969037424
 GameObject:
   m_ObjectHideFlags: 0
@@ -4473,6 +4797,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1042500700}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1382438879}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2108936331}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -4539,12 +4883,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2033300936}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2033300938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
+--- !u!114 &2033300939 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
     type: 3}
   m_PrefabInstance: {fileID: 2033300936}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2066143983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4553,6 +4903,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 291683469}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 607057806}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1558111326}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 622475026}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -4619,6 +4994,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2066143983}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2066143986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 2066143983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2076785314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4627,6 +5014,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <EastWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1558111326}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 253745310}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 607057806}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -4693,6 +5100,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2076785314}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2076785317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 2076785314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2108936328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4701,6 +5120,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47259199}
     m_Modifications:
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <WestWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 291683469}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <NorthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 2033300939}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 782906300}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
@@ -4767,6 +5206,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2108936328}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2108936331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+    type: 3}
+  m_PrefabInstance: {fileID: 2108936328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1682748175563691210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4779,12 +5230,22 @@ PrefabInstance:
         type: 3}
       propertyPath: <EastWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 681589007}
+      objectReference: {fileID: 681589008}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <NorthWaypoint>k__BackingField
       value: 
-      objectReference: {fileID: 214297030}
+      objectReference: {fileID: 214297031}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <SouthWaypoint>k__BackingField
+      value: 
+      objectReference: {fileID: 1924024364}
+    - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462680310198780761, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Name
