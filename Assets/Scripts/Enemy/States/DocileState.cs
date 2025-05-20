@@ -8,7 +8,6 @@ public class DocileState : IEnemyState
     EnemyStateMachine fsm;
     EnemyStateMachine.State state = EnemyStateMachine.State.Docile;
     FollowPath followPath;
-    float oldSpeed;
 
     public void Enter(EnemyStateMachine sM, FollowPath f)
     {
@@ -17,7 +16,7 @@ public class DocileState : IEnemyState
         followPath = f;
 
         followPath.speed = fsm.GetSpeed(state);
-        oldSpeed = followPath.speed;
+        fsm.SetFog(state);
     }
 
     public void Exit()
@@ -28,15 +27,9 @@ public class DocileState : IEnemyState
 
     public void Update()
     {
-        if (oldSpeed != fsm.GetSpeed(state))
-        {
-            followPath.speed = fsm.GetSpeed(state);
-            oldSpeed = followPath.speed;
-        }
 
         if (followPath.followType != FollowPath.FollowType.BackAndForth)
         {
-            Debug.Log("Setting pathfollow behaviour");
             followPath.followType = FollowPath.FollowType.BackAndForth;
         }
     }

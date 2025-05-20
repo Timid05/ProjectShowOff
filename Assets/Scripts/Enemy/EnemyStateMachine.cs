@@ -6,14 +6,18 @@ public class EnemyStateMachine
 {
     FollowPath followPath;
     Dictionary<State, float> stateSpeeds;
+    FogController fog;
+    List<float> fogDistances;
 
-    public EnemyStateMachine(FollowPath f, Dictionary<State, float> speeds)
+    public EnemyStateMachine(FollowPath f, Dictionary<State, float> speeds, FogController fogs, List<float> fogD)
     {   
         followPath = f;
         stateSpeeds = speeds;
+        fog = fogs;
+        fogDistances = fogD;
     }
 
-    public enum State { Docile, Enraged, Aggressive }
+    public enum State { Docile, Aggressive, Enraged }
     State currenStatename;
     private Dictionary<State, IEnemyState> states = new Dictionary<State, IEnemyState>();
     public IEnemyState currentState;
@@ -37,10 +41,21 @@ public class EnemyStateMachine
         return stateSpeeds[state];
     }
 
+    public void SetFog(State state)
+    {
+        fog.SetFogDistance(fogDistances[(int)state]);
+    }
+
     public void UpdateSpeeds(Dictionary<State, float> speeds)
     {
         stateSpeeds = speeds;
         Debug.Log("fsm speeds updated");
+    }
+
+    public void UpdateFogDistances(List<float> fogD)
+    {
+        fogDistances = fogD;
+        Debug.Log("fsm fogs updated");
     }
 
     public void SetState(State state)

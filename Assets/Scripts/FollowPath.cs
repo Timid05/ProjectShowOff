@@ -10,6 +10,7 @@ public class FollowPath : MonoBehaviour
     public enum FollowType { BackAndForth, Cycle, Target}
     public FollowType followType;
     public Transform target;
+    [HideInInspector]
     public NavMeshAgent navmeshAgent;
     [SerializeField]
     List<Vector3> path;
@@ -33,10 +34,6 @@ public class FollowPath : MonoBehaviour
         if (path.Count < 2)
         {
             Debug.LogError("Too little waypoints in path");
-        }
-        else
-        {
-            transform.position = path[0];
         }
 
         if (navmeshAgent != null)
@@ -189,6 +186,7 @@ public class FollowPath : MonoBehaviour
             if (oldType == FollowType.Target)
             {
                 toWaypoint = FindNearestWaypoint();
+                navmeshAgent.SetDestination(path[toWaypoint]);
             }
 
             oldType = followType;
