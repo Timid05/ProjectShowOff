@@ -16,6 +16,7 @@ public class AggressiveState : IEnemyState
         followPath = f;
 
         followPath.speed = fsm.GetSpeed(state);
+        fsm.SetFog(state);
     }
 
     public void Exit()
@@ -33,7 +34,6 @@ public class AggressiveState : IEnemyState
 
         if (followPath.followType != FollowPath.FollowType.Target)
         {
-            Debug.Log("setting pathfollow behaviour");
             followPath.followType = FollowPath.FollowType.Target;
         }
     }

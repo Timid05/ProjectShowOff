@@ -2,19 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 [RequireComponent(typeof(FollowPath))]
+[RequireComponent (typeof(FogController))]
+
 public class EnemyController : MonoBehaviour
 {
+    FollowPath followPath;
+    FogController fogController;
     public EnemyStateMachine fsm;
+
     [SerializeField]
     EnemyStateMachine.State startState;
+
     [HideInInspector]
     public List<EnemyStateMachine.State> states = new List<EnemyStateMachine.State>();
+
     [HideInInspector]
     public List<float> speeds = new List<float>();
     public Dictionary<EnemyStateMachine.State, float> stateSpeeds= new Dictionary<EnemyStateMachine.State, float>();
-   
+
+    [HideInInspector]
+    public List<float> fogs = new List<float>();
+
+    private void Awake()
+    {
+        fogController = GetComponent<FogController>();
+        followPath = GetComponent<FollowPath>();
+    }
 
     void Start()
     {
@@ -23,7 +40,7 @@ public class EnemyController : MonoBehaviour
             stateSpeeds[state] = speeds[(int)state];
         }
 
-        fsm = new EnemyStateMachine(gameObject.GetComponent<FollowPath>(), stateSpeeds);
+        fsm = new EnemyStateMachine(followPath, stateSpeeds, fogController, fogs);
         fsm.AddState(EnemyStateMachine.State.Docile, new DocileState());
         fsm.AddState(EnemyStateMachine.State.Aggressive, new AggressiveState());
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());
@@ -38,9 +55,25 @@ public class EnemyController : MonoBehaviour
         fsm.UpdateSpeeds(stateSpeeds);
     }
 
+    public void AssignFog(LocalVolumetricFog fog, Transform target)
+    {
+        fogController.fog = fog;
+        fogController.target = target;
+    }
+
+    public void SetTarget(Transform target)
+    {
+        followPath.target = target;
+    }
+
     public void UpdateSpeeds()
     {
         fsm.UpdateSpeeds(stateSpeeds);
+    }
+
+    public void UpdateFogDistances()
+    {
+        fsm.UpdateFogDistances(fogs);
     }
 
     void Update()

@@ -14,6 +14,7 @@ public class EnragedState : IEnemyState
         Debug.Log("Entering Enraged state");
         fsm = sM;
         followPath = f;
+        fsm.SetFog(state);
 
         followPath.speed = fsm.GetSpeed(state);   
         oldSpeed = followPath.speed;
@@ -36,7 +37,6 @@ public class EnragedState : IEnemyState
 
         if (followPath.followType != FollowPath.FollowType.Target)
         {
-            Debug.Log("Changing pathfollow behaviour");
             followPath.followType = FollowPath.FollowType.Target;
         }  
     }
