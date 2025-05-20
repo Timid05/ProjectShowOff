@@ -5,7 +5,9 @@ using UnityEngine;
 public class AggressiveState : IEnemyState
 {
     EnemyStateMachine fsm;
+    EnemyStateMachine.State state = EnemyStateMachine.State.Aggressive;
     FollowPath followPath;
+    float oldSpeed;
 
     public void Enter(EnemyStateMachine sM, FollowPath f)
     {
@@ -13,6 +15,7 @@ public class AggressiveState : IEnemyState
         fsm = sM;
         followPath = f;
 
+        followPath.speed = fsm.GetSpeed(state);
     }
 
     public void Exit()
@@ -22,6 +25,12 @@ public class AggressiveState : IEnemyState
 
     public void Update()
     {
+        if (oldSpeed != fsm.GetSpeed(state))
+        {
+            followPath.speed = fsm.GetSpeed(state);
+            oldSpeed = fsm.GetSpeed(state);
+        }
+
         if (followPath.followType != FollowPath.FollowType.Target)
         {
             Debug.Log("setting pathfollow behaviour");

@@ -9,8 +9,8 @@ public class FollowPathEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        
-        
+
+
         FollowPath component = target as FollowPath;
 
         GUILayout.Space(20);
@@ -37,7 +37,13 @@ public class FollowPathEditor : Editor
         if (GUILayout.Button("+")) component.speed++;
         GUILayout.EndHorizontal();
 
-        if (component.GetPath().Count < 2)
+
+
+        if (component.followType == FollowPath.FollowType.Target && component.target == null)
+        {
+            EditorGUILayout.HelpBox("Please drag in the desired target", MessageType.Warning);
+        }
+        else if (component.GetPath().Count < 2)
         {
             EditorGUILayout.HelpBox("This script needs at least 2 waypoints in its path to function", MessageType.Warning);
         }
@@ -63,7 +69,7 @@ public class FollowPathEditor : Editor
 
                 if (EditorGUI.EndChangeCheck())
                 {
-                    Undo.RecordObject(component, "Moved Waypoint");          
+                    Undo.RecordObject(component, "Moved Waypoint");
                     component.GetPath()[i] = position;
                     EditorUtility.SetDirty(component);
                 }
