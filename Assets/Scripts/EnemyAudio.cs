@@ -11,7 +11,16 @@ public class EnemyAudio : MonoBehaviour
 
     [SerializeField]
     AudioClip jumpscareClip;
-    
+
+    private void OnEnable()
+    {
+        PlayerActions.OnPlayerHit += PlayJumpscare;
+    }
+
+    private void OnDisable()
+    {
+        PlayerActions.OnPlayerHit -= PlayJumpscare;
+    }
 
     private void Awake()
     {

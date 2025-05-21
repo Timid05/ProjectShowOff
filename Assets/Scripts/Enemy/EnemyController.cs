@@ -12,7 +12,6 @@ using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
-    public UnityEvent OnPlayerReached;
     FollowPath followPath;
     FogController fogController;
     public EnemyStateMachine fsm;
@@ -36,6 +35,15 @@ public class EnemyController : MonoBehaviour
         followPath = GetComponent<FollowPath>();
     }
 
+    private void OnEnable()
+    {
+        PlayerActions.OnPlayerHit += DestroyEnemy;
+    }
+
+    private void OnDisable()
+    {
+        PlayerActions.OnPlayerHit -= DestroyEnemy;
+    }
     void Start()
     {
         foreach (EnemyStateMachine.State state in states)
@@ -89,7 +97,8 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && followPath.followType == FollowPath.FollowType.Target)
         {
-            OnPlayerReached.Invoke();
+            PlayerActions.OnPlayerHit();
+            PlayerActions.OnPlayerDamaged(3);
         }
     }
     void Update()
