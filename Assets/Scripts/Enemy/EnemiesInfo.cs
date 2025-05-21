@@ -7,6 +7,8 @@ public static class EnemiesInfo
 {
     static List<EnemyStateMachine> Enemies = new List<EnemyStateMachine>();
     public static Action<IEnemyState, float> OnStateChangeFog;
+    public static Action OnEnemyAdded;
+    public static Action OnEnemyRemoved;
 
     public static bool HasAggressiveEnemies()
     {
@@ -42,10 +44,12 @@ public static class EnemiesInfo
     public static void AddStateMachine(EnemyStateMachine m)
     {
         Enemies.Add(m);
+        OnEnemyAdded?.Invoke();
     }
 
     public static void RemoveStateMachine(EnemyStateMachine m)
     {
         Enemies.Remove(m);
+        OnEnemyRemoved?.Invoke();
     }
 }

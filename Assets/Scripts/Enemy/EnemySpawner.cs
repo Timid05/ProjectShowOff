@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     GameObject enemyPrefab;
     [SerializeField]
     LocalVolumetricFog fog;
+    [SerializeField]
+    bool lockToTarget = false;
 
     [SerializeField]
     float spawnInterval = 10;
@@ -63,6 +65,11 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.Log("Spawning new enemy");
             spawnNewEnemy();
+        }
+
+        if (lockToTarget)
+        {
+            transform.position = enemyTarget.position;
         }
     }
 

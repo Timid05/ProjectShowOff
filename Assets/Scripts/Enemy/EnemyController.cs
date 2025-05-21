@@ -37,12 +37,11 @@ public class EnemyController : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerActions.OnPlayerHit += DestroyEnemy;
+        
     }
 
     private void OnDisable()
-    {
-        PlayerActions.OnPlayerHit -= DestroyEnemy;
+    {    
         fsm.SetFog(fsm.currenStatename);
         EnemiesInfo.RemoveStateMachine(fsm);
     }
@@ -102,6 +101,7 @@ public class EnemyController : MonoBehaviour
         {
             PlayerActions.OnPlayerHit();
             PlayerActions.OnPlayerDamaged(3);
+            DestroyEnemy();
         }
     }
     void Update()
