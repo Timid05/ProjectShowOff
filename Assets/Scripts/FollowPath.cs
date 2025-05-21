@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 
 public class FollowPath : MonoBehaviour
 {
+    public UnityEvent ReachedPlayer;
     public enum FollowType { BackAndForth, Cycle, Target}
     public FollowType followType;
     public Transform target;
@@ -104,8 +106,19 @@ public class FollowPath : MonoBehaviour
         path.Remove(path[FindNearestWaypoint()]);
     }
 
-    bool AtDestination()
+    bool AtTarget()
     {
+        if ((navmeshAgent.destination - transform.position).sqrMagnitude < targetOffset && followType == FollowType.Target)
+        {
+            Debug.Log("Reached player");
+            ReachedPlayer.Invoke();
+            return true;
+        }
+        else return false;
+    }
+
+    bool AtDestination()
+    {  
         if ((navmeshAgent.destination - transform.position).sqrMagnitude < waypointOffset)
         {
             Debug.Log("Destination reached");
@@ -122,6 +135,11 @@ public class FollowPath : MonoBehaviour
     Vector3 direction;
     void Move()
     {
+        if (AtTarget())
+        {
+            Debug.Log("slay");
+        }
+
         if (followType == FollowType.Target)
         {
             if (navmeshAgent.destination != target.position)

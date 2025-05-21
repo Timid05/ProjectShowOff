@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     GameObject enemyPrefab;
     [SerializeField]
     LocalVolumetricFog fog;
+
     [SerializeField]
     float spawnInterval = 10;
     [SerializeField]

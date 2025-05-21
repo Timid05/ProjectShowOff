@@ -66,6 +66,12 @@ public class EnemyController : MonoBehaviour
         followPath.target = target;
     }
 
+    public void DestroyEnemy()
+    {
+        followPath.enabled = false;
+        Destroy(gameObject, 0.5f);
+    }
+
     public void UpdateSpeeds()
     {
         fsm.UpdateSpeeds(stateSpeeds);

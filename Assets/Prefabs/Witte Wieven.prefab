@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 7037670393117351789}
   - component: {fileID: 943825989495333170}
   - component: {fileID: 1631476530611273356}
-  - component: {fileID: 9079346714161959032}
   - component: {fileID: 6733471084525474234}
+  - component: {fileID: -8655727244392309347}
+  - component: {fileID: 9079346714161959032}
   - component: {fileID: 6841040233886966382}
   m_Layer: 0
   m_Name: Witte Wieven
@@ -124,6 +125,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebc8fd22597a3e43a612d1244453184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ReachedPlayer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8655727244392309347}
+        m_TargetAssemblyTypeName: EnemyAudio, Assembly-CSharp
+        m_MethodName: PlayJumpscare
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1631476530611273356}
+        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+        m_MethodName: DestroyEnemy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   followType: 0
   target: {fileID: 0}
   navmeshAgent: {fileID: 9079346714161959032}
@@ -133,9 +161,9 @@ MonoBehaviour:
   - {x: -3.5012698, y: 0, z: 19.135536}
   - {x: -23.933973, y: 0, z: 28.572847}
   - {x: -40.830048, y: 0, z: 12.486538}
-  speed: 3
+  speed: 4
   waypointOffset: 10
-  targetOffset: 3
+  targetOffset: 10
   drawPath: 1
 --- !u!114 &1631476530611273356
 MonoBehaviour:
@@ -159,6 +187,36 @@ MonoBehaviour:
   - 1.24
   - 0.9
   - 0.54
+--- !u!114 &6733471084525474234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936101700058981853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5902732a05ecc54eaf0d5f70065af8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fog: {fileID: 0}
+  target: {fileID: 0}
+--- !u!114 &-8655727244392309347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936101700058981853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbdce8b34dd0d3c40b022bd8f99a572e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnClips:
+  - {fileID: 8300000, guid: 93daa147eda7b8646a854249aa4cf496, type: 3}
+  - {fileID: 8300000, guid: cc068d01ade1d534ca9a798dbaaaf9e5, type: 3}
+  jumpscareClip: {fileID: 8300000, guid: fc0d1431690bacf4bbdfc417908d820e, type: 3}
 --- !u!195 &9079346714161959032
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -181,20 +239,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6733471084525474234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936101700058981853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5902732a05ecc54eaf0d5f70065af8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fog: {fileID: 0}
-  target: {fileID: 0}
 --- !u!82 &6841040233886966382
 AudioSource:
   m_ObjectHideFlags: 0
