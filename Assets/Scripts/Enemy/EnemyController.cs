@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(FollowPath))]
 [RequireComponent (typeof(FogController))]
@@ -33,6 +35,16 @@ public class EnemyController : MonoBehaviour
         followPath = GetComponent<FollowPath>();
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {    
+        fsm.SetFog(fsm.currenStatename);
+        EnemiesInfo.RemoveStateMachine(fsm);
+    }
     void Start()
     {
         foreach (EnemyStateMachine.State state in states)
@@ -41,6 +53,7 @@ public class EnemyController : MonoBehaviour
         }
 
         fsm = new EnemyStateMachine(followPath, stateSpeeds, fogController, fogs);
+        EnemiesInfo.AddStateMachine(fsm);
         fsm.AddState(EnemyStateMachine.State.Docile, new DocileState());
         fsm.AddState(EnemyStateMachine.State.Aggressive, new AggressiveState());
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());
@@ -66,6 +79,12 @@ public class EnemyController : MonoBehaviour
         followPath.target = target;
     }
 
+    public void DestroyEnemy()
+    {
+        followPath.enabled = false;
+        Destroy(gameObject, 0.5f);
+    }
+
     public void UpdateSpeeds()
     {
         fsm.UpdateSpeeds(stateSpeeds);
@@ -76,6 +95,15 @@ public class EnemyController : MonoBehaviour
         fsm.UpdateFogDistances(fogs);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && followPath.followType == FollowPath.FollowType.Target)
+        {
+            PlayerActions.OnPlayerHit();
+            PlayerActions.OnPlayerDamaged(3);
+            DestroyEnemy();
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))

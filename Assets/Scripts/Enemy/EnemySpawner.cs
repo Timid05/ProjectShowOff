@@ -12,6 +12,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     LocalVolumetricFog fog;
     [SerializeField]
+    bool lockToTarget = false;
+
+    [SerializeField]
     float spawnInterval = 10;
     [SerializeField]
     float spawnRadius = 10;
@@ -31,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemyPrefab != null)
         {
-            GameObject newEnemy = Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity, gameObject.transform);
             if (enemyTarget != null)
             {
                 newEnemy.gameObject.GetComponent<EnemyController>().SetTarget(enemyTarget);
@@ -62,6 +65,11 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.Log("Spawning new enemy");
             spawnNewEnemy();
+        }
+
+        if (lockToTarget)
+        {
+            transform.position = enemyTarget.position;
         }
     }
 

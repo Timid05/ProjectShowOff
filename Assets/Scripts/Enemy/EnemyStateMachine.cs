@@ -10,7 +10,7 @@ public class EnemyStateMachine
     List<float> fogDistances;
 
     public EnemyStateMachine(FollowPath f, Dictionary<State, float> speeds, FogController fogs, List<float> fogD)
-    {   
+    {
         followPath = f;
         stateSpeeds = speeds;
         fog = fogs;
@@ -18,7 +18,7 @@ public class EnemyStateMachine
     }
 
     public enum State { Docile, Aggressive, Enraged }
-    State currenStatename;
+    public State currenStatename;
     private Dictionary<State, IEnemyState> states = new Dictionary<State, IEnemyState>();
     public IEnemyState currentState;
 
@@ -43,7 +43,7 @@ public class EnemyStateMachine
 
     public void SetFog(State state)
     {
-        fog.SetFogDistance(fogDistances[(int)state]);
+        EnemiesInfo.OnStateChangeFog(states[state], fogDistances[(int)state]);
     }
 
     public void UpdateSpeeds(Dictionary<State, float> speeds)
@@ -61,10 +61,10 @@ public class EnemyStateMachine
     public void SetState(State state)
     {
         if (state == currenStatename) return;
-        
+
         Debug.Log("Setting state to " + state);
         currentState?.Exit();
-        
+
         if (states[state] != null)
         {
             currentState = states[state];
