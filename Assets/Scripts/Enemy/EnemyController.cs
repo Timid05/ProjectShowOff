@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(FollowPath))]
 [RequireComponent (typeof(FogController))]
 
 public class EnemyController : MonoBehaviour
 {
+    public UnityEvent OnPlayerReached;
     FollowPath followPath;
     FogController fogController;
     public EnemyStateMachine fsm;
@@ -82,6 +85,13 @@ public class EnemyController : MonoBehaviour
         fsm.UpdateFogDistances(fogs);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && followPath.followType == FollowPath.FollowType.Target)
+        {
+            OnPlayerReached.Invoke();
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))

@@ -8,7 +8,6 @@ using UnityEngine.Events;
 
 public class FollowPath : MonoBehaviour
 {
-    public UnityEvent ReachedPlayer;
     public enum FollowType { BackAndForth, Cycle, Target}
     public FollowType followType;
     public Transform target;
@@ -110,8 +109,7 @@ public class FollowPath : MonoBehaviour
     {
         if ((navmeshAgent.destination - transform.position).sqrMagnitude < targetOffset && followType == FollowType.Target)
         {
-            Debug.Log("Reached player");
-            ReachedPlayer.Invoke();
+            Debug.Log("Reached target");
             return true;
         }
         else return false;

@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemyPrefab != null)
         {
-            GameObject newEnemy = Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity, gameObject.transform);
             if (enemyTarget != null)
             {
                 newEnemy.gameObject.GetComponent<EnemyController>().SetTarget(enemyTarget);

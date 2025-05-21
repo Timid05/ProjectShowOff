@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 6841040233886966382}
   m_Layer: 0
   m_Name: Witte Wieven
-  m_TagString: Untagged
+  m_TagString: WitteWieven
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -125,7 +125,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebc8fd22597a3e43a612d1244453184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReachedPlayer:
+  followType: 0
+  target: {fileID: 0}
+  navmeshAgent: {fileID: 9079346714161959032}
+  path:
+  - {x: 24.96577, y: 0, z: 13.053299}
+  - {x: 9.279938, y: 0, z: 26.750422}
+  - {x: -3.5012698, y: 0, z: 19.135536}
+  - {x: -23.933973, y: 0, z: 28.572847}
+  - {x: -40.830048, y: 0, z: 12.486538}
+  speed: 4
+  waypointOffset: 10
+  targetOffset: 10
+  drawPath: 1
+--- !u!114 &1631476530611273356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936101700058981853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c392867d5336c4aa87da3d6d8cf0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPlayerReached:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -8655727244392309347}
@@ -152,31 +177,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  followType: 0
-  target: {fileID: 0}
-  navmeshAgent: {fileID: 9079346714161959032}
-  path:
-  - {x: 24.96577, y: 0, z: 13.053299}
-  - {x: 9.279938, y: 0, z: 26.750422}
-  - {x: -3.5012698, y: 0, z: 19.135536}
-  - {x: -23.933973, y: 0, z: 28.572847}
-  - {x: -40.830048, y: 0, z: 12.486538}
-  speed: 4
-  waypointOffset: 10
-  targetOffset: 10
-  drawPath: 1
---- !u!114 &1631476530611273356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936101700058981853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3c392867d5336c4aa87da3d6d8cf0be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   startState: 0
   states: 000000000100000002000000
   speeds:
