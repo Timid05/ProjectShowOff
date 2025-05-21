@@ -11,7 +11,6 @@ public class AggressiveState : IEnemyState
 
     public void Enter(EnemyStateMachine sM, FollowPath f)
     {
-        Debug.Log("Entering aggressive state");
         fsm = sM;
         followPath = f;
 
@@ -21,7 +20,7 @@ public class AggressiveState : IEnemyState
 
     public void Exit()
     {
-        Debug.Log("Exiting aggressive state");
+       
     }
 
     public void Update()

@@ -11,7 +11,7 @@ public class EnragedState : IEnemyState
 
     public void Enter(EnemyStateMachine sM, FollowPath f)
     {
-        Debug.Log("Entering Enraged state");
+       
         fsm = sM;
         followPath = f;
         fsm.SetFog(state);
@@ -22,7 +22,7 @@ public class EnragedState : IEnemyState
 
     public void Exit()
     {
-        Debug.Log("Exiting Enraged state");
+        
     }
 
 

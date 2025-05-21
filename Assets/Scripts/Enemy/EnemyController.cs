@@ -43,6 +43,8 @@ public class EnemyController : MonoBehaviour
     private void OnDisable()
     {
         PlayerActions.OnPlayerHit -= DestroyEnemy;
+        fsm.SetFog(fsm.currenStatename);
+        EnemiesInfo.RemoveStateMachine(fsm);
     }
     void Start()
     {
@@ -52,6 +54,7 @@ public class EnemyController : MonoBehaviour
         }
 
         fsm = new EnemyStateMachine(followPath, stateSpeeds, fogController, fogs);
+        EnemiesInfo.AddStateMachine(fsm);
         fsm.AddState(EnemyStateMachine.State.Docile, new DocileState());
         fsm.AddState(EnemyStateMachine.State.Aggressive, new AggressiveState());
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());

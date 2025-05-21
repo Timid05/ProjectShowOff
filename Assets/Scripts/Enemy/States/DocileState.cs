@@ -11,7 +11,6 @@ public class DocileState : IEnemyState
 
     public void Enter(EnemyStateMachine sM, FollowPath f)
     {
-        Debug.Log("Entering Docile State");
         fsm = sM;
         followPath = f;
 
@@ -21,7 +20,6 @@ public class DocileState : IEnemyState
 
     public void Exit()
     {
-        Debug.Log("Exiting Docile State");
     }
 
 
