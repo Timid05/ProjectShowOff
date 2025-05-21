@@ -119,7 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EndWaypoint>k__BackingField: 0
-  <NorthWaypoint>k__BackingField: {fileID: 0}
-  <SouthWaypoint>k__BackingField: {fileID: 0}
-  <WestWaypoint>k__BackingField: {fileID: 0}
-  <EastWaypoint>k__BackingField: {fileID: 0}
+  <waypoints>k__BackingField:
+    keys:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    values: 01010101
