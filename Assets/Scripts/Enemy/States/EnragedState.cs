@@ -14,7 +14,6 @@ public class EnragedState : IEnemyState
        
         fsm = sM;
         followPath = f;
-        fsm.SetFog(state);
 
         followPath.speed = fsm.GetSpeed(state);   
         oldSpeed = followPath.speed;

@@ -12,6 +12,8 @@ public class EnemyControllerEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        EditorGUILayout.Space(20);
+
         EnemyController component = target as EnemyController;
 
         if (component.states.Count < Enum.GetValues(typeof(EnemyStateMachine.State)).Length)
@@ -22,11 +24,6 @@ public class EnemyControllerEditor : Editor
                 component.states.Add(state);
                 component.speeds.Add(0);
             }
-        }
-
-        if (component.fogs.Count < Enum.GetValues(typeof(EnemyStateMachine.State)).Length)
-        {
-            component.fogs.Add(0);
         }
 
         foreach (EnemyStateMachine.State state in component.states)
@@ -45,28 +42,6 @@ public class EnemyControllerEditor : Editor
                 {
                     component.UpdateSpeeds();
                 }
-            }
-            EditorGUILayout.EndHorizontal();
-        }
-
-        EditorGUILayout.Space(20);
-
-        for (int i = 0; i < component.fogs.Count; i++)
-        {
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Fog " + (EnemyStateMachine.State)i, EditorStyles.boldLabel);
-
-            EditorGUI.BeginChangeCheck();
-            Undo.RecordObject(component, "fog distance changed");
-            component.fogs[i] = EditorGUILayout.Slider(component.fogs[i], 0, 3);
-
-            if (EditorGUI.EndChangeCheck()  )
-            {           
-                EditorUtility.SetDirty(component);
-                if (component.fsm != null)
-                {
-                    component.UpdateFogDistances();
-                }      
             }
             EditorGUILayout.EndHorizontal();
         }

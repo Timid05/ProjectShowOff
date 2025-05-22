@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7037670393117351789}
   - component: {fileID: 943825989495333170}
   - component: {fileID: 1631476530611273356}
-  - component: {fileID: 6733471084525474234}
   - component: {fileID: -8655727244392309347}
   - component: {fileID: 9079346714161959032}
   - component: {fileID: 6841040233886966382}
@@ -150,57 +149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c392867d5336c4aa87da3d6d8cf0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlayerReached:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -8655727244392309347}
-        m_TargetAssemblyTypeName: EnemyAudio, Assembly-CSharp
-        m_MethodName: PlayJumpscare
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1631476530611273356}
-        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
-        m_MethodName: DestroyEnemy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   startState: 0
   states: 000000000100000002000000
   speeds:
+  - 3
   - 5
-  - 10
-  - 15
-  fogs:
-  - 1.24
-  - 0.9
-  - 0.54
---- !u!114 &6733471084525474234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936101700058981853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5902732a05ecc54eaf0d5f70065af8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fog: {fileID: 0}
-  target: {fileID: 0}
+  - 8
 --- !u!114 &-8655727244392309347
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,6 @@ public class AggressiveState : IEnemyState
         followPath = f;
 
         followPath.speed = fsm.GetSpeed(state);
-        fsm.SetFog(state);
     }
 
     public void Exit()

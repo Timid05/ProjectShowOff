@@ -1,24 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyStateMachine
 {
     FollowPath followPath;
     Dictionary<State, float> stateSpeeds;
-    FogController fog;
-    List<float> fogDistances;
 
-    public EnemyStateMachine(FollowPath f, Dictionary<State, float> speeds, FogController fogs, List<float> fogD)
+    public EnemyStateMachine(FollowPath f, Dictionary<State, float> speeds)
     {
         followPath = f;
         stateSpeeds = speeds;
-        fog = fogs;
-        fogDistances = fogD;
     }
-
+    
     public enum State { Docile, Aggressive, Enraged }
-    public State currenStatename;
+    public State currentStateName;
+    State oldStateName;
     private Dictionary<State, IEnemyState> states = new Dictionary<State, IEnemyState>();
     public IEnemyState currentState;
 
@@ -27,7 +25,9 @@ public class EnemyStateMachine
         if (states[state] != null)
         {
             currentState = states[state];
-            currenStatename = state;
+            currentStateName = state;
+            oldStateName = state;
+            EnemiesInfo.OnStateChange?.Invoke(currentStateName);
         }
         else
         {
@@ -40,27 +40,15 @@ public class EnemyStateMachine
     {
         return stateSpeeds[state];
     }
-
-    public void SetFog(State state)
-    {
-        EnemiesInfo.OnStateChangeFog(states[state], fogDistances[(int)state]);
-    }
-
     public void UpdateSpeeds(Dictionary<State, float> speeds)
     {
         stateSpeeds = speeds;
         Debug.Log("fsm speeds updated");
     }
 
-    public void UpdateFogDistances(List<float> fogD)
-    {
-        fogDistances = fogD;
-        Debug.Log("fsm fogs updated");
-    }
-
     public void SetState(State state)
     {
-        if (state == currenStatename) return;
+        if (state == currentStateName) return;
 
         Debug.Log("Setting state to " + state);
         currentState?.Exit();
@@ -68,7 +56,8 @@ public class EnemyStateMachine
         if (states[state] != null)
         {
             currentState = states[state];
-            currenStatename = state;
+            currentStateName = state;
+            EnemiesInfo.OnStateChange?.Invoke(currentStateName);
         }
         else
         {
@@ -87,11 +76,18 @@ public class EnemyStateMachine
         return states[stateName];
     }
 
+    
     public void Update()
     {
         if (currentState != null)
         {
             currentState.Update();
+        }
+
+        if (currentStateName != oldStateName)
+        {
+            EnemiesInfo.OnStateChange?.Invoke(currentStateName);
+            oldStateName = currentStateName;
         }
     }
 
