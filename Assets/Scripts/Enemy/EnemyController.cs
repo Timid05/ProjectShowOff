@@ -29,8 +29,14 @@ public class EnemyController : MonoBehaviour
        followPath = GetComponent<FollowPath>();
     }
 
+    private void OnEnable()
+    {
+        PlayerActions.OnPlayerDead += DestroyEnemy;
+    }
+
     private void OnDisable()
-    {    
+    {
+        PlayerActions.OnPlayerDead -= DestroyEnemy;
         EnemiesInfo.RemoveStateMachine(fsm);
     }
     void Start()

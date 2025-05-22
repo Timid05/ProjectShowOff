@@ -66,4 +66,9 @@ public static class EnemiesInfo
         Enemies.Remove(m);
         OnEnemyRemoved?.Invoke();
     }
+
+    public static void RemoveAllEnemies()
+    {
+        Enemies.Clear();
+    }
 }
