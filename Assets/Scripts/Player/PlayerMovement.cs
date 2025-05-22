@@ -33,6 +33,16 @@ public class PlayerMovement : MonoBehaviour
 
     public static event Action<bool> OnMoveStatusChange;
 
+    private void OnEnable()
+    {
+        PlayerActions.OnPlayerDead += DisableMovement;
+    }
+
+    private void OnDisable()
+    {
+        PlayerActions.OnPlayerDead -= DisableMovement;
+    }
+
     void Start()
     {
         backUpMoveSpeed = moveSpeed;
@@ -113,6 +123,11 @@ public class PlayerMovement : MonoBehaviour
                 OnMoveStatusChange(playerSprinting);
             }
         }
+    }
+
+    private void DisableMovement()
+    {
+        this.enabled = false;
     }
 
     public void SetEnabledMove(bool enable)

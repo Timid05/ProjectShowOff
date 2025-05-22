@@ -36,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
         PlayerActions.OnHealthUpdated(maxHealth, currentHealth);
         if (currentHealth <= 0)
         {
+            PlayerActions.OnPlayerDead?.Invoke();
             Debug.Log("You ded homie");
         }
     }

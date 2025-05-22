@@ -6,7 +6,7 @@ using UnityEngine;
 public static class EnemiesInfo
 {
     static List<EnemyStateMachine> Enemies = new List<EnemyStateMachine>();
-    public static Action<IEnemyState, float> OnStateChangeFog;
+    public static Action<EnemyStateMachine.State> OnStateChange;
     public static Action OnEnemyAdded;
     public static Action OnEnemyRemoved;
 
@@ -35,6 +35,20 @@ public static class EnemiesInfo
 
         return false;
     }
+
+    public static bool HasDocileEnemies()
+    {
+        foreach (EnemyStateMachine m in Enemies)
+        {
+            if (m.currentState is DocileState)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public static List<EnemyStateMachine> GetEnemyStateMachines()
     {

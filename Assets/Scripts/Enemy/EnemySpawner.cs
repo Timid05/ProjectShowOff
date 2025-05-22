@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
         else return false;
     }
 
-    void spawnNewEnemy()
+    void SpawnNewEnemy()
     {
         if (enemyPrefab != null)
         {
@@ -38,7 +38,6 @@ public class EnemySpawner : MonoBehaviour
             if (enemyTarget != null)
             {
                 newEnemy.gameObject.GetComponent<EnemyController>().SetTarget(enemyTarget);
-                newEnemy.gameObject.GetComponent<EnemyController>().AssignFog(fog, enemyTarget);
             }
             else
             {
@@ -64,7 +63,12 @@ public class EnemySpawner : MonoBehaviour
         if (EnoughTimeElapsed())
         {
             Debug.Log("Spawning new enemy");
-            spawnNewEnemy();
+            SpawnNewEnemy();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnNewEnemy();
         }
 
         if (lockToTarget)

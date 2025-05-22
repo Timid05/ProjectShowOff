@@ -8,12 +8,10 @@ using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(FollowPath))]
-[RequireComponent (typeof(FogController))]
 
 public class EnemyController : MonoBehaviour
 {
     FollowPath followPath;
-    FogController fogController;
     public EnemyStateMachine fsm;
 
     [SerializeField]
@@ -26,23 +24,13 @@ public class EnemyController : MonoBehaviour
     public List<float> speeds = new List<float>();
     public Dictionary<EnemyStateMachine.State, float> stateSpeeds= new Dictionary<EnemyStateMachine.State, float>();
 
-    [HideInInspector]
-    public List<float> fogs = new List<float>();
-
     private void Awake()
-    {
-        fogController = GetComponent<FogController>();
-        followPath = GetComponent<FollowPath>();
-    }
-
-    private void OnEnable()
-    {
-        
+    { 
+       followPath = GetComponent<FollowPath>();
     }
 
     private void OnDisable()
     {    
-        fsm.SetFog(fsm.currenStatename);
         EnemiesInfo.RemoveStateMachine(fsm);
     }
     void Start()
@@ -52,7 +40,7 @@ public class EnemyController : MonoBehaviour
             stateSpeeds[state] = speeds[(int)state];
         }
 
-        fsm = new EnemyStateMachine(followPath, stateSpeeds, fogController, fogs);
+        fsm = new EnemyStateMachine(followPath, stateSpeeds);
         EnemiesInfo.AddStateMachine(fsm);
         fsm.AddState(EnemyStateMachine.State.Docile, new DocileState());
         fsm.AddState(EnemyStateMachine.State.Aggressive, new AggressiveState());
@@ -66,12 +54,6 @@ public class EnemyController : MonoBehaviour
         stateSpeeds[state] = speed;
         Debug.Log("Speed set to " + stateSpeeds[state]);
         fsm.UpdateSpeeds(stateSpeeds);
-    }
-
-    public void AssignFog(LocalVolumetricFog fog, Transform target)
-    {
-        fogController.fog = fog;
-        fogController.target = target;
     }
 
     public void SetTarget(Transform target)
@@ -90,17 +72,12 @@ public class EnemyController : MonoBehaviour
         fsm.UpdateSpeeds(stateSpeeds);
     }
 
-    public void UpdateFogDistances()
-    {
-        fsm.UpdateFogDistances(fogs);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && followPath.followType == FollowPath.FollowType.Target)
         {
-            PlayerActions.OnPlayerHit();
-            PlayerActions.OnPlayerDamaged(3);
+            PlayerActions.OnPlayerHit?.Invoke();
+            PlayerActions.OnPlayerDamaged?.Invoke(3);
             DestroyEnemy();
         }
     }

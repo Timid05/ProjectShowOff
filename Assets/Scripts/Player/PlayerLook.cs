@@ -13,6 +13,16 @@ public class PlayerLook : MonoBehaviour
     float backUpsensX; 
     float backUpsensY;
 
+    private void OnEnable()
+    {
+        PlayerActions.OnPlayerDead += DisableLook;
+    }
+
+    private void OnDisable()
+    {
+        PlayerActions.OnPlayerDead -= DisableLook;
+    }
+
     void Start()
     {
         //QualitySettings.vSyncCount = 0;
@@ -57,6 +67,11 @@ public class PlayerLook : MonoBehaviour
         sensY = sensitivity;
         backUpsensX = sensX;
         backUpsensY = sensY;
+    }
+
+    private void DisableLook()
+    {
+        this.enabled = false;
     }
 
     public void SetEnabledLook(bool enable)
