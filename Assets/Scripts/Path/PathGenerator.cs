@@ -33,7 +33,7 @@ public class PathGenerator : MonoBehaviour
     {
         // We stop generating if the current waypoint is the end one or the path manages to double back on itself and reach a disabled waypoint.
         // Othwerwise  we decide what the next waypoint should be.
-        if (!currentWaypoint.EndWaypoint && currentWaypoint.enabled) { GeneratePath(); }
+        if (!currentWaypoint.endWaypoint && currentWaypoint.enabled) { GeneratePath(); }
         //else { Debug.Log("Generation ended at " + currentWaypoint); }
     }
 
@@ -66,6 +66,9 @@ public class PathGenerator : MonoBehaviour
             {
                 if (prevWaypoint == currentWaypoint.waypoints.Keys[i])
                 {
+                    //Make the previous path section visible.
+                    EnablePathSection(i);
+
                     //Swap the results of left and right if the waypoints orientation is North of East, so it matches their viewpoint.
                     if (prevWaypoint == currentWaypoint.waypoints.Keys[0] || prevWaypoint == currentWaypoint.waypoints.Keys[3]) { swapResults = true;
                         //Debug.Log("Swapping results!");
@@ -152,6 +155,40 @@ public class PathGenerator : MonoBehaviour
             int randomNumber = Random.Range(0, 2);
             if (randomNumber == 0) { return true; }
             else { return false; }
+        }
+    }
+
+    void EnablePathSection(int pathIndex)
+    {
+        // Activate the path that corresponds to the direction the path came from.
+        switch(pathIndex)
+        {
+            case 0:
+                if (currentWaypoint.northPath != null) {
+                    Debug.LogFormat("Enabling north path for {0}",currentWaypoint);
+                    currentWaypoint.northPath.SetActive(true); }
+                break;
+
+            case 1:
+                if (currentWaypoint.southPath != null) {
+                    Debug.LogFormat("Enabling south path for {0}", currentWaypoint);
+                    currentWaypoint.southPath.SetActive(true); }
+                break;
+
+            case 2:
+                if (currentWaypoint.westPath != null) {
+                    Debug.LogFormat("Enabling west path for {0}", currentWaypoint);
+                    currentWaypoint.westPath.SetActive(true); }
+                break;
+
+            case 3:
+                if (currentWaypoint.eastPath != null) {
+                    Debug.LogFormat("Enabling east path for {0}", currentWaypoint);
+                    currentWaypoint.eastPath.SetActive(true); }
+                break;
+
+            default:
+                break;
         }
     }
 }

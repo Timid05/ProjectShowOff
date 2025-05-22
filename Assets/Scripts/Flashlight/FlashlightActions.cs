@@ -58,7 +58,11 @@ public class FlashlightActions : MonoBehaviour
             //Debug option. REMOVE later.
             if(Input.GetKeyDown(KeyCode.T)) { HolyFlashlight(); }
 
-            else if (light.enabled && Input.GetKeyDown(KeyCode.Mouse1)) { Flashbang(); }
+            else if (Input.GetKeyDown(KeyCode.Mouse1)) 
+            {
+                light.enabled = true;
+                Flashbang(); 
+            }
 
             // Increase flashlight values if the flashbang is active and the values haven't reached the max yet.
             if (flashbangActive)
@@ -79,12 +83,10 @@ public class FlashlightActions : MonoBehaviour
 
     IEnumerator FlashlightCooldown()
     {
-
         Debug.Log("Flashlight cooldown active.");
         yield return new WaitForSeconds(flashlightCooldownTime);
         flashlightCooldownActive = false;
         Debug.Log("Flashlight cooldown ended.");
-
     }
 
     // Disable flashlight, while character is busy with something else, like talking to a character.
@@ -137,7 +139,6 @@ public class FlashlightActions : MonoBehaviour
         witteWievenInFlashRange.Clear();
     }
 
-    //TODO: Connect this to a delegate from the Tanfana choice
     void HolyFlashlight()
     {
         // Replace normal flashbang values with the higher tanfana ones.
