@@ -31,9 +31,9 @@ public class FollowPathEditor : Editor
 
         GUILayout.BeginHorizontal();
         GUILayout.Label("Speed: ");
-        if (GUILayout.Button("-")) component.speed--;
-        component.speed = EditorGUILayout.FloatField(component.speed);
-        if (GUILayout.Button("+")) component.speed++;
+        if (GUILayout.Button("-")) component.navmeshAgent.speed--;
+        component.navmeshAgent.speed = EditorGUILayout.FloatField(component.navmeshAgent.speed);
+        if (GUILayout.Button("+")) component.navmeshAgent.speed++;
         GUILayout.EndHorizontal();
 
 

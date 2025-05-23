@@ -15,8 +15,6 @@ public class FollowPath : MonoBehaviour
     public NavMeshAgent navmeshAgent;
     [SerializeField]
     List<Vector3> path;
-    [HideInInspector]
-    public float speed;
     [SerializeField]
     float waypointOffset;
     [SerializeField]

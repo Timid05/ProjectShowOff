@@ -14,7 +14,7 @@ public class AggressiveState : IEnemyState
         fsm = sM;
         followPath = f;
 
-        followPath.speed = fsm.GetSpeed(state);
+        followPath.navmeshAgent.speed = fsm.GetSpeed(state);
     }
 
     public void Exit()
@@ -26,7 +26,7 @@ public class AggressiveState : IEnemyState
     {
         if (oldSpeed != fsm.GetSpeed(state))
         {
-            followPath.speed = fsm.GetSpeed(state);
+            followPath.navmeshAgent.speed = fsm.GetSpeed(state);
             oldSpeed = fsm.GetSpeed(state);
         }
 

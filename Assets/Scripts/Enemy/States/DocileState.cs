@@ -14,7 +14,7 @@ public class DocileState : IEnemyState
         fsm = sM;
         followPath = f;
 
-        followPath.speed = fsm.GetSpeed(state);
+        followPath.navmeshAgent.speed = fsm.GetSpeed(state);
     }
 
     public void Exit()

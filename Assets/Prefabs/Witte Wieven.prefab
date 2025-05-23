@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 943825989495333170}
   - component: {fileID: 1631476530611273356}
   - component: {fileID: -8655727244392309347}
+  - component: {fileID: 4975219380500511708}
   - component: {fileID: 9079346714161959032}
   - component: {fileID: 6841040233886966382}
   m_Layer: 0
@@ -133,7 +134,6 @@ MonoBehaviour:
   - {x: -3.5012698, y: 0, z: 19.135536}
   - {x: -23.933973, y: 0, z: 28.572847}
   - {x: -40.830048, y: 0, z: 12.486538}
-  speed: 4
   waypointOffset: 10
   targetOffset: 10
   drawPath: 1
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startState: 0
+  enragedAttackRange: 20
   states: 000000000100000002000000
   speeds:
   - 3
@@ -171,6 +172,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 93daa147eda7b8646a854249aa4cf496, type: 3}
   - {fileID: 8300000, guid: cc068d01ade1d534ca9a798dbaaaf9e5, type: 3}
   jumpscareClip: {fileID: 8300000, guid: fc0d1431690bacf4bbdfc417908d820e, type: 3}
+--- !u!114 &4975219380500511708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936101700058981853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8b24cb0dfdd774b839b55b05c1615e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decoyPrefab: {fileID: 789435149702868870, guid: b016ea47361b9234f92cbc1214b5039f,
+    type: 3}
+  decoySpawnCount: 4
+  spawnRadius: 15
+  target: {fileID: 0}
 --- !u!195 &9079346714161959032
 NavMeshAgent:
   m_ObjectHideFlags: 0

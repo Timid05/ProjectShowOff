@@ -17,16 +17,20 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     EnemyStateMachine.State startState;
 
+    [SerializeField]
+    float enragedAttackRange;
+    bool enragedAttacking;
+
     [HideInInspector]
     public List<EnemyStateMachine.State> states = new List<EnemyStateMachine.State>();
 
     [HideInInspector]
     public List<float> speeds = new List<float>();
-    public Dictionary<EnemyStateMachine.State, float> stateSpeeds= new Dictionary<EnemyStateMachine.State, float>();
+    public Dictionary<EnemyStateMachine.State, float> stateSpeeds = new Dictionary<EnemyStateMachine.State, float>();
 
     private void Awake()
-    { 
-       followPath = GetComponent<FollowPath>();
+    {
+        followPath = GetComponent<FollowPath>();
     }
 
     private void OnEnable()
@@ -39,6 +43,7 @@ public class EnemyController : MonoBehaviour
         PlayerActions.OnPlayerDead -= DestroyEnemy;
         EnemiesInfo.RemoveStateMachine(fsm);
     }
+
     void Start()
     {
         foreach (EnemyStateMachine.State state in states)
@@ -53,6 +58,11 @@ public class EnemyController : MonoBehaviour
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());
 
         fsm.SetStartState(startState);
+    }
+
+    public Transform GetTarget()
+    {
+        return followPath.target;
     }
 
     public void EditStateSpeed(EnemyStateMachine.State state, float speed)
@@ -70,7 +80,7 @@ public class EnemyController : MonoBehaviour
     public void DestroyEnemy()
     {
         followPath.enabled = false;
-        Destroy(gameObject, 0.5f);
+       // Destroy(gameObject, 0.5f);
     }
 
     public void UpdateSpeeds()
@@ -113,6 +123,16 @@ public class EnemyController : MonoBehaviour
         if (fsm != null)
         {
             fsm.Update();
+        }
+
+        if ((followPath.target.position - transform.position).sqrMagnitude < enragedAttackRange)
+        {
+            if (fsm.currentStateName == EnemyStateMachine.State.Enraged && !enragedAttacking)
+            {
+                Debug.Log("Let's destroy them <3");
+                EnemiesInfo.OnEnragedAttacks?.Invoke(this.gameObject);
+                enragedAttacking = true;
+            }
         }
     }
 }

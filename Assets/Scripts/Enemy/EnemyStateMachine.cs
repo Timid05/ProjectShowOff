@@ -57,7 +57,6 @@ public class EnemyStateMachine
         {
             currentState = states[state];
             currentStateName = state;
-            EnemiesInfo.OnStateChange?.Invoke(currentStateName);
         }
         else
         {

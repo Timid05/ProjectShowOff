@@ -9,6 +9,7 @@ public static class EnemiesInfo
     public static Action<EnemyStateMachine.State> OnStateChange;
     public static Action OnEnemyAdded;
     public static Action OnEnemyRemoved;
+    public static Action<GameObject> OnEnragedAttacks;
 
     public static bool HasAggressiveEnemies()
     {

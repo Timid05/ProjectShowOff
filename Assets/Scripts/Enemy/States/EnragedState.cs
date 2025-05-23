@@ -15,8 +15,8 @@ public class EnragedState : IEnemyState
         fsm = sM;
         followPath = f;
 
-        followPath.speed = fsm.GetSpeed(state);   
-        oldSpeed = followPath.speed;
+        followPath.navmeshAgent.speed = fsm.GetSpeed(state);   
+        oldSpeed = followPath.navmeshAgent.speed;
     }
 
     public void Exit()
@@ -30,7 +30,7 @@ public class EnragedState : IEnemyState
     {
         if (oldSpeed != fsm.GetSpeed(state))
         {
-            followPath.speed = fsm.GetSpeed(state);
+            followPath.navmeshAgent.speed = fsm.GetSpeed(state);
             oldSpeed = fsm.GetSpeed(state);
         }
 
