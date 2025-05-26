@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemyPrefab != null)
         {
-            GameObject newEnemy = Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity, gameObject.transform);
+            GameObject newEnemy = Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity);
             if (enemyTarget != null)
             {
                 newEnemy.gameObject.GetComponent<EnemyController>().SetTarget(enemyTarget);
@@ -71,7 +71,7 @@ public class EnemySpawner : MonoBehaviour
         float randomAngle = Random.Range(1f, 360f);
         float randomDistance = Random.Range(0f, spawnRadius);
 
-        return new Vector3(Mathf.Cos(randomAngle), 0, Mathf.Sin(randomAngle)).normalized * randomDistance;
+        return new Vector3(Mathf.Cos(randomAngle), 0, Mathf.Sin(randomAngle)) * randomDistance;
     }
 
     private void Update()

@@ -17,9 +17,9 @@ public class WitteWievenVisibility : MonoBehaviour
     {
         isFlashlightOn = flashlightOn;
         //Change visibility to the opposite of the flashlight for all the Witte Wieven, who are children of this parent object.
-        for(int i = 0; i < transform.childCount; i++)
+        for(int i = 0; i < EnemiesInfo.GetEnemyGameObjects().Count; i++)
         {
-            Transform witteWief = transform.GetChild(i);
+            Transform witteWief = EnemiesInfo.GetEnemyGameObjects()[i].transform;
             MeshRenderer mr = witteWief.gameObject.GetComponent<MeshRenderer>();
             mr.enabled = !flashlightOn;
         }
@@ -27,9 +27,9 @@ public class WitteWievenVisibility : MonoBehaviour
 
     void ChangeVisibility()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < EnemiesInfo.GetEnemyGameObjects().Count; i++)
         {
-            Transform witteWief = transform.GetChild(i);
+            Transform witteWief = EnemiesInfo.GetEnemyGameObjects()[i].transform;
             MeshRenderer mr = witteWief.gameObject.GetComponent<MeshRenderer>();
             mr.enabled = !isFlashlightOn;
         }

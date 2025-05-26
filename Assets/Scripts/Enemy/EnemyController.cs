@@ -41,7 +41,6 @@ public class EnemyController : MonoBehaviour
     private void OnDisable()
     {
         PlayerActions.OnPlayerDead -= DestroyEnemy;
-        EnemiesInfo.RemoveStateMachine(fsm);
     }
 
     void Start()
@@ -52,7 +51,7 @@ public class EnemyController : MonoBehaviour
         }
 
         fsm = new EnemyStateMachine(followPath, stateSpeeds);
-        EnemiesInfo.AddStateMachine(fsm);
+        EnemiesInfo.AddEnemy(fsm, gameObject);
         fsm.AddState(EnemyStateMachine.State.Docile, new DocileState());
         fsm.AddState(EnemyStateMachine.State.Aggressive, new AggressiveState());
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());
@@ -79,8 +78,11 @@ public class EnemyController : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        EnemiesInfo.RemoveEnemy(fsm);
         followPath.enabled = false;
-       // Destroy(gameObject, 0.5f);
+        this.enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
+        Destroy(gameObject, 2f);
     }
 
     public void UpdateSpeeds()
@@ -114,18 +116,12 @@ public class EnemyController : MonoBehaviour
             fsm.SetState(EnemyStateMachine.State.Enraged);
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Debug.Log("Editing speed");
-            EditStateSpeed(EnemyStateMachine.State.Enraged, 1);
-        }
-
         if (fsm != null)
         {
             fsm.Update();
         }
 
-        if ((followPath.target.position - transform.position).sqrMagnitude < enragedAttackRange)
+        if ((followPath.target.position - transform.position).magnitude < enragedAttackRange)
         {
             if (fsm.currentStateName == EnemyStateMachine.State.Enraged && !enragedAttacking)
             {

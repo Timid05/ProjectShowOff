@@ -105,7 +105,7 @@ public class FollowPath : MonoBehaviour
 
     bool AtTarget()
     {
-        if ((navmeshAgent.destination - transform.position).sqrMagnitude < targetOffset && followType == FollowType.Target)
+        if ((navmeshAgent.destination - transform.position).magnitude < targetOffset && followType == FollowType.Target)
         {
             Debug.Log("Reached target");
             return true;
@@ -115,7 +115,7 @@ public class FollowPath : MonoBehaviour
 
     bool AtDestination()
     {  
-        if ((navmeshAgent.destination - transform.position).sqrMagnitude < waypointOffset)
+        if ((navmeshAgent.destination - transform.position).magnitude < waypointOffset)
         {
             Debug.Log("Destination reached");
             return true;
@@ -128,7 +128,6 @@ public class FollowPath : MonoBehaviour
         path.Add(point);
     }
 
-    Vector3 direction;
     void Move()
     {
         if (AtTarget())
@@ -173,7 +172,7 @@ public class FollowPath : MonoBehaviour
 
         for (int i = 0; i < path.Count; i++)
         {
-            float distance = (path[i] - transform.position).sqrMagnitude;
+            float distance = (path[i] - transform.position).magnitude;
 
             if (shortestDistance == 0 || distance < shortestDistance)
             {
