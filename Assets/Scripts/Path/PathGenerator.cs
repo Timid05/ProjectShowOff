@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PathGenerator : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PathGenerator : MonoBehaviour
     PathWaypoint prevWaypoint;
     List<bool> pastDirections;
     bool generateRight;
+
+    public static event Action OnPathGenerated;
 
     [SerializeField] bool debugMode = false;
     MeshRenderer mr;
@@ -63,7 +66,12 @@ public class PathGenerator : MonoBehaviour
                     EnablePathSection(i);
 
                     // If it the final waypoint we don't need to check for the next one.
-                    if(currentWaypoint.endWaypoint) { return; }
+                    if(currentWaypoint.endWaypoint) 
+                    { 
+                        // Let the object spawner know that path generation has finished.
+                        if(OnPathGenerated != null) { OnPathGenerated(); }
+                        return; 
+                    }
 
                     //Swap the results of left and right if the waypoints orientation is North of East, so it matches their viewpoint.
                     if (prevWaypoint == currentWaypoint.waypoints.Keys[0] || prevWaypoint == currentWaypoint.waypoints.Keys[3]){ swapResults = true; }
@@ -110,12 +118,13 @@ public class PathGenerator : MonoBehaviour
         //Debug.LogFormat("Choosing next waypoint between {0} and {1}.", leftPair.Key.name, rightPair.Key.name);
 
         // If one of the options has already been visited or the path is disabled, the direction needs to be forced the other way.
-        if (leftPair.Key.visited || !leftPair.Value)
+        // Path is also forced if the direction has no valid waypoints that can be taken next.
+        if (leftPair.Key.visited || !leftPair.Value || !CheckForValidWaypoints(leftPair.Key))
         {
             //Debug.LogFormat("Forcing direction right. Visited: {0} Path status: {1}", leftPair.Key.visited, leftPair.Value);
             generateRight = true;
         }
-        else if (rightPair.Key.visited || !rightPair.Value)
+        else if (rightPair.Key.visited || !rightPair.Value || !CheckForValidWaypoints(rightPair.Key))
         {
             //Debug.LogFormat("Forcing direction left. Visited: {0} Path status: {1}", rightPair.Key.visited, rightPair.Value);
             generateRight = false;
@@ -148,7 +157,7 @@ public class PathGenerator : MonoBehaviour
         }
         else
         {
-            int randomNumber = Random.Range(0, 2);
+            int randomNumber = UnityEngine.Random.Range(0, 2);
             if (randomNumber == 0) { return true; }
             else { return false; }
         }
@@ -157,38 +166,23 @@ public class PathGenerator : MonoBehaviour
     void EnablePathSection(int pathIndex)
     {
         // Activate the path that corresponds to the direction the path came from.
+        //Debug.LogFormat("Enabling path at index {0} for {1}", pathIndex, currentWaypoint);
         switch (pathIndex)
         {
             case 0:
-                if (currentWaypoint.northPath != null)
-                {
-                    //Debug.LogFormat("Enabling north path for {0}", currentWaypoint);
-                    currentWaypoint.northPath.SetActive(true);
-                }
+                if (currentWaypoint.northPath != null) { currentWaypoint.northPath.SetActive(true); }
                 break;
 
             case 1:
-                if (currentWaypoint.southPath != null)
-                {
-                    //Debug.LogFormat("Enabling south path for {0}", currentWaypoint);
-                    currentWaypoint.southPath.SetActive(true);
-                }
+                if (currentWaypoint.southPath != null) { currentWaypoint.southPath.SetActive(true); }
                 break;
 
             case 2:
-                if (currentWaypoint.westPath != null)
-                {
-                    //Debug.LogFormat("Enabling west path for {0}", currentWaypoint);
-                    currentWaypoint.westPath.SetActive(true);
-                }
+                if (currentWaypoint.westPath != null) { currentWaypoint.westPath.SetActive(true); }
                 break;
 
             case 3:
-                if (currentWaypoint.eastPath != null)
-                {
-                    //Debug.LogFormat("Enabling east path for {0}", currentWaypoint);
-                    currentWaypoint.eastPath.SetActive(true);
-                }
+                if (currentWaypoint.eastPath != null) { currentWaypoint.eastPath.SetActive(true); }
                 break;
 
             default:
@@ -207,6 +201,21 @@ public class PathGenerator : MonoBehaviour
                 return true;
             }
         }
+        return false;
+    }
+
+    bool CheckForValidWaypoints(PathWaypoint waypointToCheck)
+    {
+        for (int i = 0; i < waypointToCheck.waypoints.Count; i++)
+        {
+            if (waypointToCheck.waypoints.Keys[i] != null && !waypointToCheck.waypoints.Keys[i].visited)
+            {
+                //Debug.LogFormat("Waypoint {0} has a valid waypoint with {1}.", waypointToCheck, waypointToCheck.waypoints.Keys[i].name);
+                //If a waypoint is valid AKA the waypoint isn't null and hasn't been visited yet, we return true.
+                return true;
+            }
+        }
+        //Debug.LogFormat("Waypoint {0} does NOT have a valid waypoint!", waypointToCheck);
         return false;
     }
 }
