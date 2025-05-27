@@ -56,19 +56,15 @@ public class DecoySpawner : MonoBehaviour
 
     void DestroyDecoys(GameObject removedEnemy)
     {
-        Debug.Log("Fired");
         if (removedEnemy == gameObject)
         {
-            for (int i = 0; i < decoys.Count; i++)
+            for (int i = decoys.Count - 1; i >= 0; i--)
             {
-                GameObject destroyedDecoy = decoys[i];
-                Destroy(destroyedDecoy);
-                decoys.Remove(destroyedDecoy); 
-                
-                Debug.Log("Removed Decoy");
+                Destroy(decoys[i]);
+                decoys.RemoveAt(i);              
             }
         }
-        Debug.Log(decoys.Count);
+        Debug.Log("Destroyed decoys");
     }
 
     Vector3 GetRandomPosition()

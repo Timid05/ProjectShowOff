@@ -8,6 +8,7 @@ using UnityEngine;
 public static class EnemiesInfo
 {
     static Dictionary<EnemyStateMachine, GameObject> Enemies = new Dictionary<EnemyStateMachine, GameObject>();
+
     public static Action<EnemyStateMachine.State> OnStateChange;
     public static Action OnEnemyAdded;
     public static Action<GameObject> OnEnemyObjectRemoved;
@@ -73,10 +74,11 @@ public static class EnemiesInfo
 
     public static void RemoveEnemy(EnemyStateMachine m)
     {
-        OnEnemyObjectRemoved?.Invoke(Enemies[m]);
-        OnEnemyRemoved?.Invoke();
-        Enemies.Remove(m);       
+        GameObject toRemoveG = Enemies[m];
+        Enemies.Remove(m);
         Debug.Log("Enemy Removed");
+        OnEnemyObjectRemoved?.Invoke(toRemoveG);
+        OnEnemyRemoved?.Invoke();     
     }
 
     public static void RemoveAllEnemies()
