@@ -24,6 +24,7 @@ public class FlashlightActions : MonoBehaviour
     [SerializeField] float flashbangOuterAngle = 45f;
     [SerializeField] float flashbangSpeed = 1f;
     [SerializeField] float flashlightCooldownTime = 15f;
+    [SerializeField] float decoyHitDistance = 20;
     float flashbangPercentage = 0;
     bool flashbangActive = false;
     bool flashlightCooldownActive = false;
@@ -78,6 +79,24 @@ public class FlashlightActions : MonoBehaviour
                     flashlightCooldownActive = true;
                     StartCoroutine(FlashlightCooldown());
                 }
+            }
+
+            if (light.enabled)
+            {
+                CastFlashlightRay();
+            }
+        }
+    }
+
+    void CastFlashlightRay()
+    {
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, transform.forward, Color.red);
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        {
+            if (hit.collider.gameObject.TryGetComponent<WitteWievenDecoy>(out WitteWievenDecoy decoy) && hit.distance < decoyHitDistance)
+            {
+                Destroy(decoy.gameObject);
             }
         }
     }
@@ -141,7 +160,7 @@ public class FlashlightActions : MonoBehaviour
         //Remove all Witte Wieven that are in range of the flashbang.
         foreach(GameObject witteWief in witteWievenInFlashRange)
         {
-            Destroy(witteWief);
+            witteWief.GetComponent<EnemyController>().DestroyEnemy();
         }
         witteWievenInFlashRange.Clear();
     }

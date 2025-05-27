@@ -1710,7 +1710,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.85
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2103,6 +2103,16 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 973790173}
+    - target: {fileID: 7509526569055750024, guid: 058364d589ed3f54886ebeab9f8e2b66,
+        type: 3}
+      propertyPath: enragedDistance
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509526569055750024, guid: 058364d589ed3f54886ebeab9f8e2b66,
+        type: 3}
+      propertyPath: aggressiveDistance
+      value: 1.86
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

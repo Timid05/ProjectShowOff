@@ -69,16 +69,19 @@ public class FogController : MonoBehaviour
     {
         if (EnemiesInfo.HasEnragedEnemies())
         {
+            Debug.Log("fog enraged");
             currentFogDistance = enragedDistance;
             return;
         }
         else if (EnemiesInfo.HasAggressiveEnemies())
         {
+            Debug.Log("fog aggressive");
             currentFogDistance = aggressiveDistance;
             return;
         }
         else if (EnemiesInfo.HasDocileEnemies())
         {
+            Debug.Log("fog docile");
             currentFogDistance = docileDistance;
             return;
         }

@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class DecoySpawner : MonoBehaviour
 {
+    List<GameObject> decoys = new List<GameObject>();
     EnemyController enemyController;
     [SerializeField]
     GameObject decoyPrefab;
     [SerializeField]
     int decoySpawnCount;
     [SerializeField]
-    float spawnRadius;
+    float minSpawnRadius;
+    [SerializeField]
+    float maxSpawnRadius;
     [SerializeField]
     Transform target;
 
     private void OnEnable()
     {
-        enemyController = GetComponent<EnemyController>();      
+        enemyController = GetComponent<EnemyController>();
         EnemiesInfo.OnEnragedAttacks += HandleAttackAction;
+        EnemiesInfo.OnEnemyObjectRemoved += DestroyDecoys;
     }
 
     private void Start()
@@ -28,6 +32,7 @@ public class DecoySpawner : MonoBehaviour
     private void OnDisable()
     {
         EnemiesInfo.OnEnragedAttacks -= HandleAttackAction;
+        EnemiesInfo.OnEnemyObjectRemoved -= DestroyDecoys;
     }
 
     void HandleAttackAction(GameObject attacker)
@@ -44,13 +49,27 @@ public class DecoySpawner : MonoBehaviour
         {
             GameObject newDecoy = Instantiate(decoyPrefab, GetRandomPosition(), Quaternion.identity, transform);
             WitteWievenDecoy decoyScript = newDecoy.GetComponent<WitteWievenDecoy>();
+            decoys.Add(newDecoy);
             decoyScript.SetDecoyTarget(target);
         }
     }
-    
+
+    void DestroyDecoys(GameObject removedEnemy)
+    {
+        if (removedEnemy == gameObject)
+        {
+            for (int i = decoys.Count - 1; i >= 0; i--)
+            {
+                Destroy(decoys[i]);
+                decoys.RemoveAt(i);              
+            }
+        }
+        Debug.Log("Destroyed decoys");
+    }
+
     Vector3 GetRandomPosition()
     {
-        float randomDistance = Random.Range(0f, spawnRadius);
+        float randomDistance = Random.Range(minSpawnRadius, maxSpawnRadius);
         float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
 
         return target.position + (new Vector3(Mathf.Cos(randomAngle), 0, Mathf.Sin(randomAngle)) * randomDistance);

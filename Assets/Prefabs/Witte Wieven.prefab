@@ -134,8 +134,8 @@ MonoBehaviour:
   - {x: -3.5012698, y: 0, z: 19.135536}
   - {x: -23.933973, y: 0, z: 28.572847}
   - {x: -40.830048, y: 0, z: 12.486538}
-  waypointOffset: 10
-  targetOffset: 10
+  waypointOffset: 2
+  targetOffset: 2
   drawPath: 1
 --- !u!114 &1631476530611273356
 MonoBehaviour:
@@ -153,9 +153,9 @@ MonoBehaviour:
   enragedAttackRange: 20
   states: 000000000100000002000000
   speeds:
+  - 0.5
+  - 2
   - 3
-  - 5
-  - 8
 --- !u!114 &-8655727244392309347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,9 +169,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnClips:
-  - {fileID: 8300000, guid: 93daa147eda7b8646a854249aa4cf496, type: 3}
-  - {fileID: 8300000, guid: cc068d01ade1d534ca9a798dbaaaf9e5, type: 3}
+  - {fileID: 8300000, guid: ad37db1014460094ebd5c3c5cc5df54e, type: 3}
   jumpscareClip: {fileID: 8300000, guid: fc0d1431690bacf4bbdfc417908d820e, type: 3}
+  decoySpawnClip: {fileID: 8300000, guid: 964510db180c52f41bda044ae442337b, type: 3}
+  deathClip: {fileID: 8300000, guid: ad37db1014460094ebd5c3c5cc5df54e, type: 3}
 --- !u!114 &4975219380500511708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +188,8 @@ MonoBehaviour:
   decoyPrefab: {fileID: 789435149702868870, guid: b016ea47361b9234f92cbc1214b5039f,
     type: 3}
   decoySpawnCount: 4
-  spawnRadius: 15
+  minSpawnRadius: 15
+  maxSpawnRadius: 25
   target: {fileID: 0}
 --- !u!195 &9079346714161959032
 NavMeshAgent:

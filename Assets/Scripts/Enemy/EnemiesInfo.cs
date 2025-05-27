@@ -1,19 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class EnemiesInfo
 {
-    static List<EnemyStateMachine> Enemies = new List<EnemyStateMachine>();
+    static Dictionary<EnemyStateMachine, GameObject> Enemies = new Dictionary<EnemyStateMachine, GameObject>();
+
     public static Action<EnemyStateMachine.State> OnStateChange;
     public static Action OnEnemyAdded;
+    public static Action<GameObject> OnEnemyObjectRemoved;
     public static Action OnEnemyRemoved;
     public static Action<GameObject> OnEnragedAttacks;
 
     public static bool HasAggressiveEnemies()
     {
-        foreach (EnemyStateMachine m in Enemies)
+        foreach (EnemyStateMachine m in Enemies.Keys)
         {
             if (m.currentState is AggressiveState)
             {
@@ -26,7 +30,7 @@ public static class EnemiesInfo
 
     public static bool HasEnragedEnemies()
     {
-        foreach (EnemyStateMachine m in Enemies)
+        foreach (EnemyStateMachine m in Enemies.Keys)
         {
             if (m.currentState is EnragedState)
             {
@@ -39,7 +43,7 @@ public static class EnemiesInfo
 
     public static bool HasDocileEnemies()
     {
-        foreach (EnemyStateMachine m in Enemies)
+        foreach (EnemyStateMachine m in Enemies.Keys)
         {
             if (m.currentState is DocileState)
             {
@@ -53,19 +57,28 @@ public static class EnemiesInfo
 
     public static List<EnemyStateMachine> GetEnemyStateMachines()
     {
-        return Enemies;
+        return Enemies.Keys.ToList<EnemyStateMachine>();
     }
 
-    public static void AddStateMachine(EnemyStateMachine m)
+    public static List<GameObject> GetEnemyGameObjects()
     {
-        Enemies.Add(m);
+        return Enemies.Values.ToList<GameObject>();
+    }
+
+    public static void AddEnemy(EnemyStateMachine m, GameObject g)
+    {
+        Enemies.Add(m, g);
         OnEnemyAdded?.Invoke();
+        Debug.Log("Enemy Added");
     }
 
-    public static void RemoveStateMachine(EnemyStateMachine m)
+    public static void RemoveEnemy(EnemyStateMachine m)
     {
+        GameObject toRemoveG = Enemies[m];
         Enemies.Remove(m);
-        OnEnemyRemoved?.Invoke();
+        Debug.Log("Enemy Removed");
+        OnEnemyObjectRemoved?.Invoke(toRemoveG);
+        OnEnemyRemoved?.Invoke();     
     }
 
     public static void RemoveAllEnemies()
