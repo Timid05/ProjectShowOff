@@ -20,16 +20,6 @@ public class EnemySpawner : MonoBehaviour
     float spawnRadius = 10;
     float lastSpawnTime = 0;
 
-    private void OnEnable()
-    {
-        PlayerActions.OnPlayerDead += RemoveEnemies;
-    }
-
-    private void OnDisable()
-    {
-        PlayerActions.OnPlayerDead -= RemoveEnemies;
-    }
-
     bool EnoughTimeElapsed()
     {
         if (Time.time - lastSpawnTime > spawnInterval)

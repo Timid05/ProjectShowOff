@@ -117,12 +117,6 @@ public class FlashlightActions : MonoBehaviour
         else { flashlightCooldownActive = false; }
     }
 
-    void DisableFlashlight()
-    {
-        light.enabled = false;
-        this.enabled = false;
-    }
-
     void ChangeFlashlightStatus()
     {
         light.enabled = !light.enabled;
