@@ -5,7 +5,7 @@ using UnityEngine;
 public class PathWaypoint : MonoBehaviour
 {
     [field: SerializeField] public bool endWaypoint { get; private set; } = false;
-
+    public bool visited = false;
     [field: SerializeField] public UDictionary<PathWaypoint, bool> waypoints { get; private set; }
 
     [field: SerializeField] public GameObject northPath { get; private set; }

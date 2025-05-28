@@ -34,7 +34,7 @@ public class FlashlightActions : MonoBehaviour
     {
         PlayerInteraction.OnCharacterTalk += FlashlightAvailability;
         GameManager.OnAcceptTanfanaChoice += HolyFlashlight;
-        //PlayerActions.OnPlayerDead += DisableFlashlight;
+        PlayerActions.OnPlayerDead += DisableFlashlight;
         EnemiesInfo.OnEnemyObjectRemoved += CheckFlashRange;
 
         light = gameObject.GetComponent<Light>();
@@ -89,6 +89,11 @@ public class FlashlightActions : MonoBehaviour
         }
     }
 
+    void DisableFlashlight()
+    {
+        light.enabled = false;
+        this.enabled = false;
+    }
     void CastFlashlightRay()
     {
         RaycastHit hit;
@@ -198,7 +203,7 @@ public class FlashlightActions : MonoBehaviour
     {
         PlayerInteraction.OnCharacterTalk -= FlashlightAvailability;
         GameManager.OnAcceptTanfanaChoice -= HolyFlashlight;
-        //PlayerActions.OnPlayerDead -= DisableFlashlight;
+        PlayerActions.OnPlayerDead -= DisableFlashlight;
         EnemiesInfo.OnEnemyObjectRemoved -= CheckFlashRange;
     }
 }
