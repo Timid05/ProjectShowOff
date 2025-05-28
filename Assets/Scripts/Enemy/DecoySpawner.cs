@@ -22,6 +22,7 @@ public class DecoySpawner : MonoBehaviour
         enemyController = GetComponent<EnemyController>();
         EnemiesInfo.OnEnragedAttacks += HandleAttackAction;
         EnemiesInfo.OnEnemyObjectRemoved += DestroyDecoys;
+        EnemiesInfo.OnStateChange += ChangedState;
     }
 
     private void Start()
@@ -41,6 +42,11 @@ public class DecoySpawner : MonoBehaviour
         {
             SpawnDecoys();
         }
+    }
+
+    void ChangedState(EnemyStateMachine.State state)
+    {
+
     }
 
     void SpawnDecoys()
@@ -73,5 +79,18 @@ public class DecoySpawner : MonoBehaviour
         float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
 
         return target.position + (new Vector3(Mathf.Cos(randomAngle), 0, Mathf.Sin(randomAngle)) * randomDistance);
+    }
+
+    private void Update()
+    {
+        if (enemyController.fsm.currentStateName != EnemyStateMachine.State.Enraged && decoys.Count != 0)
+        {
+            for (int i = decoys.Count - 1; i >= 0; i--)
+            {
+                Destroy(decoys[i]);
+                decoys.RemoveAt(i);
+            }
+            Debug.Log("Destroyed decoys");
+        }
     }
 }

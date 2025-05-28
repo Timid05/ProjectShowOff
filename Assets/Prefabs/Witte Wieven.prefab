@@ -152,6 +152,7 @@ MonoBehaviour:
   startState: 0
   enragedAttackRange: 20
   decoyDestroySpeedIncrease: 2
+  targetDisplacementRange: 10
   states: 000000000100000002000000
   speeds:
   - 0.5

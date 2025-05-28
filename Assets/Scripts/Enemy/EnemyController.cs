@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(FollowPath))]
 
@@ -23,6 +18,8 @@ public class EnemyController : MonoBehaviour
     float enragedAttackRange;
     [SerializeField]
     float decoyDestroySpeedIncrease = 2;
+    [SerializeField]
+    float targetDisplacementRange = 10;
     bool enragedAttacking;
 
     [HideInInspector]
@@ -114,11 +111,23 @@ public class EnemyController : MonoBehaviour
         {
             PlayerActions.OnPlayerHit?.Invoke();
             PlayerActions.OnPlayerDamaged?.Invoke(3);
+            if (fsm.currentStateName == EnemyStateMachine.State.Enraged)
+            {
+                DisplaceTarget();
+            }
             if (col.enabled)
             {
                 EnemiesInfo.RemoveEnemy(fsm);
             }
+            
         }
+    }
+
+    void DisplaceTarget()
+    {
+        float randomAngle = Random.Range(0f, 360f);
+        float randomDistance = Random.Range(targetDisplacementRange / 2, targetDisplacementRange);
+        GetTarget().position += new Vector3(Mathf.Cos(randomAngle), 0, Mathf.Sin(randomAngle) * randomDistance);
     }
 
     
