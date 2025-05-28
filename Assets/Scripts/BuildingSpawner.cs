@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingSpawner : MonoBehaviour
 {
-    [SerializeField] UDictionary<CapsuleCollider, GameObject> spawnableBuildings;
+    [field: SerializeField] public UDictionary<CapsuleCollider, GameObject> spawnableBuildings { get; private set; }
 
     private void Awake()
     {
@@ -12,7 +12,6 @@ public class BuildingSpawner : MonoBehaviour
     }
 
 
-    //TODO: Connect to delegate that fires once path generation is done
     // Place the object so that it is touching a road piece.
     void PlaceObject()
     {

@@ -10,47 +10,45 @@ public class PathGenerator : MonoBehaviour
     PathWaypoint prevWaypoint;
     List<bool> pastDirections;
     bool generateRight;
+    Dictionary<List<PathWaypoint>, CapsuleCollider> waypointsPerArea;
+    List<CapsuleCollider> unvisitedAreas;
 
     public static event Action OnPathGenerated;
 
-    [SerializeField] bool debugMode = false;
-    MeshRenderer mr;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        //Hide all waypoint pieces before generating. They are then revealed if they are part of the main path.
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).gameObject.SetActive(false);
-        }
+        PathCategorizeWaypoint.OnWaypointsCategorized += GetWaypointsInArea;
+        ShareAreas.OnAreaShare += GetAreas;
 
         pastDirections = new List<bool>();
+        waypointsPerArea = new Dictionary<List<PathWaypoint>, CapsuleCollider>();
+        unvisitedAreas = new List<CapsuleCollider>();
+    }
+
+    void Start()
+    {
         // This sets the previous waypoint to south, which allows the path to start generating properly.
         prevWaypoint = startWaypoint.waypoints.Keys[1];
         currentWaypoint = startWaypoint;
-        //GeneratePath(startWaypoint);
     }
 
     private void Update()
     {
         // We stop generating if the current waypoint is the end one or the path manages to double back on itself and reach an already visited waypoint.
+        // We also don't generate yet if the waypoints per area doesn't match the total number of areas.
         // Othwerwise  we decide what the next waypoint should be.
-        if (!currentWaypoint.visited) { GeneratePath(); }
+        if (!currentWaypoint.visited && waypointsPerArea.Count != 0) { GeneratePath(); }
         //else { Debug.Log("Generation ended at " + currentWaypoint); }
     }
 
     void GeneratePath()
     {
-        //Debug.Log("Generating for waypoint: " + currentWaypoint.name);
+        Debug.Log("Generating for waypoint: " + currentWaypoint.name);
         // Mark a waypoint as visited.
-        if(debugMode)
-        {
-            currentWaypoint.gameObject.SetActive(true);
-            mr = currentWaypoint.GetComponent<MeshRenderer>();
-            mr.enabled = true;
-        }
         currentWaypoint.visited = true;
+
+        // Check if we've visited a new area
+        CheckAreaVisited(currentWaypoint);
 
         //Determine which waypoints are left and right based on which direction the path is coming from.
         if (prevWaypoint != null)
@@ -67,9 +65,14 @@ public class PathGenerator : MonoBehaviour
 
                     // If it the final waypoint we don't need to check for the next one.
                     if(currentWaypoint.endWaypoint) 
-                    { 
+                    {
+                        Debug.Log("Unvisited areas: " + unvisitedAreas.Count);
+
+                        //Hide all waypoint pieces.
+                        for (int j = 0; j < transform.childCount; j++) { transform.GetChild(j).gameObject.SetActive(false); }
+
                         // Let the object spawner know that path generation has finished.
-                        if(OnPathGenerated != null) { OnPathGenerated(); }
+                        if (OnPathGenerated != null) { OnPathGenerated(); }
                         return; 
                     }
 
@@ -121,13 +124,27 @@ public class PathGenerator : MonoBehaviour
         // Path is also forced if the direction has no valid waypoints that can be taken next.
         if (leftPair.Key.visited || !leftPair.Value || !CheckForValidWaypoints(leftPair.Key))
         {
-            //Debug.LogFormat("Forcing direction right. Visited: {0} Path status: {1}", leftPair.Key.visited, leftPair.Value);
+            Debug.LogFormat("Forcing direction right. Visited: {0} Path status: {1}", leftPair.Key.visited, leftPair.Value);
             generateRight = true;
         }
         else if (rightPair.Key.visited || !rightPair.Value || !CheckForValidWaypoints(rightPair.Key))
         {
-            //Debug.LogFormat("Forcing direction left. Visited: {0} Path status: {1}", rightPair.Key.visited, rightPair.Value);
+            Debug.LogFormat("Forcing direction left. Visited: {0} Path status: {1}", rightPair.Key.visited, rightPair.Value);
             generateRight = false;
+        }
+        // Special case where the path reaches the end but hasn't visited all areas yet.
+        else if(leftPair.Key.endWaypoint && unvisitedAreas.Count != 0) 
+        {
+            Debug.Log("End reached but not all areas have been visited. Redirecting right.");
+            generateRight = true;
+            // Allows the second to last waypoint to be reached again.
+            currentWaypoint.visited = false;
+        }
+        else if (rightPair.Key.endWaypoint && unvisitedAreas.Count != 0)
+        {
+            Debug.Log("End reached but not all areas have been visited. Redirecting left.");
+            generateRight = false;
+            currentWaypoint.visited = false;
         }
         // If the direction isn't forced we randomise it.
         else
@@ -138,8 +155,6 @@ public class PathGenerator : MonoBehaviour
 
         // Add the direction to the list after any potential forcing, so the accurate version gets added.
         pastDirections.Add(generateRight);
-        // If Debug is enabled, change the material to add a visual indication of which direction the path generated
-        if (debugMode && generateRight) { mr.material.color = Color.green; }
 
         prevWaypoint = currentWaypoint;
         if (generateRight) { currentWaypoint = rightPair.Key; }
@@ -194,7 +209,7 @@ public class PathGenerator : MonoBehaviour
     {
         for (int i = 0; i < currentWaypoint.waypoints.Count; i++)
         {
-            if(currentWaypoint.waypoints.Keys[i] != null && currentWaypoint.waypoints.Keys[i].endWaypoint)
+            if(currentWaypoint.waypoints.Keys[i] != null && currentWaypoint.waypoints.Keys[i].endWaypoint && unvisitedAreas.Count == 0)
             {
                 //if the end waypoint is found, force that to be the next waypoint.
                 DecideNextWaypoint(new KeyValuePair<PathWaypoint, bool>(currentWaypoint.waypoints.Keys[i], currentWaypoint.waypoints.Values[i]), new KeyValuePair<PathWaypoint, bool>(currentWaypoint.waypoints.Keys[i], currentWaypoint.waypoints.Values[i]));
@@ -217,5 +232,47 @@ public class PathGenerator : MonoBehaviour
         }
         //Debug.LogFormat("Waypoint {0} does NOT have a valid waypoint!", waypointToCheck);
         return false;
+    }
+
+    void RemoveWaypointFromArea()
+    {
+        //Waypoints are removed from areas
+    }
+
+    void GetWaypointsInArea(List<PathWaypoint> waypoints, CapsuleCollider area)
+    {
+        waypointsPerArea.Add(waypoints, area);
+    }
+
+    void GetAreas(List<CapsuleCollider> areas)
+    {
+        unvisitedAreas = areas;
+        Debug.Log("Amount of unvisited areas: " + unvisitedAreas.Count);
+    }
+
+    void CheckAreaVisited(PathWaypoint waypoint)
+    {
+        foreach(List<PathWaypoint> waypoints in waypointsPerArea.Keys) 
+        {
+            // If the waypoint is in an area that means we've visited that area
+            if (waypoints.Contains(waypoint))
+            {
+                CapsuleCollider currentArea;
+                waypointsPerArea.TryGetValue(waypoints, out currentArea);
+
+                if(unvisitedAreas.Contains(currentArea))
+                {
+                    unvisitedAreas.Remove(currentArea);
+                    Debug.Log("Visited area " + currentArea);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        PathCategorizeWaypoint.OnWaypointsCategorized -= GetWaypointsInArea;
+        ShareAreas.OnAreaShare -= GetAreas;
     }
 }

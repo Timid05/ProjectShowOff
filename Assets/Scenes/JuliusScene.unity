@@ -527,7 +527,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startWaypoint: {fileID: 1847018954}
-  debugMode: 1
 --- !u!1 &83762923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,7 +1035,7 @@ PrefabInstance:
     - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.81
+      value: -2.77
       objectReference: {fileID: 0}
     - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
@@ -1046,7 +1045,7 @@ PrefabInstance:
     - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.31
+      value: 23.75
       objectReference: {fileID: 0}
     - target: {fileID: 8638090705605340360, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
@@ -1971,6 +1970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404814959}
   - component: {fileID: 404814960}
+  - component: {fileID: 404814961}
   m_Layer: 0
   m_Name: Building 4 Spawn Area
   m_TagString: Untagged
@@ -2008,14 +2008,26 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 11.167696
   m_Height: 43.406326
   m_Direction: 1
   m_Center: {x: -0.76445574, y: -1.4249649, z: 6.798723}
+--- !u!114 &404814961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404814958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f84c5b3745fb24a95afd0709c9c3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &416098372
 GameObject:
   m_ObjectHideFlags: 0
@@ -3009,17 +3021,17 @@ PrefabInstance:
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <waypoints>k__BackingField.values.Array.data[0]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <waypoints>k__BackingField.values.Array.data[2]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <waypoints>k__BackingField.values.Array.data[3]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
@@ -3798,6 +3810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 740530991}
   - component: {fileID: 740530992}
+  - component: {fileID: 740530993}
   m_Layer: 0
   m_Name: Building 2 Spawn Area
   m_TagString: Untagged
@@ -3835,14 +3848,26 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 12
   m_Height: 49.7457
   m_Direction: 1
   m_Center: {x: 3.6029146e-10, y: -2.669857, z: 6.798723}
+--- !u!114 &740530993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740530990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f84c5b3745fb24a95afd0709c9c3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &751797090
 GameObject:
   m_ObjectHideFlags: 0
@@ -4714,6 +4739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1028763993}
   - component: {fileID: 1028763994}
+  - component: {fileID: 1028763995}
   m_Layer: 0
   m_Name: Building 3 Spawn Area
   m_TagString: Untagged
@@ -4751,14 +4777,26 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 13.402167
   m_Height: 48.758812
   m_Direction: 1
   m_Center: {x: -0.3967611, y: -2.4218006, z: 6.798723}
+--- !u!114 &1028763995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028763992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f84c5b3745fb24a95afd0709c9c3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1035873428
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,7 +5057,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1050058386}
+  - component: {fileID: 1050058387}
   - component: {fileID: 1050058385}
+  - component: {fileID: 1050058388}
   m_Layer: 0
   m_Name: Building Spawner
   m_TagString: Untagged
@@ -5039,27 +5079,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430a9004865b17840b23dcb290b669c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingSpawnAreas:
-  - {fileID: 1621598552}
-  - {fileID: 1621598552}
-  - {fileID: 0}
-  - {fileID: 0}
-  buildingsToSpawn:
-  - {fileID: 5228744868330373833, guid: 610bbe60ca55423438828a9bfbb47775, type: 3}
-  - {fileID: 0}
-  - {fileID: 5228744868330373833, guid: 610bbe60ca55423438828a9bfbb47775, type: 3}
-  - {fileID: 0}
-  spawnableBuildings:
+  <spawnableBuildings>k__BackingField:
     keys:
     - {fileID: 1621598552}
     - {fileID: 740530992}
     - {fileID: 1028763994}
     - {fileID: 0}
     values:
-    - {fileID: 5228744868330373833, guid: 610bbe60ca55423438828a9bfbb47775, type: 3}
-    - {fileID: 0}
-    - {fileID: 5228744868330373833, guid: 610bbe60ca55423438828a9bfbb47775, type: 3}
-    - {fileID: 5228744868330373833, guid: 610bbe60ca55423438828a9bfbb47775, type: 3}
+    - {fileID: 7491752939912626292, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b, type: 3}
+    - {fileID: 7491752939912626292, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b, type: 3}
+    - {fileID: 7491752939912626292, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b, type: 3}
+    - {fileID: 7491752939912626292, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b, type: 3}
 --- !u!4 &1050058386
 Transform:
   m_ObjectHideFlags: 0
@@ -5079,6 +5109,45 @@ Transform:
   - {fileID: 404814959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1050058387
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050058384}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1050058388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050058384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10143045cc8001341bbeccd6717ce662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1057130663
 GameObject:
   m_ObjectHideFlags: 0
@@ -7271,6 +7340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1621598551}
   - component: {fileID: 1621598552}
+  - component: {fileID: 1621598553}
   m_Layer: 0
   m_Name: Building 1 Spawn Area
   m_TagString: Untagged
@@ -7308,14 +7378,26 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 13.25
   m_Height: 48.809532
   m_Direction: 1
   m_Center: {x: 0.000000001873825, y: -2.2017708, z: 6.798723}
+--- !u!114 &1621598553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621598550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f84c5b3745fb24a95afd0709c9c3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1633284831
 GameObject:
   m_ObjectHideFlags: 0
@@ -8804,6 +8886,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
+      propertyPath: <eastPath>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
       propertyPath: <westPath>k__BackingField
       value: 
       objectReference: {fileID: 552059313}
@@ -8822,6 +8909,11 @@ PrefabInstance:
       propertyPath: <waypoints>k__BackingField.keys.Array.data[2]
       value: 
       objectReference: {fileID: 622475026}
+    - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
+        type: 3}
+      propertyPath: <waypoints>k__BackingField.keys.Array.data[3]
+      value: 
+      objectReference: {fileID: 1924024364}
     - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: m_Enabled
