@@ -33,7 +33,6 @@ public class FlashlightActions : MonoBehaviour
     {
         PlayerInteraction.OnCharacterTalk += FlashlightAvailability;
         GameManager.OnAcceptTanfanaChoice += HolyFlashlight;
-        PlayerActions.OnPlayerDead += DisableFlashlight;
 
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
@@ -95,12 +94,6 @@ public class FlashlightActions : MonoBehaviour
     {
         if(characterBusy) { flashlightCooldownActive = true; }
         else { flashlightCooldownActive = false; }
-    }
-
-    void DisableFlashlight()
-    {
-        light.enabled = false;
-        this.enabled = false;
     }
 
     void ChangeFlashlightStatus()
@@ -176,6 +169,5 @@ public class FlashlightActions : MonoBehaviour
     {
         PlayerInteraction.OnCharacterTalk -= FlashlightAvailability;
         GameManager.OnAcceptTanfanaChoice -= HolyFlashlight;
-        PlayerActions.OnPlayerDead -= DisableFlashlight;
     }
 }
