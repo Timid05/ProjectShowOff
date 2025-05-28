@@ -37,7 +37,7 @@ public class PathGenerator : MonoBehaviour
         // We stop generating if the current waypoint is the end one or the path manages to double back on itself and reach an already visited waypoint.
         // We also don't generate yet if the waypoints per area doesn't match the total number of areas.
         // Othwerwise  we decide what the next waypoint should be.
-        if (!currentWaypoint.visited && waypointsPerArea.Count != 0) { GeneratePath(); }
+        //if (!currentWaypoint.visited && waypointsPerArea.Count != 0) { GeneratePath(); }
         //else { Debug.Log("Generation ended at " + currentWaypoint); }
     }
 
@@ -45,7 +45,7 @@ public class PathGenerator : MonoBehaviour
     {
         Debug.Log("Generating for waypoint: " + currentWaypoint.name);
         // Mark a waypoint as visited.
-        currentWaypoint.visited = true;
+        //currentWaypoint.visited = true;
 
         // Check if we've visited a new area
         CheckAreaVisited(currentWaypoint);
@@ -116,36 +116,36 @@ public class PathGenerator : MonoBehaviour
 
     void DecideNextWaypoint(KeyValuePair<PathWaypoint, bool> leftPair, KeyValuePair<PathWaypoint, bool> rightPair)
     {
-        Debug.LogFormat("Choosing next waypoint between {0} and {1}.", leftPair.Key.name, rightPair.Key.name);
+        //Debug.LogFormat("Choosing next waypoint between {0} and {1}.", leftPair.Key.name, rightPair.Key.name);
 
         // If one of the options has already been visited or the path is disabled, the direction needs to be forced the other way.
         // Path is also forced if the direction has no valid waypoints that can be taken next.
-        if (leftPair.Key.visited || !leftPair.Value || !CheckForValidWaypoints(leftPair.Key))
-        {
-            Debug.LogFormat("Forcing direction right. Visited: {0} Path status: {1}", leftPair.Key.visited, leftPair.Value);
-            generateRight = true;
-        }
-        else if (rightPair.Key.visited || !rightPair.Value || !CheckForValidWaypoints(rightPair.Key))
-        {
-            Debug.LogFormat("Forcing direction left. Visited: {0} Path status: {1}", rightPair.Key.visited, rightPair.Value);
-            generateRight = false;
-        }
-        // Special case where the path reaches the end but hasn't visited all areas yet.
-        else if(leftPair.Key.endWaypoint && unvisitedAreas.Count != 0) 
-        {
-            Debug.Log("End reached but not all areas have been visited. Redirecting right.");
-            generateRight = true;
-            // Allows the second to last waypoint to be reached again.
-            currentWaypoint.visited = false;
-        }
-        else if (rightPair.Key.endWaypoint && unvisitedAreas.Count != 0)
-        {
-            Debug.Log("End reached but not all areas have been visited. Redirecting left.");
-            generateRight = false;
-            currentWaypoint.visited = false;
-        }
+        //if (leftPair.Key.visited || !leftPair.Value || !CheckForValidWaypoints(leftPair.Key))
+        //{
+        //    Debug.LogFormat("Forcing direction right. Visited: {0} Path status: {1}", leftPair.Key.visited, leftPair.Value);
+        //    generateRight = true;
+        //}
+        //else if (rightPair.Key.visited || !rightPair.Value || !CheckForValidWaypoints(rightPair.Key))
+        //{
+        //    Debug.LogFormat("Forcing direction left. Visited: {0} Path status: {1}", rightPair.Key.visited, rightPair.Value);
+        //    generateRight = false;
+        //}
+        //// Special case where the path reaches the end but hasn't visited all areas yet.
+        //else if(leftPair.Key.endWaypoint && unvisitedAreas.Count != 0) 
+        //{
+        //    Debug.Log("End reached but not all areas have been visited. Redirecting right.");
+        //    generateRight = true;
+        //    // Allows the second to last waypoint to be reached again.
+        //    currentWaypoint.visited = false;
+        //}
+        //else if (rightPair.Key.endWaypoint && unvisitedAreas.Count != 0)
+        //{
+        //    Debug.Log("End reached but not all areas have been visited. Redirecting left.");
+        //    generateRight = false;
+        //    currentWaypoint.visited = false;
+        //}
         // If the direction isn't forced we randomise it.
-        else
+        //else
         {
             generateRight = RandomisePathDirection();
             Debug.Log("Going right? " + generateRight);
@@ -223,12 +223,12 @@ public class PathGenerator : MonoBehaviour
     {
         for (int i = 0; i < waypointToCheck.waypoints.Count; i++)
         {
-            if (waypointToCheck.waypoints.Keys[i] != null && !waypointToCheck.waypoints.Keys[i].visited)
-            {
-                //Debug.LogFormat("Waypoint {0} has a valid waypoint with {1}.", waypointToCheck, waypointToCheck.waypoints.Keys[i].name);
-                //If a waypoint is valid AKA the waypoint isn't null and hasn't been visited yet, we return true.
-                return true;
-            }
+            //if (waypointToCheck.waypoints.Keys[i] != null && !waypointToCheck.waypoints.Keys[i].visited)
+            //{
+            //    //Debug.LogFormat("Waypoint {0} has a valid waypoint with {1}.", waypointToCheck, waypointToCheck.waypoints.Keys[i].name);
+            //    //If a waypoint is valid AKA the waypoint isn't null and hasn't been visited yet, we return true.
+            //    return true;
+            //}
         }
         //Debug.LogFormat("Waypoint {0} does NOT have a valid waypoint!", waypointToCheck);
         return false;
