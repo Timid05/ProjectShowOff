@@ -35,6 +35,7 @@ public class FlashlightActions : MonoBehaviour
         PlayerInteraction.OnCharacterTalk += FlashlightAvailability;
         GameManager.OnAcceptTanfanaChoice += HolyFlashlight;
         PlayerActions.OnPlayerDead += DisableFlashlight;
+        EnemiesInfo.OnEnemyObjectRemoved += CheckFlashRange;
 
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
@@ -130,6 +131,14 @@ public class FlashlightActions : MonoBehaviour
 
     }
 
+    void CheckFlashRange(GameObject witteWief)
+    {
+        if (witteWievenInFlashRange.Contains(witteWief))
+        {
+            witteWievenInFlashRange.Remove(witteWief);
+        }
+    }
+
     void Flashbang()
     {
         flashbangActive = !flashbangActive;
@@ -157,11 +166,11 @@ public class FlashlightActions : MonoBehaviour
 
     void FlashlightDispell()
     {
-        //Remove all Witte Wieven that are in range of the flashbang.
-        foreach(GameObject witteWief in witteWievenInFlashRange)
+        for (int i = witteWievenInFlashRange.Count -1 ; i >= 0; i--)
         {
-            witteWief.GetComponent<EnemyController>().DestroyEnemy();
+            EnemiesInfo.RemoveEnemy(witteWievenInFlashRange[i].GetComponent<EnemyController>().fsm);
         }
+        //Remove all Witte Wieven that are in range of the flashbang.
         witteWievenInFlashRange.Clear();
     }
 
@@ -196,5 +205,6 @@ public class FlashlightActions : MonoBehaviour
         PlayerInteraction.OnCharacterTalk -= FlashlightAvailability;
         GameManager.OnAcceptTanfanaChoice -= HolyFlashlight;
         PlayerActions.OnPlayerDead -= DisableFlashlight;
+        EnemiesInfo.OnEnemyObjectRemoved -= CheckFlashRange;
     }
 }

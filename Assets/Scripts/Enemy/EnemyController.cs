@@ -17,8 +17,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     EnemyStateMachine.State startState;
 
+    CapsuleCollider col;
+
     [SerializeField]
     float enragedAttackRange;
+    [SerializeField]
+    float decoyDestroySpeedIncrease = 2;
     bool enragedAttacking;
 
     [HideInInspector]
@@ -31,16 +35,19 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         followPath = GetComponent<FollowPath>();
+        col = GetComponent<CapsuleCollider>();
     }
 
     private void OnEnable()
     {
-        PlayerActions.OnPlayerDead += DestroyEnemy;
+        EnemiesInfo.OnEnemyObjectRemoved += DestroyEnemy;
+        EnemiesInfo.OnDecoyDestroyed += DecoyDestroyed;      
     }
 
     private void OnDisable()
-    {
-        PlayerActions.OnPlayerDead -= DestroyEnemy;
+    {     
+        EnemiesInfo.OnDecoyDestroyed -= DecoyDestroyed;
+        EnemiesInfo.OnEnemyObjectRemoved -= DestroyEnemy;
     }
 
     void Start()
@@ -57,6 +64,14 @@ public class EnemyController : MonoBehaviour
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());
 
         fsm.SetStartState(startState);
+    }
+
+    private void DecoyDestroyed(GameObject decoy)
+    {
+        if (decoy.transform.IsChildOf(transform))
+        {
+            followPath.navmeshAgent.speed += decoyDestroySpeedIncrease;
+        }
     }
 
     public Transform GetTarget()
@@ -76,13 +91,16 @@ public class EnemyController : MonoBehaviour
         followPath.target = target;
     }
 
-    public void DestroyEnemy()
+    public void DestroyEnemy(GameObject destroyed)
     {
-        EnemiesInfo.RemoveEnemy(fsm);
-        followPath.enabled = false;
-        this.enabled = false;
-        GetComponent<MeshRenderer>().enabled = false;
-        Destroy(gameObject, 2f);
+        if (destroyed == gameObject)
+        {
+            col.enabled = false;
+            followPath.enabled = false;
+            this.enabled = false;
+            GetComponent<MeshRenderer>().enabled = false;
+            Destroy(gameObject, 2f);
+        }
     }
 
     public void UpdateSpeeds()
@@ -96,9 +114,14 @@ public class EnemyController : MonoBehaviour
         {
             PlayerActions.OnPlayerHit?.Invoke();
             PlayerActions.OnPlayerDamaged?.Invoke(3);
-            DestroyEnemy();
+            if (col.enabled)
+            {
+                EnemiesInfo.RemoveEnemy(fsm);
+            }
         }
     }
+
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))

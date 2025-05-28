@@ -50,14 +50,13 @@ public class FogController : MonoBehaviour
         switch (state)
         {
             case EnemyStateMachine.State.Aggressive:
-                if (!EnemiesInfo.HasEnragedEnemies()) { currentFogDistance = aggressiveDistance; Debug.Log("aggressive fog activated"); }
+                if (!EnemiesInfo.HasEnragedEnemies()) { currentFogDistance = aggressiveDistance; }
                 break;
             case EnemyStateMachine.State.Enraged:
                 currentFogDistance = enragedDistance;
-                Debug.Log("enraged fog activated");
                 break;
             case EnemyStateMachine.State.Docile:
-                if (!EnemiesInfo.HasEnragedEnemies() && !EnemiesInfo.HasAggressiveEnemies()) { currentFogDistance = docileDistance; Debug.Log("docile fog activated"); }
+                if (!EnemiesInfo.HasEnragedEnemies() && !EnemiesInfo.HasAggressiveEnemies()) { currentFogDistance = docileDistance; }
                 break;
             default:
                 Debug.Log("passed state wasn't recognized");
@@ -69,19 +68,19 @@ public class FogController : MonoBehaviour
     {
         if (EnemiesInfo.HasEnragedEnemies())
         {
-            Debug.Log("fog enraged");
+            
             currentFogDistance = enragedDistance;
             return;
         }
         else if (EnemiesInfo.HasAggressiveEnemies())
         {
-            Debug.Log("fog aggressive");
+      ;
             currentFogDistance = aggressiveDistance;
             return;
         }
         else if (EnemiesInfo.HasDocileEnemies())
         {
-            Debug.Log("fog docile");
+           
             currentFogDistance = docileDistance;
             return;
         }

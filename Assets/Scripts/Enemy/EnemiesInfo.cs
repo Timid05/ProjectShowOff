@@ -14,6 +14,7 @@ public static class EnemiesInfo
     public static Action<GameObject> OnEnemyObjectRemoved;
     public static Action OnEnemyRemoved;
     public static Action<GameObject> OnEnragedAttacks;
+    public static Action<GameObject> OnDecoyDestroyed;
 
     public static bool HasAggressiveEnemies()
     {
@@ -83,6 +84,10 @@ public static class EnemiesInfo
 
     public static void RemoveAllEnemies()
     {
-        Enemies.Clear();
+        Debug.Log("Removing all enemies");
+        for (int i = Enemies.Count - 1; i >= 0; i--)
+        {
+            RemoveEnemy(GetEnemyStateMachines()[i]);
+        }
     }
 }

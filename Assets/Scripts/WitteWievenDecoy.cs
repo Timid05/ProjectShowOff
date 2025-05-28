@@ -41,7 +41,8 @@ public class WitteWievenDecoy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            EnemiesInfo.OnDecoyDestroyed?.Invoke(gameObject);
+            Destroy(gameObject);        
         }
     }
 

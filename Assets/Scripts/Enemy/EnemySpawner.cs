@@ -42,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
     void RemoveEnemies()
     {
+        Debug.Log("Removing all enemies");
         EnemiesInfo.RemoveAllEnemies();
         this.enabled = false;
     }

@@ -56,15 +56,15 @@ public class DecoySpawner : MonoBehaviour
 
     void DestroyDecoys(GameObject removedEnemy)
     {
-        if (removedEnemy == gameObject)
+        if (removedEnemy == gameObject && enemyController.fsm.currentStateName == EnemyStateMachine.State.Enraged)
         {
             for (int i = decoys.Count - 1; i >= 0; i--)
             {
                 Destroy(decoys[i]);
                 decoys.RemoveAt(i);              
             }
-        }
-        Debug.Log("Destroyed decoys");
+            Debug.Log("Destroyed decoys");
+        }     
     }
 
     Vector3 GetRandomPosition()
