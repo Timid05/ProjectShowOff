@@ -28,15 +28,8 @@ public class PathCategorizeWaypoint : MonoBehaviour
         {
             waypointsSent = true;
             OnWaypointsCategorized(entryWaypointsInArea, area);
-            Debug.LogFormat("Area {0} sent waypoints with size {1}", gameObject.name, entryWaypointsInArea.Count);
+            //Debug.LogFormat("Area {0} sent waypoints with size {1}", gameObject.name, entryWaypointsInArea.Count);
         }
-
-        //if (area != null && OnWaypointsCategorized != null && waypointsInArea.Count != 0 && !waypointsSent)
-        //{
-        //    waypointsSent = true;
-        //    OnWaypointsCategorized(waypointsInArea, area);
-        //    Debug.LogFormat("Area {0} sent waypoints with size {1}", gameObject.name, waypointsInArea.Count);
-        //}
     }
 
     void EntryWaypoint()
@@ -47,9 +40,8 @@ public class PathCategorizeWaypoint : MonoBehaviour
             {
                 // If the waypoint is not within the current area and that waypoint can reach the current waypoint, then this waypoint can be considered an entry one.
                 if (waypoint.waypoints.Keys[i] != null && !waypointsInArea.Contains(waypoint.waypoints.Keys[i]) && Reachable(waypoint.waypoints.Keys[i], waypoint))
-                //if (waypoint.waypoints.Keys[i] != null && !waypointsInArea.Contains(waypoint.waypoints.Keys[i]))
                 {
-                    Debug.LogFormat("Waypoint {0} can be used to enter area {1}", waypoint.name, gameObject.name);
+                    //Debug.LogFormat("Waypoint {0} can be used to enter area {1}", waypoint.name, gameObject.name);
                     entryWaypointsInArea.Add(waypoint);
                     break;
                 }
@@ -68,10 +60,6 @@ public class PathCategorizeWaypoint : MonoBehaviour
             }
         }
         return false;
-
-        //bool reachable;
-        //outsideWaypoint.waypoints.TryGetValue(waypointToReach, out reachable);
-        //return reachable;
     }
 
 

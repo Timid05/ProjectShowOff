@@ -15,12 +15,12 @@ public class BuildingSpawner : MonoBehaviour
     // Place the object so that it is touching a road piece.
     void PlaceObject()
     {
-        Debug.Log("Placing objects.");
+        //Debug.Log("Placing objects.");
         if(spawnableBuildings == null){ return; }
         foreach(KeyValuePair<CapsuleCollider, GameObject> pair in spawnableBuildings)
         {
             if(pair.Key == null || pair.Value == null) { continue; }
-            Debug.LogFormat("Spawning object {0} in area {1}", pair.Value.name, pair.Key.name);
+            //Debug.LogFormat("Spawning object {0} in area {1}", pair.Value.name, pair.Key.name);
         }
     }
 

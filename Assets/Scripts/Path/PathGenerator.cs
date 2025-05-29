@@ -48,7 +48,7 @@ public class PathGenerator : MonoBehaviour
         currentWaypoint.visited = true;
 
         // Check if we've visited a new area
-        //CheckAreaVisited(currentWaypoint);
+        CheckAreaVisited(currentWaypoint);
 
         //Determine which waypoints are left and right based on which direction the path is coming from.
         if (prevWaypoint != null)
@@ -97,6 +97,7 @@ public class PathGenerator : MonoBehaviour
                 }
             }
 
+            // TODO also replace waypoint if both waypoins are invalid.
             //Check if one of the possible waypoints is missing.
             for (int i = 0; i < possibleNextWaypoints.Count; i++)
             {
@@ -121,15 +122,15 @@ public class PathGenerator : MonoBehaviour
         //Debug.LogFormat("Choosing next waypoint between {0} and {1}.", leftPair.Key.name, rightPair.Key.name);
 
 
-        // If one of the options has already been visited or the path is disabled, the direction needs to be forced the other way.
-        // If it is the second to last wayptoint but we haven't visited all the waypoints yet, we avoid it.
-        // Path is also forced if the direction has no valid waypoints that can be taken next.
-        if ((CheckForEndWaypoint(leftPair.Key) && unvisitedAreas.Count != 0) || leftPair.Key.visited || !leftPair.Value || !CheckForValidWaypoints(leftPair.Key))
+
+        //if ((CheckForEndWaypoint(leftPair.Key) && unvisitedAreas.Count != 0) || leftPair.Key.visited || !leftPair.Value || !CheckForValidWaypoints(leftPair.Key) || CheckLastEntryWaypoint(rightPair.Key))
+        if(!CheckValidity(leftPair) || CheckLastEntryWaypoint(rightPair.Key))
         {
             Debug.LogFormat("Forcing direction right. Visited: {0} Path status: {1}", leftPair.Key.visited, leftPair.Value);
             generateRight = true;
         }
-        else if ((CheckForEndWaypoint(rightPair.Key) && unvisitedAreas.Count != 0) || rightPair.Key.visited || !rightPair.Value || !CheckForValidWaypoints(rightPair.Key))
+        //else if ((CheckForEndWaypoint(rightPair.Key) && unvisitedAreas.Count != 0) || rightPair.Key.visited || !rightPair.Value || !CheckForValidWaypoints(rightPair.Key) || CheckLastEntryWaypoint(leftPair.Key))
+        else if(!CheckValidity(rightPair) || CheckLastEntryWaypoint(leftPair.Key))
         {
             Debug.LogFormat("Forcing direction left. Visited: {0} Path status: {1}", rightPair.Key.visited, rightPair.Value);
             generateRight = false;
@@ -145,8 +146,18 @@ public class PathGenerator : MonoBehaviour
         pastDirections.Add(generateRight);
 
         prevWaypoint = currentWaypoint;
-        if (generateRight) { currentWaypoint = rightPair.Key; }
-        else { currentWaypoint = leftPair.Key; }
+        if (generateRight) 
+        { 
+            currentWaypoint = rightPair.Key;
+            // Remove the waypoint that wasn't chosen from the list of entry waypoints, because we assume that we can't reach that waypoint anymore.
+            RemoveEntryWaypointFromArea(leftPair.Key);
+        }
+        else 
+        { 
+            currentWaypoint = leftPair.Key;
+            RemoveEntryWaypointFromArea(rightPair.Key);
+        }
+
     }
 
     bool RandomisePathDirection()
@@ -193,6 +204,17 @@ public class PathGenerator : MonoBehaviour
         }
     }
 
+    bool CheckValidity(KeyValuePair<PathWaypoint, bool> pair)
+    {
+        // A waypoint is invalid as the next one, if it has already been visited or the path is disabled.
+        // If it is the second to last wayptoint but we haven't visited all the waypoints yet.
+        // If the waypoint has no valid waypoints that can be taken next.
+        // If the waypoint is the last entry waypoint for an unvisited area.
+        if (CheckLastEntryWaypoint(pair.Key) || !(CheckForEndWaypoint(pair.Key) && unvisitedAreas.Count != 0) && !pair.Key.visited && pair.Value && CheckForValidWaypoints(pair.Key)) { return true; }
+        Debug.LogFormat("Waypoint {0} is invalid.", pair.Key);
+        return false;
+    }
+
     bool CheckForEndWaypoint(PathWaypoint waypoint)
     {
         for (int i = 0; i < waypoint.waypoints.Count; i++)
@@ -212,20 +234,53 @@ public class PathGenerator : MonoBehaviour
     {
         for (int i = 0; i < waypointToCheck.waypoints.Count; i++)
         {
-            if (waypointToCheck.waypoints.Keys[i] != null && !waypointToCheck.waypoints.Keys[i].visited)
+            if (waypointToCheck.waypoints.Keys[i] != null && !waypointToCheck.waypoints.Keys[i].visited && waypointToCheck.waypoints.Values[i] && !(unvisitedAreas.Count != 0 && CheckForEndWaypoint(waypointToCheck.waypoints.Keys[i])))
             {
-                //Debug.LogFormat("Waypoint {0} has a valid waypoint with {1}.", waypointToCheck, waypointToCheck.waypoints.Keys[i].name);
-                //If a waypoint is valid AKA the waypoint isn't null and hasn't been visited yet, we return true.
+                Debug.LogFormat("Waypoint {0} has a valid waypoint with {1}.", waypointToCheck, waypointToCheck.waypoints.Keys[i].name);
+                //If a waypoint is valid AKA the waypoint isn't null, hasn't been visited yet and it isn't a waypoint that leads to the end waypoint when we haven't visited all areas yet , we return true.
                 return true;
             }
         }
-        //Debug.LogFormat("Waypoint {0} does NOT have a valid waypoint!", waypointToCheck);
+        Debug.LogFormat("Waypoint {0} does NOT have a valid waypoint!", waypointToCheck);
         return false;
     }
 
-    void RemoveWaypointFromArea()
+    bool CheckLastEntryWaypoint(PathWaypoint waypoint)
     {
-        //Waypoints are removed from areas
+        //Checks if the waypoint is the last entry waypoint for an unvisited area.
+        if(unvisitedAreas.Count != 0)
+        {
+            foreach (List<PathWaypoint> entryWaypoints in entryWaypointsPerArea.Keys)
+            {
+                //Checks if the waypoint is the last entry waypoint of an area
+                if (entryWaypoints.Count == 1 && entryWaypoints.Contains(waypoint))
+                {
+                    CapsuleCollider waypointArea;
+                    entryWaypointsPerArea.TryGetValue(entryWaypoints, out waypointArea);
+
+                    // Check if the area is unvisited.
+                    if (unvisitedAreas.Contains(waypointArea)) 
+                    {
+                        //Debug.LogFormat(" Waypoint {0} is the last entry waypoint of unvisited area {1}", waypoint, waypointArea);
+                        return true; 
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    void RemoveEntryWaypointFromArea(PathWaypoint waypoint)
+    {
+        //If the waypoint is in an area, we remove it from the list.
+        foreach (List<PathWaypoint> entryWaypoints  in entryWaypointsPerArea.Keys)
+        {
+            if(entryWaypoints.Contains(waypoint)) { 
+                entryWaypoints.Remove(waypoint);
+                //Debug.LogFormat("Removing {0} from entry list. {1} waypoint(s) left.", waypoint, entryWaypoints.Count);
+            }
+        }
     }
 
     void GetEntryWaypointsInArea(List<PathWaypoint> waypoints, CapsuleCollider area)
