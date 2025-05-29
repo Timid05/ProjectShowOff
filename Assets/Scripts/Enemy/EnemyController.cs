@@ -38,12 +38,12 @@ public class EnemyController : MonoBehaviour
     private void OnEnable()
     {
         EnemiesInfo.OnEnemyObjectRemoved += DestroyEnemy;
-        EnemiesInfo.OnDecoyDestroyed += DecoyDestroyed;      
+        EnemiesInfo.OnDecoyHit += DecoyDestroyed;      
     }
 
     private void OnDisable()
     {     
-        EnemiesInfo.OnDecoyDestroyed -= DecoyDestroyed;
+        EnemiesInfo.OnDecoyHit -= DecoyDestroyed;
         EnemiesInfo.OnEnemyObjectRemoved -= DestroyEnemy;
     }
 
@@ -161,6 +161,11 @@ public class EnemyController : MonoBehaviour
                 EnemiesInfo.OnEnragedAttacks?.Invoke(this.gameObject);
                 enragedAttacking = true;
             }
+        }
+
+        if (enragedAttacking && fsm.currentStateName != EnemyStateMachine.State.Enraged)
+        {
+            enragedAttacking = false;
         }
     }
 }

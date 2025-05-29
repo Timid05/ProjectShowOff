@@ -14,6 +14,7 @@ public static class EnemiesInfo
     public static Action<GameObject> OnEnemyObjectRemoved;
     public static Action OnEnemyRemoved;
     public static Action<GameObject> OnEnragedAttacks;
+    public static Action<GameObject> OnDecoyHit;
     public static Action<GameObject> OnDecoyDestroyed;
 
     public static bool HasAggressiveEnemies()

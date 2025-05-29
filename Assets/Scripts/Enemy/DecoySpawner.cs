@@ -6,6 +6,8 @@ public class DecoySpawner : MonoBehaviour
 {
     List<GameObject> decoys = new List<GameObject>();
     EnemyController enemyController;
+   
+
     [SerializeField]
     GameObject decoyPrefab;
     [SerializeField]
@@ -22,7 +24,6 @@ public class DecoySpawner : MonoBehaviour
         enemyController = GetComponent<EnemyController>();
         EnemiesInfo.OnEnragedAttacks += HandleAttackAction;
         EnemiesInfo.OnEnemyObjectRemoved += DestroyDecoys;
-        EnemiesInfo.OnStateChange += ChangedState;
     }
 
     private void Start()
@@ -44,11 +45,6 @@ public class DecoySpawner : MonoBehaviour
         }
     }
 
-    void ChangedState(EnemyStateMachine.State state)
-    {
-
-    }
-
     void SpawnDecoys()
     {
         for (int i = 0; i < decoySpawnCount; i++)
@@ -62,11 +58,12 @@ public class DecoySpawner : MonoBehaviour
 
     void DestroyDecoys(GameObject removedEnemy)
     {
+        Debug.Log("Destroyed enemy decoy disappearance");
         if (removedEnemy == gameObject && enemyController.fsm.currentStateName == EnemyStateMachine.State.Enraged)
         {
             for (int i = decoys.Count - 1; i >= 0; i--)
             {
-                Destroy(decoys[i]);
+                decoys[i].GetComponent<WitteWievenDecoy>().DestroySelf();
                 decoys.RemoveAt(i);              
             }
             Debug.Log("Destroyed decoys");
@@ -85,9 +82,10 @@ public class DecoySpawner : MonoBehaviour
     {
         if (enemyController.fsm.currentStateName != EnemyStateMachine.State.Enraged && decoys.Count != 0)
         {
+            Debug.Log("State change decoy disappearance");
             for (int i = decoys.Count - 1; i >= 0; i--)
             {
-                Destroy(decoys[i]);
+                decoys[i].GetComponent<WitteWievenDecoy>().DestroySelf();
                 decoys.RemoveAt(i);
             }
             Debug.Log("Destroyed decoys");
