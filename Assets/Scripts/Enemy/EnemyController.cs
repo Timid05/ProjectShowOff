@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(FollowPath))]
 
@@ -17,8 +12,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     EnemyStateMachine.State startState;
 
+    CapsuleCollider col;
+
     [SerializeField]
     float enragedAttackRange;
+    [SerializeField]
+    float decoyDestroySpeedIncrease = 2;
+    [SerializeField]
+    float targetDisplacementRange = 10;
     bool enragedAttacking;
 
     [HideInInspector]
@@ -31,16 +32,19 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         followPath = GetComponent<FollowPath>();
+        col = GetComponent<CapsuleCollider>();
     }
 
     private void OnEnable()
     {
-        PlayerActions.OnPlayerDead += DestroyEnemy;
+        EnemiesInfo.OnEnemyObjectRemoved += DestroyEnemy;
+        EnemiesInfo.OnDecoyHit += DecoyDestroyed;      
     }
 
     private void OnDisable()
-    {
-        PlayerActions.OnPlayerDead -= DestroyEnemy;
+    {     
+        EnemiesInfo.OnDecoyHit -= DecoyDestroyed;
+        EnemiesInfo.OnEnemyObjectRemoved -= DestroyEnemy;
     }
 
     void Start()
@@ -57,6 +61,14 @@ public class EnemyController : MonoBehaviour
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());
 
         fsm.SetStartState(startState);
+    }
+
+    private void DecoyDestroyed(GameObject decoy)
+    {
+        if (decoy.transform.IsChildOf(transform))
+        {
+            followPath.navmeshAgent.speed += decoyDestroySpeedIncrease;
+        }
     }
 
     public Transform GetTarget()
@@ -76,13 +88,16 @@ public class EnemyController : MonoBehaviour
         followPath.target = target;
     }
 
-    public void DestroyEnemy()
+    public void DestroyEnemy(GameObject destroyed)
     {
-        EnemiesInfo.RemoveEnemy(fsm);
-        followPath.enabled = false;
-        this.enabled = false;
-        GetComponent<MeshRenderer>().enabled = false;
-        Destroy(gameObject, 2f);
+        if (destroyed == gameObject)
+        {
+            col.enabled = false;
+            followPath.enabled = false;
+            this.enabled = false;
+            GetComponent<MeshRenderer>().enabled = false;
+            Destroy(gameObject, 2f);
+        }
     }
 
     public void UpdateSpeeds()
@@ -96,9 +111,26 @@ public class EnemyController : MonoBehaviour
         {
             PlayerActions.OnPlayerHit?.Invoke();
             PlayerActions.OnPlayerDamaged?.Invoke(3);
-            DestroyEnemy();
+            if (fsm.currentStateName == EnemyStateMachine.State.Enraged)
+            {
+                DisplaceTarget();
+            }
+            if (col.enabled)
+            {
+                EnemiesInfo.RemoveEnemy(fsm);
+            }
+            
         }
     }
+
+    void DisplaceTarget()
+    {
+        float randomAngle = Random.Range(0f, 360f);
+        float randomDistance = Random.Range(targetDisplacementRange / 2, targetDisplacementRange);
+        GetTarget().position += new Vector3(Mathf.Cos(randomAngle), 0, Mathf.Sin(randomAngle) * randomDistance);
+    }
+
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -129,6 +161,11 @@ public class EnemyController : MonoBehaviour
                 EnemiesInfo.OnEnragedAttacks?.Invoke(this.gameObject);
                 enragedAttacking = true;
             }
+        }
+
+        if (enragedAttacking && fsm.currentStateName != EnemyStateMachine.State.Enraged)
+        {
+            enragedAttacking = false;
         }
     }
 }

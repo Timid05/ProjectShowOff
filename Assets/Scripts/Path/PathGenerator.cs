@@ -80,10 +80,10 @@ public class PathGenerator : MonoBehaviour
                     if (prevWaypoint == currentWaypoint.waypoints.Keys[0] || prevWaypoint == currentWaypoint.waypoints.Keys[3]) { swapResults = true; }
 
                     // We set the i, so that it adds the waypoints perpendicular to the direction the path is coming from.
-                    if (i <= 1) { i = 2; }
-                    else { i = 0; }
+                    if (i <= 1){ i = 2; }
+                    else{ i = 0; }
                     possibleNextWaypoints.Add(currentWaypoint.waypoints.Keys[i], currentWaypoint.waypoints.Values[i]);
-                    possibleNextWaypoints.Add(currentWaypoint.waypoints.Keys[i + 1], currentWaypoint.waypoints.Values[i + 1]);
+                    possibleNextWaypoints.Add(currentWaypoint.waypoints.Keys[i+1], currentWaypoint.waypoints.Values[i+1]);
 
                     //Remove current waypoint and possible waypoints from the original dict. This will allow the option to add a backup option if necessary.
                     currentWaypoint.waypoints.Keys.Remove(prevWaypoint);
@@ -122,6 +122,7 @@ public class PathGenerator : MonoBehaviour
             if (swapResults) { DecideNextWaypoint(new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[1], possibleNextWaypoints.Values[1]), new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[0], possibleNextWaypoints.Values[0])); }
             else { DecideNextWaypoint(new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[0], possibleNextWaypoints.Values[0]), new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[1], possibleNextWaypoints.Values[1])); }
         }
+        else { DecideNextWaypoint(new KeyValuePair<PathWaypoint, bool>(currentWaypoint.waypoints.Keys[2], currentWaypoint.waypoints.Values[2]), new KeyValuePair<PathWaypoint, bool>(currentWaypoint.waypoints.Keys[3], currentWaypoint.waypoints.Values[3])); ; }
     }
 
     void DecideNextWaypoint(KeyValuePair<PathWaypoint, bool> leftPair, KeyValuePair<PathWaypoint, bool> rightPair)
@@ -146,7 +147,7 @@ public class PathGenerator : MonoBehaviour
         else
         {
             generateRight = RandomisePathDirection();
-            //Debug.Log("Going right? " + generateRight);
+            Debug.Log("Going right? " + generateRight);
         }
 
         // Add the direction to the list after any potential forcing, so the accurate version gets added.
@@ -172,7 +173,7 @@ public class PathGenerator : MonoBehaviour
         // Restrict direction if the past two directions have been the same.
         if (pastDirections.Count >= 2 && pastDirections[pastDirections.Count - 1] == pastDirections[pastDirections.Count - 2])
         {
-            //Debug.Log("2 of the same results in a row, forcing direction.");
+            Debug.Log("2 of the same results in a row, forcing direction.");
             // Force the path to go in the opposite direction than the past two directions.
             return !pastDirections[pastDirections.Count - 1];
         }

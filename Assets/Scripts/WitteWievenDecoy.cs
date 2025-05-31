@@ -6,6 +6,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class WitteWievenDecoy : MonoBehaviour
 {
+    CapsuleCollider col;
+    MeshRenderer mr;
+
     [SerializeField]
     Transform target;
     [SerializeField]
@@ -14,6 +17,8 @@ public class WitteWievenDecoy : MonoBehaviour
 
     private void Awake()
     {
+        mr = GetComponent<MeshRenderer>();
+        col = GetComponent<CapsuleCollider>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = decoySpeed;
     }
@@ -26,7 +31,15 @@ public class WitteWievenDecoy : MonoBehaviour
     public void SetDecoySpeed(float speed)
     {
         decoySpeed = speed;
-        agent.speed = speed;
+        agent.speed = speed;  
+    }
+
+    public void DestroySelf()
+    {
+        mr.enabled = false;
+        col.enabled = false;
+        EnemiesInfo.OnDecoyDestroyed?.Invoke(gameObject);
+        Destroy(gameObject, 2f);
     }
 
     void MoveToTarget()
@@ -41,7 +54,9 @@ public class WitteWievenDecoy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            EnemiesInfo.OnDecoyHit?.Invoke(gameObject);
+            GetComponent<MeshRenderer>().enabled = false;
+            Destroy(gameObject, 2f);        
         }
     }
 

@@ -35,6 +35,7 @@ public class FlashlightActions : MonoBehaviour
         PlayerInteraction.OnCharacterTalk += FlashlightAvailability;
         GameManager.OnAcceptTanfanaChoice += HolyFlashlight;
         PlayerActions.OnPlayerDead += DisableFlashlight;
+        EnemiesInfo.OnEnemyObjectRemoved += CheckFlashRange;
 
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
@@ -88,6 +89,11 @@ public class FlashlightActions : MonoBehaviour
         }
     }
 
+    void DisableFlashlight()
+    {
+        light.enabled = false;
+        this.enabled = false;
+    }
     void CastFlashlightRay()
     {
         RaycastHit hit;
@@ -116,18 +122,20 @@ public class FlashlightActions : MonoBehaviour
         else { flashlightCooldownActive = false; }
     }
 
-    void DisableFlashlight()
-    {
-        light.enabled = false;
-        this.enabled = false;
-    }
-
     void ChangeFlashlightStatus()
     {
         light.enabled = !light.enabled;
         // Send out delegate so that Witte Wieven can change visibility as well.
         if(OnFlashlightStatusChange != null) { OnFlashlightStatusChange(light.enabled); }
 
+    }
+
+    void CheckFlashRange(GameObject witteWief)
+    {
+        if (witteWievenInFlashRange.Contains(witteWief))
+        {
+            witteWievenInFlashRange.Remove(witteWief);
+        }
     }
 
     void Flashbang()
@@ -157,11 +165,11 @@ public class FlashlightActions : MonoBehaviour
 
     void FlashlightDispell()
     {
-        //Remove all Witte Wieven that are in range of the flashbang.
-        foreach(GameObject witteWief in witteWievenInFlashRange)
+        for (int i = witteWievenInFlashRange.Count -1 ; i >= 0; i--)
         {
-            witteWief.GetComponent<EnemyController>().DestroyEnemy();
+            EnemiesInfo.RemoveEnemy(witteWievenInFlashRange[i].GetComponent<EnemyController>().fsm);
         }
+        //Remove all Witte Wieven that are in range of the flashbang.
         witteWievenInFlashRange.Clear();
     }
 
@@ -196,5 +204,6 @@ public class FlashlightActions : MonoBehaviour
         PlayerInteraction.OnCharacterTalk -= FlashlightAvailability;
         GameManager.OnAcceptTanfanaChoice -= HolyFlashlight;
         PlayerActions.OnPlayerDead -= DisableFlashlight;
+        EnemiesInfo.OnEnemyObjectRemoved -= CheckFlashRange;
     }
 }

@@ -6,6 +6,8 @@ public class DecoySpawner : MonoBehaviour
 {
     List<GameObject> decoys = new List<GameObject>();
     EnemyController enemyController;
+   
+
     [SerializeField]
     GameObject decoyPrefab;
     [SerializeField]
@@ -56,15 +58,16 @@ public class DecoySpawner : MonoBehaviour
 
     void DestroyDecoys(GameObject removedEnemy)
     {
-        if (removedEnemy == gameObject)
+        Debug.Log("Destroyed enemy decoy disappearance");
+        if (removedEnemy == gameObject && enemyController.fsm.currentStateName == EnemyStateMachine.State.Enraged)
         {
             for (int i = decoys.Count - 1; i >= 0; i--)
             {
-                Destroy(decoys[i]);
+                decoys[i].GetComponent<WitteWievenDecoy>().DestroySelf();
                 decoys.RemoveAt(i);              
             }
-        }
-        Debug.Log("Destroyed decoys");
+            Debug.Log("Destroyed decoys");
+        }     
     }
 
     Vector3 GetRandomPosition()
@@ -73,5 +76,19 @@ public class DecoySpawner : MonoBehaviour
         float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
 
         return target.position + (new Vector3(Mathf.Cos(randomAngle), 0, Mathf.Sin(randomAngle)) * randomDistance);
+    }
+
+    private void Update()
+    {
+        if (enemyController.fsm.currentStateName != EnemyStateMachine.State.Enraged && decoys.Count != 0)
+        {
+            Debug.Log("State change decoy disappearance");
+            for (int i = decoys.Count - 1; i >= 0; i--)
+            {
+                decoys[i].GetComponent<WitteWievenDecoy>().DestroySelf();
+                decoys.RemoveAt(i);
+            }
+            Debug.Log("Destroyed decoys");
+        }
     }
 }
