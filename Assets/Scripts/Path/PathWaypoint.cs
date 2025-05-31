@@ -19,6 +19,6 @@ public class PathWaypoint : MonoBehaviour
         if(northPath != null) { northPath.SetActive(false); }
         if(southPath != null) { southPath.SetActive(false); }
         if(westPath != null) { westPath.SetActive(false); }
-        if(westPath != null) { eastPath.SetActive(false); }
+        if(eastPath != null) { eastPath.SetActive(false); }
     }
 }
