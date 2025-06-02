@@ -13,6 +13,8 @@ public class EnemySpawner : MonoBehaviour
     LocalVolumetricFog fog;
     [SerializeField]
     bool lockToTarget = false;
+    [SerializeField]
+    bool spawnOninterval = false;
 
     [SerializeField]
     float spawnInterval = 10;
@@ -67,12 +69,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (EnoughTimeElapsed())
+        if (EnoughTimeElapsed() && spawnOninterval)
         {
             Debug.Log("Spawning new enemy");
             SpawnNewEnemy();
         }
 
+        //Debug function, should be removed
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SpawnNewEnemy();
