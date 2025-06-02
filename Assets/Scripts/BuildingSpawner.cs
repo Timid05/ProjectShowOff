@@ -17,10 +17,20 @@ public class BuildingSpawner : MonoBehaviour
     // Place the object so that it is touching a road piece.
     void PlaceObject(List<GameObject> mainPathObjects, CapsuleCollider area)
     {
-        if(spawnableBuildings == null || !spawnableBuildings.ContainsKey(area)){ return; }
+        if (spawnableBuildings == null || !spawnableBuildings.ContainsKey(area)) { return; }
 
         spawnableBuildings.TryGetValue(area, out GameObject spawnObject);
-        Debug.LogFormat("Placing object {0} in area {1}", spawnObject.name, area.name);
+
+        //Pick a random object from the main path to place to object next to.
+        GameObject spawnPath = mainPathObjects[Random.Range(0, mainPathObjects.Count)];
+        Debug.LogFormat("Placing object {0} in area {1} at {2}", spawnObject.name, area.name, spawnPath.name);
+        //Collider pathCol = spawnPath.GetComponent<Collider>();
+        //if (pathCol != null)
+        //{
+        //    Instantiate(spawnObject, pathCol.ClosestPointOnBounds(area.center), spawnObject.transform.rotation, gameObject.transform);
+        //}
+        //else { Instantiate(spawnObject, spawnPath.transform.position, spawnObject.transform.rotation, gameObject.transform); }
+        Instantiate(spawnObject, spawnPath.transform.position, spawnObject.transform.rotation, gameObject.transform);
 
         //foreach(KeyValuePair<CapsuleCollider, GameObject> pair in spawnableBuildings)
         //{

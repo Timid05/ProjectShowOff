@@ -6837,7 +6837,7 @@ PrefabInstance:
     - target: {fileID: 4166894665354311299, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
       propertyPath: <waypoints>k__BackingField.values.Array.data[3]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5096752641332542069, guid: a49759631f628ba46a75f9beff05d435,
         type: 3}
