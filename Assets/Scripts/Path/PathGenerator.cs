@@ -43,7 +43,7 @@ public class PathGenerator : MonoBehaviour
 
     void GeneratePath()
     {
-        Debug.Log("Generating for waypoint: " + currentWaypoint.name);
+        //Debug.Log("Generating for waypoint: " + currentWaypoint.name);
         // Mark a waypoint as visited.
         currentWaypoint.visited = true;
 
@@ -129,15 +129,11 @@ public class PathGenerator : MonoBehaviour
     {
         //Debug.LogFormat("Choosing next waypoint between {0} and {1}.", leftPair.Key.name, rightPair.Key.name);
 
-
-
-        //if ((CheckForEndWaypoint(leftPair.Key) && unvisitedAreas.Count != 0) || leftPair.Key.visited || !leftPair.Value || !CheckForValidWaypoints(leftPair.Key) || CheckLastEntryWaypoint(rightPair.Key))
         if(!CheckValidity(leftPair) || CheckLastEntryWaypoint(rightPair.Key))
         {
             //Debug.LogFormat("Forcing direction right. Visited: {0} Path status: {1}", leftPair.Key.visited, leftPair.Value);
             generateRight = true;
         }
-        //else if ((CheckForEndWaypoint(rightPair.Key) && unvisitedAreas.Count != 0) || rightPair.Key.visited || !rightPair.Value || !CheckForValidWaypoints(rightPair.Key) || CheckLastEntryWaypoint(leftPair.Key))
         else if(!CheckValidity(rightPair) || CheckLastEntryWaypoint(leftPair.Key))
         {
             //Debug.LogFormat("Forcing direction left. Visited: {0} Path status: {1}", rightPair.Key.visited, rightPair.Value);
@@ -147,7 +143,7 @@ public class PathGenerator : MonoBehaviour
         else
         {
             generateRight = RandomisePathDirection();
-            Debug.Log("Going right? " + generateRight);
+            //Debug.Log("Going right? " + generateRight);
         }
 
         // Add the direction to the list after any potential forcing, so the accurate version gets added.
@@ -173,7 +169,7 @@ public class PathGenerator : MonoBehaviour
         // Restrict direction if the past two directions have been the same.
         if (pastDirections.Count >= 2 && pastDirections[pastDirections.Count - 1] == pastDirections[pastDirections.Count - 2])
         {
-            Debug.Log("2 of the same results in a row, forcing direction.");
+            //Debug.Log("2 of the same results in a row, forcing direction.");
             // Force the path to go in the opposite direction than the past two directions.
             return !pastDirections[pastDirections.Count - 1];
         }
