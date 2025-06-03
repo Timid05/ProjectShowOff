@@ -1315,6 +1315,11 @@ PrefabInstance:
       propertyPath: m_BaseOffset
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4455726647369846888, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5289151223527014520, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1413,7 +1418,7 @@ PrefabInstance:
     - target: {fileID: 8176088990301457895, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
         type: 3}
       propertyPath: chargeSpeed
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8176088990301457895, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
         type: 3}
@@ -1428,7 +1433,7 @@ PrefabInstance:
     - target: {fileID: 8176088990301457895, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
         type: 3}
       propertyPath: pounceDistance
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
