@@ -301,7 +301,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 173787214}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 427419554}
+        m_TargetAssemblyTypeName: Nextscene, Assembly-CSharp
+        m_MethodName: ToNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &214160560
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +862,7 @@ GameObject:
   - component: {fileID: 427419551}
   - component: {fileID: 427419552}
   - component: {fileID: 427419553}
+  - component: {fileID: 427419554}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -900,6 +913,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToHide: {fileID: 2129894684}
   objectToShow: {fileID: 1587921342}
+--- !u!114 &427419554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427419549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3051ba21276724abbb9916e4bb2eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &464339015
 GameObject:
   m_ObjectHideFlags: 0
