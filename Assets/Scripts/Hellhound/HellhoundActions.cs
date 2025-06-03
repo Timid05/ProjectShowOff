@@ -6,4 +6,7 @@ using UnityEngine;
 public static class HellhoundActions 
 {
     public static Action OnHellhoundFightTriggered;
+    public static Action OnGrowlTriggered;
+    public static Action OnCharge;
+    public static Action OnPounce;
 }
