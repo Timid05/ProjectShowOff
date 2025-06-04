@@ -185,6 +185,26 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6207157328161000639, guid: ae32d21c2647e1c40ac046dc66483f5a,
+        type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207157328161000639, guid: ae32d21c2647e1c40ac046dc66483f5a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207157328161000639, guid: ae32d21c2647e1c40ac046dc66483f5a,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207157328161000639, guid: ae32d21c2647e1c40ac046dc66483f5a,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6818458077161447125, guid: ae32d21c2647e1c40ac046dc66483f5a,
         type: 3}
       propertyPath: m_Name
@@ -1320,6 +1340,11 @@ PrefabInstance:
       propertyPath: m_Acceleration
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4768476030184118978, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hellhound
+      objectReference: {fileID: 0}
     - target: {fileID: 5289151223527014520, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1357,12 +1382,27 @@ PrefabInstance:
       objectReference: {fileID: 973790173}
     - target: {fileID: 7273621853331563963, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
         type: 3}
+      propertyPath: deathClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 35ca10ac038aa4a418314662b868a24f, type: 3}
+    - target: {fileID: 7273621853331563963, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
+        type: 3}
       propertyPath: pounceClip
       value: 
       objectReference: {fileID: 8300000, guid: 4e39e22e60611184099795d52b6df837, type: 3}
+    - target: {fileID: 7273621853331563963, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
+        type: 3}
+      propertyPath: flashedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 66ce2d54362ceba45b14185b4f1d5666, type: 3}
     - target: {fileID: 7491752939912626292, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
         type: 3}
       propertyPath: m_Name
+      value: Hellhound
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491752939912626292, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
+        type: 3}
+      propertyPath: m_TagString
       value: Hellhound
       objectReference: {fileID: 0}
     - target: {fileID: 8148396620348627425, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
@@ -1434,6 +1474,16 @@ PrefabInstance:
         type: 3}
       propertyPath: pounceDistance
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8176088990301457895, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
+        type: 3}
+      propertyPath: flashesUntilKilled
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8176088990301457895, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
+        type: 3}
+      propertyPath: growlsBeforeAttacking
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1848,7 +1898,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 42.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

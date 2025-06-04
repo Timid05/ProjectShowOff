@@ -11,6 +11,10 @@ public class HellhoundSound : MonoBehaviour
     AudioClip[] growlClips;
     [SerializeField]
     AudioClip pounceClip;
+    [SerializeField]
+    AudioClip flashedClip;
+    [SerializeField]
+    AudioClip deathClip;
 
     private void OnEnable()
     {
@@ -18,6 +22,8 @@ public class HellhoundSound : MonoBehaviour
         HellhoundActions.OnCharge += PlayHowl;
         HellhoundActions.OnGrowlTriggered += PlayGrowl;
         HellhoundActions.OnPounce += PlayPounce;
+        HellhoundActions.OnHellhoundFlashed += PlayFlashed;
+        HellhoundActions.OnHellhoundDeath += PlayDeath;
     }
 
     private void OnDisable()
@@ -26,6 +32,8 @@ public class HellhoundSound : MonoBehaviour
         HellhoundActions.OnCharge -= PlayHowl;
         HellhoundActions.OnGrowlTriggered -= PlayGrowl;
         HellhoundActions.OnPounce -= PlayPounce;
+        HellhoundActions.OnHellhoundFlashed -= PlayFlashed;
+        HellhoundActions.OnHellhoundDeath -= PlayDeath;
     }
 
     private void Awake()
@@ -50,5 +58,15 @@ public class HellhoundSound : MonoBehaviour
     void PlayPounce()
     {
         source.PlayOneShot(pounceClip);
+    }
+
+    void PlayFlashed()
+    {
+        source.PlayOneShot(flashedClip);
+    }
+
+    void PlayDeath()
+    {
+        source.PlayOneShot(deathClip);
     }
 }

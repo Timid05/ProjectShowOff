@@ -28,6 +28,8 @@ public class FlashlightActions : MonoBehaviour
     float flashbangPercentage = 0;
     bool flashbangActive = false;
     bool flashlightCooldownActive = false;
+    bool hellhoundFlash = false;
+    bool houndInFlashRange = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,7 @@ public class FlashlightActions : MonoBehaviour
         GameManager.OnAcceptTanfanaChoice += HolyFlashlight;
         PlayerActions.OnPlayerDead += DisableFlashlight;
         EnemiesInfo.OnEnemyObjectRemoved += CheckFlashRange;
+        HellhoundActions.OnHellhoundFlashable += HellhoundFlashStatus;
 
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
@@ -107,6 +110,7 @@ public class FlashlightActions : MonoBehaviour
         }
     }
 
+
     IEnumerator FlashlightCooldown()
     {
         Debug.Log("Flashlight cooldown active.");
@@ -165,6 +169,12 @@ public class FlashlightActions : MonoBehaviour
 
     void FlashlightDispell()
     {
+        if (houndInFlashRange && hellhoundFlash)
+        {
+            Debug.Log("Flashed hellhound");
+            HellhoundActions.OnHellhoundFlashed?.Invoke();
+        }
+
         for (int i = witteWievenInFlashRange.Count -1 ; i >= 0; i--)
         {
             EnemiesInfo.RemoveEnemy(witteWievenInFlashRange[i].GetComponent<EnemyController>().fsm);
@@ -181,6 +191,12 @@ public class FlashlightActions : MonoBehaviour
         light.colorTemperature = tamfanaColor;
     }
 
+    void HellhoundFlashStatus(bool flashable)
+    {
+        hellhoundFlash = flashable;
+        Debug.Log("hellhound flashable: " + flashable);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("WitteWieven"))
@@ -188,6 +204,13 @@ public class FlashlightActions : MonoBehaviour
             //Debug.LogFormat("Witte wief {0} in flash range.", other.gameObject.name);
             witteWievenInFlashRange.Add(other.gameObject);
         }
+
+        if(other.gameObject.CompareTag("Hellhound"))
+        {
+            Debug.Log("Hellhound in range");
+            houndInFlashRange = true;
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -197,6 +220,12 @@ public class FlashlightActions : MonoBehaviour
             //Debug.LogFormat("Witte wief {0} out of flash range.", other.gameObject.name);
             witteWievenInFlashRange.Remove(other.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Hellhound"))
+        {
+            Debug.Log("Hellhound out of range");
+            houndInFlashRange = true;
+        }
     }
 
     private void OnDestroy()
@@ -205,5 +234,6 @@ public class FlashlightActions : MonoBehaviour
         GameManager.OnAcceptTanfanaChoice -= HolyFlashlight;
         PlayerActions.OnPlayerDead -= DisableFlashlight;
         EnemiesInfo.OnEnemyObjectRemoved -= CheckFlashRange;
+        HellhoundActions.OnHellhoundFlashable -= HellhoundFlashStatus;
     }
 }

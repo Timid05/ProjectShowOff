@@ -1,10 +1,6 @@
-using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class HellHoundFightBehavior : MonoBehaviour
 {
@@ -20,17 +16,21 @@ public class HellHoundFightBehavior : MonoBehaviour
     float currentInterval = 0;
     float lastIntervalTime = 0;
     int currentGrowls = 0;
+    int currentFlashes = 0;
     bool charging = false;
-    bool pouncing = false;  
+    bool pouncing = false;
+    bool dead = false;
 
     private void OnEnable()
     {
         HellhoundActions.OnHellhoundFightTriggered += StartFight;
+        HellhoundActions.OnHellhoundFlashed += Flashed;
     }
 
     private void OnDisable()
     {
         HellhoundActions.OnHellhoundFightTriggered -= StartFight;
+        HellhoundActions.OnHellhoundFlashed -= Flashed;
     }
 
     private void Awake()
@@ -70,17 +70,39 @@ public class HellHoundFightBehavior : MonoBehaviour
         }     
     }
 
+    private void Flashed()
+    {
+        Disappear();
+        agent.isStopped = true;
+        charging = false;
+        currentFlashes++;
+    }
+
     private void Charge()
     {
+        HellhoundActions.OnHellhoundFlashable?.Invoke(true);
         transform.position = GetRandomPositionAroundPlayer();
+        transform.LookAt(player.position);
         Appear();
         agent.isStopped = false;
         agent.SetDestination(player.position);
     }
 
+    private void Death()
+    {
+        Debug.Log("Congrats girlie, ho is dead");
+        agent.isStopped = true;
+        dead = true;
+        charging = false;
+        pouncing = false;
+        HellhoundActions.OnHellhoundDeath?.Invoke();
+        Disappear();
+        Destroy(gameObject, 3f);
+    }
 
     private void Pounce()
     {
+        HellhoundActions.OnHellhoundFlashable?.Invoke(false);
         HellhoundActions.OnPounce?.Invoke();
         PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
         agent.isStopped = true;
@@ -90,6 +112,12 @@ public class HellHoundFightBehavior : MonoBehaviour
 
     private void Update()
     {
+        if (flashesUntilKilled == currentFlashes && !dead)
+        {
+            Death();
+            return;
+        }
+
         if (fightOngoing && !pouncing && !charging)
         {
             AttackBehavior();
@@ -105,7 +133,7 @@ public class HellHoundFightBehavior : MonoBehaviour
                 pouncing = true;
                 Pounce();
             }
-        }
+        }    
     }
 
     private Vector3 GetRandomPositionAroundPlayer()
