@@ -6,7 +6,7 @@ public class DecoySpawner : MonoBehaviour
 {
     List<GameObject> decoys = new List<GameObject>();
     EnemyController enemyController;
-   
+
 
     [SerializeField]
     GameObject decoyPrefab;
@@ -63,11 +63,14 @@ public class DecoySpawner : MonoBehaviour
         {
             for (int i = decoys.Count - 1; i >= 0; i--)
             {
-                decoys[i].GetComponent<WitteWievenDecoy>().DestroySelf();
-                decoys.RemoveAt(i);              
+                if (decoys[i] != null)
+                {
+                    decoys[i].GetComponent<WitteWievenDecoy>().Disappear();
+                }
+                decoys.RemoveAt(i);
             }
             Debug.Log("Destroyed decoys");
-        }     
+        }
     }
 
     Vector3 GetRandomPosition()
@@ -85,7 +88,7 @@ public class DecoySpawner : MonoBehaviour
             Debug.Log("State change decoy disappearance");
             for (int i = decoys.Count - 1; i >= 0; i--)
             {
-                decoys[i].GetComponent<WitteWievenDecoy>().DestroySelf();
+                decoys[i].GetComponent<WitteWievenDecoy>().Disappear();
                 decoys.RemoveAt(i);
             }
             Debug.Log("Destroyed decoys");

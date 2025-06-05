@@ -1380,6 +1380,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 973790173}
+    - target: {fileID: 6877759690186904206, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
+        type: 3}
+      propertyPath: canTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7273621853331563963, guid: 3fdb4eeb03b63154ca3b9d1f1cea1c2b,
         type: 3}
       propertyPath: deathClip
@@ -1898,7 +1903,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.5
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

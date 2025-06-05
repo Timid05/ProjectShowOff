@@ -34,12 +34,11 @@ public class WitteWievenDecoy : MonoBehaviour
         agent.speed = speed;  
     }
 
-    public void DestroySelf()
+    public void Disappear()
     {
         mr.enabled = false;
         col.enabled = false;
         EnemiesInfo.OnDecoyDestroyed?.Invoke(gameObject);
-        Destroy(gameObject, 2f);
     }
 
     void MoveToTarget()
