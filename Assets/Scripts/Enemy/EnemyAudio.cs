@@ -10,7 +10,7 @@ public class EnemyAudio : MonoBehaviour
     AudioClip[] spawnClips;
 
     [SerializeField]
-    AudioClip jumpscareClip;
+    AudioClip[] jumpscareClips;
     [SerializeField]
     AudioClip decoySpawnClip;
     [SerializeField]
@@ -18,14 +18,14 @@ public class EnemyAudio : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerActions.OnPlayerHit += PlayJumpscare;
+        PlayerActions.OnPlayerHit += PlayRandomJumpscare;
         EnemiesInfo.OnEnragedAttacks += PlayDecoyClip;
         EnemiesInfo.OnEnemyObjectRemoved += PlayDeath;
     }
 
     private void OnDisable()
     {
-        PlayerActions.OnPlayerHit -= PlayJumpscare;
+        PlayerActions.OnPlayerHit -= PlayRandomJumpscare;
         EnemiesInfo.OnEnragedAttacks -= PlayDecoyClip;
         EnemiesInfo.OnEnemyObjectRemoved -= PlayDeath;
     }
@@ -43,9 +43,12 @@ public class EnemyAudio : MonoBehaviour
         source.PlayOneShot(clip);
     }
 
-    public void PlayJumpscare()
+    public void PlayRandomJumpscare()
     {
-        source.PlayOneShot(jumpscareClip);
+        if (jumpscareClips.Length > 0)
+        {
+            source.PlayOneShot(jumpscareClips[Random.Range(0, jumpscareClips.Length)]);
+        }
     }
 
     public void PlayDeath(GameObject removedEnemy)
