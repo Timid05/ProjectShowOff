@@ -14,6 +14,7 @@ public class PathGenerator : MonoBehaviour
     List<CapsuleCollider> unvisitedAreas;
 
     public static event Action OnPathGenerated;
+    public static event Action<GameObject> OnPathObjectEnabled;
 
     private void Awake()
     {
@@ -185,26 +186,34 @@ public class PathGenerator : MonoBehaviour
     {
         // Activate the path that corresponds to the direction the path came from.
         //Debug.LogFormat("Enabling path at index {0} for {1}", pathIndex, currentWaypoint);
+        GameObject enabledPathObject = gameObject;
         switch (pathIndex)
         {
             case 0:
-                if (currentWaypoint.northPath != null) { currentWaypoint.northPath.SetActive(true); }
+                if (currentWaypoint.northPath != null) { enabledPathObject = currentWaypoint.northPath; }
                 break;
 
             case 1:
-                if (currentWaypoint.southPath != null) { currentWaypoint.southPath.SetActive(true); }
+                if (currentWaypoint.southPath != null) { enabledPathObject =  currentWaypoint.southPath; }
                 break;
 
             case 2:
-                if (currentWaypoint.westPath != null) { currentWaypoint.westPath.SetActive(true); }
+                if (currentWaypoint.westPath != null) { enabledPathObject = currentWaypoint.westPath; }
                 break;
 
             case 3:
-                if (currentWaypoint.eastPath != null) { currentWaypoint.eastPath.SetActive(true); }
+                if (currentWaypoint.eastPath != null) { enabledPathObject = currentWaypoint.eastPath; }
                 break;
 
             default:
                 break;
+        }
+
+        if(enabledPathObject != gameObject)
+        {
+            // Share path object with map so the respective object can be enabled.
+            enabledPathObject.SetActive(true);
+            if (OnPathObjectEnabled != null) { OnPathObjectEnabled(enabledPathObject); }
         }
     }
 

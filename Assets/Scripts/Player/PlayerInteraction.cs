@@ -32,11 +32,11 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.M) && !dialogueRunner.Dialogue.IsActive)
-        {
-            Debug.Log("test map " + _map.GetComponent<Canvas>().enabled);
-            _map.GetComponent<Canvas>().enabled = !_map.GetComponent<Canvas>().enabled;
-        }
+        //if (Input.GetKeyUp(KeyCode.M) && !dialogueRunner.Dialogue.IsActive)
+        //{
+        //    Debug.Log("test map " + _map.GetComponent<Canvas>().enabled);
+        //    _map.GetComponent<Canvas>().enabled = !_map.GetComponent<Canvas>().enabled;
+        //}
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
