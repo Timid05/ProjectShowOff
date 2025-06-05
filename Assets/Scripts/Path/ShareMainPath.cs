@@ -5,7 +5,7 @@ using System;
 
 public class ShareMainPath : MonoBehaviour
 {
-    public static event Action<List<GameObject>, CapsuleCollider> OnMainPathOnly;
+    public static event Action<List<GameObject>, GameObject> OnMainPathOnly;
     List<GameObject> mainPathObjectsInArea;
 
     private void Awake()
@@ -30,8 +30,7 @@ public class ShareMainPath : MonoBehaviour
         Debug.LogFormat("Area {0} has {1} main path objects.", gameObject.name, mainPathObjectsInArea.Count);
 
         // Share main path objects with building spawner and the area it originates from.
-        CapsuleCollider area = gameObject.GetComponent<CapsuleCollider>();
-        if(OnMainPathOnly != null && area != null) { OnMainPathOnly(mainPathObjectsInArea, area); }
+        if(OnMainPathOnly != null) { OnMainPathOnly(mainPathObjectsInArea, gameObject); }
     }
 
     private void OnTriggerEnter(Collider other)

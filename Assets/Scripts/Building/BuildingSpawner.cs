@@ -11,14 +11,16 @@ public class BuildingSpawner : MonoBehaviour
     private void Awake()
     {
         ShareMainPath.OnMainPathOnly += PlaceObject;
-        BuildingSpawnWaypoints.OnShareWaypoints += OnGetWaypoints;
     }
 
 
     // Place the object so that it is touching a road piece.
-    void PlaceObject(List<GameObject> mainPathObjects, CapsuleCollider area)
+    void PlaceObject(List<GameObject> mainPathObjects, GameObject areaObject)
     {
-        if (spawnableBuildings == null || !spawnableBuildings.ContainsKey(area)) { return; }
+        CapsuleCollider area = areaObject.GetComponent<CapsuleCollider>();
+        BuildingSpawnWaypoints buildingSpawnWaypoints = areaObject.GetComponent<BuildingSpawnWaypoints>();
+
+        if (spawnableBuildings == null || area == null || !spawnableBuildings.ContainsKey(area)) { return; }
 
         spawnableBuildings.TryGetValue(area, out GameObject spawnObject);
 
@@ -26,42 +28,39 @@ public class BuildingSpawner : MonoBehaviour
         GameObject spawnPath = mainPathObjects[Random.Range(0, mainPathObjects.Count)];
         Debug.LogFormat("Placing object {0} in area {1} nearby waypoint {2}", spawnObject.name, area.name, spawnPath.name);
 
-        // Find the waypoint that is closest to the chosen object.
-        if (buildingWaypoints != null && area == waypointArea)
+        if(buildingSpawnWaypoints != null)
         {
-            Vector3 closestWaypoint = transform.position;
-            float closestDistance = -1;
+            // Get the spawn waypoints for the current area
+            buildingWaypoints = buildingSpawnWaypoints.GetWaypoints();
 
-            foreach (Vector3 waypoint in buildingWaypoints)
+            // Find the waypoint that is closest to the chosen object.
+            if (buildingWaypoints != null && buildingWaypoints.Count != 0)
             {
-                float distance = Vector3.Distance(spawnPath.transform.position, waypoint);
+                Vector3 closestWaypoint = transform.position;
+                float closestDistance = -1;
 
-                // Update the closest waypoint if the current waypoint is closer.
-                if (closestDistance < 0 || distance < closestDistance)
+                foreach (Vector3 waypoint in buildingWaypoints)
                 {
-                    closestDistance = distance;
-                    closestWaypoint = waypoint;
+                    float distance = Vector3.Distance(spawnPath.transform.position, waypoint);
+
+                    // Update the closest waypoint if the current waypoint is closer.
+                    if (closestDistance < 0 || distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestWaypoint = waypoint;
+                    }
                 }
+
+                // Makes the spawned object face the path it was spawned next to.
+                Quaternion spawnRotation = Quaternion.LookRotation((spawnPath.transform.position - closestWaypoint).normalized);
+
+                Debug.LogFormat("Spawning at waypoint {0} with rotation {1}", closestWaypoint, spawnRotation);
+                Instantiate(spawnObject, closestWaypoint, spawnRotation, gameObject.transform);
+                return;
             }
-
-            Debug.Log("Spawning at waypoint " + closestWaypoint);
-            Instantiate(spawnObject, closestWaypoint, spawnObject.transform.rotation, gameObject.transform);
-        }
-        else { Instantiate(spawnObject, spawnPath.transform.position, spawnObject.transform.rotation, gameObject.transform); }
-
-        //Collider pathCol = spawnPath.GetComponent<Collider>();
-        //if (pathCol != null)
-        //{
-        //    Instantiate(spawnObject, pathCol.ClosestPointOnBounds(area.center), spawnObject.transform.rotation, gameObject.transform);
-        //}
-        //else { Instantiate(spawnObject, spawnPath.transform.position, spawnObject.transform.rotation, gameObject.transform); }
-        //Instantiate(spawnObject, spawnPath.transform.position, spawnObject.transform.rotation, gameObject.transform);
-    }
-
-    // Rotate object to face the road it's closest to.
-    void RotateObject()
-    {
-
+        } 
+        // If spawn waypoints arent' set, Spawn the object at the center of the path as a failsafe.
+        Instantiate(spawnObject, spawnPath.transform.position, spawnObject.transform.rotation, gameObject.transform);
     }
 
     void OnGetWaypoints(List<Vector3> pBuildingWaypoints, CapsuleCollider pWaypointArea)
@@ -73,6 +72,5 @@ public class BuildingSpawner : MonoBehaviour
     private void OnDestroy()
     {
         ShareMainPath.OnMainPathOnly -= PlaceObject;
-        BuildingSpawnWaypoints.OnShareWaypoints -= OnGetWaypoints;
     }
 }
