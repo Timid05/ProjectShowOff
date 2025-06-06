@@ -21,13 +21,13 @@ public class ShareMainPath : MonoBehaviour
     // Reduce list of path objects in the area to only the ones on the main path, once generation is done.
     private void RemoveNonMainPathObjects()
     {
-        Debug.LogFormat("Area {0} has {1} path objects.", gameObject.name, mainPathObjectsInArea.Count);
+        //Debug.LogFormat("Area {0} has {1} path objects.", gameObject.name, mainPathObjectsInArea.Count);
         for (int i = mainPathObjectsInArea.Count - 1; i >= 0; i--)
         {
             if(!mainPathObjectsInArea[i].activeSelf) { mainPathObjectsInArea.RemoveAt(i); }
-            else { Debug.LogFormat("Area {0} path object {1} is part of the main trail.", gameObject.name, mainPathObjectsInArea[i].name); }
+            //else { Debug.LogFormat("Area {0} path object {1} is part of the main trail.", gameObject.name, mainPathObjectsInArea[i].name); }
         }
-        Debug.LogFormat("Area {0} has {1} main path objects.", gameObject.name, mainPathObjectsInArea.Count);
+        //Debug.LogFormat("Area {0} has {1} main path objects.", gameObject.name, mainPathObjectsInArea.Count);
 
         // Share main path objects with building spawner and the area it originates from.
         if(OnMainPathOnly != null) { OnMainPathOnly(mainPathObjectsInArea, gameObject); }
