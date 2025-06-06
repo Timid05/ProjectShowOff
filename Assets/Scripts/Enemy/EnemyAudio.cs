@@ -10,23 +10,23 @@ public class EnemyAudio : MonoBehaviour
     AudioClip[] spawnClips;
 
     [SerializeField]
-    AudioClip jumpscareClip;
+    AudioClip[] jumpscareClips;
     [SerializeField]
-    AudioClip decoySpawnClip;
+    AudioClip[] decoySpawnClips;
     [SerializeField]
     AudioClip deathClip;
 
     private void OnEnable()
     {
-        PlayerActions.OnPlayerHit += PlayJumpscare;
-        EnemiesInfo.OnEnragedAttacks += PlayDecoyClip;
+        PlayerActions.OnPlayerHit += PlayRandomJumpscareClip;
+        EnemiesInfo.OnEnragedAttacks += PlayRandomDecoyClip;
         EnemiesInfo.OnEnemyObjectRemoved += PlayDeath;
     }
 
     private void OnDisable()
     {
-        PlayerActions.OnPlayerHit -= PlayJumpscare;
-        EnemiesInfo.OnEnragedAttacks -= PlayDecoyClip;
+        PlayerActions.OnPlayerHit -= PlayRandomJumpscareClip;
+        EnemiesInfo.OnEnragedAttacks -= PlayRandomDecoyClip;
         EnemiesInfo.OnEnemyObjectRemoved -= PlayDeath;
     }
 
@@ -43,9 +43,12 @@ public class EnemyAudio : MonoBehaviour
         source.PlayOneShot(clip);
     }
 
-    public void PlayJumpscare()
+    public void PlayRandomJumpscareClip()
     {
-        source.PlayOneShot(jumpscareClip);
+        if (jumpscareClips.Length > 0)
+        {
+            source.PlayOneShot(jumpscareClips[Random.Range(0, spawnClips.Length)]);
+        }
     }
 
     public void PlayDeath(GameObject removedEnemy)
@@ -56,11 +59,14 @@ public class EnemyAudio : MonoBehaviour
         }
     }
 
-    public void PlayDecoyClip(GameObject attacker)
+    public void PlayRandomDecoyClip(GameObject attacker)
     {
         if (attacker == gameObject)
         {
-            source.PlayOneShot(decoySpawnClip);
+            if (decoySpawnClips.Length > 0)
+            {
+                source.PlayOneShot(decoySpawnClips[Random.Range(0, spawnClips.Length)]);
+            }
         }
     }
 
@@ -71,4 +77,5 @@ public class EnemyAudio : MonoBehaviour
             source.PlayOneShot(spawnClips[Random.Range(0, spawnClips.Length)]);
         }
     }
+
 }

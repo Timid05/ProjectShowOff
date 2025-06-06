@@ -4158,6 +4158,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -222.382}
+--- !u!82 &1889085328 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5704914945598684192, guid: e1c8016e04d814e47afeedee62366a75,
+    type: 3}
+  m_PrefabInstance: {fileID: 1973467965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1891622543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4412,6 +4418,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
+      propertyPath: stepDelay
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
       propertyPath: maxStamina
       value: 1000
       objectReference: {fileID: 0}
@@ -4419,6 +4430,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sprintSpeed
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: stepDelayBase
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
@@ -4430,6 +4446,11 @@ PrefabInstance:
       propertyPath: ThisIsGround.m_Bits
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: footstepsSoundSource
+      value: 
+      objectReference: {fileID: 1889085328}
     - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: noiseSprintAmplitude
