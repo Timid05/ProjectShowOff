@@ -10,16 +10,17 @@ public class PlayerInteraction : MonoBehaviour
     Image drImage;
     PlayerMovement playerMovement;
     PlayerLook playerLook;
+    bool playerBusy = false;
 
     public Light _light;
     public Camera _camera;
     GameObject currentNPC;
     public static event Action<bool> OnCharacterTalk;
-    public Canvas _map;
 
     private void Awake()
     {
         GameManager.OnGiveGManager += ReceiveGManager;
+        MapVisibility.OnMapButtonPressed += PlayerStatus;
     }
 
     void Start()
@@ -32,22 +33,16 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyUp(KeyCode.M) && !dialogueRunner.Dialogue.IsActive)
-        //{
-        //    Debug.Log("test map " + _map.GetComponent<Canvas>().enabled);
-        //    _map.GetComponent<Canvas>().enabled = !_map.GetComponent<Canvas>().enabled;
-        //}
-
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             dialogueRunner.Stop();
             if (OnCharacterTalk != null) { OnCharacterTalk(false); }
         }
 
-        if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && Input.GetMouseButtonUp(0) && !dialogueRunner.Dialogue.IsActive)
+        if (Input.GetMouseButtonUp(0) && Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && !dialogueRunner.Dialogue.IsActive)
         {
             // Timescale is set to 0 so that the game is paused when in the menus. This can be used to prevent the player from talking to NPCs when they're in a menu.
-            if (hitinfo.collider.gameObject.tag == "NPC" && Time.timeScale != 0f)
+            if (hitinfo.collider.gameObject.tag == "NPC" && Time.timeScale != 0f && !playerBusy)
             {
                 currentNPC = hitinfo.collider.gameObject;
                 currentNPC.GetComponent<NPCInteraction>().StartInteraction();
@@ -89,8 +84,14 @@ public class PlayerInteraction : MonoBehaviour
         //_light.intensity = 50000;
     }
 
+    void PlayerStatus(bool pPlayerBusy)
+    {
+        playerBusy = pPlayerBusy;
+    }
+
     private void OnDestroy()
     {
         GameManager.OnGiveGManager -= ReceiveGManager;
+        MapVisibility.OnMapButtonPressed -= PlayerStatus;
     }
 }

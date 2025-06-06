@@ -54,7 +54,7 @@ public class BuildingSpawner : MonoBehaviour
                 // Makes the spawned object face the path it was spawned next to.
                 Quaternion spawnRotation = Quaternion.LookRotation((spawnPath.transform.position - closestWaypoint).normalized);
 
-                Debug.LogFormat("Spawning at waypoint {0} with rotation {1}", closestWaypoint, spawnRotation);
+                //Debug.LogFormat("Spawning at waypoint {0} with rotation {1}", closestWaypoint, spawnRotation);
                 Instantiate(spawnObject, closestWaypoint, spawnRotation, gameObject.transform);
                 return;
             }

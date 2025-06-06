@@ -7,6 +7,8 @@ public class ShareMainPath : MonoBehaviour
 {
     public static event Action<List<GameObject>, GameObject> OnMainPathOnly;
     List<GameObject> mainPathObjectsInArea;
+    // Path objects that are within the capsule, but we don't want to generate the buildilng position for.
+    [SerializeField] List<GameObject> excludedPathObjects;
 
     private void Awake()
     {
@@ -30,7 +32,7 @@ public class ShareMainPath : MonoBehaviour
         //Debug.LogFormat("Area {0} has {1} main path objects.", gameObject.name, mainPathObjectsInArea.Count);
 
         // Share main path objects with building spawner and the area it originates from.
-        if(OnMainPathOnly != null) { OnMainPathOnly(mainPathObjectsInArea, gameObject); }
+        if(OnMainPathOnly != null && mainPathObjectsInArea.Count != 0) { OnMainPathOnly(mainPathObjectsInArea, gameObject); }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,10 +40,15 @@ public class ShareMainPath : MonoBehaviour
         // Add all path objects in the area to the list.
         if (other.CompareTag("Path"))
         {
-            //Debug.LogFormat("Area {0} has path object {1}", gameObject.name, other.gameObject.name);
             GameObject path = other.gameObject;
 
-            if (path != null) { mainPathObjectsInArea.Add(path); }
+            if (path != null) 
+            { 
+                // Prevents adding path if it's in the exclusion list.
+                if(excludedPathObjects != null && excludedPathObjects.Count > 0 && excludedPathObjects.Contains(path)) { return; }
+                //Debug.LogFormat("Area {0} has path object {1}", gameObject.name, other.gameObject.name);
+                mainPathObjectsInArea.Add(path); 
+            }
         }
     }
 
