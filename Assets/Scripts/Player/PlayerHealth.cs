@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        PlayerActions.OnHealthUpdated(maxHealth, currentHealth);
+        PlayerActions.OnHealthUpdated?.Invoke(maxHealth, currentHealth);
     }
 
     private void OnEnable()
@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        PlayerActions.OnHealthUpdated(maxHealth, currentHealth);
+        PlayerActions.OnHealthUpdated?.Invoke(maxHealth, currentHealth);
         if (currentHealth <= 0)
         {
             Debug.Log("You ded homie");

@@ -40,10 +40,14 @@ public class FogController : MonoBehaviour
 
     void Start()
     {
-        fog.transform.position = target.position;
-        oldPosition = target.position;
-        currentFogDistance = fog.parameters.meanFreePath;
+        if (target != null && fog != null)
+        {
+            fog.transform.position = target.position;
+            oldPosition = target.position;
+            currentFogDistance = fog.parameters.meanFreePath;
+        }
     }
+        
 
     public void SetFogDistance(EnemyStateMachine.State state)
     {
@@ -120,6 +124,8 @@ public class FogController : MonoBehaviour
     float lerpT = 0;
     void Update()
     {
+        if (fog == null) { return; }
+
         if (target != null && lockToTarget)
         {
             UpdatePosition();

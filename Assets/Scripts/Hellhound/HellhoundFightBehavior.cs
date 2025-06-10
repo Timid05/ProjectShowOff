@@ -25,12 +25,14 @@ public class HellHoundFightBehavior : MonoBehaviour
     {
         HellhoundActions.OnHellhoundFightTriggered += StartFight;
         HellhoundActions.OnHellhoundFlashed += Flashed;
+        PlayerActions.OnPlayerDead += Disable;
     }
 
     private void OnDisable()
     {
         HellhoundActions.OnHellhoundFightTriggered -= StartFight;
         HellhoundActions.OnHellhoundFlashed -= Flashed;
+        PlayerActions.OnPlayerDead -= Disable;
     }
 
     private void Awake()
@@ -44,6 +46,11 @@ public class HellHoundFightBehavior : MonoBehaviour
     {
         Disappear();
         fightOngoing = true;
+    }
+
+    private void Disable()
+    {
+        this.enabled = false;
     }
 
     private void AttackBehavior()
@@ -90,7 +97,6 @@ public class HellHoundFightBehavior : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("Congrats girlie, ho is dead");
         agent.isStopped = true;
         dead = true;
         charging = false;
@@ -102,11 +108,11 @@ public class HellHoundFightBehavior : MonoBehaviour
 
     private void Pounce()
     {
-        HellhoundActions.OnHellhoundFlashable?.Invoke(false);
-        HellhoundActions.OnPounce?.Invoke();
-        PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
         agent.isStopped = true;
         pouncing = false;
+        HellhoundActions.OnHellhoundFlashable?.Invoke(false);
+        HellhoundActions.OnPounce?.Invoke();
+        PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);     
         Disappear();
     }
 

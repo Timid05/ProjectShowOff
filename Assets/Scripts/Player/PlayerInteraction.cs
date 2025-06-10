@@ -24,8 +24,6 @@ public class PlayerInteraction : MonoBehaviour
 
     void Start()
     {
-        dialogueRunner = gameManager._dialogueRunner;
-        drImage = dialogueRunner.GetComponentInChildren<Image>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerLook = gameObject.GetComponent<PlayerLook>();
     }
@@ -52,13 +50,18 @@ public class PlayerInteraction : MonoBehaviour
                 currentNPC = hitinfo.collider.gameObject;
                 currentNPC.GetComponent<NPCInteraction>().StartInteraction();
                 // This will prevent the player from using the flashlight while talking to NPCs.
-                if(OnCharacterTalk != null) { OnCharacterTalk(true); }
+                if (OnCharacterTalk != null) { OnCharacterTalk(true); }
             }
         }
     }
 
     // Allows script to receive the game manager in an efficient way without using FindObjectOfType
-    void ReceiveGManager(GameManager gManager) { gameManager = gManager; }
+    void ReceiveGManager(GameManager gManager)
+    {
+        gameManager = gManager;
+        dialogueRunner = gameManager._dialogueRunner;
+        drImage = dialogueRunner.GetComponentInChildren<Image>();
+    }
 
     public void OnCompleteDialogue()
     {
