@@ -16,9 +16,17 @@ public class PathWaypoint : MonoBehaviour
     private void Start()
     {
         // Disable all paths at the start. They get reactivated during path generation.
-        if(northPath != null) { northPath.SetActive(false); }
-        if(southPath != null) { southPath.SetActive(false); }
-        if(westPath != null) { westPath.SetActive(false); }
-        if(eastPath != null) { eastPath.SetActive(false); }
+        DisablePath(northPath);
+        DisablePath(southPath);
+        DisablePath(westPath);
+        DisablePath(eastPath);
+    }
+
+    void DisablePath(GameObject path)
+    {
+        if(path != null)
+        {
+            path.SetActive(false);
+        } 
     }
 }

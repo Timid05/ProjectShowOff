@@ -14,6 +14,7 @@ public class PathGenerator : MonoBehaviour
     List<CapsuleCollider> unvisitedAreas;
 
     public static event Action OnPathGenerated;
+    public static event Action<GameObject> OnPathObjectEnabled;
 
     private void Awake()
     {
@@ -43,7 +44,7 @@ public class PathGenerator : MonoBehaviour
 
     void GeneratePath()
     {
-        //Debug.Log("Generating for waypoint: " + currentWaypoint.name);
+        Debug.Log("Generating for waypoint: " + currentWaypoint.name);
         // Mark a waypoint as visited.
         currentWaypoint.visited = true;
 
@@ -66,7 +67,7 @@ public class PathGenerator : MonoBehaviour
                     // If it the final waypoint we don't need to check for the next one.
                     if (currentWaypoint.endWaypoint)
                     {
-                        Debug.Log("Unvisited areas: " + unvisitedAreas.Count);
+                        //Debug.Log("Unvisited areas: " + unvisitedAreas.Count);
 
                         //Hide all waypoint pieces.
                         for (int j = 0; j < transform.childCount; j++) { transform.GetChild(j).gameObject.SetActive(false); }
@@ -113,7 +114,7 @@ public class PathGenerator : MonoBehaviour
             // Add the third waypoint as a choice if both regular waypoints are invalid
             if (!CheckValidity(new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[0], possibleNextWaypoints.Values[0])) && !CheckValidity(new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[1], possibleNextWaypoints.Values[1]))) 
             {
-                //Debug.LogFormat("Replacing invallid waypoint at {0} with {1}", possibleNextWaypoints.Keys[0], currentWaypoint.waypoints.Keys[0]);
+                Debug.LogFormat("Replacing invallid waypoint at {0} with {1}", possibleNextWaypoints.Keys[0], currentWaypoint.waypoints.Keys[0]);
                 possibleNextWaypoints.Keys[0] = currentWaypoint.waypoints.Keys[0];
                 possibleNextWaypoints.Values[0] = currentWaypoint.waypoints.Values[0];
             }
@@ -185,26 +186,34 @@ public class PathGenerator : MonoBehaviour
     {
         // Activate the path that corresponds to the direction the path came from.
         //Debug.LogFormat("Enabling path at index {0} for {1}", pathIndex, currentWaypoint);
+        GameObject enabledPathObject = gameObject;
         switch (pathIndex)
         {
             case 0:
-                if (currentWaypoint.northPath != null) { currentWaypoint.northPath.SetActive(true); }
+                if (currentWaypoint.northPath != null) { enabledPathObject = currentWaypoint.northPath; }
                 break;
 
             case 1:
-                if (currentWaypoint.southPath != null) { currentWaypoint.southPath.SetActive(true); }
+                if (currentWaypoint.southPath != null) { enabledPathObject =  currentWaypoint.southPath; }
                 break;
 
             case 2:
-                if (currentWaypoint.westPath != null) { currentWaypoint.westPath.SetActive(true); }
+                if (currentWaypoint.westPath != null) { enabledPathObject = currentWaypoint.westPath; }
                 break;
 
             case 3:
-                if (currentWaypoint.eastPath != null) { currentWaypoint.eastPath.SetActive(true); }
+                if (currentWaypoint.eastPath != null) { enabledPathObject = currentWaypoint.eastPath; }
                 break;
 
             default:
                 break;
+        }
+
+        if(enabledPathObject != gameObject)
+        {
+            // Share path object with map so the respective object can be enabled.
+            enabledPathObject.SetActive(true);
+            if (OnPathObjectEnabled != null) { OnPathObjectEnabled(enabledPathObject); }
         }
     }
 
@@ -215,7 +224,7 @@ public class PathGenerator : MonoBehaviour
         // If the waypoint has no valid waypoints that can be taken next.
         // If the waypoint is the last entry waypoint for an unvisited area.
         if (CheckLastEntryWaypoint(pair.Key) || !(CheckForEndWaypoint(pair.Key) && unvisitedAreas.Count != 0) && !pair.Key.visited && pair.Value && CheckForValidWaypoints(pair.Key)) { return true; }
-        //Debug.LogFormat("Waypoint {0} is invalid.", pair.Key);
+        Debug.LogFormat("Waypoint {0} is invalid.", pair.Key);
         return false;
     }
 
