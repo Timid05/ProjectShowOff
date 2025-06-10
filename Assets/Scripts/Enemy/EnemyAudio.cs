@@ -14,20 +14,20 @@ public class EnemyAudio : MonoBehaviour
     [SerializeField]
     AudioClip[] decoySpawnClips;
     [SerializeField]
-    AudioClip deathClip;
+    AudioClip[] deathClips;
 
     private void OnEnable()
     {
         PlayerActions.OnPlayerHit += PlayRandomJumpscareClip;
         EnemiesInfo.OnEnragedAttacks += PlayRandomDecoyClip;
-        EnemiesInfo.OnEnemyObjectRemoved += PlayDeath;
+        EnemiesInfo.OnEnemyObjectRemoved += PlayRandomDeath;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerHit -= PlayRandomJumpscareClip;
         EnemiesInfo.OnEnragedAttacks -= PlayRandomDecoyClip;
-        EnemiesInfo.OnEnemyObjectRemoved -= PlayDeath;
+        EnemiesInfo.OnEnemyObjectRemoved -= PlayRandomDeath;
     }
 
     private void Awake()
@@ -47,15 +47,15 @@ public class EnemyAudio : MonoBehaviour
     {
         if (jumpscareClips.Length > 0)
         {
-            source.PlayOneShot(jumpscareClips[Random.Range(0, spawnClips.Length)]);
+            source.PlayOneShot(jumpscareClips[Random.Range(0, jumpscareClips.Length)]);
         }
     }
 
-    public void PlayDeath(GameObject removedEnemy)
+    public void PlayRandomDeath(GameObject removedEnemy)
     {
         if (removedEnemy == gameObject)
         {
-            source.PlayOneShot(deathClip);
+            source.PlayOneShot(deathClips[Random.Range(0, deathClips.Length)]);
         }
     }
 
@@ -65,7 +65,7 @@ public class EnemyAudio : MonoBehaviour
         {
             if (decoySpawnClips.Length > 0)
             {
-                source.PlayOneShot(decoySpawnClips[Random.Range(0, spawnClips.Length)]);
+                source.PlayOneShot(decoySpawnClips[Random.Range(0, decoySpawnClips.Length)]);
             }
         }
     }
