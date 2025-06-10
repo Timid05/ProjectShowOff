@@ -12,22 +12,22 @@ public class EnemyAudio : MonoBehaviour
     [SerializeField]
     AudioClip[] jumpscareClips;
     [SerializeField]
-    AudioClip decoySpawnClip;
+    AudioClip[] decoySpawnClips;
     [SerializeField]
-    AudioClip deathClip;
+    AudioClip[] deathClips;
 
     private void OnEnable()
     {
-        PlayerActions.OnPlayerHit += PlayRandomJumpscare;
-        EnemiesInfo.OnEnragedAttacks += PlayDecoyClip;
-        EnemiesInfo.OnEnemyObjectRemoved += PlayDeath;
+        PlayerActions.OnPlayerHit += PlayRandomJumpscareClip;
+        EnemiesInfo.OnEnragedAttacks += PlayRandomDecoyClip;
+        EnemiesInfo.OnEnemyObjectRemoved += PlayRandomDeath;
     }
 
     private void OnDisable()
     {
-        PlayerActions.OnPlayerHit -= PlayRandomJumpscare;
-        EnemiesInfo.OnEnragedAttacks -= PlayDecoyClip;
-        EnemiesInfo.OnEnemyObjectRemoved -= PlayDeath;
+        PlayerActions.OnPlayerHit -= PlayRandomJumpscareClip;
+        EnemiesInfo.OnEnragedAttacks -= PlayRandomDecoyClip;
+        EnemiesInfo.OnEnemyObjectRemoved -= PlayRandomDeath;
     }
 
     private void Awake()
@@ -43,7 +43,7 @@ public class EnemyAudio : MonoBehaviour
         source.PlayOneShot(clip);
     }
 
-    public void PlayRandomJumpscare()
+    public void PlayRandomJumpscareClip()
     {
         if (jumpscareClips.Length > 0)
         {
@@ -51,19 +51,22 @@ public class EnemyAudio : MonoBehaviour
         }
     }
 
-    public void PlayDeath(GameObject removedEnemy)
+    public void PlayRandomDeath(GameObject removedEnemy)
     {
         if (removedEnemy == gameObject)
         {
-            source.PlayOneShot(deathClip);
+            source.PlayOneShot(deathClips[Random.Range(0, deathClips.Length)]);
         }
     }
 
-    public void PlayDecoyClip(GameObject attacker)
+    public void PlayRandomDecoyClip(GameObject attacker)
     {
         if (attacker == gameObject)
         {
-            source.PlayOneShot(decoySpawnClip);
+            if (decoySpawnClips.Length > 0)
+            {
+                source.PlayOneShot(decoySpawnClips[Random.Range(0, decoySpawnClips.Length)]);
+            }
         }
     }
 
@@ -74,4 +77,5 @@ public class EnemyAudio : MonoBehaviour
             source.PlayOneShot(spawnClips[Random.Range(0, spawnClips.Length)]);
         }
     }
+
 }
