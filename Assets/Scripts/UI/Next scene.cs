@@ -7,6 +7,6 @@ public class Nextscene : MonoBehaviour
 {
     public void ToNextScene()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("Combining");
     }
 }
