@@ -2074,22 +2074,26 @@ PrefabInstance:
         type: 3}
       propertyPath: <spawnableBuildings>k__BackingField.values.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1478222024031380961, guid: 1a7fc76a3eeb780419857cc7e609ddb1,
+        type: 3}
     - target: {fileID: 7640362105232556328, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: <spawnableBuildings>k__BackingField.values.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1478222024031380961, guid: 1a7fc76a3eeb780419857cc7e609ddb1,
+        type: 3}
     - target: {fileID: 7640362105232556328, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: <spawnableBuildings>k__BackingField.values.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1478222024031380961, guid: 1a7fc76a3eeb780419857cc7e609ddb1,
+        type: 3}
     - target: {fileID: 7640362105232556328, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: <spawnableBuildings>k__BackingField.values.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1478222024031380961, guid: 1a7fc76a3eeb780419857cc7e609ddb1,
+        type: 3}
     - target: {fileID: 7748957750383398420, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[0].z
@@ -2429,7 +2433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1349524819
 MonoBehaviour:
   m_ObjectHideFlags: 0
