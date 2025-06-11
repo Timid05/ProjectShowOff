@@ -37,6 +37,13 @@ public class FootstepSwapper : MonoBehaviour
                     }
                 }
             }
+            if (hit.transform.GetComponent<SurfaceType>() != null)
+            {
+                FootstepCollection collection = hit.transform.GetComponent<SurfaceType>().footstepCollection;
+                currentLayer = collection.name;
+                player.SwapFootsteps(collection);
+            }
+
         }
     }
 }

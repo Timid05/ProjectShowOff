@@ -4591,7 +4591,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 344328626}
   _camera: {fileID: 1724203519}
-  _map: {fileID: 0}
 --- !u!4 &1973467969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6893121961846325701, guid: e1c8016e04d814e47afeedee62366a75,
