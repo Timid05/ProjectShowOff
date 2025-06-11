@@ -1,10 +1,9 @@
 ﻿title: Tanfana
 ---
-Tanfana: Do you want my assistance with finding the hellhound?
-	-> Yes
-	  Tanfana: Very well then, I'll need your soul to be able to grant my blessing. 
+Tanfana: I can sense your desperation mortal, and I know what troubles you. The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. You have my chalice? Impressive, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
+	-> Offer your soul
+	  Tanfana: As expected. Take my blessing, mortal, and rid me of that wretched stray.
 	  <<TanfanaChoice>>
-	-> No
-	  Tanfana: You dare scorn me, mere mortal?
-	  Tanfana: Wait until you see my wrath, you will regret this.
+	-> Don't offer your soul
+	  Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this!You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this!
 ===
