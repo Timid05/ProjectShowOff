@@ -44,6 +44,7 @@ public class PlayerInteraction : MonoBehaviour
             // Timescale is set to 0 so that the game is paused when in the menus. This can be used to prevent the player from talking to NPCs when they're in a menu.
             if (hitinfo.collider.gameObject.tag == "NPC" && Time.timeScale != 0f && !playerBusy)
             {
+                Debug.Log("Clicked on NPC.");
                 currentNPC = hitinfo.collider.gameObject;
                 currentNPC.GetComponent<NPCInteraction>().StartInteraction();
                 // This will prevent the player from using the flashlight while talking to NPCs.
