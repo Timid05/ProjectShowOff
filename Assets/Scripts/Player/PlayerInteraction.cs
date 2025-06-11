@@ -39,11 +39,11 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && !dialogueRunner.Dialogue.IsActive)
         {
-            Debug.Log("Clicked button while free.");
+            Debug.LogFormat("Clicked button while free. Object: {0}", hitinfo.collider.gameObject.name);
             // Timescale is set to 0 so that the game is paused when in the menus. This can be used to prevent the player from talking to NPCs when they're in a menu.
             if (hitinfo.collider.gameObject.tag == "NPC" && Time.timeScale != 0f && !playerBusy)
             {
-                Debug.Log("Clicked on NPC.");
+                //Debug.Log("Clicked on NPC.");
                 currentNPC = hitinfo.collider.gameObject;
                 currentNPC.GetComponent<NPCInteraction>().StartInteraction();
                 // This will prevent the player from using the flashlight while talking to NPCs.
@@ -81,7 +81,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnStartDialogue()
     {
-        Debug.Log("Start talking to NPC.");
+        //Debug.Log("Start talking to NPC.");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         playerMovement.SetEnabledMove(false);
