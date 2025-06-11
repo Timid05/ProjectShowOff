@@ -6,7 +6,6 @@ public class PlayerObject : MonoBehaviour
 {
     Camera _camera;
     [SerializeField] GameObject carriedObjectPosition;
-
     bool carryingObject = false;
     void Start()
     {
