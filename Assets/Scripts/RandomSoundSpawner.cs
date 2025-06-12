@@ -8,15 +8,21 @@ public class RandomSoundSpawner : MonoBehaviour
     public float radius = 10f; 
     public float minDelay = 2f;
     public float maxDelay = 5f;
+    private AudioSource source;
 
     public GameObject player;
+
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
         StartCoroutine(PlayRandomSoundRoutine());
     }
 
-    private System.Collections.IEnumerator PlayRandomSoundRoutine()
+    private IEnumerator PlayRandomSoundRoutine()
     {
         while (true)
         {
@@ -36,16 +42,10 @@ public class RandomSoundSpawner : MonoBehaviour
         Vector3 randomPos = player.transform.position + Random.insideUnitSphere * radius;
         randomPos.y = player.transform.position.y;
 
-        GameObject soundObject = new GameObject("TempAudio");
-        soundObject.transform.position = randomPos;
+        transform.position = randomPos;
 
-        AudioSource audioSource = soundObject.AddComponent<AudioSource>();
-        audioSource.clip = clip;
-        audioSource.spatialBlend = 1f;
-        audioSource.minDistance = 1f;
-        audioSource.maxDistance = radius;
-        audioSource.Play();
-
-        Destroy(soundObject, clip.length + 0.5f);
+        source.clip = clip;
+        source.maxDistance = radius;
+        source.Play();
     }
 }

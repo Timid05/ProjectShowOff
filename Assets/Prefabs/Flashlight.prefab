@@ -239,6 +239,7 @@ MonoBehaviour:
   flashbangOuterAngle: 110
   flashbangSpeed: 1
   flashlightCooldownTime: 15
+  decoyHitDistance: 20
 --- !u!135 &6207157328161000639
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ public class HellhoundSound : MonoBehaviour
 
     private void Awake()
     {
-        source = GetComponent<AudioSource>();
+        source = transform.GetComponentInChildren<AudioSource>();
     }
 
     void PlayRandomHowl()
