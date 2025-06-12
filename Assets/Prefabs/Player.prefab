@@ -144,7 +144,6 @@ GameObject:
   - component: {fileID: -8073447746864634096}
   - component: {fileID: -996891249125717969}
   - component: {fileID: 1568154070327679794}
-  - component: {fileID: 3574449974617237968}
   - component: {fileID: 5711058707847129938}
   - component: {fileID: 209698350811904424}
   m_Layer: 0
@@ -296,6 +295,7 @@ MonoBehaviour:
   footstepsSoundSource: {fileID: 0}
   walkSteps: []
   sprintSteps: []
+  stepDelayBase: 100
 --- !u!114 &-996891249125717969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,28 +325,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 0}
   _camera: {fileID: 0}
-  _map: {fileID: 0}
---- !u!114 &3574449974617237968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2813984363539076015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f724e9c88e29c54ca1009583d573952, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundClips:
-  - {fileID: 8300000, guid: d79959e8f2004594f9f031581183d43c, type: 3}
-  - {fileID: 8300000, guid: e6b51a6e24c4dd4419931e307b73be41, type: 3}
-  - {fileID: 8300000, guid: e5cd38144278a7a4fb06f7b968de3237, type: 3}
-  - {fileID: 8300000, guid: 89206e2ae6fe314418ab3a76e037af46, type: 3}
-  radius: 10
-  minDelay: 10
-  maxDelay: 30
-  player: {fileID: 2813984363539076015}
 --- !u!114 &5711058707847129938
 MonoBehaviour:
   m_ObjectHideFlags: 0
