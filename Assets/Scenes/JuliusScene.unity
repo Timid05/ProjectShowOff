@@ -6710,6 +6710,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e64a6a519710c4e95b063aa852bfe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1391935328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7172359893458878976, guid: e1c8016e04d814e47afeedee62366a75,
+    type: 3}
+  m_PrefabInstance: {fileID: 1973467965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1394276673
 GameObject:
   m_ObjectHideFlags: 0
@@ -9602,6 +9608,11 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1724203519}
+    - target: {fileID: 1568154070327679794, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2813984363539076015, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: m_Name
@@ -9662,6 +9673,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7172359893458878976, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_Name
+      value: Carried Object Position
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928088739814763470, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: carriedObjectPosition
+      value: 
+      objectReference: {fileID: 1391935328}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

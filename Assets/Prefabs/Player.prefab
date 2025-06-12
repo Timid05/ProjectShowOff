@@ -146,6 +146,8 @@ GameObject:
   - component: {fileID: 1568154070327679794}
   - component: {fileID: 3574449974617237968}
   - component: {fileID: 8928088739814763470}
+  - component: {fileID: 1379046709783542731}
+  - component: {fileID: 5973155422417799510}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -293,7 +295,10 @@ MonoBehaviour:
   ThisIsGround:
     serializedVersion: 2
     m_Bits: 1
-  footstepsSound: {fileID: 0}
+  footstepsSoundSource: {fileID: 0}
+  walkSteps: []
+  sprintSteps: []
+  stepDelayBase: 100
 --- !u!114 &-996891249125717969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +361,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d245bf5b6cb85da46bebb47cb7a8e27d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carriedObject: {fileID: 7172359893458878976}
+  carriedObjectPosition: {fileID: 0}
+--- !u!114 &1379046709783542731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813984363539076015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600b63307fef8ef4d985fa326dd5cdc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainFootstepCollections: []
+--- !u!114 &5973155422417799510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813984363539076015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269333600bd2fe342975ede12c3509b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
 --- !u!1 &6100269000055540389
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,11 +6,11 @@ public class HellhoundSound : MonoBehaviour
 {
     AudioSource source;
     [SerializeField]
-    AudioClip howlClip;
+    AudioClip[] howlClips;
     [SerializeField]
     AudioClip[] growlClips;
     [SerializeField]
-    AudioClip pounceClip;
+    AudioClip[] attackClips;
     [SerializeField]
     AudioClip flashedClip;
     [SerializeField]
@@ -18,32 +18,36 @@ public class HellhoundSound : MonoBehaviour
 
     private void OnEnable()
     {
-        HellhoundActions.OnHellhoundFightTriggered += PlayHowl;
-        HellhoundActions.OnCharge += PlayHowl;
+        HellhoundActions.OnHellhoundFightTriggered += PlayRandomHowl;
+        HellhoundActions.OnCharge += PlayRandomHowl;
         HellhoundActions.OnGrowlTriggered += PlayGrowl;
-        HellhoundActions.OnPounce += PlayPounce;
+        HellhoundActions.OnPounce += PlayRandomAttack;
         HellhoundActions.OnHellhoundFlashed += PlayFlashed;
         HellhoundActions.OnHellhoundDeath += PlayDeath;
     }
 
     private void OnDisable()
     {
-        HellhoundActions.OnHellhoundFightTriggered -= PlayHowl;
-        HellhoundActions.OnCharge -= PlayHowl;
+        HellhoundActions.OnHellhoundFightTriggered -= PlayRandomHowl;
+        HellhoundActions.OnCharge -= PlayRandomHowl;
         HellhoundActions.OnGrowlTriggered -= PlayGrowl;
-        HellhoundActions.OnPounce -= PlayPounce;
+        HellhoundActions.OnPounce -= PlayRandomAttack;
         HellhoundActions.OnHellhoundFlashed -= PlayFlashed;
         HellhoundActions.OnHellhoundDeath -= PlayDeath;
     }
 
     private void Awake()
     {
-        source = GetComponent<AudioSource>();
+        source = transform.GetComponentInChildren<AudioSource>();
     }
 
-    void PlayHowl()
+    void PlayRandomHowl()
     {
-        source.PlayOneShot(howlClip);
+        if (howlClips.Length > 0)
+        {
+            int randomIndex = Random.Range(0, howlClips.Length);
+            source.PlayOneShot(howlClips[randomIndex]);
+        }
     }
 
     void PlayGrowl()
@@ -55,9 +59,13 @@ public class HellhoundSound : MonoBehaviour
         }
     }
 
-    void PlayPounce()
+    void PlayRandomAttack()
     {
-        source.PlayOneShot(pounceClip);
+        if (attackClips.Length > 0)
+        {
+            int randomIndex = Random.Range(0, attackClips.Length);
+            source.PlayOneShot(attackClips[randomIndex]);
+        }
     }
 
     void PlayFlashed()

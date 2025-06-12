@@ -10,24 +10,24 @@ public class EnemyAudio : MonoBehaviour
     AudioClip[] spawnClips;
 
     [SerializeField]
-    AudioClip jumpscareClip;
+    AudioClip[] jumpscareClips;
     [SerializeField]
-    AudioClip decoySpawnClip;
+    AudioClip[] decoySpawnClips;
     [SerializeField]
-    AudioClip deathClip;
+    AudioClip[] deathClips;
 
     private void OnEnable()
     {
-        PlayerActions.OnPlayerHit += PlayJumpscare;
-        EnemiesInfo.OnEnragedAttacks += PlayDecoyClip;
-        EnemiesInfo.OnEnemyObjectRemoved += PlayDeath;
+        PlayerActions.OnPlayerHit += PlayRandomJumpscareClip;
+        EnemiesInfo.OnEnragedAttacks += PlayRandomDecoyClip;
+        EnemiesInfo.OnEnemyObjectRemoved += PlayRandomDeath;
     }
 
     private void OnDisable()
     {
-        PlayerActions.OnPlayerHit -= PlayJumpscare;
-        EnemiesInfo.OnEnragedAttacks -= PlayDecoyClip;
-        EnemiesInfo.OnEnemyObjectRemoved -= PlayDeath;
+        PlayerActions.OnPlayerHit -= PlayRandomJumpscareClip;
+        EnemiesInfo.OnEnragedAttacks -= PlayRandomDecoyClip;
+        EnemiesInfo.OnEnemyObjectRemoved -= PlayRandomDeath;
     }
 
     private void Awake()
@@ -43,24 +43,30 @@ public class EnemyAudio : MonoBehaviour
         source.PlayOneShot(clip);
     }
 
-    public void PlayJumpscare()
+    public void PlayRandomJumpscareClip()
     {
-        source.PlayOneShot(jumpscareClip);
-    }
-
-    public void PlayDeath(GameObject removedEnemy)
-    {
-        if (removedEnemy == gameObject)
+        if (jumpscareClips.Length > 0)
         {
-            source.PlayOneShot(deathClip);
+            source.PlayOneShot(jumpscareClips[Random.Range(0, jumpscareClips.Length)]);
         }
     }
 
-    public void PlayDecoyClip(GameObject attacker)
+    public void PlayRandomDeath(GameObject removedEnemy)
+    {
+        if (removedEnemy == gameObject)
+        {
+            source.PlayOneShot(deathClips[Random.Range(0, deathClips.Length)]);
+        }
+    }
+
+    public void PlayRandomDecoyClip(GameObject attacker)
     {
         if (attacker == gameObject)
         {
-            source.PlayOneShot(decoySpawnClip);
+            if (decoySpawnClips.Length > 0)
+            {
+                source.PlayOneShot(decoySpawnClips[Random.Range(0, decoySpawnClips.Length)]);
+            }
         }
     }
 
@@ -71,4 +77,5 @@ public class EnemyAudio : MonoBehaviour
             source.PlayOneShot(spawnClips[Random.Range(0, spawnClips.Length)]);
         }
     }
+
 }

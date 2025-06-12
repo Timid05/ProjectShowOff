@@ -25,12 +25,16 @@ public class HellHoundFightBehavior : MonoBehaviour
     {
         HellhoundActions.OnHellhoundFightTriggered += StartFight;
         HellhoundActions.OnHellhoundFlashed += Flashed;
+        HellhoundAnimations.OnPounceAnimDone += EndPounce;
+        PlayerActions.OnPlayerDead += Disable;
     }
 
     private void OnDisable()
     {
         HellhoundActions.OnHellhoundFightTriggered -= StartFight;
         HellhoundActions.OnHellhoundFlashed -= Flashed;
+        HellhoundAnimations.OnPounceAnimDone -= EndPounce;
+        PlayerActions.OnPlayerDead -= Disable;
     }
 
     private void Awake()
@@ -44,6 +48,11 @@ public class HellHoundFightBehavior : MonoBehaviour
     {
         Disappear();
         fightOngoing = true;
+    }
+
+    private void Disable()
+    {
+        this.enabled = false;
     }
 
     private void AttackBehavior()
@@ -64,10 +73,10 @@ public class HellHoundFightBehavior : MonoBehaviour
             }
 
             transform.position = GetRandomPositionAroundPlayer();
-            HellhoundActions.OnGrowlTriggered?.Invoke();   
+            HellhoundActions.OnGrowlTriggered?.Invoke();
             currentInterval = GetRandomInterval();
             lastIntervalTime = Time.time;
-        }     
+        }
     }
 
     private void Flashed()
@@ -90,7 +99,6 @@ public class HellHoundFightBehavior : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("Congrats girlie, ho is dead");
         agent.isStopped = true;
         dead = true;
         charging = false;
@@ -104,9 +112,14 @@ public class HellHoundFightBehavior : MonoBehaviour
     {
         HellhoundActions.OnHellhoundFlashable?.Invoke(false);
         HellhoundActions.OnPounce?.Invoke();
-        PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
         agent.isStopped = true;
-        pouncing = false;
+        pouncing = false;          
+    }
+
+    private void EndPounce()
+    {
+        Debug.Log("Ending pounce");
+        PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
         Disappear();
     }
 
@@ -117,6 +130,7 @@ public class HellHoundFightBehavior : MonoBehaviour
             Death();
             return;
         }
+
 
         if (fightOngoing && !pouncing && !charging)
         {
@@ -133,7 +147,7 @@ public class HellHoundFightBehavior : MonoBehaviour
                 pouncing = true;
                 Pounce();
             }
-        }    
+        }
     }
 
     private Vector3 GetRandomPositionAroundPlayer()
@@ -149,7 +163,10 @@ public class HellHoundFightBehavior : MonoBehaviour
 
     private void Disappear()
     {
-       transform.GetChild(0).gameObject.SetActive(false);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     private bool InPounceDistance()
@@ -159,7 +176,10 @@ public class HellHoundFightBehavior : MonoBehaviour
 
     private void Appear()
     {
-        transform.GetChild(0).gameObject.SetActive(true);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 }
 

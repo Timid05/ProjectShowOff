@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6b555cf40677f4fa42ceb979ad66c4, type: 3}
+  m_Name: Sand
+  m_EditorClassIdentifier: 
+  walkingSounds:
+  - {fileID: 8300000, guid: 6fbe6f03f09a3af4fb2e1562fd9a7ef1, type: 3}
+  - {fileID: 8300000, guid: 6932902aee6bc3e49b233c65a948536e, type: 3}
+  - {fileID: 8300000, guid: 21ae1942db4d039418ebb0fc6339af04, type: 3}
+  - {fileID: 8300000, guid: b4f2f66bbc5f43041ac9523187364ef0, type: 3}
+  - {fileID: 8300000, guid: 0f1d56f7ce6ae0f488a3f31cd5b7eb36, type: 3}
+  - {fileID: 8300000, guid: 19b9b45e0a4a7a34eb79cf598a680d08, type: 3}
+  - {fileID: 8300000, guid: 5dd0babf1f7a0954b80b804ad71ec6bc, type: 3}
+  - {fileID: 8300000, guid: 7a7deb20c67105d4c811135e276de5d2, type: 3}
+  sprintingSounds:
+  - {fileID: 8300000, guid: 2f4cbf7dfced0da459bb17c6594c4218, type: 3}
+  - {fileID: 8300000, guid: 695966480e77ac5448b9b64d1cfb3717, type: 3}
+  - {fileID: 8300000, guid: 8ead179fee0f1e7408aa4613de1ed830, type: 3}
+  - {fileID: 8300000, guid: 4e8f3e0f41de7124fa34a14f9134e1e2, type: 3}
+  - {fileID: 8300000, guid: ba8bc49d2afeb04448c8f4d34426d3c4, type: 3}
+  - {fileID: 8300000, guid: a4fccc4661b550342af03bc5598f4966, type: 3}
+  - {fileID: 8300000, guid: d1ca9b43dd413904bb457f147403d905, type: 3}
+  - {fileID: 8300000, guid: bba444327be2e074f860940ee200c6b5, type: 3}

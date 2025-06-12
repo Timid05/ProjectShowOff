@@ -171,10 +171,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnClips:
-  - {fileID: 8300000, guid: ad37db1014460094ebd5c3c5cc5df54e, type: 3}
-  jumpscareClip: {fileID: 8300000, guid: fc0d1431690bacf4bbdfc417908d820e, type: 3}
-  decoySpawnClip: {fileID: 8300000, guid: 964510db180c52f41bda044ae442337b, type: 3}
-  deathClip: {fileID: 8300000, guid: ad37db1014460094ebd5c3c5cc5df54e, type: 3}
+  - {fileID: 8300000, guid: 34ecb28ec6121744cb56d5b3c5198987, type: 3}
+  - {fileID: 8300000, guid: 425b6a1a51eeeba49ace1f80f4095390, type: 3}
+  - {fileID: 8300000, guid: cae99875e61479d49adc5abddaeb902c, type: 3}
+  jumpscareClips:
+  - {fileID: 8300000, guid: e5e02141b2110be4393493e735754582, type: 3}
+  - {fileID: 8300000, guid: 6ce129fcd698c8f4186cc8545c472851, type: 3}
+  - {fileID: 8300000, guid: 12f251b9ccf9c7a4abd547a319ef4ec8, type: 3}
+  - {fileID: 8300000, guid: 2721db91376417b4882984913fee24eb, type: 3}
+  decoySpawnClips:
+  - {fileID: 8300000, guid: 34ecb28ec6121744cb56d5b3c5198987, type: 3}
+  - {fileID: 8300000, guid: 425b6a1a51eeeba49ace1f80f4095390, type: 3}
+  - {fileID: 8300000, guid: cae99875e61479d49adc5abddaeb902c, type: 3}
+  deathClips:
+  - {fileID: 8300000, guid: 600487b3014816244a9c84145b99cfa3, type: 3}
+  - {fileID: 8300000, guid: b2686ef5dd3c6214f89059562095defa, type: 3}
+  - {fileID: 8300000, guid: 6e71f21021edad6448ffe18a4e535e93, type: 3}
 --- !u!114 &4975219380500511708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +250,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -250,6 +262,15 @@ AudioSource:
       value: 1
       inSlope: 0
       outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.23341683
+      value: 0.33949387
+      inSlope: -1.483084
+      outSlope: -1.483084
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334

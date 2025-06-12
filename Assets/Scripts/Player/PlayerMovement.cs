@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,7 +28,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask ThisIsGround;
     bool isGrounded;
 
-    [SerializeField] AudioSource footstepsSound;
+    [SerializeField] AudioSource footstepsSoundSource;
+    [SerializeField] List<AudioClip> walkSteps = new List<AudioClip>();
+    [SerializeField] List<AudioClip> sprintSteps = new List<AudioClip>();
+    private FootstepSwapper swapper;
+    private float stepTimer = 30f;
+    [SerializeField] private float stepDelayBase = 100f;
+    private float stepDelay;
 
     public static event Action<bool> OnMoveStatusChange;
 
@@ -48,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         backUpMoveSpeed = moveSpeed;
         currentStamina = maxStamina;
         rb = GetComponent<Rigidbody>();
+        swapper = GetComponent<FootstepSwapper>();
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
     }
@@ -72,15 +78,23 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
 
-        if (footstepsSound != null)
+        if (footstepsSoundSource != null)
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
-                footstepsSound.enabled = true;
+                footstepsSoundSource.enabled = true;
+                stepTimer--;
+
+                if (stepTimer <= 0)
+                {
+                    PlayFootstepAudio();
+
+                    stepTimer = stepDelay;
+                }
             }
             else
             {
-                footstepsSound.enabled = false;
+                footstepsSoundSource.enabled = false;
             }
         }
     }
@@ -134,5 +148,45 @@ public class PlayerMovement : MonoBehaviour
     {
         if (enable) moveSpeed = backUpMoveSpeed;        
         else moveSpeed = 0;        
+    }
+
+    public void SwapFootsteps(FootstepCollection collection)
+    {
+        walkSteps.Clear();
+        for (int i = 0; i < collection.walkingSounds.Count; i++)
+        {
+            walkSteps.Add(collection.walkingSounds[i]);
+        }
+        for (int i = 0; i < collection.sprintingSounds.Count; i++)
+        {
+            sprintSteps.Add(collection.sprintingSounds[i]);
+        }
+    }
+
+    private void PlayFootstepAudio()
+    {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            swapper.CheckLayers();
+
+            int step = UnityEngine.Random.Range(1, walkSteps.Count);
+            footstepsSoundSource.clip = walkSteps[step];
+            footstepsSoundSource.PlayOneShot(footstepsSoundSource.clip);
+            walkSteps[step] = walkSteps[0];
+            walkSteps[0] = footstepsSoundSource.clip;
+
+            stepDelay = stepDelayBase;
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                int sprintStep = UnityEngine.Random.Range(1, sprintSteps.Count);
+                footstepsSoundSource.clip = sprintSteps[step];
+                footstepsSoundSource.PlayOneShot(footstepsSoundSource.clip);
+                sprintSteps[sprintStep] = sprintSteps[0];
+                sprintSteps[0] = footstepsSoundSource.clip;
+
+                stepDelay = stepDelayBase / 2;
+            }
+        }
     }
 }
