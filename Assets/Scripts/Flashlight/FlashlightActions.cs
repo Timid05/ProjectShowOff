@@ -31,6 +31,11 @@ public class FlashlightActions : MonoBehaviour
     bool hellhoundFlash = false;
     bool houndInFlashRange = false;
 
+    //audio
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] flashlightSound;
+    [SerializeField] private AudioClip[] flashbangSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +63,9 @@ public class FlashlightActions : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                //Play Sound
+                audioSource.PlayOneShot(flashlightSound[UnityEngine.Random.Range(0, flashlightSound.Length)]);
+
                 ChangeFlashlightStatus();
             }
 
@@ -67,6 +75,10 @@ public class FlashlightActions : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Mouse1)) 
             {
                 light.enabled = true;
+
+                //Play Sound
+                audioSource.PlayOneShot(flashbangSound[UnityEngine.Random.Range(0, flashbangSound.Length)]);
+
                 Flashbang(); 
             }
 
@@ -130,8 +142,7 @@ public class FlashlightActions : MonoBehaviour
     {
         light.enabled = !light.enabled;
         // Send out delegate so that Witte Wieven can change visibility as well.
-        if(OnFlashlightStatusChange != null) { OnFlashlightStatusChange(light.enabled); }
-
+        if (OnFlashlightStatusChange != null) { OnFlashlightStatusChange(light.enabled); }
     }
 
     void CheckFlashRange(GameObject witteWief)
