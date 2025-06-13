@@ -1,9 +1,22 @@
 ﻿title: Tanfana
 ---
-Tanfana: I can sense your desperation mortal, and I know what troubles you. The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. You have my chalice? Impressive, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
-	-> Offer your soul
-	  Tanfana: As expected. Take my blessing, mortal, and rid me of that wretched stray.
-	  <<TanfanaChoice>>
-	-> Don't offer your soul
-	  Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this!You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this!
+<<if PlayerHasItem("Golden Chalice") and visited("Tanfana")>>
+	Tanfana: You brought my chalice. You are worthy, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
+	<<jump ChaliceChoice>>
+<<elseif PlayerHasItem("Golden Chalice")>>
+	Tanfana: I can sense your desperation mortal, and I know what troubles you. The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. You have my chalice? Impressive, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
+	<<jump ChaliceChoice>>
+<<else>>
+	Tanfana: I can sense your desperation mortal, and I know what troubles you. The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. But I cannot help you just yet. I need my chalice. Bring it to me, mortal, and I shall make you my holy champion.
+<<endif>>
+===
+
+title: ChaliceChoice
+---
+<<if PlayerGiftItem("Golden Chalice")>><<endif>>
+-> Offer your soul
+ Tanfana: As expected. Take my blessing, mortal, and rid me of that wretched stray.
+ <<TanfanaChoice>>
+-> Don't offer your soul
+ Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this!
 ===
