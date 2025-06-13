@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
         _dialogueRunner.AddFunction<string, bool>("PlayerMetNPC", PlayerMetNPC);
         _dialogueRunner.AddFunction<string, bool>("PlayerHasItem", PlayerHasItem);
-        _dialogueRunner.AddFunction<string, bool>("PlayerGifItem", PlayerGifItem);
+        _dialogueRunner.AddFunction<string, bool>("PlayerGiftItem", PlayerGiftItem);
         _dialogueRunner.AddFunction<string, bool>("GoToNPC", GoToNPC);
         _dialogueRunner.AddFunction<string, bool>("GoToDialogue", GoToDialogue);
         _dialogueRunner.AddCommandHandler("TanfanaChoice", TanfanaChoice);
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         return (_objects.ContainsKey(item));
     }
 
-    private bool PlayerGifItem(string item)
+    private bool PlayerGiftItem(string item)
     {
         _objects.Remove(item);
         return true;
