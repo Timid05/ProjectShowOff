@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BuildingSpawner : MonoBehaviour
 {
     [field: SerializeField] public UDictionary<CapsuleCollider, GameObject> spawnableBuildings { get; private set; }
     List<Vector3> buildingWaypoints;
-    CapsuleCollider waypointArea;
+
+    public static event Action<Vector3> OnBuildingSpawned;
 
     private void Awake()
     {
@@ -25,7 +27,7 @@ public class BuildingSpawner : MonoBehaviour
         spawnableBuildings.TryGetValue(area, out GameObject spawnObject);
 
         //Pick a random object from the main path to place to object next to.
-        GameObject spawnPath = mainPathObjects[Random.Range(0, mainPathObjects.Count)];
+        GameObject spawnPath = mainPathObjects[UnityEngine.Random.Range(0, mainPathObjects.Count)];
         Debug.LogFormat("Placing object {0} in area {1} nearby waypoint {2}", spawnObject.name, area.name, spawnPath.name);
 
         if(buildingSpawnWaypoints != null)
@@ -56,17 +58,15 @@ public class BuildingSpawner : MonoBehaviour
 
                 //Debug.LogFormat("Spawning at waypoint {0} with rotation {1}", closestWaypoint, spawnRotation);
                 Instantiate(spawnObject, closestWaypoint, spawnRotation, gameObject.transform);
+
+                // Send delegate so tha trees from around the spawned building can be removed.
+                if(OnBuildingSpawned != null) { OnBuildingSpawned(closestWaypoint); }
                 return;
             }
         } 
         // If spawn waypoints arent' set, Spawn the object at the center of the path as a failsafe.
         Instantiate(spawnObject, spawnPath.transform.position, spawnObject.transform.rotation, gameObject.transform);
-    }
-
-    void OnGetWaypoints(List<Vector3> pBuildingWaypoints, CapsuleCollider pWaypointArea)
-    {
-        buildingWaypoints = pBuildingWaypoints;
-        waypointArea = pWaypointArea;
+        if (OnBuildingSpawned != null) { OnBuildingSpawned(spawnPath.transform.position); }
     }
 
     private void OnDestroy()
