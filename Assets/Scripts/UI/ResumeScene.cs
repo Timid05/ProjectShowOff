@@ -5,14 +5,15 @@ using UnityEngine;
 public class ResumeScene : MonoBehaviour
 {
     public GameObject pauseMenuUI;
-
     public GameObject flashlight;
+    [SerializeField] KeyCode pauseButton = KeyCode.P;
+
 
     private bool isPaused = false;
-
+  
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(pauseButton))
         {
             if (isPaused)
             {
