@@ -6,11 +6,12 @@ public class ResumeScene : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     public GameObject flashlight;
-    [SerializeField] KeyCode pauseButton = KeyCode.P;
+    [SerializeField] KeyCode pauseButton;
 
 
-    private bool isPaused = false;
-  
+    public static bool isPaused = false;
+ 
+
     void Update()
     {
         if (Input.GetKeyDown(pauseButton))
@@ -24,9 +25,15 @@ public class ResumeScene : MonoBehaviour
                 PauseGame();
             }
         }
+
+        if (isPaused && Cursor.lockState != CursorLockMode.None)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
-    void PauseGame()
+
+void PauseGame()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
