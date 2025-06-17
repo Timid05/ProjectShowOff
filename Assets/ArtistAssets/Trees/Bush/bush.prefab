@@ -63,6 +63,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: bush
       objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 8630a53c606aba44e9666044dabc24a5,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.9000539
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 8630a53c606aba44e9666044dabc24a5,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.65452445
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 8630a53c606aba44e9666044dabc24a5,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.65452445
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 8630a53c606aba44e9666044dabc24a5,
+        type: 3}
+      propertyPath: m_LODs.Array.data[3].screenRelativeHeight
+      value: 0.35474867
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 8630a53c606aba44e9666044dabc24a5,
+        type: 3}
+      propertyPath: m_LODs.Array.data[4].screenRelativeHeight
+      value: 0.20081526
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

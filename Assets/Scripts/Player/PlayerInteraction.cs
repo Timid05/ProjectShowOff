@@ -68,8 +68,12 @@ public class PlayerInteraction : MonoBehaviour
             currentNPC = null;
         }
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (!ResumeScene.isPaused)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         playerMovement.SetEnabledMove(true);
         playerLook.SetEnabledLook(true);
         drImage.enabled = false;

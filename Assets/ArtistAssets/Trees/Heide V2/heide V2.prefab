@@ -83,6 +83,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: heide V2
       objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 52fe318371a304d4d873b394a457b946,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.9000539
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 52fe318371a304d4d873b394a457b946,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.50043654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 52fe318371a304d4d873b394a457b946,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.50043654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 52fe318371a304d4d873b394a457b946,
+        type: 3}
+      propertyPath: m_LODs.Array.data[3].screenRelativeHeight
+      value: 0.19628021
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1218912716677395249, guid: 52fe318371a304d4d873b394a457b946, type: 3}

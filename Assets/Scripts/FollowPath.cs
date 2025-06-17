@@ -42,6 +42,11 @@ public class FollowPath : MonoBehaviour
         }
     }
 
+    public void AssignAgent()
+    {
+        navmeshAgent = GetComponent<NavMeshAgent>();
+    }
+
     void NextWaypoint()
     {
         //Decides which waypoint we move to next depending on the chosen followtype
