@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startState: 1
+  attackDamage: 3
   enragedAttackRange: 20
   decoyDestroySpeedIncrease: 2
   targetDisplacementRange: 10

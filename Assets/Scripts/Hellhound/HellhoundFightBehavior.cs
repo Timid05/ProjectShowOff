@@ -7,10 +7,22 @@ public class HellHoundFightBehavior : MonoBehaviour
     Transform player;
     NavMeshAgent agent;
 
-    [SerializeField]
-    float minGrowlInterval, maxGrowlInterval, growlDistance, pounceDistance, chargeSpeed;
-    [SerializeField]
-    int growlsBeforeAttacking, flashesUntilKilled, attackDamage;
+    [SerializeField, Tooltip("The minimum time in between the hellhound's growls")]
+    float minGrowlInterval;
+    [SerializeField, Tooltip("The maximum time in between the hellhound's growls")]
+    float maxGrowlInterval;
+    [SerializeField, Tooltip("The distance from the player's position that the hellhound growls/starts charging from")]
+    float growlDistance;
+    [SerializeField, Tooltip("The distance from the player's position that the hellhound pounces from")]
+    float pounceDistance;
+    [SerializeField, Tooltip("The speed at which the hellhound charges towards the player")]
+    float chargeSpeed;
+    [SerializeField, Tooltip("The amount of growls/barks the hellhound performs before it starts charging")]
+    int growlsBeforeAttacking;
+    [SerializeField, Tooltip("The amount of times the hellhound needs to be flashbanged before it gets killed")]
+    int flashesUntilKilled;
+    [SerializeField, Tooltip("The damage the hellhound does to the player when it gets off a succesful attack")]
+    int attackDamage;
 
     bool fightOngoing = false;
     float currentInterval = 0;
@@ -84,6 +96,7 @@ public class HellHoundFightBehavior : MonoBehaviour
         Disappear();
         agent.isStopped = true;
         charging = false;
+        pouncing = false;
         currentFlashes++;
     }
 
@@ -109,18 +122,21 @@ public class HellHoundFightBehavior : MonoBehaviour
     }
 
     private void Pounce()
-    {
-        HellhoundActions.OnHellhoundFlashable?.Invoke(false);
+    {    
         HellhoundActions.OnPounce?.Invoke();
-        agent.isStopped = true;
-        pouncing = false;          
+        agent.isStopped = true;       
     }
 
     private void EndPounce()
     {
-        Debug.Log("Ending pounce");
-        PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
-        Disappear();
+        if (pouncing)
+        {
+            Debug.Log("Ending pounce");
+            pouncing = false;
+            PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
+            HellhoundActions.OnHellhoundFlashable?.Invoke(false);
+            Disappear();
+        }
     }
 
     private void Update()

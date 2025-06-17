@@ -13,7 +13,7 @@ public class ResumeScene : MonoBehaviour
   
     void Update()
     {
-        if (Input.GetKeyDown(pauseButton))
+        if (Input.GetKeyDown(pauseButton) && !GameStateActions.inDialogue)
         {
             if (isPaused)
             {
