@@ -8,9 +8,14 @@ public class FollowPathEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-
+        
 
         FollowPath component = target as FollowPath;
+
+        if (component.navmeshAgent == null)
+        {
+            component.AssignAgent();
+        }
 
         GUILayout.Space(20);
         if (GUILayout.Button("Toggle Path Editor"))
