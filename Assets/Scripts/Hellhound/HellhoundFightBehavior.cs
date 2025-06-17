@@ -120,6 +120,7 @@ public class HellHoundFightBehavior : MonoBehaviour
     {
         Debug.Log("Ending pounce");
         PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
+        PlayerActions.OnPlayerHitBy?.Invoke(gameObject);
         Disappear();
     }
 

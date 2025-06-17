@@ -111,6 +111,7 @@ public class EnemyController : MonoBehaviour
         {
             PlayerActions.OnPlayerHit?.Invoke();
             PlayerActions.OnPlayerDamaged?.Invoke(3);
+            PlayerActions.OnPlayerHitBy?.Invoke(gameObject);
             if (fsm.currentStateName == EnemyStateMachine.State.Enraged)
             {
                 DisplaceTarget();

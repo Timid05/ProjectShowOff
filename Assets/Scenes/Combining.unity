@@ -11584,10 +11584,15 @@ PrefabInstance:
       propertyPath: carriedObjectPosition
       value: 
       objectReference: {fileID: 1514147028}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3574449974617237968, guid: e1c8016e04d814e47afeedee62366a75, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2813984363539076015, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      insertIndex: 11
+      addedObject: {fileID: 1514147030}
   m_SourcePrefab: {fileID: 100100000, guid: e1c8016e04d814e47afeedee62366a75, type: 3}
 --- !u!4 &1514147025 stripped
 Transform:
@@ -11616,6 +11621,35 @@ MonoBehaviour:
 --- !u!1 &1514147028 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7172359893458878976, guid: e1c8016e04d814e47afeedee62366a75,
+    type: 3}
+  m_PrefabInstance: {fileID: 1514147024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1514147030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032213409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac78a011c33462e45a81331931c2d86e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1514147031}
+  audioClipsWW:
+  - {fileID: 8300000, guid: b7a4f9a6fe5451f48a19326b13b548a9, type: 3}
+  - {fileID: 8300000, guid: e72f35d499dd6ee429aa664788a63fe1, type: 3}
+  - {fileID: 8300000, guid: 42d3d2c8abcd047448132a7de69e6d75, type: 3}
+  audioClipsHH:
+  - {fileID: 8300000, guid: b7a4f9a6fe5451f48a19326b13b548a9, type: 3}
+  - {fileID: 8300000, guid: e72f35d499dd6ee429aa664788a63fe1, type: 3}
+  - {fileID: 8300000, guid: 42d3d2c8abcd047448132a7de69e6d75, type: 3}
+  - {fileID: 8300000, guid: cbae8c8fb0cb6554d8ce0754a4fd304f, type: 3}
+  - {fileID: 8300000, guid: c473b50bf7331fe4886f1c54e68ff53f, type: 3}
+--- !u!82 &1514147031 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1825435711988793621, guid: e1c8016e04d814e47afeedee62366a75,
     type: 3}
   m_PrefabInstance: {fileID: 1514147024}
   m_PrefabAsset: {fileID: 0}
@@ -17455,6 +17489,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DOG POUNCE NEW
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101255355560093563, guid: 10c694909d2549643a722386761ec60d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hellhound
       objectReference: {fileID: 0}
     - target: {fileID: 4061748099052865570, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
