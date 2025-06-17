@@ -10551,7 +10551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1349524819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13968,7 +13968,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10
     distanceFadeEnd: 40
-    textureOffset: {x: 0, y: 0, z: 0}
+    textureOffset: {x: -0, y: -0, z: -0}
     falloffMode: 0
     maskMode: 0
     materialMask: {fileID: 0}
