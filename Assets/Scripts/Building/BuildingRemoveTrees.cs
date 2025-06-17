@@ -28,7 +28,8 @@ public class BuildingRemoveTrees : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetType() == typeof(TreeInstance))
+        //Debug.LogFormat("Object {0} with tag {1} in removal range.", other.gameObject.name, other.gameObject.tag);
+        if(other.gameObject.CompareTag("Tree"))
         {
             Debug.Log("Deleting tree at position " + other.transform.position);
         }
