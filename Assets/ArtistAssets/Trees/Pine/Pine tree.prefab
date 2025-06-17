@@ -63,10 +63,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine tree
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d6b47452bb9242499a5a089f65febe4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 1013279631586524794, guid: 3d6b47452bb9242499a5a089f65febe4,
         type: 3}
       propertyPath: m_ScaleInLightmap
       value: 0.9000539
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218912716677395249, guid: 3d6b47452bb9242499a5a089f65febe4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400086564404443856, guid: 3d6b47452bb9242499a5a089f65febe4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     - target: {fileID: 4435400608204906214, guid: 3d6b47452bb9242499a5a089f65febe4,
         type: 3}

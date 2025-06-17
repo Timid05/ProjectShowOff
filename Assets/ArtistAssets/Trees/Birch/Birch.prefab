@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Birch
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c821c0f5b2e2b4b4298b74f80b07abc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: c821c0f5b2e2b4b4298b74f80b07abc6,
         type: 3}
       propertyPath: m_AnimateCrossFading
