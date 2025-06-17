@@ -796,7 +796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 12
+  m_Intensity: 15
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -827,9 +827,9 @@ MonoBehaviour:
   m_UseScreenSpaceShadows: 0
   m_InteractsWithSky: 1
   m_AngularDiameter: 2.5
-  m_FlareSize: 1
+  m_FlareSize: 0.5
   m_FlareTint: {r: 1, g: 1, b: 1, a: 1}
-  m_FlareFalloff: 4
+  m_FlareFalloff: 40
   m_SurfaceTexture: {fileID: 0}
   m_SurfaceTint: {r: 1, g: 1, b: 1, a: 1}
   m_Distance: 1.5e+11
@@ -918,7 +918,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 15
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -976,13 +976,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344328624}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0.5401588, y: -0, z: -0, w: 0.8415631}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 65.389, y: 0, z: 0}
 --- !u!1 &350801478
 GameObject:
   m_ObjectHideFlags: 0
@@ -4918,6 +4918,36 @@ PrefabInstance:
       propertyPath: PlayerOrientation
       value: 
       objectReference: {fileID: 1973467966}
+    - target: {fileID: 235954295414802420, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 2825.4973
+      objectReference: {fileID: 0}
+    - target: {fileID: 235954295414802420, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_SpotAngle
+      value: 81.13965
+      objectReference: {fileID: 0}
+    - target: {fileID: 235954295414802420, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_ShadowRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 235954295414802420, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 820063621351588523, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 79.57747
+      objectReference: {fileID: 0}
+    - target: {fileID: 820063621351588523, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_ShadowRadius
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1568154070327679794, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: _map
@@ -4933,15 +4963,55 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1724203519}
+    - target: {fileID: 2154698840517994675, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2813984363539076015, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3574449974617237968, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4164180447418085793, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412213567529998364, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910556433187429798, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 4267.6035
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910556433187429798, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_ShapeRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910556433187429798, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: useVolumetric
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910556433187429798, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_InnerSpotPercent
+      value: 81.29847
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910556433187429798, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_CustomSpotLightShadowCone
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6445914695226327669, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
