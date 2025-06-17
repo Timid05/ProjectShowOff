@@ -9,16 +9,18 @@ public class EnemyController : MonoBehaviour
     FollowPath followPath;
     public EnemyStateMachine fsm;
 
-    [SerializeField]
+    [SerializeField, Tooltip("The state this WW will start in")]
     EnemyStateMachine.State startState;
 
     CapsuleCollider col;
 
-    [SerializeField]
+    [SerializeField, Tooltip("The amount of damage this WW does when attacking")]
+    int attackDamage;
+    [SerializeField, Tooltip("The distance from the player at which an enraged WW will start it's decoy attack behavior")]
     float enragedAttackRange;
-    [SerializeField]
+    [SerializeField, Tooltip("The speed increase an enraged WW gets when one of its decoys gets destroyed")]
     float decoyDestroySpeedIncrease = 2;
-    [SerializeField]
+    [SerializeField, Tooltip("The maximum distance the player can be displaced when a enraged WW attacks them")]
     float targetDisplacementRange = 10;
     bool enragedAttacking;
 
@@ -110,7 +112,7 @@ public class EnemyController : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && followPath.followType == FollowPath.FollowType.Target)
         {
             PlayerActions.OnPlayerHit?.Invoke();
-            PlayerActions.OnPlayerDamaged?.Invoke(3);
+            PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
             if (fsm.currentStateName == EnemyStateMachine.State.Enraged)
             {
                 DisplaceTarget();
