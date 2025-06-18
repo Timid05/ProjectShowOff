@@ -129,14 +129,11 @@ public class HellHoundFightBehavior : MonoBehaviour
 
     private void EndPounce()
     {
-        if (pouncing)
-        {
-            Debug.Log("Ending pounce");
             pouncing = false;
             PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
             HellhoundActions.OnHellhoundFlashable?.Invoke(false);
+        PlayerActions.OnPlayerHitBy?.Invoke(gameObject);
             Disappear();
-        }
     }
 
     private void Update()
