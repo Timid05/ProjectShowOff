@@ -19,12 +19,15 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        animator = hellhoundFX.GetComponent<Animator>();
+        if (hellhoundFX != null)
+        {
+            animator = hellhoundFX.GetComponent<Animator>();
+            PlayerActions.OnPlayerHitBy += HellhoundAttack;
+        }
         PlayerActions.OnPlayerDead += DisplayDeath;
         PlayerActions.OnHealthUpdated += UpdateHealth;
         GameStateActions.OnGamePause += GamePaused;
-        GameStateActions.OnFirstMapOpen += DisableMapPrompt;
-        PlayerActions.OnPlayerHitBy += HellhoundAttack;
+        GameStateActions.OnFirstMapOpen += DisableMapPrompt;      
     }
 
     private void OnDisable()
