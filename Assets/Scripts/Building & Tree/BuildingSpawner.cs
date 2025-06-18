@@ -59,7 +59,7 @@ public class BuildingSpawner : MonoBehaviour
                 //Debug.LogFormat("Spawning at waypoint {0} with rotation {1}", closestWaypoint, spawnRotation);
                 Instantiate(spawnObject, closestWaypoint, spawnRotation, gameObject.transform);
 
-                // Send delegate so tha trees from around the spawned building can be removed.
+                // Send delegate so the trees from around the spawned building can be removed.
                 if(OnBuildingSpawned != null) { OnBuildingSpawned(closestWaypoint); }
                 return;
             }

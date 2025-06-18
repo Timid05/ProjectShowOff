@@ -14,6 +14,7 @@ public class PathGenerator : MonoBehaviour
     List<CapsuleCollider> unvisitedAreas;
 
     public static event Action OnPathGenerated;
+    public static event Action OnTreesCleared;
     public static event Action<GameObject> OnPathObjectEnabled;
 
     private void Awake()
@@ -74,6 +75,9 @@ public class PathGenerator : MonoBehaviour
 
                         // Let the object spawner know that path generation has finished.
                         if (OnPathGenerated != null) { OnPathGenerated(); }
+
+                        // Removing tree colliders needs to happen once all trees have been cleared. Having the delegate here ensures that.
+                        if(OnTreesCleared != null) { OnTreesCleared(); }
                         return;
                     }
 
