@@ -15,12 +15,14 @@ public class UIManager : MonoBehaviour
     {
         PlayerActions.OnPlayerDead += DisplayDeath;
         PlayerActions.OnHealthUpdated += UpdateHealth;
+        GameStateActions.OnGamePause += GamePaused;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerDead -= DisplayDeath;
-        PlayerActions.OnHealthUpdated += UpdateHealth;
+        PlayerActions.OnHealthUpdated -= UpdateHealth;
+        GameStateActions.OnGamePause -= GamePaused;
     }
 
     private void Awake()
@@ -37,5 +39,11 @@ public class UIManager : MonoBehaviour
     void UpdateHealth(int maxHealth, int currentHealth)
     {
         health.text = "Health: " + currentHealth + "/" + maxHealth;
+    }
+
+    void GamePaused(bool paused)
+    {
+        if (paused) { health.enabled = false; }
+        if (!paused) { health.enabled = true; }
     }
 }

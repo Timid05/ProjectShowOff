@@ -18,10 +18,12 @@ public class ResumeScene : MonoBehaviour
         {
             if (isPaused)
             {
+                GameStateActions.OnGamePause?.Invoke(false);
                 ResumeGame();
             }
             else
             {
+                GameStateActions.OnGamePause?.Invoke(true);
                 PauseGame();
             }
         }
