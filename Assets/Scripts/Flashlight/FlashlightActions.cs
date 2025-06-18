@@ -31,6 +31,9 @@ public class FlashlightActions : MonoBehaviour
     bool hellhoundFlash = false;
     bool houndInFlashRange = false;
 
+    //Flash Indicator
+    private float cooldownCoroutineTimer = 0f;
+
     //audio
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] flashlightSound;
@@ -126,7 +129,19 @@ public class FlashlightActions : MonoBehaviour
     IEnumerator FlashlightCooldown()
     {
         Debug.Log("Flashlight cooldown active.");
-        yield return new WaitForSeconds(flashlightCooldownTime);
+        //Commenting for indicator setup
+        //yield return new WaitForSeconds(flashlightCooldownTime);
+
+        //Flash Indicator
+        cooldownCoroutineTimer = flashlightCooldownTime;
+        while (cooldownCoroutineTimer > 0f)
+        {
+            cooldownCoroutineTimer -= Time.deltaTime;
+            yield return null;
+        }
+        cooldownCoroutineTimer = 0f;
+        flashlightCooldownActive = false;
+
         flashlightCooldownActive = false;
         Debug.Log("Flashlight cooldown ended.");
     }
@@ -166,6 +181,18 @@ public class FlashlightActions : MonoBehaviour
             flashbangPercentage = 0;
         }
         Debug.LogFormat("Set Light angle to {0} and intensity to {1}.", light.spotAngle, lightHD.intensity);
+    }
+
+    //Flash Indicator
+    public bool IsFlashlightOnCooldown()
+    {
+        return flashlightCooldownActive;
+    }
+
+    public float GetCooldownProgressNormalized()
+    {
+        if (!flashlightCooldownActive) return 1f; // Ready
+        return 1f - Mathf.Clamp01(cooldownCoroutineTimer / flashlightCooldownTime);
     }
 
     void FlashbangAnimation()
