@@ -8,6 +8,9 @@ public static class GameStateActions
 {
     //To notify when the start comic finishes
     public static Action OnComicFinish;
+    //Logic to see if the map has been opened for the first time
+    public static Action OnFirstMapOpen;
+    public static bool mapOpened = false;
     //Notifying the first dome visit of the player in a run
     public static Action OnFirstDomeVisit;
     public static bool domeVisited = false;
