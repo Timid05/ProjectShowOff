@@ -10,12 +10,21 @@ public class UIManager : MonoBehaviour
     TextMeshProUGUI health;
     [SerializeField]
     TextMeshProUGUI deathMessage;
+    [SerializeField]
+    TextMeshProUGUI mapPrompt;
+    [SerializeField]
+    GameObject hellhoundFX;
+
+    Animator animator;
 
     private void OnEnable()
     {
+        animator = hellhoundFX.GetComponent<Animator>();
         PlayerActions.OnPlayerDead += DisplayDeath;
         PlayerActions.OnHealthUpdated += UpdateHealth;
         GameStateActions.OnGamePause += GamePaused;
+        GameStateActions.OnFirstMapOpen += DisableMapPrompt;
+        PlayerActions.OnPlayerHitBy += HellhoundAttack;
     }
 
     private void OnDisable()
@@ -23,11 +32,22 @@ public class UIManager : MonoBehaviour
         PlayerActions.OnPlayerDead -= DisplayDeath;
         PlayerActions.OnHealthUpdated -= UpdateHealth;
         GameStateActions.OnGamePause -= GamePaused;
+        GameStateActions.OnFirstMapOpen -= DisableMapPrompt;
+        PlayerActions.OnPlayerHitBy += HellhoundAttack;
     }
 
     private void Awake()
     {
         deathMessage.enabled = false;
+    }
+
+    void HellhoundAttack(GameObject attacker)
+    {
+        if (attacker.CompareTag("Hellhound"))
+        {
+            Debug.Log("triggering fx");
+            animator.SetTrigger("Attacked");
+        }
     }
 
     void DisplayDeath()
@@ -45,5 +65,10 @@ public class UIManager : MonoBehaviour
     {
         if (paused) { health.enabled = false; }
         if (!paused) { health.enabled = true; }
+    }
+
+    void DisableMapPrompt()
+    {
+        mapPrompt.enabled = false;
     }
 }
