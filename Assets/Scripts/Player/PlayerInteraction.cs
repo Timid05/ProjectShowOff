@@ -21,19 +21,25 @@ public class PlayerInteraction : MonoBehaviour
     {
         GameManager.OnGiveGManager += ReceiveGManager;
         MapVisibility.OnMapButtonPressed += PlayerStatus;
+       
     }
 
     void Start()
     {
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerLook = gameObject.GetComponent<PlayerLook>();
+     
     }
 
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            dialogueRunner.Stop();
+            if (dialogueRunner.IsDialogueRunning)
+            {
+                dialogueRunner.Stop();
+            }
+
             if (OnCharacterTalk != null) { OnCharacterTalk(false); }
         }
 
@@ -57,11 +63,22 @@ public class PlayerInteraction : MonoBehaviour
     {
         gameManager = gManager;
         dialogueRunner = gameManager._dialogueRunner;
+        dialogueRunner.onDialogueComplete.AddListener(OnCompleteDialogue);
+        dialogueRunner.onDialogueStart.AddListener(UnlockCursor);
         drImage = dialogueRunner.GetComponentInChildren<Image>();
+    }
+
+    void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameStateActions.inDialogue = true;
     }
 
     public void OnCompleteDialogue()
     {
+        Debug.Log("completing dialogue");
+        GameStateActions.inDialogue = false;
         if (currentNPC != null)
         {
             Debug.Log($" ncp {currentNPC}");
@@ -103,5 +120,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         GameManager.OnGiveGManager -= ReceiveGManager;
         MapVisibility.OnMapButtonPressed -= PlayerStatus;
+        dialogueRunner.onDialogueComplete.RemoveListener(OnCompleteDialogue);
+        dialogueRunner.onDialogueStart.RemoveListener(UnlockCursor);
     }
 }

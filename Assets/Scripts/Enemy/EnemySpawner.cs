@@ -75,12 +75,6 @@ public class EnemySpawner : MonoBehaviour
             SpawnNewEnemy();
         }
 
-        //Debug function, should be removed
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnNewEnemy();
-        }
-
         if (lockToTarget)
         {
             transform.position = enemyTarget.position;
