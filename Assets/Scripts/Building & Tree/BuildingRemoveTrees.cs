@@ -9,31 +9,10 @@ public class BuildingRemoveTrees : MonoBehaviour
     bool treesCleared = false;
     public static event Action<TreeInstance> OnTreeFound;
 
-    private void Awake()
-    {
-        //BuildingSpawner.OnBuildingSpawned += CreateRemoverArea;
-    }
-
     private void Start()
     {
         removalArea = gameObject.GetComponent<SphereCollider>();
     }
-
-    //void StartMoveRemoverArea(Vector3 buildingPosition) 
-    //{
-    //    StartCoroutine(MoveRemoverArea(buildingPosition));
-    //}
-
-    //IEnumerator MoveRemoverArea(Vector3 buildingPosition)
-    //{
-    //    Debug.Log("Moving remover area to position " + buildingPosition);
-    //    if(removalArea != null)
-    //    {
-    //        removalArea.transform.position = buildingPosition;
-    //        if(!removalArea.enabled) { removalArea.enabled = true; }
-    //        yield return new WaitForFixedUpdate();
-    //    }
-    //}
 
     private void Update()
     {
@@ -47,10 +26,8 @@ public class BuildingRemoveTrees : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.LogFormat("Object {0} with tag {1} in removal range.", other.gameObject.name, other.gameObject.tag);
         if(other.gameObject.CompareTag("Tree"))
         {
-            //Debug.Log("Found tree at position " + other.transform.position);
             TreeColliderScript treeColliderScript = other.gameObject.GetComponent<TreeColliderScript>();
             if(OnTreeFound != null && treeColliderScript != null) { OnTreeFound(treeColliderScript.GetTree()); }
         }
@@ -59,10 +36,5 @@ public class BuildingRemoveTrees : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Tree") && treesCleared) { treesCleared = false; }
-    }
-
-    private void OnDestroy()
-    {
-        //BuildingSpawner.OnBuildingSpawned -= CreateRemoverArea;
     }
 }

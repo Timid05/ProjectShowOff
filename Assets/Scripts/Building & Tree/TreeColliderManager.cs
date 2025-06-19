@@ -60,7 +60,7 @@ public class TreeColliderManager : MonoBehaviour
     {
         if(terrainData != null) 
         {
-            Debug.Log("Tree being deleted.");
+            //Debug.Log("Tree being deleted.");
             updatedTreeInstances.Remove(tree);
             terrainData.treeInstances = updatedTreeInstances.ToArray();
         }
@@ -70,7 +70,7 @@ public class TreeColliderManager : MonoBehaviour
     {
         // We refresh the terrain to clear the leftover colliders of the removed trees.
         gameObject.GetComponent<TerrainCollider>().enabled = false;
-        Debug.Log("Brief pause in the run line.");
+        //Debug.Log("Brief pause in the run line.");
         gameObject.GetComponent<TerrainCollider>().enabled = true;
     }
 
