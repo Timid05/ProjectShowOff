@@ -27,6 +27,12 @@ public class MapVisibility : MonoBehaviour
 
     void ChangeChildrenVisibility(bool newVisibility)
     {
+        if (!GameStateActions.mapOpened)
+        {
+            GameStateActions.OnFirstMapOpen?.Invoke();
+            GameStateActions.mapOpened = true;
+        }
+
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(newVisibility);

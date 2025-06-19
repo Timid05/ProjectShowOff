@@ -5,7 +5,6 @@ using UnityEngine;
 public class ResumeScene : MonoBehaviour
 {
     public GameObject pauseMenuUI;
-    public GameObject flashlight;
     [SerializeField] KeyCode pauseButton;
 
 
@@ -17,13 +16,11 @@ public class ResumeScene : MonoBehaviour
         if (Input.GetKeyDown(pauseButton) && !GameStateActions.inDialogue)
         {
             if (isPaused)
-            {
-                GameStateActions.OnGamePause?.Invoke(false);
+            {             
                 ResumeGame();
             }
             else
-            {
-                GameStateActions.OnGamePause?.Invoke(true);
+            {            
                 PauseGame();
             }
         }
@@ -37,10 +34,10 @@ public class ResumeScene : MonoBehaviour
 
 void PauseGame()
     {
+        GameStateActions.OnGamePause?.Invoke(true);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
-        flashlight.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -48,10 +45,10 @@ void PauseGame()
 
     public void ResumeGame()
     {
+        GameStateActions.OnGamePause?.Invoke(false);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-        flashlight.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
