@@ -4619,7 +4619,7 @@ PrefabInstance:
     - target: {fileID: 388005808483479542, guid: c19ecbb0186122249ac171e57d36c544,
         type: 3}
       propertyPath: m_Name
-      value: Chalice 1
+      value: Golden Chalice
       objectReference: {fileID: 0}
     - target: {fileID: 1020533255436399948, guid: c19ecbb0186122249ac171e57d36c544,
         type: 3}
@@ -6366,6 +6366,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1890360630}
     m_Modifications:
+    - target: {fileID: 2182535438043644209, guid: 819695a7358cb954db3e047285428a38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6253432662156399114, guid: 819695a7358cb954db3e047285428a38,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8019,7 +8024,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65.95
+  m_fontSize: 56.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
