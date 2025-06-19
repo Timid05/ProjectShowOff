@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 153566364408153750}
   - component: {fileID: 1924354348855931766}
-  - component: {fileID: 2826099231750372224}
+  - component: {fileID: 7033921941853962282}
   m_Layer: 0
   m_Name: Building Tree Remover
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4802491402624379061}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.44143, y: -9.598723, z: 19.580124}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54,7 +54,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2826099231750372224
+--- !u!114 &7033921941853962282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

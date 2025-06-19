@@ -6,13 +6,65 @@ using System;
 public class BuildingSpawner : MonoBehaviour
 {
     [field: SerializeField] public UDictionary<CapsuleCollider, GameObject> spawnableBuildings { get; private set; }
+    [SerializeField] GameObject removerObject;
     List<Vector3> buildingWaypoints;
+    Dictionary<GameObject, List<GameObject>> areaPathObjects;
+
+    List<GameObject> removerAreas;
+    bool treesCleared = false;
 
     public static event Action<Vector3> OnBuildingSpawned;
+    public static event Action OnTreesCleared;
 
     private void Awake()
     {
-        ShareMainPath.OnMainPathOnly += PlaceObject;
+        ShareMainPath.OnMainPathOnly += GetAreaPathObjects;
+    }
+
+    private void Start()
+    {
+        areaPathObjects = new Dictionary<GameObject, List<GameObject>>();
+        removerAreas = new List<GameObject>();
+    }
+
+    private void Update()
+    {
+        // Once all area paths are added we can start placing the buildings.
+        if(areaPathObjects.Count == spawnableBuildings.Count)
+        {
+            // Iterating through the areas like this instead of using delegates allows the trees to be cleared from each building.
+            foreach(KeyValuePair<GameObject, List<GameObject>> areaPathObject in areaPathObjects)
+            {
+                if(areaPathObject.Value.Count != 0) { PlaceObject(areaPathObject.Value, areaPathObject.Key); }
+            }
+
+            // Clear the list so, this only happens once.
+            areaPathObjects.Clear();
+        }
+
+        // We check if all areas have cleared their trees or not
+        if(!treesCleared && removerAreas.Count == spawnableBuildings.Count)
+        {
+            int clearCount = 0;
+            foreach(GameObject removerArea in removerAreas)
+            {
+                BuildingRemoveTrees brt = removerArea.GetComponent<BuildingRemoveTrees>();
+                if(brt != null && brt.GetTreeStatus()) { clearCount++; }
+            }
+
+            // If all areas return true, that means all areas have had their trees removed.
+            if(clearCount == removerAreas.Count && OnTreesCleared != null) 
+            {
+                Debug.Log("All areas have cleard their trees!");
+                treesCleared = true;
+                OnTreesCleared(); 
+            }
+        }
+    }
+
+    void GetAreaPathObjects(List<GameObject> mainPathObjects, GameObject areaObject)
+    {
+        areaPathObjects.Add(areaObject, mainPathObjects);
     }
 
 
@@ -59,18 +111,28 @@ public class BuildingSpawner : MonoBehaviour
                 //Debug.LogFormat("Spawning at waypoint {0} with rotation {1}", closestWaypoint, spawnRotation);
                 Instantiate(spawnObject, closestWaypoint, spawnRotation, gameObject.transform);
 
-                // Send delegate so tha trees from around the spawned building can be removed.
-                if(OnBuildingSpawned != null) { OnBuildingSpawned(closestWaypoint); }
+                SpawnRemoverArea(closestWaypoint);
                 return;
             }
         } 
         // If spawn waypoints arent' set, Spawn the object at the center of the path as a failsafe.
         Instantiate(spawnObject, spawnPath.transform.position, spawnObject.transform.rotation, gameObject.transform);
-        if (OnBuildingSpawned != null) { OnBuildingSpawned(spawnPath.transform.position); }
+        SpawnRemoverArea(spawnPath.transform.position);
+    }
+
+    void SpawnRemoverArea(Vector3 spawnPosition)
+    {
+        // Spawn object so the trees from around the spawned building can be removed.
+        if (removerObject != null)
+        {
+            Debug.Log("Spawning tree remover area");
+            GameObject removerArea = Instantiate(removerObject, spawnPosition, removerObject.transform.rotation, gameObject.transform);
+            removerAreas.Add(removerArea);
+        }
     }
 
     private void OnDestroy()
     {
-        ShareMainPath.OnMainPathOnly -= PlaceObject;
+        ShareMainPath.OnMainPathOnly -= GetAreaPathObjects;
     }
 }
