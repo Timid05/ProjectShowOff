@@ -8,7 +8,9 @@ public class BuildingSpawner : MonoBehaviour
     [field: SerializeField] public UDictionary<CapsuleCollider, GameObject> spawnableBuildings { get; private set; }
     [SerializeField] GameObject removerObject;
     List<Vector3> buildingWaypoints;
+
     Dictionary<GameObject, List<GameObject>> areaPathObjects;
+    int emptyAreas = 0;
 
     List<GameObject> removerAreas;
     bool treesCleared = false;
@@ -36,6 +38,8 @@ public class BuildingSpawner : MonoBehaviour
             foreach(KeyValuePair<GameObject, List<GameObject>> areaPathObject in areaPathObjects)
             {
                 if(areaPathObject.Value.Count != 0) { PlaceObject(areaPathObject.Value, areaPathObject.Key); }
+                // Allows trees to be cleared even if one of the areas has no main path objects.
+                else { emptyAreas++; }
             }
 
             // Clear the list so, this only happens once.
@@ -43,7 +47,7 @@ public class BuildingSpawner : MonoBehaviour
         }
 
         // We check if all areas have cleared their trees or not
-        if(!treesCleared && removerAreas.Count == spawnableBuildings.Count)
+        if(!treesCleared && removerAreas.Count == spawnableBuildings.Count - emptyAreas)
         {
             int clearCount = 0;
             foreach(GameObject removerArea in removerAreas)

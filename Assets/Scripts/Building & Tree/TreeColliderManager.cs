@@ -63,6 +63,7 @@ public class TreeColliderManager : MonoBehaviour
             //Debug.Log("Tree being deleted.");
             updatedTreeInstances.Remove(tree);
             terrainData.treeInstances = updatedTreeInstances.ToArray();
+            //RefreshTerrain();
         }
     }
 
