@@ -1,6 +1,7 @@
 ﻿title: Tanfana
 ---
 <<if PlayerHasItem("Golden Chalice") and visited("Tanfana")>>
+    <<ReturnChalice GameManager>>
 	Tanfana: You brought my chalice. You are worthy, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
 	<<jump ChaliceChoice>>
 <<elseif PlayerHasItem("Golden Chalice")>>

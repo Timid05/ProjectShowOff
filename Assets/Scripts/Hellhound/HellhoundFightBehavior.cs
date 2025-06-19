@@ -122,18 +122,21 @@ public class HellHoundFightBehavior : MonoBehaviour
     }
 
     private void Pounce()
-    {    
+    {
         HellhoundActions.OnPounce?.Invoke();
-        agent.isStopped = true;       
+        agent.isStopped = true;
     }
 
     private void EndPounce()
     {
+        if (pouncing)
+        {
             pouncing = false;
             PlayerActions.OnPlayerDamaged?.Invoke(attackDamage);
             HellhoundActions.OnHellhoundFlashable?.Invoke(false);
-        PlayerActions.OnPlayerHitBy?.Invoke(gameObject);
+            PlayerActions.OnPlayerHitBy?.Invoke(gameObject);
             Disappear();
+        }
     }
 
     private void Update()

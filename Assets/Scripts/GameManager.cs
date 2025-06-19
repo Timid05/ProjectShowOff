@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         _dialogueRunner.AddCommandHandler("TanfanaChoice", TanfanaChoice);
 
         // Send the game manager to scripts that need it.
-        if(OnGiveGManager != null) { OnGiveGManager(this); }
+        if (OnGiveGManager != null) { OnGiveGManager(this); }
     }
 
     public GameObject GetPlayer()
@@ -80,7 +80,11 @@ public class GameManager : MonoBehaviour
 
     private bool PlayerHasItem(string item)
     {
-        return (_objects.ContainsKey(item));
+        if (_objects.ContainsKey(item))
+        {
+            return true;
+        }
+        return false;
     }
 
     private bool PlayerGiftItem(string item)
@@ -102,11 +106,19 @@ public class GameManager : MonoBehaviour
     }
     private void TanfanaChoice()
     {
-        if(OnAcceptTanfanaChoice != null) { OnAcceptTanfanaChoice(); }
+        if (OnAcceptTanfanaChoice != null) { OnAcceptTanfanaChoice(); }
     }
 
     private void OnDestroy()
     {
         CreateNPCDict.OnDictCreated -= ReceiveNPCs;
     }
+
+    [YarnCommand("ReturnChalice")]
+    public void SlayAway()
+    {
+        Debug.Log("returning chalice");
+        GameStateActions.OnChaliceReturned?.Invoke();
+    }
+
 }
