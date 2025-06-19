@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
     private void TanfanaChoice()
     {
         if (OnAcceptTanfanaChoice != null) { OnAcceptTanfanaChoice(); }
+        GameStateActions.OnChoiceMade?.Invoke(true);
     }
 
     private void OnDestroy()
@@ -115,10 +116,15 @@ public class GameManager : MonoBehaviour
     }
 
     [YarnCommand("ReturnChalice")]
-    public void SlayAway()
+    public void ReturnChalice()
     {
-        Debug.Log("returning chalice");
         GameStateActions.OnChaliceReturned?.Invoke();
+    }
+
+    [YarnCommand("Refused")]
+    public void RefusedOffer()
+    {
+        GameStateActions.OnChoiceMade?.Invoke(false);
     }
 
 }

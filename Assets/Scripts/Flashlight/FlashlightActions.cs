@@ -173,7 +173,6 @@ public class FlashlightActions : MonoBehaviour
     // Disable flashlight, while character is busy with something else, like talking to a character.
     void FlashlightAvailability(bool characterBusy)
     {
-        Debug.Log("Available: " + available);
         if (characterBusy) { flashlightCooldownActive = true; }
         else if (available) { flashlightCooldownActive = false; }
     }

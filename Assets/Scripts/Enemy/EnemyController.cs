@@ -53,13 +53,15 @@ public class EnemyController : MonoBehaviour
     private void OnEnable()
     {
         EnemiesInfo.OnEnemyObjectRemoved += DestroyEnemy;
-        EnemiesInfo.OnDecoyHit += DecoyDestroyed;      
+        EnemiesInfo.OnDecoyHit += DecoyDestroyed;
+        GameStateActions.OnChoiceMade += ChoiceMade;
     }
 
     private void OnDisable()
     {     
         EnemiesInfo.OnDecoyHit -= DecoyDestroyed;
         EnemiesInfo.OnEnemyObjectRemoved -= DestroyEnemy;
+        GameStateActions.OnChoiceMade += ChoiceMade;
     }
 
     private void DecoyDestroyed(GameObject decoy)
@@ -105,6 +107,14 @@ public class EnemyController : MonoBehaviour
     public void UpdateSpeeds()
     {
         fsm.UpdateSpeeds(stateSpeeds);
+    }
+
+    void ChoiceMade(bool choice)
+    {
+        if(!choice)
+        {
+            fsm.SetState(EnemyStateMachine.State.Aggressive);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
