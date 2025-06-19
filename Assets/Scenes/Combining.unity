@@ -8019,7 +8019,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.5
+  m_fontSize: 65.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10888,7 +10888,8 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6134497393468393260, guid: 85cfad914aa48484e813f40a16ac20eb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85cfad914aa48484e813f40a16ac20eb, type: 3}
@@ -12175,6 +12176,7 @@ GameObject:
   - component: {fileID: 1345356029}
   - component: {fileID: 1345356032}
   - component: {fileID: 1345356033}
+  - component: {fileID: 1345356034}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -12301,6 +12303,20 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 839978cb8f7e2ed42860c9e0552bd5fb, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &1345356034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345356028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747bb484b3e59c14ba7a22be5632a4ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeColliderObj: {fileID: 5589967405979002287, guid: b80f617658bbb5a4e8586367951f1462,
+    type: 3}
 --- !u!1 &1349524818
 GameObject:
   m_ObjectHideFlags: 0
