@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class TreeColliderScript : MonoBehaviour
 {
-    int treeIndex = -1;
+    TreeInstance tree;
 
-    public int GetTreeIndex(int setIndex = 0)
+    public void SetTree(TreeInstance pTree)
     {
-        // The first time the function is called it can be used to set the tree index.
-        if(treeIndex < 0) { treeIndex = setIndex; }
-        return treeIndex;
+        tree = pTree;
+    }
+
+    public TreeInstance GetTree()
+    {
+        return tree;
     }
 }

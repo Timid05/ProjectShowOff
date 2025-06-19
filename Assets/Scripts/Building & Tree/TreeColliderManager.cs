@@ -9,11 +9,13 @@ public class TreeColliderManager : MonoBehaviour
 
     // We can't change the tree instances list directly so we have to create a duplicate list and update that one.
     List<TreeInstance> updatedTreeInstances;
+    // Tree instances defy the laws of unity and changes to them are permanent and don't reset after exiting runtime for some baffling reason. So we save the tree instances here and set them to this aonce the application is exited.
+    TreeInstance[] startTreeInstances;
 
     private void Awake()
     {
         BuildingRemoveTrees.OnTreeFound += RemoveTree;
-        PathGenerator.OnTreesCleared += RemoveTreeColliders;
+        BuildingSpawner.OnTreesCleared += RemoveTreeColliders;
     }
 
     void Start()
@@ -21,6 +23,7 @@ public class TreeColliderManager : MonoBehaviour
         terrainData = gameObject.GetComponent<Terrain>().terrainData;
         if(terrainData == null) { return; }
         updatedTreeInstances = new List<TreeInstance>(terrainData.treeInstances);
+        startTreeInstances = terrainData.treeInstances;
         Debug.Log("Amount of tree instances before deletion: " + terrainData.treeInstanceCount);
 
         // Add colliders to all trees.
@@ -37,7 +40,7 @@ public class TreeColliderManager : MonoBehaviour
             // We give the index so that we can remove the tree if the collider has been detected by the removal collider. 
             TreeColliderScript treeColliderScript = placedTreeCollider.GetComponent<TreeColliderScript>();
             if(treeColliderScript != null) { 
-                treeColliderScript.GetTreeIndex(i);
+                treeColliderScript.SetTree(tree);
             }
         }
     }
@@ -53,12 +56,12 @@ public class TreeColliderManager : MonoBehaviour
         }
     }
     
-    void RemoveTree(int treeIndex)
+    void RemoveTree(TreeInstance tree)
     {
         if(terrainData != null) 
         {
-            //Debug.Log("Tree being deleted has index: " + treeIndex);
-            updatedTreeInstances.RemoveAt(treeIndex);
+            Debug.Log("Tree being deleted.");
+            updatedTreeInstances.Remove(tree);
             terrainData.treeInstances = updatedTreeInstances.ToArray();
         }
     }
@@ -71,9 +74,15 @@ public class TreeColliderManager : MonoBehaviour
         gameObject.GetComponent<TerrainCollider>().enabled = true;
     }
 
+    void OnApplicationQuit()
+    {
+        // restore original trees
+        terrainData.treeInstances = startTreeInstances;
+    }
+
     private void OnDestroy()
     {
         BuildingRemoveTrees.OnTreeFound -= RemoveTree;
-        PathGenerator.OnTreesCleared -= RemoveTreeColliders;
+        BuildingSpawner.OnTreesCleared -= RemoveTreeColliders;
     }
 }
