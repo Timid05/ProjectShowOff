@@ -72,6 +72,9 @@ public class UIManager : MonoBehaviour
 
     void DisableMapPrompt()
     {
-        mapPrompt.enabled = false;
+        if (mapPrompt != null)
+        {
+            mapPrompt.enabled = false;
+        }
     }
 }
