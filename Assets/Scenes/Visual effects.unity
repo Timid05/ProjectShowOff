@@ -426,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 933370259}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.07, y: 1, z: -3.56}
+  m_LocalPosition: {x: -2.58, y: 1, z: -1.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -738,6 +738,97 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.data[1]
+      value: 2911020102005555201
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.data[2]
+      value: 2911020128061620224
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224]
+      value: Unity.RenderPipelines.HighDefinition.Runtime UnityEngine.Rendering.HighDefinition.FullScreenCustomPass
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].m_Name
+      value: Custom Pass
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555200].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555201].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].m_Version
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].clearFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555200].passFoldout
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].passFoldout
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].fetchColorBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].materialPassName
+      value: Custom Pass 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].materialPassIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].targetColorBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].targetDepthBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020128061620224].fullscreenPassMaterial
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 94337826281d4bc40adaf1bb0f35d792,
+        type: 3}
     - target: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
         type: 3}
       propertyPath: m_Name
