@@ -28,7 +28,7 @@ public class PlayerObject : MonoBehaviour
             // Pickup Object creates a duplicate of that object with only a meshrenderer.
             if (!carryingObject && carriedObjectPosition != null)
             {
-                Debug.Log(hitinfo.collider.gameObject.name);
+                Debug.LogFormat("Not carrying object. Clicked on object {0} with tag {1} ", hitinfo.collider.gameObject.name , hitinfo.collider.gameObject.tag);
                 if (hitinfo.collider.gameObject.CompareTag("PickUpObject"))
                 {
                     Debug.Log("Clicked on PickupObject, duplicating.");

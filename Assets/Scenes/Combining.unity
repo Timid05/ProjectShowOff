@@ -4472,7 +4472,7 @@ PrefabInstance:
     - target: {fileID: 388005808483479542, guid: c19ecbb0186122249ac171e57d36c544,
         type: 3}
       propertyPath: m_Name
-      value: Chalice 1
+      value: Golden Chalice
       objectReference: {fileID: 0}
     - target: {fileID: 1020533255436399948, guid: c19ecbb0186122249ac171e57d36c544,
         type: 3}
@@ -6219,6 +6219,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1890360630}
     m_Modifications:
+    - target: {fileID: 2182535438043644209, guid: 819695a7358cb954db3e047285428a38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6253432662156399114, guid: 819695a7358cb954db3e047285428a38,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10741,7 +10746,8 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6134497393468393260, guid: 85cfad914aa48484e813f40a16ac20eb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85cfad914aa48484e813f40a16ac20eb, type: 3}
@@ -12121,6 +12127,7 @@ GameObject:
   - component: {fileID: 1345356029}
   - component: {fileID: 1345356032}
   - component: {fileID: 1345356033}
+  - component: {fileID: 1345356034}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -12247,6 +12254,20 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 839978cb8f7e2ed42860c9e0552bd5fb, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &1345356034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345356028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747bb484b3e59c14ba7a22be5632a4ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeColliderObj: {fileID: 5589967405979002287, guid: b80f617658bbb5a4e8586367951f1462,
+    type: 3}
 --- !u!1 &1349524818
 GameObject:
   m_ObjectHideFlags: 0
