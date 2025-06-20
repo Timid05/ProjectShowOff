@@ -31,6 +31,7 @@ public class FlashlightActions : MonoBehaviour
     bool hellhoundFlash = false;
     bool houndInFlashRange = false;
     bool available = true;
+    bool paused = false;
 
     //Flash Indicator
     private float cooldownCoroutineTimer = 0f;
@@ -66,7 +67,11 @@ public class FlashlightActions : MonoBehaviour
     {
         if (cooldownCoroutineTimer == 0f && !available)
         {
-            available = true;
+            if (!paused)
+            {
+                Debug.Log("available");
+                available = true;
+            }
         }
 
         if (!flashlightCooldownActive && available)
@@ -114,14 +119,16 @@ public class FlashlightActions : MonoBehaviour
         }
     }
 
-    void GamePaused(bool paused)
+    void GamePaused(bool isPaused)
     {
-        if (paused)
+        if (isPaused)
         {
+            paused = isPaused;
             available = false;
         }
         else
         {
+            paused = isPaused;
             if (cooldownCoroutineTimer != flashlightCooldownTime)
             {
                 available = false;
