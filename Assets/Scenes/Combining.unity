@@ -13482,7 +13482,7 @@ PrefabInstance:
         type: 3}
       propertyPath: footstepsSoundSource
       value: 
-      objectReference: {fileID: 1514147026}
+      objectReference: {fileID: 0}
     - target: {fileID: 1379046709783542731, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: terrainFootstepCollections.Array.size
