@@ -42,15 +42,24 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         deathMessage.enabled = false;
+        hellhoundFX.SetActive(false);
     }
 
     void HellhoundAttack(GameObject attacker)
     {
         if (attacker.CompareTag("Hellhound"))
         {
+            hellhoundFX.SetActive(true);
             Debug.Log("triggering fx");
             animator.SetTrigger("Attacked");
+            StartCoroutine("WaitforFX");
         }
+    }
+
+    IEnumerator WaitforFX()
+    {
+        yield return new WaitForSeconds(animator.runtimeAnimatorController.animationClips[0].length);
+        hellhoundFX.SetActive(false);
     }
 
     void DisplayDeath()

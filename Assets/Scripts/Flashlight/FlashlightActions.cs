@@ -64,6 +64,11 @@ public class FlashlightActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (cooldownCoroutineTimer == 0f && !available)
+        {
+            available = true;
+        }
+
         if (!flashlightCooldownActive && available)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -117,7 +122,11 @@ public class FlashlightActions : MonoBehaviour
         }
         else
         {
-            available = true;
+            if (cooldownCoroutineTimer != flashlightCooldownTime)
+            {
+                available = false;
+            }
+            else { available = true; }
         }
     }
 

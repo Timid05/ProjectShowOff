@@ -21,6 +21,8 @@ public class EnemyAudio : MonoBehaviour
         PlayerActions.OnPlayerHit += PlayRandomJumpscareClip;
         EnemiesInfo.OnEnragedAttacks += PlayRandomDecoyClip;
         EnemiesInfo.OnEnemyObjectRemoved += PlayRandomDeath;
+
+        PlayRandomSpawnClip();
     }
 
     private void OnDisable()
@@ -34,10 +36,7 @@ public class EnemyAudio : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
     }
-    private void Start()
-    {
-        PlayRandomSpawnClip();
-    }
+
     public void PlayClip(AudioClip clip)
     {
         source.PlayOneShot(clip);

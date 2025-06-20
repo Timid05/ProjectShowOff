@@ -1,7 +1,8 @@
-﻿title: Tanfana
+title: Tanfana
 ---
 <<if PlayerHasItem("Golden Chalice") and visited("Tanfana")>>
-	Tanfana: You brought my chalice. You are worthy, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound. #line:Offering_Chalice
+    <<ReturnChalice GameManager>>
+	Tanfana: You brought my chalice. You are worthy, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
 	<<jump ChaliceChoice>>
 <<elseif PlayerHasItem("Golden Chalice")>>
 	Tanfana: I can sense your desperation mortal, and I know what troubles you. #line:Tanfana_First_Interaction_Chalice_1
@@ -21,6 +22,7 @@ title: ChaliceChoice
 -> Offer your soul #line:0ded4f3 
  Tanfana: As expected. Take my blessing, mortal, and rid me of that wretched stray. #line:Player_Agree
  <<TanfanaChoice>>
--> Don't offer your soul #line:08bbf64 
- Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this! #line:Player_Disagree
+-> Don't offer your soul
+ Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this!
+ <<Refused GameManager>>
 ===

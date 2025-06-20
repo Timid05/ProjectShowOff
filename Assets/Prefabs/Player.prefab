@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 8928088739814763470}
   - component: {fileID: 1379046709783542731}
   - component: {fileID: 5973155422417799510}
+  - component: {fileID: 8927766083513756235}
   - component: {fileID: 1825435711988793621}
   m_Layer: 0
   m_Name: Player
@@ -513,7 +514,7 @@ MonoBehaviour:
   ThisIsGround:
     serializedVersion: 2
     m_Bits: 1
-  footstepsSoundSource: {fileID: 0}
+  footstepsSoundSource: {fileID: 5704914945598684192}
   walkSteps: []
   sprintSteps: []
   stepDelayBase: 100
@@ -539,7 +540,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2813984363539076015}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d327daa5e2d63384880a71dc74bf3137, type: 3}
   m_Name: 
@@ -558,8 +559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d245bf5b6cb85da46bebb47cb7a8e27d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carriedObjectPosition: {fileID: 0}
-  pickupDistance: 5
+  carriedObjectPosition: {fileID: 7172359893458878976}
+  pickupDistance: 10
 --- !u!114 &1379046709783542731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,7 +573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 600b63307fef8ef4d985fa326dd5cdc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainFootstepCollections: []
+  terrainFootstepCollections:
+  - {fileID: 11400000, guid: 62b1a9d032c44e4449b40f71afad3038, type: 2}
+  - {fileID: 11400000, guid: db5198f5dc0f2c94b8e9ac8040079af2, type: 2}
+  - {fileID: 11400000, guid: e500c27a2ef95c4429a9097503905027, type: 2}
 --- !u!114 &5973155422417799510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +591,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
+--- !u!114 &8927766083513756235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813984363539076015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac78a011c33462e45a81331931c2d86e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1825435711988793621}
+  audioClipsWW:
+  - {fileID: 8300000, guid: b7a4f9a6fe5451f48a19326b13b548a9, type: 3}
+  - {fileID: 8300000, guid: e72f35d499dd6ee429aa664788a63fe1, type: 3}
+  - {fileID: 8300000, guid: 42d3d2c8abcd047448132a7de69e6d75, type: 3}
+  audioClipsHH:
+  - {fileID: 8300000, guid: b7a4f9a6fe5451f48a19326b13b548a9, type: 3}
+  - {fileID: 8300000, guid: e72f35d499dd6ee429aa664788a63fe1, type: 3}
+  - {fileID: 8300000, guid: 42d3d2c8abcd047448132a7de69e6d75, type: 3}
+  - {fileID: 8300000, guid: cbae8c8fb0cb6554d8ce0754a4fd304f, type: 3}
+  - {fileID: 8300000, guid: c473b50bf7331fe4886f1c54e68ff53f, type: 3}
 --- !u!82 &1825435711988793621
 AudioSource:
   m_ObjectHideFlags: 0
@@ -738,8 +765,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7172359893458878976}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.842, y: 0.167, z: 1.919}
+  m_LocalRotation: {x: -0.09751107, y: -0.9282952, z: -0.3544456, w: -0.055928238}
+  m_LocalPosition: {x: -1.29, y: -1.34, z: 0.335}
   m_LocalScale: {x: 1.3482966, y: 1.3482966, z: 1.3482966}
   m_ConstrainProportionsScale: 0
   m_Children: []
