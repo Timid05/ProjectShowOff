@@ -7705,6 +7705,150 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1602403548}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &985951998
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.data[2]
+      value: 2911020149074558976
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976]
+      value: Unity.RenderPipelines.HighDefinition.Runtime UnityEngine.Rendering.HighDefinition.FullScreenCustomPass
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].m_Name
+      value: Custom Pass
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555200].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].m_Version
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].clearFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].passFoldout
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].fetchColorBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].materialPassName
+      value: Custom Pass 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].materialPassIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].targetColorBuffer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].targetDepthBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].fullscreenPassMaterial
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 94337826281d4bc40adaf1bb0f35d792,
+        type: 3}
+    - target: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_Name
+      value: Custom Pass
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.9917874
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25033367
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.985734
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3690fd24fdedec64f991cfd6140d89e9, type: 3}
 --- !u!1 &992538799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6792945224026033164, guid: b8e8920eb35f4604c9a2240314569d82,
@@ -11584,7 +11728,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.8
+  m_fontSize: 46.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -20146,3 +20290,4 @@ SceneRoots:
   - {fileID: 822693939}
   - {fileID: 502934108}
   - {fileID: 1705732191}
+  - {fileID: 985951998}
