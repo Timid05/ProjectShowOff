@@ -11,7 +11,17 @@ public class MapVisibility : MonoBehaviour
 
     private void Awake()
     {
-        PlayerInteraction.OnCharacterTalk += MapAvailable;
+        PlayerInteraction.OnCharacterTalk += MapAvailable;       
+    }
+
+    private void Start()
+    {
+        EnemiesInfo.DisableEnemies();
+    }
+
+    private void OnDisable()
+    {
+        PlayerInteraction.OnCharacterTalk -= MapAvailable;
     }
 
     void Update()
@@ -27,6 +37,13 @@ public class MapVisibility : MonoBehaviour
 
     void ChangeChildrenVisibility(bool newVisibility)
     {
+        if (!GameStateActions.mapOpened && newVisibility == false)
+        {
+            GameStateActions.OnFirstMapOpen?.Invoke();
+            GameStateActions.mapOpened = true;
+            EnemiesInfo.EnableEnemies();
+        }
+
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(newVisibility);

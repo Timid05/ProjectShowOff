@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             swapper.CheckLayers();
-
+            if  (walkSteps.Count == 0) { return; }
             int step = UnityEngine.Random.Range(1, walkSteps.Count);
             footstepsSoundSource.clip = walkSteps[step];
             footstepsSoundSource.PlayOneShot(footstepsSoundSource.clip);
@@ -179,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
+                if (sprintSteps.Count == 0) { return; }
                 int sprintStep = UnityEngine.Random.Range(1, sprintSteps.Count);
                 footstepsSoundSource.clip = sprintSteps[step];
                 footstepsSoundSource.PlayOneShot(footstepsSoundSource.clip);

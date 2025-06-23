@@ -1,7 +1,12 @@
 fileFormatVersion: 2
 guid: 617b55b170b646e478ed1b3ba418dc76
 SpeedTreeImporter:
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grass V1
+    second: {fileID: 2100000, guid: 880c0b8cb7cfd8f468c88b43c1f19751, type: 2}
   serializedVersion: 7
   mainColor: {r: 1, g: 1, b: 1, a: 1}
   hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}

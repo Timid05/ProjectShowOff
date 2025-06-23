@@ -1,22 +1,28 @@
-﻿title: Tanfana
+title: Tanfana
 ---
 <<if PlayerHasItem("Golden Chalice") and visited("Tanfana")>>
+    <<ReturnChalice GameManager>>
 	Tanfana: You brought my chalice. You are worthy, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
 	<<jump ChaliceChoice>>
 <<elseif PlayerHasItem("Golden Chalice")>>
-	Tanfana: I can sense your desperation mortal, and I know what troubles you. The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. You have my chalice? Impressive, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
+	Tanfana: I can sense your desperation mortal, and I know what troubles you. #line:Tanfana_First_Interaction_Chalice_1
+	Tanfana: The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. #line:Tanfana_First_Interaction_Chalice_2
+	Tanfana: You have my chalice? Impressive, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound. #line:Tanfana_First_Interaction_Chalice_3
 	<<jump ChaliceChoice>>
 <<else>>
-	Tanfana: I can sense your desperation mortal, and I know what troubles you. The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. But I cannot help you just yet. I need my chalice. Bring it to me, mortal, and I shall make you my holy champion.
+	Tanfana: I can sense your desperation mortal, and I know what troubles you. #line:Tanfana_First_Interaction_No_Chalice_1
+	Tanfana: The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. #line:Tanfana_First_Interaction_No_Chalice_2
+	Tanfana: But I cannot help you just yet. I need my chalice. Bring it to me, mortal, and I shall make you my holy champion. #line:Tanfana_First_Interaction_No_Chalice_3
 <<endif>>
 ===
 
 title: ChaliceChoice
 ---
 <<if PlayerGiftItem("Golden Chalice")>><<endif>>
--> Offer your soul
- Tanfana: As expected. Take my blessing, mortal, and rid me of that wretched stray.
+-> Offer your soul #line:0ded4f3 
+ Tanfana: As expected. Take my blessing, mortal, and rid me of that wretched stray. #line:Player_Agree
  <<TanfanaChoice>>
 -> Don't offer your soul
  Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this!
+ <<Refused GameManager>>
 ===

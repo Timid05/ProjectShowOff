@@ -81,6 +81,14 @@ public class PlayerInteraction : MonoBehaviour
         GameStateActions.inDialogue = false;
         if (currentNPC != null)
         {
+            if (!GameStateActions.domeVisited)
+            {
+                if (currentNPC.gameObject.name == "Tanfana")
+                {
+                    GameStateActions.OnFirstDomeVisit?.Invoke();
+                    GameStateActions.domeVisited = true;
+                }
+            }
             Debug.Log($" ncp {currentNPC}");
             currentNPC = null;
         }

@@ -30,6 +30,11 @@ public class FlashlightActions : MonoBehaviour
     bool flashlightCooldownActive = false;
     bool hellhoundFlash = false;
     bool houndInFlashRange = false;
+    bool available = true;
+    bool paused = false;
+
+    //Flash Indicator
+    private float cooldownCoroutineTimer = 0f;
 
     //audio
     [SerializeField] private AudioSource audioSource;
@@ -44,6 +49,7 @@ public class FlashlightActions : MonoBehaviour
         PlayerActions.OnPlayerDead += DisableFlashlight;
         EnemiesInfo.OnEnemyObjectRemoved += CheckFlashRange;
         HellhoundActions.OnHellhoundFlashable += HellhoundFlashStatus;
+        GameStateActions.OnGamePause += GamePaused;
 
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
@@ -59,7 +65,16 @@ public class FlashlightActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!flashlightCooldownActive)
+        if (cooldownCoroutineTimer == 0f && !available)
+        {
+            if (!paused)
+            {
+                Debug.Log("available");
+                available = true;
+            }
+        }
+
+        if (!flashlightCooldownActive && available)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -70,37 +85,55 @@ public class FlashlightActions : MonoBehaviour
             }
 
             //Debug option. REMOVE later.
-            if(Input.GetKeyDown(KeyCode.T)) { HolyFlashlight(); }
+            if (Input.GetKeyDown(KeyCode.T)) { HolyFlashlight(); }
 
-            else if (Input.GetKeyDown(KeyCode.Mouse1)) 
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 light.enabled = true;
 
                 //Play Sound
                 audioSource.PlayOneShot(flashbangSound[UnityEngine.Random.Range(0, flashbangSound.Length)]);
 
-                Flashbang(); 
-            }
+                Flashbang();
+            }           
+        }
 
-            // Increase flashlight values if the flashbang is active and the values haven't reached the max yet.
-            if (flashbangActive)
-            {
-                if (lightHD.intensity != flashbangIntensity && light.spotAngle != flashbangOuterAngle) { FlashbangAnimation(); }
-                else
-                {
-                    // Once flashbang animation has finished (AKA values have reached frashbang levels), disable flashlight until cooldown is over and remove all Witte Wieven in range.
-                    ChangeFlashlightStatus();
-                    FlashlightDispell();
-                    Flashbang();
-                    flashlightCooldownActive = true;
-                    StartCoroutine(FlashlightCooldown());
-                }
-            }
+        if (light.enabled)
+        {
+            CastFlashlightRay();
+        }
 
-            if (light.enabled)
+        // Increase flashlight values if the flashbang is active and the values haven't reached the max yet.
+        if (flashbangActive)
+        {
+            if (lightHD.intensity != flashbangIntensity && light.spotAngle != flashbangOuterAngle) { FlashbangAnimation(); }
+            else
             {
-                CastFlashlightRay();
+                // Once flashbang animation has finished (AKA values have reached frashbang levels), disable flashlight until cooldown is over and remove all Witte Wieven in range.
+                ChangeFlashlightStatus();
+                FlashlightDispell();
+                Flashbang();
+                flashlightCooldownActive = true;
+                StartCoroutine(FlashlightCooldown());
             }
+        }
+    }
+
+    void GamePaused(bool isPaused)
+    {
+        if (isPaused)
+        {
+            paused = isPaused;
+            available = false;
+        }
+        else
+        {
+            paused = isPaused;
+            if (cooldownCoroutineTimer != flashlightCooldownTime)
+            {
+                available = false;
+            }
+            else { available = true; }
         }
     }
 
@@ -109,6 +142,7 @@ public class FlashlightActions : MonoBehaviour
         light.enabled = false;
         this.enabled = false;
     }
+
     void CastFlashlightRay()
     {
         RaycastHit hit;
@@ -126,7 +160,19 @@ public class FlashlightActions : MonoBehaviour
     IEnumerator FlashlightCooldown()
     {
         Debug.Log("Flashlight cooldown active.");
-        yield return new WaitForSeconds(flashlightCooldownTime);
+        //Commenting for indicator setup
+        //yield return new WaitForSeconds(flashlightCooldownTime);
+
+        //Flash Indicator
+        cooldownCoroutineTimer = flashlightCooldownTime;
+        while (cooldownCoroutineTimer > 0f)
+        {
+            cooldownCoroutineTimer -= Time.deltaTime;
+            yield return null;
+        }
+        cooldownCoroutineTimer = 0f;
+        flashlightCooldownActive = false;
+
         flashlightCooldownActive = false;
         Debug.Log("Flashlight cooldown ended.");
     }
@@ -134,8 +180,8 @@ public class FlashlightActions : MonoBehaviour
     // Disable flashlight, while character is busy with something else, like talking to a character.
     void FlashlightAvailability(bool characterBusy)
     {
-        if(characterBusy) { flashlightCooldownActive = true; }
-        else { flashlightCooldownActive = false; }
+        if (characterBusy) { flashlightCooldownActive = true; }
+        else if (available) { flashlightCooldownActive = false; }
     }
 
     void ChangeFlashlightStatus()
@@ -168,6 +214,18 @@ public class FlashlightActions : MonoBehaviour
         Debug.LogFormat("Set Light angle to {0} and intensity to {1}.", light.spotAngle, lightHD.intensity);
     }
 
+    //Flash Indicator
+    public bool IsFlashlightOnCooldown()
+    {
+        return flashlightCooldownActive;
+    }
+
+    public float GetCooldownProgressNormalized()
+    {
+        if (!flashlightCooldownActive) return 1f; // Ready
+        return 1f - Mathf.Clamp01(cooldownCoroutineTimer / flashlightCooldownTime);
+    }
+
     void FlashbangAnimation()
     {
         //Play flashbang "animation" by increasing light values until they reach the flashbang amounts.
@@ -186,7 +244,7 @@ public class FlashlightActions : MonoBehaviour
             HellhoundActions.OnHellhoundFlashed?.Invoke();
         }
 
-        for (int i = witteWievenInFlashRange.Count -1 ; i >= 0; i--)
+        for (int i = witteWievenInFlashRange.Count - 1; i >= 0; i--)
         {
             EnemiesInfo.RemoveEnemy(witteWievenInFlashRange[i].GetComponent<EnemyController>().fsm);
         }
@@ -210,13 +268,13 @@ public class FlashlightActions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("WitteWieven"))
+        if (other.gameObject.CompareTag("WitteWieven"))
         {
             //Debug.LogFormat("Witte wief {0} in flash range.", other.gameObject.name);
             witteWievenInFlashRange.Add(other.gameObject);
         }
 
-        if(other.gameObject.CompareTag("Hellhound"))
+        if (other.gameObject.CompareTag("Hellhound"))
         {
             Debug.Log("Hellhound in range");
             houndInFlashRange = true;
@@ -246,5 +304,6 @@ public class FlashlightActions : MonoBehaviour
         PlayerActions.OnPlayerDead -= DisableFlashlight;
         EnemiesInfo.OnEnemyObjectRemoved -= CheckFlashRange;
         HellhoundActions.OnHellhoundFlashable -= HellhoundFlashStatus;
+        GameStateActions.OnGamePause -= GamePaused;
     }
 }

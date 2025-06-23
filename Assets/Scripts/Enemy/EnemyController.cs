@@ -35,22 +35,7 @@ public class EnemyController : MonoBehaviour
     {
         followPath = GetComponent<FollowPath>();
         col = GetComponent<CapsuleCollider>();
-    }
 
-    private void OnEnable()
-    {
-        EnemiesInfo.OnEnemyObjectRemoved += DestroyEnemy;
-        EnemiesInfo.OnDecoyHit += DecoyDestroyed;      
-    }
-
-    private void OnDisable()
-    {     
-        EnemiesInfo.OnDecoyHit -= DecoyDestroyed;
-        EnemiesInfo.OnEnemyObjectRemoved -= DestroyEnemy;
-    }
-
-    void Start()
-    {
         foreach (EnemyStateMachine.State state in states)
         {
             stateSpeeds[state] = speeds[(int)state];
@@ -63,6 +48,20 @@ public class EnemyController : MonoBehaviour
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());
 
         fsm.SetStartState(startState);
+    }
+
+    private void OnEnable()
+    {
+        EnemiesInfo.OnEnemyObjectRemoved += DestroyEnemy;
+        EnemiesInfo.OnDecoyHit += DecoyDestroyed;
+        GameStateActions.OnChoiceMade += ChoiceMade;
+    }
+
+    private void OnDisable()
+    {     
+        EnemiesInfo.OnDecoyHit -= DecoyDestroyed;
+        EnemiesInfo.OnEnemyObjectRemoved -= DestroyEnemy;
+        GameStateActions.OnChoiceMade += ChoiceMade;
     }
 
     private void DecoyDestroyed(GameObject decoy)
@@ -97,7 +96,10 @@ public class EnemyController : MonoBehaviour
             col.enabled = false;
             followPath.enabled = false;
             this.enabled = false;
-            GetComponent<MeshRenderer>().enabled = false;
+            foreach(MeshRenderer mr in transform.GetComponentsInChildren<MeshRenderer>())
+            {
+                mr.enabled = false;
+            }
             Destroy(gameObject, 2f);
         }
     }
@@ -105,6 +107,14 @@ public class EnemyController : MonoBehaviour
     public void UpdateSpeeds()
     {
         fsm.UpdateSpeeds(stateSpeeds);
+    }
+
+    void ChoiceMade(bool choice)
+    {
+        if(!choice)
+        {
+            fsm.SetState(EnemyStateMachine.State.Aggressive);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

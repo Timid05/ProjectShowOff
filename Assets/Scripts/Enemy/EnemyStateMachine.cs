@@ -8,6 +8,7 @@ public class EnemyStateMachine
     FollowPath followPath;
     Dictionary<State, float> stateSpeeds;
 
+
     public EnemyStateMachine(FollowPath f, Dictionary<State, float> speeds)
     {
         followPath = f;

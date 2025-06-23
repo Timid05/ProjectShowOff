@@ -32,7 +32,7 @@ public class ShareMainPath : MonoBehaviour
         //Debug.LogFormat("Area {0} has {1} main path objects.", gameObject.name, mainPathObjectsInArea.Count);
 
         // Share main path objects with building spawner and the area it originates from.
-        if(OnMainPathOnly != null && mainPathObjectsInArea.Count != 0) { OnMainPathOnly(mainPathObjectsInArea, gameObject); }
+        if(OnMainPathOnly != null) { OnMainPathOnly(mainPathObjectsInArea, gameObject); }
     }
 
     private void OnTriggerEnter(Collider other)
