@@ -38,21 +38,20 @@ public class PlayerInteraction : MonoBehaviour
             if (dialogueRunner.IsDialogueRunning)
             {
                 dialogueRunner.Stop();
-            }
-
-            if (OnCharacterTalk != null) { OnCharacterTalk(false); }
+                if (OnCharacterTalk != null) { OnCharacterTalk(false); }
+            }           
         }
 
         if (Input.GetMouseButtonUp(0) && Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && !dialogueRunner.Dialogue.IsActive)
         {
             //Debug.LogFormat("Clicked button while free. Object: {0}", hitinfo.collider.gameObject.name);
-            // Timescale is set to 0 so that the game is paused when in the menus. This can be used to prevent the player from talking to NPCs when they're in a menu.
+            // Timescale is set to 0 so that the game is paused when in the menus. This can be used to prevent the startPos from talking to NPCs when they're in a menu.
             if (hitinfo.collider.gameObject.tag == "NPC" && Time.timeScale != 0f && !playerBusy)
             {
                 //Debug.Log("Clicked on NPC.");
                 currentNPC = hitinfo.collider.gameObject;
                 currentNPC.GetComponent<NPCInteraction>().StartInteraction();
-                // This will prevent the player from using the flashlight while talking to NPCs.
+                // This will prevent the startPos from using the flashlight while talking to NPCs.
                 if (OnCharacterTalk != null) { OnCharacterTalk(true); }
             }
         }
@@ -65,6 +64,7 @@ public class PlayerInteraction : MonoBehaviour
         dialogueRunner = gameManager._dialogueRunner;
         dialogueRunner.onDialogueComplete.AddListener(OnCompleteDialogue);
         dialogueRunner.onDialogueStart.AddListener(UnlockCursor);
+        dialogueRunner.onDialogueStart.AddListener(OnStartDialogue);
         drImage = dialogueRunner.GetComponentInChildren<Image>();
     }
 
@@ -116,6 +116,7 @@ public class PlayerInteraction : MonoBehaviour
         playerMovement.SetEnabledMove(false);
         playerLook.SetEnabledLook(false);
         drImage.enabled = true;
+        GameStateActions.OnNPCInteraction?.Invoke(currentNPC);
         //_light.intensity = 50000;
     }
 
@@ -130,5 +131,6 @@ public class PlayerInteraction : MonoBehaviour
         MapVisibility.OnMapButtonPressed -= PlayerStatus;
         dialogueRunner.onDialogueComplete.RemoveListener(OnCompleteDialogue);
         dialogueRunner.onDialogueStart.RemoveListener(UnlockCursor);
+        dialogueRunner.onDialogueStart.RemoveListener(OnStartDialogue);
     }
 }

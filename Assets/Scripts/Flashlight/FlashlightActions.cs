@@ -50,6 +50,8 @@ public class FlashlightActions : MonoBehaviour
         EnemiesInfo.OnEnemyObjectRemoved += CheckFlashRange;
         HellhoundActions.OnHellhoundFlashable += HellhoundFlashStatus;
         GameStateActions.OnGamePause += GamePaused;
+        CameraActions.OnCameraMovingToNPC += Hide;
+        CameraActions.OnCameraBackOnPlayer += Show;
 
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
@@ -65,14 +67,6 @@ public class FlashlightActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cooldownCoroutineTimer == 0f && !available)
-        {
-            if (!paused)
-            {
-                Debug.Log("available");
-                available = true;
-            }
-        }
 
         if (!flashlightCooldownActive && available)
         {
@@ -123,13 +117,15 @@ public class FlashlightActions : MonoBehaviour
     {
         if (isPaused)
         {
+            Debug.Log("Paused");
             paused = isPaused;
             available = false;
         }
         else
         {
+            Debug.Log("Unpaused");
             paused = isPaused;
-            if (cooldownCoroutineTimer != flashlightCooldownTime)
+            if (cooldownCoroutineTimer != flashlightCooldownTime && cooldownCoroutineTimer != 0)
             {
                 available = false;
             }
@@ -141,6 +137,24 @@ public class FlashlightActions : MonoBehaviour
     {
         light.enabled = false;
         this.enabled = false;
+    }
+
+    void Hide()
+    {
+        light.enabled = false;
+        foreach(MeshRenderer mr in transform.parent.GetComponentsInChildren<MeshRenderer>())
+        {
+            mr.enabled = false;
+        }
+    }
+
+
+    void Show()
+    {
+        foreach (MeshRenderer mr in transform.parent.GetComponentsInChildren<MeshRenderer>())
+        {
+            mr.enabled = true;
+        }
     }
 
     void CastFlashlightRay()
@@ -180,8 +194,8 @@ public class FlashlightActions : MonoBehaviour
     // Disable flashlight, while character is busy with something else, like talking to a character.
     void FlashlightAvailability(bool characterBusy)
     {
-        if (characterBusy) { flashlightCooldownActive = true; }
-        else if (available) { flashlightCooldownActive = false; }
+        if (characterBusy) { available = false; }
+        else { available = true; }
     }
 
     void ChangeFlashlightStatus()
@@ -305,5 +319,7 @@ public class FlashlightActions : MonoBehaviour
         EnemiesInfo.OnEnemyObjectRemoved -= CheckFlashRange;
         HellhoundActions.OnHellhoundFlashable -= HellhoundFlashStatus;
         GameStateActions.OnGamePause -= GamePaused;
+        CameraActions.OnCameraMovingToNPC -= Hide;
+        CameraActions.OnCameraBackOnPlayer -= Show;
     }
 }
