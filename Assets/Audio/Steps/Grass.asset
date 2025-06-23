@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6b555cf40677f4fa42ceb979ad66c4, type: 3}
+  m_Name: Grass
+  m_EditorClassIdentifier: 
+  walkingSounds:
+  - {fileID: 8300000, guid: 355be8dd351e94340aa7838fdf4b397e, type: 3}
+  - {fileID: 8300000, guid: ab8e1e312c0650048a395b29bed1d0ce, type: 3}
+  - {fileID: 8300000, guid: 145d82eb2ee39f54eb8ecaf290f50f69, type: 3}
+  - {fileID: 8300000, guid: e07d19f12e069e8479cc7baee21d486f, type: 3}
+  - {fileID: 8300000, guid: 811dc32aa25113744a3befcde9f9a36e, type: 3}
+  - {fileID: 8300000, guid: 634e41b5e421d9d4d9c4969b556cef77, type: 3}
+  - {fileID: 8300000, guid: 0de8adff8434b864599f49471994d10a, type: 3}
+  - {fileID: 8300000, guid: 81190813827bb4d449911c163bc4b596, type: 3}
+  sprintingSounds:
+  - {fileID: 8300000, guid: 9007c185bb9ed6047927d037428bf4b1, type: 3}
+  - {fileID: 8300000, guid: a3699eddff5c125439b5f213ad510198, type: 3}
+  - {fileID: 8300000, guid: 48754e6390a04d64db172ceba7dab899, type: 3}
+  - {fileID: 8300000, guid: 3b05339dc1c6c734cb9de5b88fde5f40, type: 3}
+  - {fileID: 8300000, guid: 1195863e537284041b1cfc54a695cca7, type: 3}
+  - {fileID: 8300000, guid: 837784e7b0d95994daf3883cb93e2c68, type: 3}
+  - {fileID: 8300000, guid: 9cfb5c90651a3c244b97457fb2c6ee9c, type: 3}
+  - {fileID: 8300000, guid: dcef95e17d5102a4aa6a92772a4f7bae, type: 3}
