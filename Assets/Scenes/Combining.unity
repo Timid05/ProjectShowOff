@@ -4157,7 +4157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &479322422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8234,7 +8234,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.5
+  m_fontSize: 58.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10881,7 +10881,7 @@ PrefabInstance:
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[0].z
-      value: -12.956279
+      value: -12.13942
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
@@ -10891,12 +10891,12 @@ PrefabInstance:
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[1].z
-      value: -32.883373
+      value: -33.14328
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[2].x
-      value: -53.04168
+      value: -54.86982
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
@@ -10906,7 +10906,7 @@ PrefabInstance:
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[3].x
-      value: -15.053289
+      value: -14.196444
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
@@ -10916,37 +10916,37 @@ PrefabInstance:
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[3].z
-      value: -14.991966
+      value: -14.454685
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[4].x
-      value: -10.7029915
+      value: -8.817942
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[4].z
-      value: -8.278935
+      value: -7.666592
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[5].x
-      value: -24.28944
+      value: -25.11849
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[5].z
-      value: -21.632784
+      value: -21.547127
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[6].x
-      value: -42.577145
+      value: -42.04641
       objectReference: {fileID: 0}
     - target: {fileID: 7056126322457689520, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
       propertyPath: spawnWaypoints.Array.data[6].z
-      value: -23.8093
+      value: -21.646519
       objectReference: {fileID: 0}
     - target: {fileID: 7391995736150173008, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
@@ -12491,7 +12491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &1345356029
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -12642,7 +12642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1349524819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20132,7 +20132,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3407691922799009736, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 253970497}
+    - targetCorrespondingSourceObject: {fileID: 3407691922799009736, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 253970488}
+    - targetCorrespondingSourceObject: {fileID: 3407691922799009736, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 253970495}
+    - targetCorrespondingSourceObject: {fileID: 3407691922799009736, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 253970489}
+    - targetCorrespondingSourceObject: {fileID: 3407691922799009736, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 253970490}
+    - targetCorrespondingSourceObject: {fileID: 3407691922799009736, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 253970491}
+    - targetCorrespondingSourceObject: {fileID: 3407691922799009736, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 253970492}
+    - targetCorrespondingSourceObject: {fileID: 3407691922799009736, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 253970493}
   m_SourcePrefab: {fileID: 100100000, guid: dec7389aa2302fc41801d63d039b32c0, type: 3}
 --- !u!114 &2120477630
 MonoBehaviour:
