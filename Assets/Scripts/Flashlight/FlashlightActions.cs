@@ -186,8 +186,7 @@ public class FlashlightActions : MonoBehaviour
         }
         cooldownCoroutineTimer = 0f;
         flashlightCooldownActive = false;
-
-        flashlightCooldownActive = false;
+        available = true;
         Debug.Log("Flashlight cooldown ended.");
     }
 
