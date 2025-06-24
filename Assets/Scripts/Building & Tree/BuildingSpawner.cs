@@ -109,8 +109,10 @@ public class BuildingSpawner : MonoBehaviour
                     }
                 }
 
-                // Makes the spawned object face the path it was spawned next to.
-                Quaternion spawnRotation = Quaternion.LookRotation((spawnPath.transform.position - closestWaypoint).normalized);
+                // Makes the spawned object face the path it was spawned next to. The rotation mask makes sure we only rotate on the Y-axis.
+                Vector3 rotationMask = new Vector3(0, 1, 0);
+                Vector3 lookRotation = Quaternion.LookRotation(spawnPath.transform.position - closestWaypoint).eulerAngles;
+                Quaternion spawnRotation = Quaternion.Euler(Vector3.Scale(lookRotation, rotationMask));
 
                 //Debug.LogFormat("Spawning at waypoint {0} with rotation {1}", closestWaypoint, spawnRotation);
                 Instantiate(spawnObject, closestWaypoint, spawnRotation, gameObject.transform);
