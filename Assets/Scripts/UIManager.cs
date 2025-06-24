@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI health;
     [SerializeField]
-    TextMeshProUGUI deathMessage;
+    GameObject deathMessage;
     [SerializeField]
     TextMeshProUGUI mapPrompt;
     [SerializeField]
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        deathMessage.enabled = false;
+        deathMessage.SetActive(false);
         hellhoundFX.SetActive(false);
     }
 
@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
 
     void DisplayDeath()
     {
-        deathMessage.enabled = true;
+        deathMessage.SetActive(true);
         health.enabled = false;
     }
 
