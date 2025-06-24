@@ -67,6 +67,22 @@ public static class EnemiesInfo
         return Enemies.Values.ToList<GameObject>();
     }
 
+    public static void EnableEnemies()
+    {
+        foreach (GameObject enemy in Enemies.Values)
+        {
+            enemy.SetActive(true);
+        }
+    }
+
+    public static void DisableEnemies()
+    {
+        foreach (GameObject enemy in Enemies.Values)
+        {
+            enemy.SetActive(false);
+        }
+    }
+
     public static void AddEnemy(EnemyStateMachine m, GameObject g)
     {
         Enemies.Add(m, g);

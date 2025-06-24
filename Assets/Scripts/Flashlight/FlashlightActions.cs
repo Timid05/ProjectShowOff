@@ -31,6 +31,7 @@ public class FlashlightActions : MonoBehaviour
     bool hellhoundFlash = false;
     bool houndInFlashRange = false;
     bool available = true;
+    bool paused = false;
 
     //Flash Indicator
     private float cooldownCoroutineTimer = 0f;
@@ -64,6 +65,15 @@ public class FlashlightActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (cooldownCoroutineTimer == 0f && !available)
+        {
+            if (!paused)
+            {
+                Debug.Log("available");
+                available = true;
+            }
+        }
+
         if (!flashlightCooldownActive && available)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -109,15 +119,21 @@ public class FlashlightActions : MonoBehaviour
         }
     }
 
-    void GamePaused(bool paused)
+    void GamePaused(bool isPaused)
     {
-        if (paused)
+        if (isPaused)
         {
+            paused = isPaused;
             available = false;
         }
         else
         {
-            available = true;
+            paused = isPaused;
+            if (cooldownCoroutineTimer != flashlightCooldownTime)
+            {
+                available = false;
+            }
+            else { available = true; }
         }
     }
 
