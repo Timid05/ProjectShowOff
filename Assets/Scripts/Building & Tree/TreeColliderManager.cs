@@ -30,17 +30,22 @@ public class TreeColliderManager : MonoBehaviour
         for (int i = 0; i < terrainData.treeInstanceCount; i++)
         {
             TreeInstance tree = terrainData.treeInstances[i];
-            Vector3 worldTreePos = Vector3.Scale(tree.position, terrainData.size) + Terrain.activeTerrain.transform.position;
-            //Debug.Log("Placing tree collider at " + worldTreePos);
-            GameObject placedTreeCollider = Instantiate(treeColliderObj, worldTreePos, treeColliderObj.transform.rotation, gameObject.transform);
+            //Check if the treeInstance is actually a tree and not a bush or grass.
+            if(terrainData.treePrototypes[tree.prototypeIndex].prefab.CompareTag("Tree"))
+            {
+                Vector3 worldTreePos = Vector3.Scale(tree.position, terrainData.size) + Terrain.activeTerrain.transform.position;
+                //Debug.Log("Placing tree collider at " + worldTreePos);
+                GameObject placedTreeCollider = Instantiate(treeColliderObj, worldTreePos, treeColliderObj.transform.rotation, gameObject.transform);
 
-            CapsuleCollider capsuleCollider = placedTreeCollider.GetComponent<CapsuleCollider>();
-            if(capsuleCollider != null) { capsuleCollider.transform.localScale = new Vector3(tree.widthScale, tree.heightScale, tree.widthScale); }
+                CapsuleCollider capsuleCollider = placedTreeCollider.GetComponent<CapsuleCollider>();
+                if (capsuleCollider != null) { capsuleCollider.transform.localScale = new Vector3(tree.widthScale, tree.heightScale, tree.widthScale); }
 
-            // We give the index so that we can remove the tree if the collider has been detected by the removal collider. 
-            TreeColliderScript treeColliderScript = placedTreeCollider.GetComponent<TreeColliderScript>();
-            if(treeColliderScript != null) { 
-                treeColliderScript.SetTree(tree);
+                // We give the index so that we can remove the tree if the collider has been detected by the removal collider. 
+                TreeColliderScript treeColliderScript = placedTreeCollider.GetComponent<TreeColliderScript>();
+                if (treeColliderScript != null)
+                {
+                    treeColliderScript.SetTree(tree);
+                }
             }
         }
     }
