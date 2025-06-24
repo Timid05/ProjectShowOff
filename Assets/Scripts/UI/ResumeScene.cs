@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.UI;
 
 public class ResumeScene : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     [SerializeField] KeyCode pauseButton;
+    SwitchMenu menuSwitch;
 
+    private void Awake()
+    {
+        menuSwitch = GetComponent<SwitchMenu>();
+    }
 
     public static bool isPaused = false;
  
@@ -46,6 +53,7 @@ void PauseGame()
     public void ResumeGame()
     {
         GameStateActions.OnGamePause?.Invoke(false);
+        menuSwitch.SwitchToMenu();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
