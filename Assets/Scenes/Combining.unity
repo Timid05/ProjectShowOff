@@ -13999,6 +13999,11 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1890360629}
+    - target: {fileID: 1568154070327679794, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: interactUI
+      value: 
+      objectReference: {fileID: 1564051286}
     - target: {fileID: 2813984363539076015, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: m_Name
