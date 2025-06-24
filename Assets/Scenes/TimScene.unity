@@ -2856,7 +2856,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.8
+  m_fontSize: 48.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3008,7 +3008,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 762760478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547f1d332d1ba4d43926aefa529f85d9, type: 3}
+  m_Script: {fileID: 11500000, guid: fd71eb4a0d3a2f7479cc0e790487a361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 201773859}
@@ -3029,7 +3029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &851556391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3061,7 +3061,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 2
     distanceFadeEnd: 50
-    textureOffset: {x: -0, y: -0, z: -0}
+    textureOffset: {x: 0, y: 0, z: 0}
     falloffMode: 0
     maskMode: 0
     materialMask: {fileID: 0}
@@ -6437,7 +6437,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 61.25
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7562,6 +7562,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FogController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1282484020438952255, guid: 058364d589ed3f54886ebeab9f8e2b66,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1882083271901944498, guid: 058364d589ed3f54886ebeab9f8e2b66,
         type: 3}

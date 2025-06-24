@@ -24,5 +24,9 @@ public static class GameStateActions
     public static Action<bool> OnGamePause;
     //Bool that keeps track of the players's dialogue state
     public static bool inDialogue = false;
+    //Should fire when the player starts a NPC interaction
     public static Action<GameObject> OnNPCInteraction;
+    //Should fire when an attack WW gets within range of the player
+    public static Action OnFirstEnemyEncounter;
+    public static bool firstEnemyEncountered = false;
 }
