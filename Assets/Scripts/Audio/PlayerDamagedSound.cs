@@ -14,11 +14,13 @@ public class PlayerDamagedSound : MonoBehaviour
     private void OnEnable()
     {
         PlayerActions.OnPlayerHitBy += PlayDamageSound;
+        GameStateActions.OnFirstEnemyEncounter += PlayEnemyHint;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerHitBy -= PlayDamageSound;
+        GameStateActions.OnFirstEnemyEncounter -= PlayEnemyHint;
     }
 
     private void PlayDamageSound(GameObject hitBy)
@@ -31,5 +33,10 @@ public class PlayerDamagedSound : MonoBehaviour
         {
             audioSource.PlayOneShot(audioClipsHH[Random.Range(0, audioClipsHH.Length)]);
         }
+    }
+
+    void PlayEnemyHint()
+    {
+        audioSource.PlayOneShot(audioClipsWW[0]);
     }
 }

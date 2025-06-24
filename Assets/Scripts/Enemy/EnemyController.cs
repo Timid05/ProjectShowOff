@@ -146,33 +146,27 @@ public class EnemyController : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            fsm.SetState(EnemyStateMachine.State.Aggressive);
-        }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            fsm.SetState(EnemyStateMachine.State.Docile);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            fsm.SetState(EnemyStateMachine.State.Enraged);
-        }
 
         if (fsm != null)
         {
             fsm.Update();
+           
+            
         }
+
 
         if ((followPath.target.position - transform.position).magnitude < enragedAttackRange)
         {
             if (fsm.currentStateName == EnemyStateMachine.State.Enraged && !enragedAttacking)
             {
-                Debug.Log("Let's destroy them <3");
                 EnemiesInfo.OnEnragedAttacks?.Invoke(this.gameObject);
                 enragedAttacking = true;
+            }
+
+            if (fsm.currentStateName == EnemyStateMachine.State.Aggressive && !GameStateActions.firstEnemyEncountered)
+            {
+                GameStateActions.OnFirstEnemyEncounter?.Invoke();
+                GameStateActions.firstEnemyEncountered = true;
             }
         }
 

@@ -2431,8 +2431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547f1d332d1ba4d43926aefa529f85d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 1766731612}
-  tanfanaCam: {fileID: 1683190211}
 --- !u!1 &252328292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1747826114335582760, guid: b8e8920eb35f4604c9a2240314569d82,
@@ -4683,7 +4681,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Diva down
+  m_text: 'You Died
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c67328a7d5bb5d341915f9ce6917c0a0, type: 2}
   m_sharedMaterial: {fileID: -6264418084866494523, guid: c67328a7d5bb5d341915f9ce6917c0a0,
@@ -5909,6 +5909,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &661548863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661548858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2559960c8ed4ab41b440930a5321f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameratransform: {fileID: 1890360630}
+  springsensitivity: 0.005
+  springstrength: 12.48
+  damping: 5.03
 --- !u!4 &676146529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8345386762416588597, guid: b8e8920eb35f4604c9a2240314569d82,
@@ -6669,6 +6685,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 661548862}
+    - targetCorrespondingSourceObject: {fileID: 6738360804826417328, guid: 819695a7358cb954db3e047285428a38,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 661548863}
   m_SourcePrefab: {fileID: 100100000, guid: 819695a7358cb954db3e047285428a38, type: 3}
 --- !u!1001 &790098978
 PrefabInstance:
@@ -8266,7 +8286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press TAB to open your map
+  m_text: Press tab to open your map
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c67328a7d5bb5d341915f9ce6917c0a0, type: 2}
   m_sharedMaterial: {fileID: -6264418084866494523, guid: c67328a7d5bb5d341915f9ce6917c0a0,
@@ -8294,7 +8314,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.55
+  m_fontSize: 57.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
