@@ -17,6 +17,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     GameObject interactUI;
     GameObject currentNPC;
+    [SerializeField] KeyCode interactButton = KeyCode.F;
     public static event Action<bool> OnCharacterTalk;
 
     private void Awake()
@@ -52,7 +53,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 interactUI.SetActive(true);
                 //Debug.Log("Clicked on NPC.");
-                if (Input.GetKeyUp(KeyCode.E))
+                if (Input.GetKeyUp(interactButton))
                 {
                     currentNPC = hitinfo.collider.gameObject;
                     currentNPC.GetComponent<NPCInteraction>().StartInteraction();

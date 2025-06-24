@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class ChaliceToggle : MonoBehaviour
 {
     [SerializeField]
     GameObject chalice;
+    static string chaliceName = "";
 
     private void OnEnable()
     {
@@ -24,6 +26,7 @@ public class ChaliceToggle : MonoBehaviour
         if (chalice != null)
         {
             chalice.SetActive(false);
+            chaliceName = chalice.name;
         }
     }
 
@@ -41,5 +44,12 @@ public class ChaliceToggle : MonoBehaviour
         {
             chalice.SetActive(false);
         }
+    }
+
+    [YarnFunction("GetChaliceName")]
+    public static string GetChaliceName() 
+    { 
+        //Debug.Log("Chalice name is: " + chaliceName);
+        return chaliceName;
     }
 }

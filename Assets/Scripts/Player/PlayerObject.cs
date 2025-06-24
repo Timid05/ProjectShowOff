@@ -9,6 +9,7 @@ public class PlayerObject : MonoBehaviour
     GameObject carriedObject;
     [SerializeField] GameObject carriedObjectPosition;
     [SerializeField] float pickupDistance = 5;
+    [SerializeField] KeyCode pickupButton = KeyCode.E;
     bool carryingObject = false;
 
     private void Awake()
@@ -23,7 +24,7 @@ public class PlayerObject : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo, pickupDistance))
+        if(Input.GetKeyDown(pickupButton) && Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo, pickupDistance))
         {
             // Pickup Object creates a duplicate of that object with only a meshrenderer.
             if (!carryingObject && carriedObjectPosition != null)

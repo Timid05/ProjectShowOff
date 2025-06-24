@@ -1,10 +1,10 @@
 title: Tanfana
 ---
-<<if PlayerHasItem("Golden Chalice") and visited("Tanfana")>>
+<<if PlayerHasItem(GetChaliceName()) and visited("Tanfana")>>
     <<ReturnChalice GameManager>>
 	Tanfana: You brought my chalice. You are worthy, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
 	<<jump ChaliceChoice>>
-<<elseif PlayerHasItem("Golden Chalice")>>
+<<elseif PlayerHasItem(GetChaliceName())>>
 	Tanfana: I can sense your desperation mortal, and I know what troubles you. #line:Tanfana_First_Interaction_Chalice_1
 	Tanfana: The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. #line:Tanfana_First_Interaction_Chalice_2
 	Tanfana: You have my chalice? Impressive, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound. #line:Tanfana_First_Interaction_Chalice_3

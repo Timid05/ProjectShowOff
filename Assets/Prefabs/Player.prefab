@@ -548,6 +548,7 @@ MonoBehaviour:
   _light: {fileID: 0}
   _camera: {fileID: 0}
   interactUI: {fileID: 0}
+  interactButton: 101
 --- !u!114 &8928088739814763470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,6 +563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carriedObjectPosition: {fileID: 7172359893458878976}
   pickupDistance: 10
+  pickupButton: 102
 --- !u!114 &1379046709783542731
 MonoBehaviour:
   m_ObjectHideFlags: 0
