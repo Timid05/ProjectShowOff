@@ -42,7 +42,7 @@ public class PlayerInteraction : MonoBehaviour
             }           
         }
 
-        if (Input.GetMouseButtonUp(0) && Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && !dialogueRunner.Dialogue.IsActive)
+        if (Input.GetKeyUp(KeyCode.E) && Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && !dialogueRunner.Dialogue.IsActive)
         {
             //Debug.LogFormat("Clicked button while free. Object: {0}", hitinfo.collider.gameObject.name);
             // Timescale is set to 0 so that the game is paused when in the menus. This can be used to prevent the startPos from talking to NPCs when they're in a menu.
