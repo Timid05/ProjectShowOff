@@ -473,7 +473,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2813984363539076015}
   serializedVersion: 4
-  m_Mass: 1.5
+  m_Mass: 2.5
   m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -547,6 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 0}
   _camera: {fileID: 0}
+  interactUI: {fileID: 0}
 --- !u!114 &8928088739814763470
 MonoBehaviour:
   m_ObjectHideFlags: 0
