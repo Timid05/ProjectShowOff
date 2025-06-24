@@ -457,6 +457,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3579681405068720530, guid: 7f29e5f7ffdea4a6793cefb278b61f0c,
         type: 3}
+      propertyPath: startAutomatically
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3579681405068720530, guid: 7f29e5f7ffdea4a6793cefb278b61f0c,
+        type: 3}
       propertyPath: onDialogueStart.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -677,6 +682,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1935899681}
+    - targetCorrespondingSourceObject: {fileID: 2753718018764665327, guid: 7f29e5f7ffdea4a6793cefb278b61f0c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1935899684}
     - targetCorrespondingSourceObject: {fileID: 7895946088576098565, guid: 7f29e5f7ffdea4a6793cefb278b61f0c,
         type: 3}
       insertIndex: -1
@@ -2431,8 +2440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547f1d332d1ba4d43926aefa529f85d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 1766731612}
-  tanfanaCam: {fileID: 1683190211}
 --- !u!1 &252328292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1747826114335582760, guid: b8e8920eb35f4604c9a2240314569d82,
@@ -8294,7 +8301,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.55
+  m_fontSize: 50.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13937,6 +13944,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
+      propertyPath: maxStamina
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
       propertyPath: stepDelayBase
       value: 36
       objectReference: {fileID: 0}
@@ -17805,8 +17817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6798449caec4a32a5ad27badb06624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textLanguageCode: en
-  audioLanguageCode: en
+  textLanguageCode: en-GB
+  audioLanguageCode: en-GB
 --- !u!114 &1815470354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17822,7 +17834,7 @@ MonoBehaviour:
   fadeOutTimeOnLineFinish: 0.05
   waitTimeBeforeLineStart: 0
   waitTimeAfterLineComplete: 0
-  audioSource: {fileID: 1815470356}
+  audioSource: {fileID: 1935899684}
 --- !u!4 &1815470355
 Transform:
   m_ObjectHideFlags: 0
@@ -17831,12 +17843,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815470352}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.05478032, z: -0, w: -0.99849844}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.0000000018626449, z: -0, w: 1}
+  m_LocalPosition: {x: 7.170741, y: 1.4754832, z: 14.472839}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1003050076}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1815470356
 AudioSource:
@@ -18506,11 +18518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1815470355}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b41dfa61f4b04f985bb954e79c920, type: 3}
 --- !u!1 &1916240363
@@ -18748,6 +18756,102 @@ MonoBehaviour:
   continueActionKeyCode: 32
   continueActionButtonName: Jump
   continueActionOnButtonRelease: 0
+--- !u!82 &1935899684
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935899678}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1946554146 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4244016589727124950, guid: b8e8920eb35f4604c9a2240314569d82,
@@ -20697,6 +20801,7 @@ SceneRoots:
   - {fileID: 353374132}
   - {fileID: 1210759519}
   - {fileID: 15806594}
+  - {fileID: 1815470355}
   - {fileID: 1775732986}
   - {fileID: 1686504491}
   - {fileID: 1083283421}

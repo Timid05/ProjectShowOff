@@ -3,6 +3,7 @@ using UnityEngine;
 using Yarn.Unity;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,10 +22,13 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, GameObject> _objects = new Dictionary<string, GameObject>();
     Dictionary<string, NPCInteraction> _NPCs;
 
+    public bool hasPlayedFirstLine = false;
+
     private void Awake()
     {
         // Receive the NPC dictionary once it's created.
         CreateNPCDict.OnDictCreated += ReceiveNPCs;
+        _dialogueRunner.AddCommandHandler<string>("playVoice", PlayVoiceClip);
     }
 
     void Start()
@@ -37,6 +41,10 @@ public class GameManager : MonoBehaviour
         _dialogueRunner.AddFunction<string, bool>("GoToNPC", GoToNPC);
         _dialogueRunner.AddFunction<string, bool>("GoToDialogue", GoToDialogue);
         _dialogueRunner.AddCommandHandler("TanfanaChoice", TanfanaChoice);
+        
+
+        _dialogueRunner.AddCommandHandler("ReturnChalice", ReturnChalice);
+        _dialogueRunner.AddCommandHandler("Refused", RefusedOffer);
 
         // Send the game manager to scripts that need it.
         if (OnGiveGManager != null) { OnGiveGManager(this); }
@@ -54,18 +62,21 @@ public class GameManager : MonoBehaviour
 
     public void StartInteraction(Sprite image, AudioClip audioClip, float size, string name = null)
     {
-        Debug.Log("test hier " + image + " / " + audioClip + " / " + name);
+        //Debug.Log("test hier " + image + " / " + audioClip + " / " + name);
+
+        //Debug.Log("StartInteraction was called with: " + name);
+        //Debug.Log("AudioClip assigned: " + (audioClip != null ? audioClip.name : "NULL"));
 
         if (name != null) _dialogueRunner.StartDialogue(name);
         _dialogueRunner.GetComponentInChildren<Image>().sprite = image;
         _dialogueRunner.GetComponentInChildren<Image>().GetComponent<Transform>().localScale = new Vector3(size, size, size);
-        dialogueAS.clip = audioClip;
-        dialogueAS.Play();
+        //dialogueAS.clip = audioClip;
+        //dialogueAS.Play();
     }
 
     private bool PlayerMetNPC(string NPCName)
     {
-        Debug.Log("checking npc " + NPCName);
+        //Debug.Log("checking npc " + NPCName);
 
         if (_objects.ContainsKey(NPCName))
         {
@@ -112,12 +123,14 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        hasPlayedFirstLine = false;
         CreateNPCDict.OnDictCreated -= ReceiveNPCs;
     }
 
-    [YarnCommand("ReturnChalice")]
+    //[YarnCommand("ReturnChalice")]
     public void ReturnChalice()
     {
+        Debug.Log("Yarn called ReturnChalice");
         GameStateActions.OnChaliceReturned?.Invoke();
     }
 
@@ -125,6 +138,37 @@ public class GameManager : MonoBehaviour
     public void RefusedOffer()
     {
         GameStateActions.OnChoiceMade?.Invoke(false);
+    }
+
+    private void PlayVoiceClip(string clipName)
+    {
+        AudioClip clip = Resources.Load<AudioClip>("Voice/" + clipName);
+        if (clip != null)
+        {
+            if (!hasPlayedFirstLine)
+            {
+                hasPlayedFirstLine = true;
+                StartCoroutine(PlayClipDelayed(clip, 0.1f));
+            } else
+            {
+
+                dialogueAS.clip = clip;
+                dialogueAS.Play();
+                Debug.Log("Playing voice clip: " + clipName);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Voice clip not found: " + clipName);
+        }
+    }
+
+    private IEnumerator PlayClipDelayed(AudioClip clip, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        dialogueAS.clip = clip;
+        dialogueAS.Play();
+        Debug.Log("Playing voice clip (delayed): " + clip.name);
     }
 
 }
