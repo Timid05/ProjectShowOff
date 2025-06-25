@@ -708,6 +708,12 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5559331186799751280, guid: 583c037694876ae48aaae707d98cc3e5,
+        type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 620757449496234022, guid: b0225ca54fabca24f9b5acae575eead8,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
