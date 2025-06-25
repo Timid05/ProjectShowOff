@@ -36,11 +36,13 @@ public class TanfanaCamera : MonoBehaviour
 
     private void Awake()
     {
+        playerCam = GameObject.FindGameObjectWithTag("PlayerCam").transform;
         playerPos = playerCam.position;
         playerRot = playerCam.rotation;
         tanfanaPos = tanfanaCam.position;
         tanfanaRot = tanfanaCam.rotation;
         CameraActions.OnTanfanaCamInit?.Invoke(gameObject);
+        gameObject.SetActive(false);
     }
 
     void Update()
