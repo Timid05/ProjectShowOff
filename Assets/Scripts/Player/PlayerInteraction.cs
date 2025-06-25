@@ -17,7 +17,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     GameObject interactUI;
     GameObject currentNPC;
-    [SerializeField] KeyCode interactButton = KeyCode.F;
+    [SerializeField] KeyCode interactButton = KeyCode.E;
     public static event Action<bool> OnCharacterTalk;
 
     private void Awake()
