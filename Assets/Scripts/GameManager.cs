@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     void ReceiveNPCs(Dictionary<string, NPCInteraction> npcDict)
     {
         _NPCs = npcDict;
+        // Send the game manager to the NPCs.
+        if (OnGiveGManager != null) { OnGiveGManager(this); }
     }
 
     public void StartInteraction(Sprite image, AudioClip audioClip, float size, string name = null)

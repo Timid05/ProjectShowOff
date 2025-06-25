@@ -14,8 +14,8 @@ public class NPCInteraction : MonoBehaviour
     }
 
     public void StartInteraction()
-    {       
-        _gameManager.StartInteraction(image.sprite, audioClip, size, name);
+    {
+        if (_gameManager != null) { _gameManager.StartInteraction(image.sprite, audioClip, size, name); }
     }
 
     void ReceiveGManager(GameManager gManager) { _gameManager = gManager; }
