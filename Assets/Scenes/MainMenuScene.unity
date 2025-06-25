@@ -2735,7 +2735,7 @@ GameObject:
   - component: {fileID: 1393344446}
   - component: {fileID: 1393344445}
   m_Layer: 5
-  m_Name: PickUpText
+  m_Name: InteractText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2758,7 +2758,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -115.82208, y: 17}
-  m_SizeDelta: {x: 231.8, y: 92.902}
+  m_SizeDelta: {x: 299.5, y: 92.902}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393344445
 MonoBehaviour:
@@ -2780,7 +2780,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pick up
+  m_text: Interact
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c67328a7d5bb5d341915f9ce6917c0a0, type: 2}
   m_sharedMaterial: {fileID: -6264418084866494523, guid: c67328a7d5bb5d341915f9ce6917c0a0,
