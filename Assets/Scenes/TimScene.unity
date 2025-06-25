@@ -3290,12 +3290,12 @@ PrefabInstance:
     - target: {fileID: 1279113761399429368, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
       propertyPath: startState
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1279113761399429368, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
       propertyPath: attackDamage
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2594457198018381170, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
