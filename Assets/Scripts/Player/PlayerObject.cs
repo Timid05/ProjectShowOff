@@ -59,8 +59,9 @@ public class PlayerObject : MonoBehaviour
                         DestroyImmediate(rb);
                     }
 
-                    hitinfo.collider.gameObject.transform.position = carriedObjectPosition.transform.position;
                     hitinfo.collider.gameObject.transform.parent = _camera.transform;
+                    hitinfo.collider.gameObject.transform.position = carriedObjectPosition.transform.position;
+                    hitinfo.collider.gameObject.transform.rotation = carriedObjectPosition.transform.rotation;
 
                     // This lets the game manager know we have the object.
                     if (gameManager != null) { gameManager._objects.Add(carriedObject.name, carriedObject); }
