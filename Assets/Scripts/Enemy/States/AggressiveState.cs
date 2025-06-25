@@ -29,10 +29,5 @@ public class AggressiveState : IEnemyState
             followPath.navmeshAgent.speed = fsm.GetSpeed(state);
             oldSpeed = fsm.GetSpeed(state);
         }
-
-        if (followPath.followType != FollowPath.FollowType.Target)
-        {
-            followPath.followType = FollowPath.FollowType.Target;
-        }
     }
 }
