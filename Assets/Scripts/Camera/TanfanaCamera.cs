@@ -10,7 +10,7 @@ public class TanfanaCamera : MonoBehaviour
     float currentPanTime = 0;
 
     [SerializeField]
-    Transform playerCam;
+    Transform playerCam, tanfanaCam;
 
     Vector3 playerPos;
     Quaternion playerRot;
@@ -41,14 +41,14 @@ public class TanfanaCamera : MonoBehaviour
     {
         playerPos = playerCam.position;
         playerRot = playerCam.rotation;
-        tanfanaPos = transform.position;
-        tanfanaRot = transform.rotation;
+        tanfanaPos = tanfanaCam.position;
+        tanfanaRot = tanfanaCam.rotation;
     }
 
-    private void Start()
+    void Start()
     {
         // Give the Tanfana camera to the camera operator
-        if (OnTanfanaCameraSpawn != null) { OnTanfanaCameraSpawn(gameObject); }
+        if (OnTanfanaCameraSpawn != null && tanfanaCam != null) { OnTanfanaCameraSpawn(tanfanaCam.gameObject); }
     }
 
     void Update()
@@ -69,8 +69,8 @@ public class TanfanaCamera : MonoBehaviour
             }
 
             currentPanTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, endPos, currentPanTime * 1 / panTime);
-            transform.rotation = Quaternion.Lerp(startRot, endRot, currentPanTime * 1 / panTime);
+            tanfanaCam.position = Vector3.Lerp(startPos, endPos, currentPanTime * 1 / panTime);
+            tanfanaCam.rotation = Quaternion.Lerp(startRot, endRot, currentPanTime * 1 / panTime);
         }
     }
 

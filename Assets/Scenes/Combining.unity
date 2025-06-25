@@ -2426,7 +2426,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 1766731612}
-  tanfanaCam: {fileID: 0}
 --- !u!1 &252328292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1747826114335582760, guid: b8e8920eb35f4604c9a2240314569d82,
@@ -7146,12 +7145,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1984962672603412545, guid: b8e8920eb35f4604c9a2240314569d82,
     type: 3}
   m_PrefabInstance: {fileID: 1076116725}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &873579654 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8169118035589302995, guid: 583c037694876ae48aaae707d98cc3e5,
-    type: 3}
-  m_PrefabInstance: {fileID: 6564960897448568069}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &885719147
 GameObject:
@@ -20248,6 +20241,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4715689317161191269, guid: 583c037694876ae48aaae707d98cc3e5,
+        type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1766731614}
+    - target: {fileID: 5932742181620268362, guid: 583c037694876ae48aaae707d98cc3e5,
+        type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1766731614}
+    - target: {fileID: 9181598823502834189, guid: 583c037694876ae48aaae707d98cc3e5,
+        type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1766731614}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
