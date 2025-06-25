@@ -40,6 +40,7 @@ public class TanfanaCamera : MonoBehaviour
         playerRot = playerCam.rotation;
         tanfanaPos = tanfanaCam.position;
         tanfanaRot = tanfanaCam.rotation;
+        CameraActions.OnTanfanaCamInit?.Invoke(gameObject);
     }
 
     void Update()

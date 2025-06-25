@@ -51,17 +51,17 @@ public class PlayerObject : MonoBehaviour
                 }
             }
             // Put down object
-            else if (carryingObject && carriedObject != null)
-            {
-                Debug.Log("Putting down object.");
-                carryingObject = false;
-                carriedObject.AddComponent<Rigidbody>();
-                carriedObject.transform.parent = null;
-                carriedObject.transform.position = hitinfo.point;
+            //else if (carryingObject && carriedObject != null)
+            //{
+            //    Debug.Log("Putting down object.");
+            //    carryingObject = false;
+            //    carriedObject.AddComponent<Rigidbody>();
+            //    carriedObject.transform.parent = null;
+            //    carriedObject.transform.position = hitinfo.point;
 
-                // Remove the object from the objects the player has.
-                if(gameManager != null) { gameManager._objects.Remove(carriedObject.name); }
-            }
+            //    // Remove the object from the objects the player has.
+            //    if(gameManager != null) { gameManager._objects.Remove(carriedObject.name); }
+            //}
         }
 
         // Check if an object was given to Tanfana

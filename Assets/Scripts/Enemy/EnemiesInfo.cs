@@ -8,6 +8,8 @@ using UnityEngine;
 public static class EnemiesInfo
 {
     static Dictionary<EnemyStateMachine, GameObject> Enemies = new Dictionary<EnemyStateMachine, GameObject>();
+    static Dictionary<EnemyStateMachine, GameObject> cachedEnemies = new Dictionary<EnemyStateMachine, GameObject>();
+    static Dictionary<EnemyStateMachine, Vector3> cachedEnemyPositions = new Dictionary<EnemyStateMachine, Vector3>();
 
     public static Action<EnemyStateMachine.State> OnStateChange;
     public static Action OnEnemyAdded;
@@ -86,17 +88,38 @@ public static class EnemiesInfo
     public static void AddEnemy(EnemyStateMachine m, GameObject g)
     {
         Enemies.Add(m, g);
+        if (!cachedEnemies.ContainsKey(m))
+        {
+            cachedEnemies.Add(m, g);
+        }
+        if (!cachedEnemyPositions.ContainsKey(m))
+        {
+            cachedEnemyPositions.Add(m, g.transform.position);
+        }
         OnEnemyAdded?.Invoke();
         Debug.Log("Enemy Added");
     }
 
+    public static void EnableCachedEnemies()
+    {
+        foreach (EnemyStateMachine m in cachedEnemies.Keys)
+        {
+            Enemies.Add(m, cachedEnemies[m]);
+            Enemies[m].transform.position = cachedEnemyPositions[m];
+            Enemies[m].SetActive(true);
+        }
+    }
+
     public static void RemoveEnemy(EnemyStateMachine m)
     {
-        GameObject toRemoveG = Enemies[m];
-        Enemies.Remove(m);
-        Debug.Log("Enemy Removed");
-        OnEnemyObjectRemoved?.Invoke(toRemoveG);
-        OnEnemyRemoved?.Invoke();     
+        if (Enemies.ContainsKey(m))
+        {
+            GameObject toRemoveG = Enemies[m];
+            Enemies.Remove(m);
+            Debug.Log("Enemy Removed");
+            OnEnemyObjectRemoved?.Invoke(toRemoveG);
+            OnEnemyRemoved?.Invoke();
+        }
     }
 
     public static void RemoveAllEnemies()

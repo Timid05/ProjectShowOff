@@ -29,4 +29,8 @@ public static class GameStateActions
     //Should fire when an attack WW gets within range of the player
     public static Action OnFirstEnemyEncounter;
     public static bool firstEnemyEncountered = false;
+    
+    public static Action OnRespawnEnemies;
+
+    public static bool playerDead = false;
 }

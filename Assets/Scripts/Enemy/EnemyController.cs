@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour
     {     
         EnemiesInfo.OnDecoyHit -= DecoyDestroyed;
         EnemiesInfo.OnEnemyObjectRemoved -= DestroyEnemy;
-        GameStateActions.OnChoiceMade += ChoiceMade;
+        GameStateActions.OnChoiceMade -= ChoiceMade;
     }
 
     private void DecoyDestroyed(GameObject decoy)
@@ -93,16 +93,17 @@ public class EnemyController : MonoBehaviour
     {
         if (destroyed == gameObject)
         {
-            col.enabled = false;
-            followPath.enabled = false;
-            this.enabled = false;
-            foreach(MeshRenderer mr in transform.GetComponentsInChildren<MeshRenderer>())
-            {
-                mr.enabled = false;
-            }
-            Destroy(gameObject, 2f);
+            //col.enabled = false;
+            //followPath.enabled = false;
+            //this.enabled = false;
+            //foreach(MeshRenderer mr in transform.GetComponentsInChildren<MeshRenderer>())
+            //{
+            //    mr.enabled = false;
+            //}
+            gameObject.SetActive(false);
         }
     }
+    
 
     public void UpdateSpeeds()
     {

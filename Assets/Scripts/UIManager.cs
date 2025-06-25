@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI health;
     [SerializeField]
-    TextMeshProUGUI deathMessage;
+    GameObject deathMessage;
     [SerializeField]
     TextMeshProUGUI mapPrompt;
     [SerializeField]
@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
         PlayerActions.OnPlayerDead += DisplayDeath;
         PlayerActions.OnHealthUpdated += UpdateHealth;
         GameStateActions.OnGamePause += GamePaused;
-        GameStateActions.OnFirstMapOpen += DisableMapPrompt;      
+        GameStateActions.OnFirstMapOpen += DisableMapPrompt;
     }
 
     private void OnDisable()
@@ -41,8 +41,17 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        deathMessage.enabled = false;
+        deathMessage.SetActive(false);
         hellhoundFX.SetActive(false);
+    }
+
+    public void RestartClicked()
+    {
+        GameStateActions.OnRespawnEnemies?.Invoke();
+        GameStateActions.playerDead = false;
+        EnemiesInfo.EnableCachedEnemies();
+        deathMessage.SetActive(false);
+        health.enabled = true;
     }
 
     void HellhoundAttack(GameObject attacker)
@@ -64,7 +73,11 @@ public class UIManager : MonoBehaviour
 
     void DisplayDeath()
     {
-        deathMessage.enabled = true;
+        EnemiesInfo.RemoveAllEnemies();
+        GameStateActions.playerDead = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        deathMessage.SetActive(true);
         health.enabled = false;
     }
 

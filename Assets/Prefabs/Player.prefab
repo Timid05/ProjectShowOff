@@ -547,6 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 0}
   _camera: {fileID: 0}
+  interactUI: {fileID: 0}
 --- !u!114 &8928088739814763470
 MonoBehaviour:
   m_ObjectHideFlags: 0
