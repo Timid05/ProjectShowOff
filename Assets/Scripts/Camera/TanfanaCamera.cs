@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TanfanaCamera : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class TanfanaCamera : MonoBehaviour
     float currentPanTime = 0;
 
     [SerializeField]
-    Transform playerCam, tanfanaCam;
+    Transform playerCam;
 
     Vector3 playerPos;
     Quaternion playerRot;
@@ -22,8 +23,10 @@ public class TanfanaCamera : MonoBehaviour
     Quaternion startRot;
     bool moving = false;
 
+    public static event Action<GameObject> OnTanfanaCameraSpawn;
+
     private void OnEnable()
-    {  
+    {
         CameraActions.OnCameraMovingToPlayer += SetToPlayer;
         CameraActions.OnCameraMovingToNPC += SetToTanfana;
     }
@@ -38,8 +41,14 @@ public class TanfanaCamera : MonoBehaviour
     {
         playerPos = playerCam.position;
         playerRot = playerCam.rotation;
-        tanfanaPos = tanfanaCam.position;
-        tanfanaRot = tanfanaCam.rotation;
+        tanfanaPos = transform.position;
+        tanfanaRot = transform.rotation;
+    }
+
+    private void Start()
+    {
+        // Give the Tanfana camera to the camera operator
+        if (OnTanfanaCameraSpawn != null) { OnTanfanaCameraSpawn(gameObject); }
     }
 
     void Update()
