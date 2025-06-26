@@ -7935,7 +7935,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.65
+  m_fontSize: 50.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13607,7 +13607,7 @@ PrefabInstance:
     - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: maxStamina
-      value: 500
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
@@ -20461,7 +20461,7 @@ PrefabInstance:
     - target: {fileID: 842796707804832064, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
       propertyPath: triggerRadius
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2324437932873596353, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
@@ -20542,6 +20542,21 @@ PrefabInstance:
         type: 3}
       propertyPath: pounceDistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980957781335904777, guid: 10c694909d2549643a722386761ec60d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980957781335904777, guid: 10c694909d2549643a722386761ec60d,
+        type: 3}
+      propertyPath: hueShiftSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980957781335904777, guid: 10c694909d2549643a722386761ec60d,
+        type: 3}
+      propertyPath: emissionIntensity
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
