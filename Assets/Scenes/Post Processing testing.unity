@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -1212,6 +1212,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8582376147500482031, guid: b333a1fce82eb974c84e505080e37eb5,
     type: 3}
   m_PrefabInstance: {fileID: 450603451}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &104916398 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2324437932873596353, guid: 10c694909d2549643a722386761ec60d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4484591314285754747}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &113409272 stripped
 GameObject:
@@ -3332,6 +3338,189 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b333a1fce82eb974c84e505080e37eb5, type: 3}
+--- !u!1001 &394445050
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: injectionPoint
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.data[1]
+      value: 2911020149074558976
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.data[2]
+      value: 2911020149074558976
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976]
+      value: Unity.RenderPipelines.HighDefinition.Runtime UnityEngine.Rendering.HighDefinition.FullScreenCustomPass
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555200].m_Name
+      value: Witte Wieven
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555201].m_Name
+      value: Hellhound Vision
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].m_Name
+      value: Custom Pass
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555200].enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555201].enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].m_Version
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].clearFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555201].passFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].passFoldout
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].fetchColorBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].materialPassName
+      value: Custom Pass 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].materialPassIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].targetColorBuffer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].targetDepthBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020149074558976].fullscreenPassMaterial
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 94337826281d4bc40adaf1bb0f35d792,
+        type: 3}
+    - target: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_Name
+      value: Witte Wieven Custom Pass
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.9917874
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25033367
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.985734
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071713094798483043, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 879006850}
+  m_SourcePrefab: {fileID: 100100000, guid: 3690fd24fdedec64f991cfd6140d89e9, type: 3}
 --- !u!1 &407388438 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1465652240338308137, guid: b8e8920eb35f4604c9a2240314569d82,
@@ -7156,6 +7345,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1076116725}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &879006847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 394445050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &879006850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879006847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a54fe92c30b28a42bbaff11378828b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: WitteWieven
+  maxDistance: 25
+  intensity: 0
 --- !u!1 &885719147
 GameObject:
   m_ObjectHideFlags: 0
@@ -7735,8 +7945,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
         type: 3}
+      propertyPath: injectionPoint
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
       propertyPath: customPasses.Array.size
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.data[0]
+      value: 2911020102005555201
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: customPasses.Array.data[1]
+      value: 2911020149074558976
       objectReference: {fileID: 0}
     - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
         type: 3}
@@ -7750,13 +7975,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
         type: 3}
+      propertyPath: managedReferences[2911020102005555200].m_Name
+      value: Witte Wieven
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      propertyPath: managedReferences[2911020102005555201].m_Name
+      value: Hellhound Vision
+      objectReference: {fileID: 0}
+    - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
       propertyPath: managedReferences[2911020149074558976].m_Name
       value: Custom Pass
       objectReference: {fileID: 0}
     - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
         type: 3}
       propertyPath: managedReferences[2911020102005555200].enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
         type: 3}
@@ -7817,7 +8052,7 @@ PrefabInstance:
     - target: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
         type: 3}
       propertyPath: m_Name
-      value: Custom Pass
+      value: Hellhound vision Custom Pass
       objectReference: {fileID: 0}
     - target: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
         type: 3}
@@ -7877,7 +8112,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1966704289}
+    - targetCorrespondingSourceObject: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1966704292}
   m_SourcePrefab: {fileID: 100100000, guid: 3690fd24fdedec64f991cfd6140d89e9, type: 3}
 --- !u!1 &992538799 stripped
 GameObject:
@@ -16602,7 +16845,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.8
+  m_fontSize: 49.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17862,6 +18105,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4719182989405179492, guid: b8e8920eb35f4604c9a2240314569d82,
     type: 3}
   m_PrefabInstance: {fileID: 1076116725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1424280592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8958056643107317589, guid: b333a1fce82eb974c84e505080e37eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 370027648}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1424610747
 PrefabInstance:
@@ -23397,6 +23646,58 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 757725476}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1966704286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1642243811429945409, guid: 3690fd24fdedec64f991cfd6140d89e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 985951998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1966704289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966704286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6ff46c94529de41b8deb902a1d6c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullscreenMaterial: {fileID: -876546973899608171, guid: 94337826281d4bc40adaf1bb0f35d792,
+    type: 3}
+  trackedObject: {fileID: 104916398}
+  fallbackMaskPos: {x: 0.5, y: 0.5}
+  maskRadius: 0.3
+  maskSoftness: 0.2
+--- !u!114 &1966704290 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 412792220143275832, guid: 3690fd24fdedec64f991cfd6140d89e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 985951998}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966704286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d6499a6bd256e47b859377446493a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1966704292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966704286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f89eceea094cb489f971e20872a88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 661548858}
+  targetObject: {fileID: 1424280592}
+  triggerDistance: 10
+  customPassToToggle: {fileID: 1966704290}
 --- !u!1001 &1971466912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25165,4 +25466,5 @@ SceneRoots:
   - {fileID: 502934108}
   - {fileID: 1705732191}
   - {fileID: 985951998}
+  - {fileID: 394445050}
   - {fileID: 1168957585}
