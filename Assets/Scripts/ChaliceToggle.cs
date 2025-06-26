@@ -11,13 +11,11 @@ public class ChaliceToggle : MonoBehaviour
 
     private void OnEnable()
     {
-        GameStateActions.OnFirstDomeVisit += ShowChalice;
         GameStateActions.OnChaliceReturned+= HideChalice;
     }
 
     private void OnDisable()
     {
-        GameStateActions.OnFirstDomeVisit -= ShowChalice;
         GameStateActions.OnChaliceReturned -= HideChalice;
     }
 
@@ -25,16 +23,7 @@ public class ChaliceToggle : MonoBehaviour
     {
         if (chalice != null)
         {
-            chalice.SetActive(false);
             chaliceName = chalice.name;
-        }
-    }
-
-    void ShowChalice()
-    {
-        if (chalice != null)
-        {
-            chalice.SetActive(true);
         }
     }
 
