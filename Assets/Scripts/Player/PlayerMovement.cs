@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     private float backUpMoveSpeed;
+    private float backUpSprintSpeed;
     [SerializeField] float moveSpeed = 3.5f;
     [SerializeField] float sprintSpeed = 4.75f;
     bool playerSprinting = false;
@@ -38,19 +39,23 @@ public class PlayerMovement : MonoBehaviour
 
     public static event Action<bool> OnMoveStatusChange;
 
+
     private void OnEnable()
     {
         PlayerActions.OnPlayerDead += DisableMovement;
+        GameStateActions.OnRespawnEnemies += EnableMovement;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerDead -= DisableMovement;
+        GameStateActions.OnRespawnEnemies -= EnableMovement;
     }
 
     void Start()
     {
         backUpMoveSpeed = moveSpeed;
+        backUpSprintSpeed = sprintSpeed;
         currentStamina = maxStamina;
         rb = GetComponent<Rigidbody>();
         swapper = GetComponent<FootstepSwapper>();
@@ -141,13 +146,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void DisableMovement()
     {
-        this.enabled = false;
+       SetEnabledMove(false);
+    }
+
+    private void EnableMovement()
+    {
+        SetEnabledMove(true);
     }
 
     public void SetEnabledMove(bool enable)
     {
-        if (enable) moveSpeed = backUpMoveSpeed;        
-        else moveSpeed = 0;        
+        if (enable)
+        {
+            moveSpeed = backUpMoveSpeed;
+            sprintSpeed = backUpSprintSpeed;
+        }
+        else { moveSpeed = 0; sprintSpeed = 0; }
     }
 
     public void SwapFootsteps(FootstepCollection collection)

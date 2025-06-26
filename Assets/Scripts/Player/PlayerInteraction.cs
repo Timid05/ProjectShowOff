@@ -61,6 +61,10 @@ public class PlayerInteraction : MonoBehaviour
                     if (OnCharacterTalk != null) { OnCharacterTalk(true); }
                 }
             }
+            else if (hitinfo.collider.gameObject.tag == "PickUpObject")
+            {
+                interactUI.SetActive(true);
+            }
             else
             {
                 interactUI.SetActive(false);

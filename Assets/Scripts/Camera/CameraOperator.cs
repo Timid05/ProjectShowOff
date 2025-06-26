@@ -22,6 +22,7 @@ public class CameraOperator : MonoBehaviour
         dialogueRunner.onDialogueStart.AddListener(ChangeToTanfanaCam);
         dialogueRunner.onDialogueComplete.AddListener(MoveCamToPlayer);
         CameraActions.OnCameraBackOnPlayer += ChangeToPlayerCam;
+        CameraActions.OnTanfanaCamInit += AssignTanfanaCam;
     }
 
     private void OnDisable()
@@ -29,6 +30,7 @@ public class CameraOperator : MonoBehaviour
         dialogueRunner.onDialogueStart.RemoveListener(ChangeToTanfanaCam);
         dialogueRunner.onDialogueComplete.RemoveListener(MoveCamToPlayer);
         CameraActions.OnCameraBackOnPlayer -= ChangeToPlayerCam;
+        CameraActions.OnTanfanaCamInit += AssignTanfanaCam;
     }
 
 
@@ -65,5 +67,10 @@ public class CameraOperator : MonoBehaviour
     private void OnDestroy()
     {
         TanfanaCamera.OnTanfanaCameraSpawn -= GetTanfanaCamera;
+    }
+
+    void AssignTanfanaCam(GameObject cam)
+    {
+        tanfanaCam = cam;
     }
 }

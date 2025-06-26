@@ -52,6 +52,7 @@ public class FlashlightActions : MonoBehaviour
         GameStateActions.OnGamePause += GamePaused;
         CameraActions.OnCameraMovingToNPC += Hide;
         CameraActions.OnCameraBackOnPlayer += Show;
+        GameStateActions.OnRespawnEnemies += EnableFlashlight;
 
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
@@ -136,7 +137,15 @@ public class FlashlightActions : MonoBehaviour
     void DisableFlashlight()
     {
         light.enabled = false;
-        this.enabled = false;
+        available = false;
+        Hide();
+    }
+
+    void EnableFlashlight()
+    {
+        flashlightCooldownActive = false;
+        available = true;
+        Show();
     }
 
     void Hide()
@@ -320,5 +329,6 @@ public class FlashlightActions : MonoBehaviour
         GameStateActions.OnGamePause -= GamePaused;
         CameraActions.OnCameraMovingToNPC -= Hide;
         CameraActions.OnCameraBackOnPlayer -= Show;
+        GameStateActions.OnRespawnEnemies -= EnableFlashlight;
     }
 }

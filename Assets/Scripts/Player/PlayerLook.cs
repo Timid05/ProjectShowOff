@@ -16,11 +16,13 @@ public class PlayerLook : MonoBehaviour
     private void OnEnable()
     {
         PlayerActions.OnPlayerDead += DisableLook;
+        GameStateActions.OnRespawnEnemies += EnableLook;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerDead -= DisableLook;
+        GameStateActions.OnRespawnEnemies -= EnableLook;
     }
 
     void Start()
@@ -42,6 +44,7 @@ public class PlayerLook : MonoBehaviour
        Cursor.lockState = CursorLockMode.Locked;
        Cursor.visible = false;
     }
+
 
     void Update()
     {
@@ -69,9 +72,14 @@ public class PlayerLook : MonoBehaviour
         backUpsensY = sensY;
     }
 
+    void EnableLook()
+    {
+        SetEnabledLook(true);
+    }
+
     private void DisableLook()
     {
-        this.enabled = false;
+        SetEnabledLook(false);
     }
 
     public void SetEnabledLook(bool enable)

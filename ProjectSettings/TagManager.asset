@@ -12,6 +12,7 @@ TagManager:
   - Hellhound
   - PickUpObject
   - Tree
+  - PlayerCam
   layers:
   - Default
   - TransparentFX

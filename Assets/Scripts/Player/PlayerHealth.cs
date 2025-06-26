@@ -22,11 +22,19 @@ public class PlayerHealth : MonoBehaviour
     private void OnEnable()
     {
         PlayerActions.OnPlayerDamaged += TakeDamage;
+        GameStateActions.OnRespawnEnemies += Respawn;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerDamaged -= TakeDamage;
+        GameStateActions.OnRespawnEnemies -= Respawn;
+    }
+
+    void Respawn()
+    {
+        currentHealth = maxHealth;
+        PlayerActions.OnHealthUpdated?.Invoke(maxHealth, currentHealth);
     }
 
     public void TakeDamage(int damage)
@@ -36,7 +44,6 @@ public class PlayerHealth : MonoBehaviour
         PlayerActions.OnHealthUpdated?.Invoke(maxHealth, currentHealth);
         if (currentHealth <= 0)
         {
-            Debug.Log("You ded homie");
             PlayerActions.OnPlayerDead?.Invoke();           
         }
     }

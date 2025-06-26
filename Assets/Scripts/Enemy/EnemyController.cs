@@ -58,10 +58,10 @@ public class EnemyController : MonoBehaviour
     }
 
     private void OnDisable()
-    {     
+    {
         EnemiesInfo.OnDecoyHit -= DecoyDestroyed;
         EnemiesInfo.OnEnemyObjectRemoved -= DestroyEnemy;
-        GameStateActions.OnChoiceMade += ChoiceMade;
+        GameStateActions.OnChoiceMade -= ChoiceMade;
     }
 
     private void DecoyDestroyed(GameObject decoy)
@@ -93,16 +93,10 @@ public class EnemyController : MonoBehaviour
     {
         if (destroyed == gameObject)
         {
-            col.enabled = false;
-            followPath.enabled = false;
-            this.enabled = false;
-            foreach(MeshRenderer mr in transform.GetComponentsInChildren<MeshRenderer>())
-            {
-                mr.enabled = false;
-            }
-            Destroy(gameObject, 2f);
+            gameObject.SetActive(false);
         }
     }
+
 
     public void UpdateSpeeds()
     {
@@ -111,7 +105,7 @@ public class EnemyController : MonoBehaviour
 
     void ChoiceMade(bool choice)
     {
-        if(!choice)
+        if (!choice)
         {
             fsm.SetState(EnemyStateMachine.State.Aggressive);
         }
@@ -132,7 +126,7 @@ public class EnemyController : MonoBehaviour
             {
                 EnemiesInfo.RemoveEnemy(fsm);
             }
-            
+
         }
     }
 
@@ -143,15 +137,12 @@ public class EnemyController : MonoBehaviour
         GetTarget().position += new Vector3(Mathf.Cos(randomAngle), 0, Mathf.Sin(randomAngle) * randomDistance);
     }
 
-    
+
     void Update()
     {
-
         if (fsm != null)
         {
             fsm.Update();
-           
-            
         }
 
 
@@ -159,14 +150,34 @@ public class EnemyController : MonoBehaviour
         {
             if (fsm.currentStateName == EnemyStateMachine.State.Enraged && !enragedAttacking)
             {
+                followPath.followType = FollowPath.FollowType.Target;
                 EnemiesInfo.OnEnragedAttacks?.Invoke(this.gameObject);
                 enragedAttacking = true;
             }
 
-            if (fsm.currentStateName == EnemyStateMachine.State.Aggressive && !GameStateActions.firstEnemyEncountered)
+            if (fsm.currentStateName == EnemyStateMachine.State.Aggressive)
             {
-                GameStateActions.OnFirstEnemyEncounter?.Invoke();
-                GameStateActions.firstEnemyEncountered = true;
+                if (followPath.followType != FollowPath.FollowType.Target)
+                {
+                    followPath.followType = FollowPath.FollowType.Target;
+                }
+
+                if (!GameStateActions.firstEnemyEncountered)
+                {
+                    GameStateActions.OnFirstEnemyEncounter?.Invoke();
+                    GameStateActions.firstEnemyEncountered = true;
+                }
+            }
+        }
+        else
+        {
+            if (followPath.followType != FollowPath.FollowType.BackAndForth)
+            {
+                followPath.followType = FollowPath.FollowType.BackAndForth;
+            }
+            if (enragedAttacking)
+            {
+                enragedAttacking = false;
             }
         }
 

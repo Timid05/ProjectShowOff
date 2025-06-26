@@ -8,5 +8,6 @@ public static class CameraActions
     public static Action OnCameraMovingToNPC;
     public static Action OnCameraMovingToPlayer;
     public static Action OnCameraBackOnPlayer;
+    public static Action<GameObject> OnTanfanaCamInit;
 
 }

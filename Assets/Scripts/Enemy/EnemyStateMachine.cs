@@ -41,6 +41,7 @@ public class EnemyStateMachine
     {
         return stateSpeeds[state];
     }
+
     public void UpdateSpeeds(Dictionary<State, float> speeds)
     {
         stateSpeeds = speeds;
