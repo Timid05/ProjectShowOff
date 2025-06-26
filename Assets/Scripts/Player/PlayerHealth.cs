@@ -22,13 +22,13 @@ public class PlayerHealth : MonoBehaviour
     private void OnEnable()
     {
         PlayerActions.OnPlayerDamaged += TakeDamage;
-        GameStateActions.OnRespawnEnemies += Respawn;
+        PlayerActions.OnPlayerRespawn += Respawn;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerDamaged -= TakeDamage;
-        GameStateActions.OnRespawnEnemies -= Respawn;
+        PlayerActions.OnPlayerRespawn -= Respawn;
     }
 
     void Respawn()
