@@ -23,7 +23,7 @@ public class TanfanaCamera : MonoBehaviour
     Quaternion startRot;
     bool moving = false;
 
-    public static event Action<GameObject> OnTanfanaCameraSpawn;
+    //public static event Action<GameObject> OnTanfanaCameraSpawn;
 
     private void OnEnable()
     {
@@ -51,7 +51,7 @@ public class TanfanaCamera : MonoBehaviour
     void Start()
     {
         // Give the Tanfana camera to the camera operator
-        if (OnTanfanaCameraSpawn != null && tanfanaCam != null) { OnTanfanaCameraSpawn(tanfanaCam.gameObject); }
+        //if (OnTanfanaCameraSpawn != null && tanfanaCam != null) { OnTanfanaCameraSpawn(tanfanaCam.gameObject); }
     }
 
     void Update()
