@@ -9,7 +9,11 @@ public class PlayerDamagedSound : MonoBehaviour
     [SerializeField]
     private AudioClip[] audioClipsWW;
     [SerializeField]
+    private AudioClip[] audioClipsJumpscare;
+    [SerializeField]
     private AudioClip[] audioClipsHH;
+    [SerializeField]
+    private AudioClip audioClipHint;
 
     private void OnEnable()
     {
@@ -27,7 +31,8 @@ public class PlayerDamagedSound : MonoBehaviour
     {
         if (hitBy.CompareTag("WitteWieven"))
         {
-            audioSource.PlayOneShot(audioClipsWW[Random.Range(0, audioClipsWW.Length)]); ;
+            //audioSource.PlayOneShot(audioClipsWW[Random.Range(0, audioClipsWW.Length)]);
+            audioSource.PlayOneShot(audioClipsJumpscare[Random.Range(0, audioClipsJumpscare.Length)]);
         }
         else if (hitBy.CompareTag("Hellhound"))
         {
@@ -37,6 +42,6 @@ public class PlayerDamagedSound : MonoBehaviour
 
     void PlayEnemyHint()
     {
-        audioSource.PlayOneShot(audioClipsWW[0]);
+        audioSource.PlayOneShot(audioClipHint);
     }
 }

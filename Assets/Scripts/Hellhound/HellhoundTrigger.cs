@@ -14,11 +14,13 @@ public class HellhoundTrigger : MonoBehaviour
     private void OnEnable()
     {
         GameStateActions.OnChoiceMade += ChoiceMade;
+        PlayerActions.OnPlayerRespawn += RespawnTrigger;
     }
 
     private void OnDisable()
     {
         GameStateActions.OnChoiceMade -= ChoiceMade;
+        PlayerActions.OnPlayerRespawn -= RespawnTrigger;
     }
 
     private void Awake()
@@ -35,6 +37,11 @@ public class HellhoundTrigger : MonoBehaviour
     public float GetDistanceFromPlayer()
     {
         return Mathf.Abs(Vector3.Magnitude(transform.position - player.position));
+    }
+
+    void RespawnTrigger()
+    {
+        canTrigger = true;
     }
 
     void ChoiceMade(bool choice)
@@ -67,6 +74,7 @@ public class HellhoundTrigger : MonoBehaviour
             if (GetDistanceFromPlayer() < triggerRadius)
             {
                 HellhoundActions.OnHellhoundFightTriggered?.Invoke();
+                EnemiesInfo.RemoveAllEnemies();
                 canTrigger = false;
             }
         }

@@ -7,25 +7,46 @@ public class PlayerRespawn : MonoBehaviour
 {
     Transform tanfanaTransform;
     [SerializeField]
-    float respawnDistance = 5;
+    Transform hellhoundTransform;
+    [SerializeField]
+    float tanfanaRespawnDistance = 5;
+    [SerializeField]
+    float hellhoundRespawnDistance = 10;
+    Vector3 spawnPosition;
 
     private void OnEnable()
     {
-        GameStateActions.OnRespawnEnemies += RespawnPosition;
+        PlayerActions.OnPlayerRespawn += RespawnPosition;
         CameraActions.OnTanfanaCamInit += AssignTanfanaTransform;
     }
 
     private void OnDisable()
     {
-        GameStateActions.OnRespawnEnemies -= RespawnPosition;
+        PlayerActions.OnPlayerRespawn -= RespawnPosition;
         CameraActions.OnTanfanaCamInit -= AssignTanfanaTransform;
+    }
+
+    private void Start()
+    {
+        spawnPosition = transform.position;
     }
 
     void RespawnPosition()
     {
-        if (tanfanaTransform != null)
+        if (HellhoundActions.hellhoundFightOngoing)
         {
-            transform.position = tanfanaTransform.position + tanfanaTransform.forward * respawnDistance;
+            if (hellhoundTransform != null)
+            {
+                transform.position = hellhoundTransform.position + hellhoundTransform.forward * hellhoundRespawnDistance; 
+            }
+        }
+        else if (tanfanaTransform != null && GameStateActions.domeVisited)
+        {
+            transform.position = tanfanaTransform.position + tanfanaTransform.forward * tanfanaRespawnDistance;
+        }
+        else
+        {
+            transform.position = spawnPosition;
         }
     }
 

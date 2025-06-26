@@ -98,6 +98,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         Debug.Log("completing dialogue");
         GameStateActions.inDialogue = false;
+        EnemiesInfo.OnShowEnemies?.Invoke();
         if (currentNPC != null)
         {
             if (!GameStateActions.domeVisited)
@@ -132,6 +133,7 @@ public class PlayerInteraction : MonoBehaviour
         //Debug.Log("Start talking to NPC.");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        EnemiesInfo.OnHideEnemies?.Invoke();
         playerMovement.SetEnabledMove(false);
         playerLook.SetEnabledLook(false);
         drImage.enabled = true;

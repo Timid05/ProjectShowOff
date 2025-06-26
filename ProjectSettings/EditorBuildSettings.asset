@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/TimScene.unity
-    guid: 8124e5870f4fd4c779e7a5f994e84ad1
   - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
     guid: b49429ee8479b624d8818ac5a5b343e5
+  - enabled: 1
+    path: Assets/Scenes/Comic.unity
+    guid: b742fd9cc4059e14fa6faf063e72a2a4
   - enabled: 1
     path: Assets/Scenes/Combining.unity
     guid: 9918deac13362384392a38cef05c025c

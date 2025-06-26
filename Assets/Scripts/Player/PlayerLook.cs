@@ -6,6 +6,8 @@ public class PlayerLook : MonoBehaviour
 {
     [SerializeField] float sensX = 150;
     [SerializeField] float sensY = 150;
+    [SerializeField] float mouseXClamp = 6;
+    [SerializeField] float mouseYClamp = 6;
     [SerializeField] Transform PlayerOrientation;
 
     float xRotation;
@@ -16,13 +18,13 @@ public class PlayerLook : MonoBehaviour
     private void OnEnable()
     {
         PlayerActions.OnPlayerDead += DisableLook;
-        GameStateActions.OnRespawnEnemies += EnableLook;
+        PlayerActions.OnPlayerRespawn += EnableLook;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerDead -= DisableLook;
-        GameStateActions.OnRespawnEnemies -= EnableLook;
+        PlayerActions.OnPlayerRespawn -= EnableLook;
     }
 
     void Start()
@@ -51,12 +53,16 @@ public class PlayerLook : MonoBehaviour
         float mouseX = Input.GetAxisRaw("Mouse X") * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * sensY;
         // Limiting the effect of time.deltaTime because it was making the look movement too fast when FPS was low.
-        mouseX = Mathf.Clamp(mouseX * Time.deltaTime, -4, 4);
-        mouseY = Mathf.Clamp(mouseY * Time.deltaTime, -4, 4);
+        mouseX = Mathf.Clamp(mouseX * Time.deltaTime, -mouseXClamp, mouseXClamp);
+        mouseY = Mathf.Clamp(mouseY * Time.deltaTime, -mouseYClamp, mouseYClamp);
 
         yRotation += mouseX;
         xRotation -= mouseY;
         //Debug.LogFormat("X rotation: {0} Y rotation: {1}", xRotation, yRotation);
+        //Debug.LogFormat("Mouse X movement: {0} Mouse Y movement {1}", mouseX, mouseY);
+
+        //To make it easier for the player to turn around.
+        //if() { }
 
         xRotation = Mathf.Clamp(xRotation, -90f, 70f);
         transform.rotation = Quaternion.Euler(0, yRotation, 0);

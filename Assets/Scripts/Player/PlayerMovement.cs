@@ -37,19 +37,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float stepDelayBase = 100f;
     private float stepDelay;
 
+    [SerializeField] AudioSource staminaSoundSource;
+
     public static event Action<bool> OnMoveStatusChange;
 
 
     private void OnEnable()
     {
         PlayerActions.OnPlayerDead += DisableMovement;
-        GameStateActions.OnRespawnEnemies += EnableMovement;
+        PlayerActions.OnPlayerRespawn += EnableMovement;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerDead -= DisableMovement;
-        GameStateActions.OnRespawnEnemies -= EnableMovement;
+        PlayerActions.OnPlayerRespawn -= EnableMovement;
     }
 
     void Start()
@@ -100,6 +102,20 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 footstepsSoundSource.enabled = false;
+            }
+        }
+
+        if (staminaSoundSource != null)
+        {
+            if (currentStamina <= maxStamina / 2)
+            {
+                float normalizedStamina = Mathf.InverseLerp(0, maxStamina / 2f, currentStamina);
+                float volume = Mathf.Lerp(1f, 0f, normalizedStamina);
+                staminaSoundSource.volume = volume;
+            }
+            else
+            {
+                staminaSoundSource.volume = 0f;
             }
         }
     }
