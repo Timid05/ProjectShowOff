@@ -2365,6 +2365,7 @@ MonoBehaviour:
   _player: {fileID: 1032213409}
   _dialogueRunner: {fileID: 15806598}
   _camera: {fileID: 1890360629}
+  hasPlayedFirstLine: 0
 --- !u!4 &251226079
 Transform:
   m_ObjectHideFlags: 0
@@ -18079,7 +18080,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 535118689}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 492620452578917989, guid: c45b41dfa61f4b04f985bb954e79c920,
         type: 3}
@@ -20249,7 +20250,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2134477230}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 851718617}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: RestartClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2134477230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20638,7 +20651,6 @@ SceneRoots:
   - {fileID: 1210759519}
   - {fileID: 15806594}
   - {fileID: 1815470355}
-  - {fileID: 1775732986}
   - {fileID: 1686504491}
   - {fileID: 1083283421}
   - {fileID: 1345356031}
@@ -20653,3 +20665,4 @@ SceneRoots:
   - {fileID: 1223390332}
   - {fileID: 451773254}
   - {fileID: 6564960897448568069}
+  - {fileID: 1911422313}
