@@ -17,13 +17,13 @@ public class PlayerRespawn : MonoBehaviour
     private void OnEnable()
     {
         PlayerActions.OnPlayerRespawn += RespawnPosition;
-        TanfanaCamera.OnTanfanaCameraSpawn += AssignTanfanaTransform;
+        CameraActions.OnTanfanaCamInit += AssignTanfanaTransform;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerRespawn -= RespawnPosition;
-        TanfanaCamera.OnTanfanaCameraSpawn -= AssignTanfanaTransform;
+        CameraActions.OnTanfanaCamInit -= AssignTanfanaTransform;
     }
 
     private void Start()
