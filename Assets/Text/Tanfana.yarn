@@ -1,28 +1,62 @@
 title: Tanfana
+position: -126,-211
 ---
-<<if PlayerHasItem(GetChaliceName()) and visited("Tanfana")>>
-    <<ReturnChalice GameManager>>
-	Tanfana: You brought my chalice. You are worthy, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound.
+<<if PlayerHasItem("Golden Chalice") and visited("Tanfana")>>
+    <<ReturnChalice>>
+	<<playVoice Offering_Chalice>>
+	Tanfana: You brought my chalice. You are worthy, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound. #line:Offering_Chalice
 	<<jump ChaliceChoice>>
-<<elseif PlayerHasItem(GetChaliceName())>>
+<<elseif $tanfana_visited>>
+	<<jump PostTanfanaChoice>>
+<<elseif PlayerHasItem("Golden Chalice")>>
+	<<playVoice Tanfana_First_Interaction_Chalice_1>>
 	Tanfana: I can sense your desperation mortal, and I know what troubles you. #line:Tanfana_First_Interaction_Chalice_1
+	<<playVoice Tanfana_First_Interaction_Chalice_2>>
 	Tanfana: The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. #line:Tanfana_First_Interaction_Chalice_2
+	<<playVoice Tanfana_First_Interaction_Chalice_3>>
 	Tanfana: You have my chalice? Impressive, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound. #line:Tanfana_First_Interaction_Chalice_3
 	<<jump ChaliceChoice>>
 <<else>>
-	Tanfana: I can sense your desperation mortal, and I know what troubles you. #line:Tanfana_First_Interaction_No_Chalice_1
-	Tanfana: The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. #line:Tanfana_First_Interaction_No_Chalice_2
-	Tanfana: But I cannot help you just yet. I need my chalice. Bring it to me, mortal, and I shall make you my holy champion. #line:Tanfana_First_Interaction_No_Chalice_3
+	<<playVoice TanfanaFNC1>>
+	Tanfana: I can sense your desperation mortal, and I know what troubles you. #line:Tanfana1
+	<<playVoice TanfanaFNC2>>
+	Tanfana: The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. #line:Tanfana2
+	<<playVoice TanfanaFNC3>>
+	Tanfana: But I cannot help you just yet. I need my chalice. Bring it to me, mortal, and I shall make you my holy champion. #line:Tanfana3
 <<endif>>
 ===
 
 title: ChaliceChoice
+position: 206,-86
 ---
 <<if PlayerGiftItem("Golden Chalice")>><<endif>>
 -> Offer your soul #line:0ded4f3 
+ <<set $tanfana_choice = "accepted">>
+ <<set $tanfana_visited = true>>
+ <<playVoice Player_Agree>>
  Tanfana: As expected. Take my blessing, mortal, and rid me of that wretched stray. #line:Player_Agree
  <<TanfanaChoice>>
--> Don't offer your soul
- Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this!
- <<Refused GameManager>>
+ <<stop>>
+//  <<jump PostTanfanaChoice>>
+-> Don't offer your soul #line:0c548eb 
+ <<set $tanfana_choice = "rejected">>
+ <<set $tanfana_visited = true>>
+ <<playVoice Player_Disagree>>
+ Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this! #line:Player_Disagree
+ <<Refused>>
+ <<stop>>
+//  <<jump PostTanfanaChoice>>
+===
+
+title: PostTanfanaChoice
+position: 206,-86
+---
+<<if $tanfana_choice == "accepted">>
+    <<playVoice After_Agree>>
+    Tanfana: Follow my voice.
+<<elseif $tanfana_choice == "rejected">>
+    <<playVoice After_Disagree>>
+    Tanfana: Get out of my sight! GET OUT!
+<<endif>>
+<<stop>>
 ===
