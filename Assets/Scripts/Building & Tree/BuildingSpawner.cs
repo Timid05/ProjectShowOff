@@ -7,6 +7,8 @@ public class BuildingSpawner : MonoBehaviour
 {
     [field: SerializeField] public UDictionary<CapsuleCollider, GameObject> spawnableBuildings { get; private set; }
     [SerializeField] GameObject removerObject;
+    [SerializeField] List<float> removerAreaSizes;
+    int removerAreaSizeIndex = 0;
     List<Vector3> buildingWaypoints;
 
     Dictionary<GameObject, List<GameObject>> areaPathObjects;
@@ -133,6 +135,16 @@ public class BuildingSpawner : MonoBehaviour
         {
             Debug.Log("Spawning tree remover area");
             GameObject removerArea = Instantiate(removerObject, spawnPosition, removerObject.transform.rotation, gameObject.transform);
+            BuildingRemoveTrees brt = removerArea.GetComponent<BuildingRemoveTrees>();
+            if(brt != null && removerAreaSizeIndex < removerAreaSizes.Count) 
+            {
+                Debug.Log("Tree remover area size set to " + removerAreaSizes[removerAreaSizeIndex]);
+                // Set the size of the remover area to the corresponding size in the list.
+                brt.SetRemovalAreaSize(removerAreaSizes[removerAreaSizeIndex]);
+
+                // Stop updating size index at the end of the list incase it is shorter than the amount of areas.
+                if(removerAreaSizeIndex + 1 < removerAreaSizes.Count) { removerAreaSizeIndex++; }
+            }
             removerAreas.Add(removerArea);
         }
     }
