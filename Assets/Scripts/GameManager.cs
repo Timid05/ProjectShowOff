@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         CreateNPCDict.OnDictCreated -= ReceiveNPCs;
     }
 
-    //[YarnCommand("ReturnChalice")]
+    [YarnCommand("ReturnChalice")]
     public void ReturnChalice()
     {
         Debug.Log("Yarn called ReturnChalice");
