@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -13946,12 +13946,12 @@ PrefabInstance:
     - target: {fileID: -996891249125717969, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: sensX
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -996891249125717969, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: sensY
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1379046709783542731, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
@@ -20863,7 +20863,7 @@ PrefabInstance:
     - target: {fileID: 2753972323804473302, guid: 583c037694876ae48aaae707d98cc3e5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3073668313251433018, guid: 583c037694876ae48aaae707d98cc3e5,
         type: 3}
@@ -20970,3 +20970,4 @@ SceneRoots:
   - {fileID: 1705732191}
   - {fileID: 1223390332}
   - {fileID: 451773254}
+  - {fileID: 6564960897448568069}
