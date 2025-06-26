@@ -52,7 +52,7 @@ public class FlashlightActions : MonoBehaviour
         GameStateActions.OnGamePause += GamePaused;
         CameraActions.OnCameraMovingToNPC += Hide;
         CameraActions.OnCameraBackOnPlayer += Show;
-        GameStateActions.OnRespawnEnemies += EnableFlashlight;
+        PlayerActions.OnPlayerRespawn += EnableFlashlight;
 
         light = gameObject.GetComponent<Light>();
         lightHD = gameObject.GetComponent<HDAdditionalLightData>();
@@ -329,6 +329,6 @@ public class FlashlightActions : MonoBehaviour
         GameStateActions.OnGamePause -= GamePaused;
         CameraActions.OnCameraMovingToNPC -= Hide;
         CameraActions.OnCameraBackOnPlayer -= Show;
-        GameStateActions.OnRespawnEnemies -= EnableFlashlight;
+        PlayerActions.OnPlayerRespawn -= EnableFlashlight;
     }
 }

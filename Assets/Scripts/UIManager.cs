@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -47,11 +48,24 @@ public class UIManager : MonoBehaviour
 
     public void RestartClicked()
     {
-        GameStateActions.OnRespawnEnemies?.Invoke();
+        if (!HellhoundActions.hellhoundFightOngoing)
+        {
+            GameStateActions.OnRespawnEnemies?.Invoke();
+        }     
+        PlayerActions.OnPlayerRespawn?.Invoke();
         GameStateActions.playerDead = false;
         EnemiesInfo.EnableCachedEnemies();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         deathMessage.SetActive(false);
         health.enabled = true;
+    }
+
+    public void BeginFromStartClicked()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameStateActions.Reset();
+        HellhoundActions.hellhoundFightOngoing = false;
     }
 
     void HellhoundAttack(GameObject attacker)

@@ -5,13 +5,12 @@ using System;
 
 public class BuildingRemoveTrees : MonoBehaviour
 {
-    SphereCollider removalArea;
     bool treesCleared = false;
     public static event Action<TreeInstance> OnTreeFound;
 
     private void Start()
     {
-        removalArea = gameObject.GetComponent<SphereCollider>();
+
     }
 
     private void Update()
@@ -22,6 +21,16 @@ public class BuildingRemoveTrees : MonoBehaviour
     public bool GetTreeStatus()
     {
         return treesCleared;
+    }
+
+    public void SetRemovalAreaSize(float size)
+    {
+        SphereCollider removalArea = gameObject.GetComponent<SphereCollider>();
+        if (removalArea != null)
+        { 
+            removalArea.radius = size;
+            //Debug.LogFormat("Removal area radius {0} should be set to: {1}", removalArea.radius, size);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

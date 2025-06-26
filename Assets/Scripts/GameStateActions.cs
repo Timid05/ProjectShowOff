@@ -33,4 +33,13 @@ public static class GameStateActions
     public static Action OnRespawnEnemies;
 
     public static bool playerDead = false;
-}
+
+
+    public static void Reset()
+    {
+        mapOpened = false;
+        domeVisited = false;
+        firstEnemyEncountered = false;
+        playerDead = false;
+    }
+ }

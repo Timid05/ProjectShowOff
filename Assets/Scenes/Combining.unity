@@ -3157,6 +3157,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364942685}
   m_CullTransparentMesh: 1
+--- !u!82 &367832132 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5704914945598684192, guid: e1c8016e04d814e47afeedee62366a75,
+    type: 3}
+  m_PrefabInstance: {fileID: 1514147024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &370027648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10896,6 +10902,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7640362105232556328, guid: 85cfad914aa48484e813f40a16ac20eb,
         type: 3}
+      propertyPath: removerAreaSizes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640362105232556328, guid: 85cfad914aa48484e813f40a16ac20eb,
+        type: 3}
+      propertyPath: removerAreaSizes.Array.data[0]
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640362105232556328, guid: 85cfad914aa48484e813f40a16ac20eb,
+        type: 3}
+      propertyPath: removerAreaSizes.Array.data[1]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640362105232556328, guid: 85cfad914aa48484e813f40a16ac20eb,
+        type: 3}
+      propertyPath: removerAreaSizes.Array.data[2]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640362105232556328, guid: 85cfad914aa48484e813f40a16ac20eb,
+        type: 3}
+      propertyPath: removerAreaSizes.Array.data[3]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640362105232556328, guid: 85cfad914aa48484e813f40a16ac20eb,
+        type: 3}
       propertyPath: <spawnableBuildings>k__BackingField.values.Array.data[0]
       value: 
       objectReference: {fileID: 4950668156815233755, guid: 921bc5f5695ef3f4487c402a34f09af1,
@@ -13931,7 +13962,7 @@ PrefabInstance:
     - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: maxStamina
-      value: 10000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
@@ -13942,17 +13973,7 @@ PrefabInstance:
         type: 3}
       propertyPath: footstepsSoundSource
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -996891249125717969, guid: e1c8016e04d814e47afeedee62366a75,
-        type: 3}
-      propertyPath: sensX
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: -996891249125717969, guid: e1c8016e04d814e47afeedee62366a75,
-        type: 3}
-      propertyPath: sensY
-      value: 150
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 367832132}
     - target: {fileID: 1379046709783542731, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: terrainFootstepCollections.Array.size
@@ -13995,6 +14016,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704914945598684192, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.525
       objectReference: {fileID: 0}
     - target: {fileID: 6893121961846325701, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
@@ -14046,6 +14072,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8927766083513756235, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: audioClipHint
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d6db23adc2492141b7e18de4b86de82, type: 3}
+    - target: {fileID: 8927766083513756235, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: audioClipsJumpscare.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927766083513756235, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: audioClipsJumpscare.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a11394a1e91ff54f859119a470c468d, type: 3}
+    - target: {fileID: 8927766083513756235, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: audioClipsJumpscare.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: b7148f9fb2d28934aa41bd0f7c45d64e, type: 3}
+    - target: {fileID: 8927766083513756235, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: audioClipsJumpscare.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3cca66145adc9364d8817fdb1d467a14, type: 3}
     - target: {fileID: 8928088739814763470, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: carriedObjectPosition
@@ -20317,6 +20368,22 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1514147025}
+    - target: {fileID: 639500905868177968, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: decoyPrefab
+      value: 
+      objectReference: {fileID: 8442052949884401265, guid: b016ea47361b9234f92cbc1214b5039f,
+        type: 3}
+    - target: {fileID: 1279113761399429368, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: startState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279113761399429368, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: attackDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2594457198018381170, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20367,10 +20434,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2889964238046810536, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: Priority
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2889964238046810536, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2889964238046810536, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2889964238046810536, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3407691922799009736, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
       propertyPath: m_Name
       value: Witte_wieven_Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 3462457582701106983, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3462457582701106983, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4094123062292089567, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4094123062292089567, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7068860275197580902, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}

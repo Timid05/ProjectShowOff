@@ -18,6 +18,8 @@ public static class EnemiesInfo
     public static Action<GameObject> OnEnragedAttacks;
     public static Action<GameObject> OnDecoyHit;
     public static Action<GameObject> OnDecoyDestroyed;
+    public static Action OnHideEnemies;
+    public static Action OnShowEnemies;
 
     public static bool HasAggressiveEnemies()
     {
@@ -83,6 +85,15 @@ public static class EnemiesInfo
         {
             enemy.SetActive(false);
         }
+    }
+
+    public static bool EnemyActive(GameObject enemy)
+    {
+        if (Enemies.ContainsValue(enemy))
+        {
+            return true;
+        }
+        else { return false; }
     }
 
     public static void AddEnemy(EnemyStateMachine m, GameObject g)

@@ -107,7 +107,13 @@ public class EnemyController : MonoBehaviour
     {
         if (!choice)
         {
-            fsm.SetState(EnemyStateMachine.State.Aggressive);
+            Debug.Log("enraged");
+            fsm.SetState(EnemyStateMachine.State.Enraged);
+        }
+        else
+        {
+            Debug.Log("docile");
+            fsm.SetState(EnemyStateMachine.State.Docile);
         }
     }
 
