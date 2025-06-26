@@ -1,7 +1,6 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +8,7 @@ public class StartComicCameraOperator : MonoBehaviour
 {
     CinemachineBrain brain;
     [SerializeField]
-    SceneAsset mainScene;
+    string mainSceneName;
     [SerializeField]
     GameObject[] cameras;
     [SerializeField]
@@ -47,6 +46,6 @@ public class StartComicCameraOperator : MonoBehaviour
 
     void MoveToMainScene()
     {
-        SceneManager.LoadScene(mainScene.name);
+        SceneManager.LoadScene(mainSceneName);
     }
 }
