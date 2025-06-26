@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -17110,7 +17110,7 @@ GameObject:
   - component: {fileID: 1766731613}
   m_Layer: 0
   m_Name: Virtual Camera
-  m_TagString: Untagged
+  m_TagString: PlayerCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18432,94 +18432,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1076116725}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1911422313
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 492620452578917989, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 492620452578917989, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_DynamicOccludee
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2365045499259157344, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.32951102
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.054
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.739593
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.192
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.033105418
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9994519
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 176.206
-      objectReference: {fileID: 0}
-    - target: {fileID: 5797263380814279586, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6575208146768292120, guid: c45b41dfa61f4b04f985bb954e79c920,
-        type: 3}
-      propertyPath: m_Name
-      value: Tanfana Statue
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c45b41dfa61f4b04f985bb954e79c920, type: 3}
 --- !u!1 &1916240363
 GameObject:
   m_ObjectHideFlags: 0
@@ -21058,5 +20970,3 @@ SceneRoots:
   - {fileID: 1705732191}
   - {fileID: 1223390332}
   - {fileID: 451773254}
-  - {fileID: 6564960897448568069}
-  - {fileID: 1911422313}
