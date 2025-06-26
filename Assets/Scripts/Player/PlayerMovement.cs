@@ -43,13 +43,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         PlayerActions.OnPlayerDead += DisableMovement;
-        GameStateActions.OnRespawnEnemies += EnableMovement;
+        PlayerActions.OnPlayerRespawn += EnableMovement;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerDead -= DisableMovement;
-        GameStateActions.OnRespawnEnemies -= EnableMovement;
+        PlayerActions.OnPlayerRespawn -= EnableMovement;
     }
 
     void Start()

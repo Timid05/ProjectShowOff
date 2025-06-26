@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
     }
     private void TanfanaChoice()
     {
+        EnemiesInfo.OnShowEnemies?.Invoke();
         if (OnAcceptTanfanaChoice != null) { OnAcceptTanfanaChoice(); }
         GameStateActions.OnChoiceMade?.Invoke(true);
     }
@@ -135,6 +136,7 @@ public class GameManager : MonoBehaviour
     [YarnCommand("Refused")]
     public void RefusedOffer()
     {
+        EnemiesInfo.OnShowEnemies?.Invoke();
         GameStateActions.OnChoiceMade?.Invoke(false);
     }
 

@@ -18,13 +18,13 @@ public class PlayerLook : MonoBehaviour
     private void OnEnable()
     {
         PlayerActions.OnPlayerDead += DisableLook;
-        GameStateActions.OnRespawnEnemies += EnableLook;
+        PlayerActions.OnPlayerRespawn += EnableLook;
     }
 
     private void OnDisable()
     {
         PlayerActions.OnPlayerDead -= DisableLook;
-        GameStateActions.OnRespawnEnemies -= EnableLook;
+        PlayerActions.OnPlayerRespawn -= EnableLook;
     }
 
     void Start()

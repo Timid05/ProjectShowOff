@@ -59,12 +59,16 @@ public class HellHoundFightBehavior : MonoBehaviour
     private void StartFight()
     {
         Disappear();
+        HellhoundActions.hellhoundFightOngoing = true;
         fightOngoing = true;
+        currentGrowls = 0;
+        currentFlashes = 0;
     }
 
     private void Disable()
     {
-        this.enabled = false;
+        Disappear();
+        fightOngoing = false;
     }
 
     private void AttackBehavior()
