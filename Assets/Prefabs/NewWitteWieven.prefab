@@ -240,6 +240,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Witte_wieven_Model
       objectReference: {fileID: 0}
+    - target: {fileID: 6259373091050615371, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: m_AgentTypeID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7068860275197580902, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
       propertyPath: drawPath
