@@ -23,8 +23,6 @@ public class TanfanaCamera : MonoBehaviour
     Quaternion startRot;
     bool moving = false;
 
-    //public static event Action<GameObject> OnTanfanaCameraSpawn;
-
     private void OnEnable()
     {
         CameraActions.OnCameraMovingToPlayer += SetToPlayer;
@@ -44,14 +42,7 @@ public class TanfanaCamera : MonoBehaviour
         playerRot = playerCam.rotation;
         tanfanaPos = tanfanaCam.position;
         tanfanaRot = tanfanaCam.rotation;
-        CameraActions.OnTanfanaCamInit?.Invoke(gameObject);
-        gameObject.SetActive(false);
-    }
-
-    void Start()
-    {
-        // Give the Tanfana camera to the camera operator
-        //if (OnTanfanaCameraSpawn != null && tanfanaCam != null) { OnTanfanaCameraSpawn(tanfanaCam.gameObject); }
+        CameraActions.OnTanfanaCamInit?.Invoke(tanfanaCam.gameObject);
     }
 
     void Update()

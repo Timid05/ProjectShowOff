@@ -11,11 +11,6 @@ public class CameraOperator : MonoBehaviour
     GameObject tanfanaCam;
     DialogueRunner dialogueRunner;
 
-    //private void Awake()
-    //{
-    //    TanfanaCamera.OnTanfanaCameraSpawn += GetTanfanaCamera;
-    //}
-
     private void OnEnable()
     {
         dialogueRunner = GetComponent<GameManager>()._dialogueRunner;
@@ -30,7 +25,7 @@ public class CameraOperator : MonoBehaviour
         dialogueRunner.onDialogueStart.RemoveListener(ChangeToTanfanaCam);
         dialogueRunner.onDialogueComplete.RemoveListener(MoveCamToPlayer);
         CameraActions.OnCameraBackOnPlayer -= ChangeToPlayerCam;
-        CameraActions.OnTanfanaCamInit += AssignTanfanaCam;
+        CameraActions.OnTanfanaCamInit -= AssignTanfanaCam;
     }
 
 
@@ -58,20 +53,9 @@ public class CameraOperator : MonoBehaviour
         }
     }
 
-    //void GetTanfanaCamera(GameObject pTanfanaCamera)
-    //{
-    //    Debug.Log("Camera given tanfana camera.");
-    //    tanfanaCam = pTanfanaCamera;
-    //}
-
-    //private void OnDestroy()
-    //{
-    //    TanfanaCamera.OnTanfanaCameraSpawn -= GetTanfanaCamera;
-    //}
-
     void AssignTanfanaCam(GameObject cam)
     {
-        Debug.Log("Camera given tanfana camera.");
+        Debug.Log("Camera given " + cam.name);
         tanfanaCam = cam;
     }
 }
