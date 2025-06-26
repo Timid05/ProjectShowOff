@@ -2,7 +2,7 @@ title: Tanfana
 position: -126,-211
 ---
 <<if PlayerHasItem("Golden Chalice") and visited("Tanfana")>>
-    <<ReturnChalice>>
+    <<ReturnChalice GameManager>>
 	<<playVoice Offering_Chalice>>
 	Tanfana: You brought my chalice. You are worthy, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound. #line:Offering_Chalice
 	<<jump ChaliceChoice>>
@@ -43,7 +43,7 @@ position: 206,-86
  <<set $tanfana_visited = true>>
  <<playVoice Player_Disagree>>
  Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this! #line:Player_Disagree
- <<Refused>>
+ <<Refused GameManager>>
  <<stop>>
 //  <<jump PostTanfanaChoice>>
 ===

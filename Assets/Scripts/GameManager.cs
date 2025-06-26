@@ -41,10 +41,6 @@ public class GameManager : MonoBehaviour
         _dialogueRunner.AddFunction<string, bool>("GoToNPC", GoToNPC);
         _dialogueRunner.AddFunction<string, bool>("GoToDialogue", GoToDialogue);
         _dialogueRunner.AddCommandHandler("TanfanaChoice", TanfanaChoice);
-        
-
-        _dialogueRunner.AddCommandHandler("ReturnChalice", ReturnChalice);
-        _dialogueRunner.AddCommandHandler("Refused", RefusedOffer);
 
         // Send the game manager to scripts that need it.
         if (OnGiveGManager != null) { OnGiveGManager(this); }
@@ -129,7 +125,7 @@ public class GameManager : MonoBehaviour
         CreateNPCDict.OnDictCreated -= ReceiveNPCs;
     }
 
-    //[YarnCommand("ReturnChalice")]
+    [YarnCommand("ReturnChalice")]
     public void ReturnChalice()
     {
         Debug.Log("Yarn called ReturnChalice");
