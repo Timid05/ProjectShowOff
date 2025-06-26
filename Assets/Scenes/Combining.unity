@@ -12710,7 +12710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1349524819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13948,6 +13948,16 @@ PrefabInstance:
       propertyPath: footstepsSoundSource
       value: 
       objectReference: {fileID: 367832132}
+    - target: {fileID: -996891249125717969, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: mouseXClamp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -996891249125717969, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: mouseYClamp
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1379046709783542731, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: terrainFootstepCollections.Array.size
@@ -16662,7 +16672,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10
     distanceFadeEnd: 40
-    textureOffset: {x: 0, y: 0, z: 0}
+    textureOffset: {x: -0, y: -0, z: -0}
     falloffMode: 0
     maskMode: 0
     materialMask: {fileID: 0}
@@ -20855,6 +20865,11 @@ PrefabInstance:
     - target: {fileID: 4061748099052865570, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
       propertyPath: pounceDistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061748099052865570, guid: 10c694909d2549643a722386761ec60d,
+        type: 3}
+      propertyPath: minGrowlInterval
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4980957781335904777, guid: 10c694909d2549643a722386761ec60d,
