@@ -3509,10 +3509,16 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 973790173}
+    - target: {fileID: 639500905868177968, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: decoyPrefab
+      value: 
+      objectReference: {fileID: 8442052949884401265, guid: b016ea47361b9234f92cbc1214b5039f,
+        type: 3}
     - target: {fileID: 1279113761399429368, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
       propertyPath: startState
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1279113761399429368, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
@@ -6290,10 +6296,16 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 973790173}
+    - target: {fileID: 639500905868177968, guid: dec7389aa2302fc41801d63d039b32c0,
+        type: 3}
+      propertyPath: decoyPrefab
+      value: 
+      objectReference: {fileID: 8442052949884401265, guid: b016ea47361b9234f92cbc1214b5039f,
+        type: 3}
     - target: {fileID: 1279113761399429368, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
       propertyPath: startState
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1279113761399429368, guid: dec7389aa2302fc41801d63d039b32c0,
         type: 3}
@@ -6832,7 +6844,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -6858,8 +6870,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707087941}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
-  m_LocalPosition: {x: 1.79, y: 2.246, z: -3.223249}
+  m_LocalRotation: {x: 0, y: 0.9997647, z: 0, w: 0.021694584}
+  m_LocalPosition: {x: 7.1214547, y: 2.554637, z: 15.469643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
