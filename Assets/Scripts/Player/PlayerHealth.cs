@@ -39,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("Damage");
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         PlayerActions.OnHealthUpdated?.Invoke(maxHealth, currentHealth);
