@@ -4505,7 +4505,7 @@ MonoBehaviour:
   m_text: Diva down
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c67328a7d5bb5d341915f9ce6917c0a0, type: 2}
-  m_sharedMaterial: {fileID: -6264418084866494523, guid: c67328a7d5bb5d341915f9ce6917c0a0,
+  m_sharedMaterial: {fileID: 2412661130303322489, guid: c67328a7d5bb5d341915f9ce6917c0a0,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7408,7 +7408,7 @@ MonoBehaviour:
   m_text: Health 0/0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c67328a7d5bb5d341915f9ce6917c0a0, type: 2}
-  m_sharedMaterial: {fileID: -6264418084866494523, guid: c67328a7d5bb5d341915f9ce6917c0a0,
+  m_sharedMaterial: {fileID: 2412661130303322489, guid: c67328a7d5bb5d341915f9ce6917c0a0,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7812,6 +7812,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hellhound vision Custom Pass
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642243811429945409, guid: 0a3571ea1a7543447bf7b9003eb9fa2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8071713094798483043, guid: 0a3571ea1a7543447bf7b9003eb9fa2e,
         type: 3}
@@ -11762,7 +11767,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.35
+  m_fontSize: 53.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13928,12 +13933,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b7a4f9a6fe5451f48a19326b13b548a9, type: 3}
   - {fileID: 8300000, guid: e72f35d499dd6ee429aa664788a63fe1, type: 3}
   - {fileID: 8300000, guid: 42d3d2c8abcd047448132a7de69e6d75, type: 3}
+  audioClipsJumpscare: []
   audioClipsHH:
   - {fileID: 8300000, guid: b7a4f9a6fe5451f48a19326b13b548a9, type: 3}
   - {fileID: 8300000, guid: e72f35d499dd6ee429aa664788a63fe1, type: 3}
   - {fileID: 8300000, guid: 42d3d2c8abcd047448132a7de69e6d75, type: 3}
   - {fileID: 8300000, guid: cbae8c8fb0cb6554d8ce0754a4fd304f, type: 3}
   - {fileID: 8300000, guid: c473b50bf7331fe4886f1c54e68ff53f, type: 3}
+  audioClipHint: {fileID: 0}
 --- !u!82 &1514147031 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1825435711988793621, guid: e1c8016e04d814e47afeedee62366a75,
