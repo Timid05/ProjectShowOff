@@ -17,6 +17,8 @@ public class BuildingSpawner : MonoBehaviour
     List<GameObject> removerAreas;
     bool treesCleared = false;
 
+    List<GameObject> chalices;
+
     public static event Action<Vector3> OnBuildingSpawned;
     public static event Action OnTreesCleared;
 
@@ -29,6 +31,7 @@ public class BuildingSpawner : MonoBehaviour
     {
         areaPathObjects = new Dictionary<GameObject, List<GameObject>>();
         removerAreas = new List<GameObject>();
+        chalices = new List<GameObject>();
     }
 
     private void Update()
@@ -42,6 +45,23 @@ public class BuildingSpawner : MonoBehaviour
                 if(areaPathObject.Value.Count != 0) { PlaceObject(areaPathObject.Value, areaPathObject.Key); }
                 // Allows trees to be cleared even if one of the areas has no main path objects.
                 else { emptyAreas++; }
+            }
+
+
+            // Once all the buildings have spawned, we can choose which chalice will be displayed.
+            if(chalices.Count != 0)
+            {
+                // We remove a random chalice from the list, which is the one that will stay.
+                int randomIndex = UnityEngine.Random.Range(0, chalices.Count);
+                chalices.RemoveAt(randomIndex);
+
+                // The remaining chalices in the list are deleted.
+                for(int i = chalices.Count - 1; i >= 0; i--)
+                {
+                    // Need to use destroy immediate so that it can delete the chalice, because it's an asset.
+                    Destroy(chalices[i]);
+                    chalices.RemoveAt(i);
+                }
             }
 
             // Clear the list so, this only happens once.
@@ -117,7 +137,15 @@ public class BuildingSpawner : MonoBehaviour
                 Quaternion spawnRotation = Quaternion.Euler(Vector3.Scale(lookRotation, rotationMask));
 
                 //Debug.LogFormat("Spawning at waypoint {0} with rotation {1}", closestWaypoint, spawnRotation);
-                Instantiate(spawnObject, closestWaypoint, spawnRotation, gameObject.transform);
+                GameObject spawnedObject = Instantiate(spawnObject, closestWaypoint, spawnRotation, gameObject.transform);
+
+                // Check if the spawned object has a chalice.
+                for (int i = 0; i < spawnedObject.transform.childCount; i++)
+                {
+                    GameObject child = spawnedObject.transform.GetChild(i).gameObject;
+                    // If the buildings child has the pickup tag, that means it's the chalice.
+                    if (child.CompareTag("PickUpObject")){ chalices.Add(child); }
+                }
 
                 SpawnRemoverArea(closestWaypoint);
                 return;
