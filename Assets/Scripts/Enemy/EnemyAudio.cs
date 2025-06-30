@@ -34,7 +34,7 @@ public class EnemyAudio : MonoBehaviour
 
     private void Awake()
     {
-        source = transform.parent.GetComponent<AudioSource>();
+        source = transform.parent.gameObject.GetComponent<AudioSource>();
     }
 
     public void PlayClip(AudioClip clip)

@@ -90,10 +90,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b545462508d16f344862fa4f42e90b57,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 521079597118148033}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b545462508d16f344862fa4f42e90b57,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7097284942413105521}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b545462508d16f344862fa4f42e90b57,
         type: 3}
@@ -123,6 +119,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4094123062292089567}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b545462508d16f344862fa4f42e90b57,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6259373091050615371}
   m_SourcePrefab: {fileID: 100100000, guid: b545462508d16f344862fa4f42e90b57, type: 3}
 --- !u!1 &3407691922799009736 stripped
 GameObject:
@@ -130,28 +130,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2561391974832284313}
   m_PrefabAsset: {fileID: 0}
---- !u!195 &521079597118148033
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407691922799009736}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &7097284942413105521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8b24cb0dfdd774b839b55b05c1615e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decoyPrefab: {fileID: 789435149702868870, guid: b016ea47361b9234f92cbc1214b5039f,
+  decoyPrefab: {fileID: 8442052949884401265, guid: b016ea47361b9234f92cbc1214b5039f,
     type: 3}
   decoySpawnCount: 4
   minSpawnRadius: 15
@@ -213,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startState: 0
-  attackDamage: 0
+  attackDamage: 2
   enragedAttackRange: 20
   decoyDestroySpeedIncrease: 2
   targetDisplacementRange: 10
@@ -301,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followType: 0
   target: {fileID: 0}
-  navmeshAgent: {fileID: 521079597118148033}
+  navmeshAgent: {fileID: 6259373091050615371}
   path:
   - {x: -10.6330185, y: 0, z: 28.296873}
   - {x: -12.668561, y: 0, z: 15.804293}
@@ -503,3 +481,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!195 &6259373091050615371
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407691922799009736}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
