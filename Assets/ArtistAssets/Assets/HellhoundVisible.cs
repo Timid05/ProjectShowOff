@@ -33,7 +33,7 @@ public class DistanceTriggerWithCustomPass : MonoBehaviour
     {
         Debug.Log($"{targetObject.name} is now within range. Enabling custom pass.");
         customPassToToggle.enabled = true;
-        await Task.Delay(10000);
+        await Task.Delay(4000);
         customPassToToggle.enabled = false;
     }
 
