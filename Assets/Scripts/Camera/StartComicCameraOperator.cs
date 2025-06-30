@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,15 +9,19 @@ public class StartComicCameraOperator : MonoBehaviour
 {
     CinemachineBrain brain;
     [SerializeField]
-    string mainSceneName;
+    string mainSceneName, menuSceneName;
     [SerializeField]
     GameObject[] cameras;
     [SerializeField]
     float transitionTime = 1f;
     [SerializeField]
     float waitTime = 1f;
+    [SerializeField]
+    bool isStartComic = true;
     int currentCamera = 0;
     float lastSwitchTime = 0f;
+    bool running = false;
+    float startTime = 0f;
 
     private void Awake()
     {
@@ -28,13 +33,48 @@ public class StartComicCameraOperator : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+
+
+    void SceneLoaded(Scene scene, LoadSceneMode mode) 
+    {
+        running = true;
+        startTime = Time.time;
+    }
+
     private void Update()
     {
-        if (Time.time - lastSwitchTime >= waitTime)
+        if (lastSwitchTime == 0f && Time.time - startTime >= waitTime && running)
+        {
+            cameras[currentCamera].SetActive(false);
+            cameras[currentCamera + 1].SetActive(true);
+            lastSwitchTime = Time.time;
+            currentCamera++;
+            return;
+        }
+
+        if (lastSwitchTime != 0f && Time.time - lastSwitchTime >= waitTime && running)
         {
             if (currentCamera == cameras.Length - 1)
             {
-                MoveToMainScene();
+                if (isStartComic)
+                {
+                    MoveToMainScene();
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    MoveToMainMenu();
+                }
                 return;
             }
             cameras[currentCamera].SetActive(false);
@@ -47,5 +87,10 @@ public class StartComicCameraOperator : MonoBehaviour
     void MoveToMainScene()
     {
         SceneManager.LoadScene(mainSceneName);
+    }
+
+    void MoveToMainMenu()
+    {
+        SceneManager.LoadScene(menuSceneName);
     }
 }

@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combining.unity
     guid: 9918deac13362384392a38cef05c025c
+  - enabled: 1
+    path: Assets/Scenes/End Comic Bad.unity
+    guid: 8b1ddba2016960946839ce6d2712448a
+  - enabled: 1
+    path: Assets/Scenes/End Comic Good.unity
+    guid: ef2697c5bb993b64a82e25bda80f38c5
   m_configObjects: {}

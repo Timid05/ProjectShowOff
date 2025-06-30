@@ -1673,7 +1673,7 @@ MonoBehaviour:
   pounceDistance: 7
   chargeSpeed: 8
   growlsBeforeAttacking: 0
-  flashesUntilKilled: 2
+  flashesUntilKilled: 1
   attackDamage: 4
 --- !u!114 &350177683
 MonoBehaviour:
@@ -3528,6 +3528,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: maxStamina
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: -8073447746864634096, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: walkSteps.Array.size
@@ -12545,7 +12550,7 @@ PrefabInstance:
     - target: {fileID: 6553987981058983571, guid: 819695a7358cb954db3e047285428a38,
         type: 3}
       propertyPath: flashlightCooldownTime
-      value: 20
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6738360804826417328, guid: 819695a7358cb954db3e047285428a38,
         type: 3}
