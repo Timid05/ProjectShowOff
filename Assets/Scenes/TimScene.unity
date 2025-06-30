@@ -3549,6 +3549,16 @@ PrefabInstance:
       propertyPath: sprintSteps.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 829231066916244761, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: maxDelay
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 829231066916244761, guid: e1c8016e04d814e47afeedee62366a75,
+        type: 3}
+      propertyPath: minDelay
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1568154070327679794, guid: e1c8016e04d814e47afeedee62366a75,
         type: 3}
       propertyPath: _light

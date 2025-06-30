@@ -28,7 +28,10 @@ public class PlayerRandomVoicelines : MonoBehaviour
             float delay = Random.Range(minDelay, maxDelay);
             yield return new WaitForSeconds(delay);
 
-            PlayRandomVoiceLine();
+            if (!GameStateActions.inDialogue && !HellhoundActions.hellhoundFightOngoing && !GameStateActions.playerDead)
+            {
+                PlayRandomVoiceLine();
+            }
         }
     }
 
@@ -37,10 +40,8 @@ public class PlayerRandomVoicelines : MonoBehaviour
         if (audioClips.Length == 0) return;
 
         AudioClip clip = audioClips[Random.Range(0, audioClips.Length)];
-        SubtitleHandler.OnPlayAudioWithSubtitles?.Invoke(clip);
-
-        //audioSource.clip = clip;
-        //audioSource.Play();
+        audioSource.clip = clip;
+        audioSource.Play();
         //Debug.Log("Random Voiceline has played");
     }
 }
