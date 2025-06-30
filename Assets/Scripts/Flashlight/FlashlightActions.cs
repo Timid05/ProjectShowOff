@@ -71,7 +71,7 @@ public class FlashlightActions : MonoBehaviour
 
         if (!flashlightCooldownActive && available)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !flashbangActive)
             {
                 //Play Sound
                 audioSource.PlayOneShot(flashlightSound[UnityEngine.Random.Range(0, flashlightSound.Length)]);
@@ -79,10 +79,7 @@ public class FlashlightActions : MonoBehaviour
                 ChangeFlashlightStatus();
             }
 
-            //Debug option. REMOVE later.
-            if (Input.GetKeyDown(KeyCode.T)) { HolyFlashlight(); }
-
-            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            else if (Input.GetKeyDown(KeyCode.Mouse1) && !flashbangActive)
             {
                 light.enabled = true;
 

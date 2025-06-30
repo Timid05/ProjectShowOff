@@ -65,6 +65,7 @@ public class StartComicCameraOperator : MonoBehaviour
         {
             if (currentCamera == cameras.Length - 1)
             {
+                LoadingScreen.OnLoadingScene?.Invoke();
                 if (isStartComic)
                 {
                     MoveToMainScene();
