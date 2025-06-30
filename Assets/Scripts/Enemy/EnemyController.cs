@@ -52,7 +52,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnEnable()
     {
-        EnemiesInfo.OnEnemyObjectRemoved += DestroyEnemy;
         EnemiesInfo.OnDecoyHit += DecoyDestroyed;
         GameStateActions.OnChoiceMade += ChoiceMade;
     }
@@ -60,7 +59,6 @@ public class EnemyController : MonoBehaviour
     private void OnDisable()
     {
         EnemiesInfo.OnDecoyHit -= DecoyDestroyed;
-        EnemiesInfo.OnEnemyObjectRemoved -= DestroyEnemy;
         GameStateActions.OnChoiceMade -= ChoiceMade;
     }
 
@@ -88,15 +86,6 @@ public class EnemyController : MonoBehaviour
     {
         followPath.target = target;
     }
-
-    public void DestroyEnemy(GameObject destroyed)
-    {
-        if (destroyed == gameObject)
-        {
-            gameObject.SetActive(false);
-        }
-    }
-
 
     public void UpdateSpeeds()
     {
