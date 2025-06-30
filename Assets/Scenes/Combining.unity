@@ -1707,6 +1707,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewWitteWieven (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 354145799603937230, guid: aea234967dc25ae4897ea985d4a3cd14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4432754177947467759, guid: aea234967dc25ae4897ea985d4a3cd14,
         type: 3}
       propertyPath: target
@@ -5399,6 +5404,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -8.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2637961421462770983, guid: aea234967dc25ae4897ea985d4a3cd14,
+        type: 3}
+      propertyPath: attackDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4432754177947467759, guid: aea234967dc25ae4897ea985d4a3cd14,
         type: 3}
       propertyPath: target
@@ -6615,6 +6625,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewWitteWieven
       objectReference: {fileID: 0}
+    - target: {fileID: 2637961421462770983, guid: aea234967dc25ae4897ea985d4a3cd14,
+        type: 3}
+      propertyPath: attackDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4432754177947467759, guid: aea234967dc25ae4897ea985d4a3cd14,
         type: 3}
       propertyPath: target
@@ -6785,6 +6800,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 5.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637961421462770983, guid: aea234967dc25ae4897ea985d4a3cd14,
+        type: 3}
+      propertyPath: attackDamage
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4432754177947467759, guid: aea234967dc25ae4897ea985d4a3cd14,
         type: 3}
@@ -8264,7 +8284,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.65
+  m_fontSize: 56.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -14307,7 +14327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press [E]
+  m_text: '[E] Interact'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c67328a7d5bb5d341915f9ce6917c0a0, type: 2}
   m_sharedMaterial: {fileID: 0}
@@ -19307,6 +19327,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewWitteWieven (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2637961421462770983, guid: aea234967dc25ae4897ea985d4a3cd14,
+        type: 3}
+      propertyPath: attackDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4432754177947467759, guid: aea234967dc25ae4897ea985d4a3cd14,
         type: 3}
       propertyPath: target
@@ -20850,17 +20875,17 @@ PrefabInstance:
     - target: {fileID: 4061748099052865570, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
       propertyPath: chargeSpeed
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4061748099052865570, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
       propertyPath: attackDamage
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4061748099052865570, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
       propertyPath: growlDistance
-      value: 35
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4061748099052865570, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
