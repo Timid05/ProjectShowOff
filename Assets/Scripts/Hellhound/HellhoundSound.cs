@@ -12,7 +12,7 @@ public class HellhoundSound : MonoBehaviour
     [SerializeField]
     AudioClip[] attackClips;
     [SerializeField]
-    AudioClip flashedClip;
+    AudioClip[] flashedClips;
     [SerializeField]
     AudioClip deathClip;
 
@@ -70,7 +70,8 @@ public class HellhoundSound : MonoBehaviour
 
     void PlayFlashed()
     {
-        source.PlayOneShot(flashedClip);
+        int randomIndex = Random.Range(0, attackClips.Length);
+        source.PlayOneShot(flashedClips[randomIndex]);
     }
 
     void PlayDeath()

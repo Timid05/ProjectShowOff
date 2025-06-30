@@ -1003,8 +1003,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8e0db44f81c1598418b2894fe9a9ba50, type: 3}
   - {fileID: 8300000, guid: 11315154b857e284b97f747e58e37abf, type: 3}
   - {fileID: 8300000, guid: 1990d6011090d734db7521bc2bf16ea4, type: 3}
-  flashedClip: {fileID: 8300000, guid: 66ce2d54362ceba45b14185b4f1d5666, type: 3}
-  deathClip: {fileID: 8300000, guid: 35ca10ac038aa4a418314662b868a24f, type: 3}
+  flashedClips:
+  - {fileID: 8300000, guid: 631f958a6d37a274d8194ba74c7ccdeb, type: 3}
+  - {fileID: 8300000, guid: 151efeac254c5c949adfc610035b9492, type: 3}
+  - {fileID: 8300000, guid: 055e175ba67ca6846b7956bf7bf660ef, type: 3}
+  - {fileID: 8300000, guid: af3c5e8036378cc4fa78244b6da7ccf8, type: 3}
+  deathClip: {fileID: 8300000, guid: 280eb4c0614076842a86f10a359ce678, type: 3}
 --- !u!114 &8723303215341705749
 MonoBehaviour:
   m_ObjectHideFlags: 0
