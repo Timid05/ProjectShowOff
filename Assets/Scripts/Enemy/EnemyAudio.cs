@@ -76,5 +76,4 @@ public class EnemyAudio : MonoBehaviour
             source.PlayOneShot(spawnClips[Random.Range(0, spawnClips.Length)]);
         }
     }
-
 }
