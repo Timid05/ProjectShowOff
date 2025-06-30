@@ -10,12 +10,14 @@ public class EnemyEnabler : MonoBehaviour
     [SerializeField]
     float audioWaitTime = 2f;
     bool waitingOnAudio = false;
+    bool gamePaused = false;
 
     private void OnEnable()
     {
         EnemiesInfo.OnHideEnemies += HideEnemy;
         EnemiesInfo.OnShowEnemies += ShowEnemy;
         EnemiesInfo.OnEnemyObjectRemoved += RemovedEnemy;
+        GameStateActions.OnGamePause += Paused;
     }
 
     private void OnDisable()
@@ -23,6 +25,7 @@ public class EnemyEnabler : MonoBehaviour
         EnemiesInfo.OnHideEnemies -= HideEnemy;
         EnemiesInfo.OnShowEnemies -= ShowEnemy;
         EnemiesInfo.OnEnemyObjectRemoved -= RemovedEnemy;
+        GameStateActions.OnGamePause -= Paused;
     }
 
     private void Awake()
@@ -30,6 +33,23 @@ public class EnemyEnabler : MonoBehaviour
         enemy = transform.GetChild(0).gameObject;
         source = gameObject.GetComponent<AudioSource>();
         source.enabled = false;
+    }
+
+    void Paused(bool paused)
+    {
+       
+        if (paused)
+        {
+            Debug.Log("audio pause");
+            source.enabled = false;
+            gamePaused = true;
+        }
+        else
+        {
+            Debug.Log("audio unpause");
+            source.enabled = true;
+            gamePaused = false;
+        }
     }
 
     void RemovedEnemy(GameObject removed)
@@ -72,7 +92,7 @@ public class EnemyEnabler : MonoBehaviour
             source.enabled = false;
         }
 
-        if (enemy.activeSelf && !source.enabled)
+        if (enemy.activeSelf && !source.enabled && !gamePaused)
         {
             source.enabled = true;
         }

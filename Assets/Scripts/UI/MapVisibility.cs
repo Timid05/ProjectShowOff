@@ -6,6 +6,8 @@ using System;
 public class MapVisibility : MonoBehaviour
 {
     [SerializeField] KeyCode mapButton;
+    [SerializeField]
+    float openingTimer = 15f;
     bool mapAvailable = true;
     public static event Action<bool> OnMapButtonPressed;
 
@@ -17,6 +19,7 @@ public class MapVisibility : MonoBehaviour
     private void Start()
     {
         EnemiesInfo.DisableEnemies();
+        StartCoroutine(MapOpenTimer());
     }
 
     private void OnDisable()
@@ -58,5 +61,13 @@ public class MapVisibility : MonoBehaviour
         // Makes map unavailable when talking to characters and vice versa.
         mapAvailable = !characterTalking;
         if(characterTalking) { ChangeChildrenVisibility(false); }
+    }
+
+    IEnumerator MapOpenTimer()
+    {
+        yield return new WaitForSeconds(openingTimer);
+        GameStateActions.OnFirstMapOpen?.Invoke();
+        GameStateActions.mapOpened = true;
+        EnemiesInfo.EnableEnemies();
     }
 }
