@@ -37,9 +37,10 @@ public class PlayerRandomVoicelines : MonoBehaviour
         if (audioClips.Length == 0) return;
 
         AudioClip clip = audioClips[Random.Range(0, audioClips.Length)];
+        SubtitleHandler.OnPlayAudioWithSubtitles?.Invoke(clip);
 
-        audioSource.clip = clip;
-        audioSource.Play();
-        Debug.Log("Random Voiceline has played");
+        //audioSource.clip = clip;
+        //audioSource.Play();
+        //Debug.Log("Random Voiceline has played");
     }
 }
