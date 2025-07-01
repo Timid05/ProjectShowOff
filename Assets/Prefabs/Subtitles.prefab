@@ -185,28 +185,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSubtitles:
     keys:
-    - {fileID: 8300000, guid: eb6420d074013874c859cdd9e9928dd5, type: 3}
-    - {fileID: 8300000, guid: eb623f2a1f6839a4c8073f77ce5e9a3c, type: 3}
-    - {fileID: 8300000, guid: e080cfb51f1388f46ae57041b3ab5dfe, type: 3}
-    - {fileID: 8300000, guid: 6115b992a2ff87a44bb218064c9137f0, type: 3}
-    - {fileID: 8300000, guid: 0bf709ea62b96674aaffc048fa56a997, type: 3}
-    - {fileID: 8300000, guid: d2bb1fe521c58f74db2220b1d2807eb4, type: 3}
-    - {fileID: 8300000, guid: 28364f2a1a8233043aa2cb6f73c9eaf0, type: 3}
-    - {fileID: 8300000, guid: 159c477ad861f4349a6ade95a1f38942, type: 3}
-    - {fileID: 8300000, guid: 629aad40206d23a459769267b1c7a77a, type: 3}
-    - {fileID: 8300000, guid: e65ab313e691eff4ca73f965d79e63d9, type: 3}
-    - {fileID: 8300000, guid: e65ab313e691eff4ca73f965d79e63d9, type: 3}
+    - {fileID: 8300000, guid: 605b99e2578b1004e92e669dd3a92ec0, type: 3}
+    - {fileID: 8300000, guid: 2aeff9b72ac113a42acf388a4ac103c3, type: 3}
+    - {fileID: 8300000, guid: d80476c5542cad043aa925e58fdc772d, type: 3}
+    - {fileID: 8300000, guid: 188458f7e5fb16a4a8cea4c3d4d2c476, type: 3}
+    - {fileID: 8300000, guid: 94192dcc931648a49aad58a6c8b0bfc4, type: 3}
+    - {fileID: 8300000, guid: 2a086c8725af83d4daf72924b440f6cc, type: 3}
+    - {fileID: 8300000, guid: 62dd7bdc0c721594c8cfe94a178da88d, type: 3}
+    - {fileID: 8300000, guid: 43be105614f45cb41bff3808f759e101, type: 3}
     values:
-    - I'm eating in this forest ngl
-    - This hoe is cold
-    - Eugh bitch wtf
-    - Oh my god that's so cool
-    - I hate Romanians
-    - Tanfana kinda bad ngl
-    - mmmmfjdkgkdgffhhfhfhf
-    - I hope my gets don't think I went to get some milk
-    - Wriothesley is so cunt
-    - Teehee
-    - Teehee
+    - What is that sound?
+    - A Dutch Shepherd..? No, the red eyes... that's a Hellhound!
+    - No! Why is this happening!... The Hellhound is an omen that someone close to
+      me will die.
+    - My wife, she's the only one I have left... I cannot lose her!
+    - I'll swear I'll kill you- you monster!
+    - What have I done?! My wife...
+    - Are you okay?! What happened?
+    - Something's coming?! Oh my flashlight! If I use it on full power can I scare
+      it away?
   audioSource: {fileID: 0}
   textField: {fileID: 8950062481777491763}
