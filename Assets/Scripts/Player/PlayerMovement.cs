@@ -107,10 +107,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (staminaSoundSource != null)
         {
-            if (currentStamina <= maxStamina / 2)
+            if (currentStamina <= maxStamina / 3)
             {
                 float normalizedStamina = Mathf.InverseLerp(0, maxStamina / 2f, currentStamina);
-                float volume = Mathf.Lerp(1f, 0f, normalizedStamina);
+                float volume = Mathf.Lerp(0.6f, 0f, normalizedStamina);
                 staminaSoundSource.volume = volume;
             }
             else

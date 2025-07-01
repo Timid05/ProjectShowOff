@@ -4,6 +4,8 @@ using Yarn.Unity;
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         dialogueAS = _dialogueRunner.GetComponentInChildren<AudioSource>();
+       
 
         _dialogueRunner.AddFunction<string, bool>("PlayerMetNPC", PlayerMetNPC);
         _dialogueRunner.AddFunction<string, bool>("PlayerHasItem", PlayerHasItem);
@@ -44,6 +47,16 @@ public class GameManager : MonoBehaviour
 
         // Send the game manager to scripts that need it.
         if (OnGiveGManager != null) { OnGiveGManager(this); }
+    }
+
+    private void OnEnable()
+    {
+        HellhoundActions.OnHellhoundDeath += ReachedEnd;
+    }
+
+    private void OnDisable()
+    {
+        HellhoundActions.OnHellhoundDeath -= ReachedEnd;
     }
 
     public GameObject GetPlayer()
@@ -118,6 +131,7 @@ public class GameManager : MonoBehaviour
         EnemiesInfo.OnShowEnemies?.Invoke();
         if (OnAcceptTanfanaChoice != null) { OnAcceptTanfanaChoice(); }
         GameStateActions.OnChoiceMade?.Invoke(true);
+        GameStateActions.acceptedChoice = true;
     }
 
     private void OnDestroy()
@@ -138,6 +152,7 @@ public class GameManager : MonoBehaviour
     {
         EnemiesInfo.OnShowEnemies?.Invoke();
         GameStateActions.OnChoiceMade?.Invoke(false);
+        GameStateActions.acceptedChoice = false;
     }
 
     private void PlayVoiceClip(string clipName)
@@ -169,6 +184,33 @@ public class GameManager : MonoBehaviour
         dialogueAS.clip = clip;
         dialogueAS.Play();
         Debug.Log("Playing voice clip (delayed): " + clip.name);
+    }
+
+    void ReachedEnd()
+    {
+        if (GameStateActions.acceptedChoice)
+        {
+            StartCoroutine(WaitForComic(true));
+        }
+        else
+        {
+            StartCoroutine(WaitForComic(false));
+        }
+    }
+
+    IEnumerator WaitForComic(bool accepted)
+    {
+        yield return new WaitForSeconds(5f);
+        if (accepted)
+        {         
+            SceneManager.LoadScene("End Comic Bad");
+            GameStateActions.Reset();
+        }
+        else
+        {
+            SceneManager.LoadScene("End Comic Good");
+            GameStateActions.Reset();
+        }
     }
 
 }

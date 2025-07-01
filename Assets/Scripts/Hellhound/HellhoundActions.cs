@@ -12,5 +12,6 @@ public static class HellhoundActions
     public static Action<bool> OnHellhoundFlashable;
     public static Action OnHellhoundFlashed;
     public static Action OnHellhoundDeath;
+    public static Action OnHellhoundVisible;
     public static bool hellhoundFightOngoing = false;
 }
