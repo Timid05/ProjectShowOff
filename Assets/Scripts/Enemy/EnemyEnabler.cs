@@ -44,10 +44,13 @@ public class EnemyEnabler : MonoBehaviour
             source.enabled = false;
             gamePaused = true;
         }
-        else
-        {
-            Debug.Log("audio unpause");
-            source.enabled = true;
+        else 
+        {        
+            if (GameStateActions.mapOpened)
+            {
+                Debug.Log("audio unpause");
+                source.enabled = true;
+            }
             gamePaused = false;
         }
     }

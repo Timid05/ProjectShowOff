@@ -43,5 +43,6 @@ public class PlayerDamagedSound : MonoBehaviour
     void PlayEnemyHint()
     {
         SubtitleHandler.OnPlayAudioWithSubtitles?.Invoke(audioClipHint);
+        PlayerActions.OnDisableRandomPlayerSound?.Invoke(audioClipHint.length + 2f);
     }
 }
