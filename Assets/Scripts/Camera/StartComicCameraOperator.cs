@@ -26,9 +26,11 @@ public class StartComicCameraOperator : MonoBehaviour
     float lastSwitchTime = 0f;
     bool running = false;
     float startTime = 0f;
+    bool loading = false;
 
     private void Awake()
     {
+       
         brain = GetComponent<CinemachineBrain>();
         brain.m_DefaultBlend.m_Time = transitionTime;
         if (cameras.Length > 0)
@@ -66,6 +68,7 @@ public class StartComicCameraOperator : MonoBehaviour
 
     private void Update()
     {
+        if (loading) { return; }
         if (lastSwitchTime == 0f && Time.time - startTime >= GetCurrentClipLength() + additionalWaitTime && running)
         {
             cameras[currentCamera].SetActive(false);
@@ -80,7 +83,6 @@ public class StartComicCameraOperator : MonoBehaviour
         {
             if (currentCamera == cameras.Length - 1)
             {
-                LoadingScreen.OnLoadingScene?.Invoke();
                 if (isStartComic)
                 {
                     MoveToMainScene();
@@ -101,13 +103,17 @@ public class StartComicCameraOperator : MonoBehaviour
         }
     }
 
+
+
     void MoveToMainScene()
     {
-        SceneManager.LoadScene(mainSceneName);
+        loading = true;
+        LoadingScreen.OnLoadingScene?.Invoke("Combining");
     }
 
     void MoveToMainMenu()
     {
-        SceneManager.LoadScene(menuSceneName);
+        loading = true;
+        LoadingScreen.OnLoadingScene?.Invoke("MainMenuScene");
     }
 }

@@ -28,7 +28,7 @@ public class ClosestObjectDistance : MonoBehaviour
 
         // Use intensity to trigger your custom pass, e.g.
         // CustomPassController.SetIntensity(intensity);
-        Debug.Log($"Intensity based on closest {targetTag}: {intensity * 100f}%");
+        //Debug.Log($"Intensity based on closest {targetTag}: {intensity * 100f}%");
     }
 
     GameObject FindClosestWithTag(string tag)
