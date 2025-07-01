@@ -7,9 +7,7 @@ using UnityEditor;
 public class FollowPathEditor : Editor
 {
     public override void OnInspectorGUI()
-    {
-        
-
+    {       
         FollowPath component = target as FollowPath;
 
         if (component.navmeshAgent == null)

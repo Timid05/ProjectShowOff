@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyEnabler : MonoBehaviour
 {
     GameObject enemy;
     AudioSource source;
+    NavMeshAgent agent;
     [SerializeField]
     float audioWaitTime = 2f;
     bool waitingOnAudio = false;
@@ -32,7 +34,9 @@ public class EnemyEnabler : MonoBehaviour
     {
         enemy = transform.GetChild(0).gameObject;
         source = gameObject.GetComponent<AudioSource>();
+        agent = GetComponent<NavMeshAgent>();
         source.enabled = false;
+        agent.isStopped = true;
     }
 
     void Paused(bool paused)
@@ -41,17 +45,19 @@ public class EnemyEnabler : MonoBehaviour
         if (paused)
         {
             //Debug.Log("audio pause");
+            agent.isStopped = true;
             source.enabled = false;
             gamePaused = true;
         }
         else 
         {        
-            if (GameStateActions.mapOpened)
+            if (GameStateActions.mapOpened && EnemiesInfo.EnemyActive(transform.GetChild(0).gameObject))
             {
                // Debug.Log("audio unpause");
                 source.enabled = true;
+                agent.isStopped = false;
             }
-            gamePaused = false;
+            gamePaused = false;   
         }
     }
 
@@ -69,6 +75,7 @@ public class EnemyEnabler : MonoBehaviour
         {
             enemy?.SetActive(true);
             source.enabled = true;
+            agent.isStopped = false;
         }
 
     }
@@ -76,6 +83,7 @@ public class EnemyEnabler : MonoBehaviour
     void HideEnemy()
     {
         enemy?.SetActive(false);
+        agent.isStopped = true;
         StartCoroutine(WaitForAudio());
     }
 
@@ -93,11 +101,13 @@ public class EnemyEnabler : MonoBehaviour
         if (!EnemiesInfo.EnemyActive(enemy) && !waitingOnAudio)
         {
             source.enabled = false;
+            agent.isStopped = true;
         }
 
         if (enemy.activeSelf && !source.enabled && !gamePaused)
         {
             source.enabled = true;
+            agent.isStopped = false;
         }
     }
 }

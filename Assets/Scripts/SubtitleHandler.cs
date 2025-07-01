@@ -29,7 +29,7 @@ public class SubtitleHandler : MonoBehaviour
     {
         if (audioSubtitles.Keys.Contains(clip) && audioSource != null && textField != null)
         {
-            Debug.Log("Playing clip " + clip.name);
+            //Debug.Log("Playing clip " + clip.name);
             if (audioSource.isPlaying)
             {
                 audioSource.Stop();
