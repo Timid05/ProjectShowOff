@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ResumeScene : MonoBehaviour
@@ -62,5 +63,12 @@ void PauseGame()
         Cursor.visible = false;
     }
 
+    public void ReloadGame()
+    {
+        GameStateActions.Reset();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
+
+
 
