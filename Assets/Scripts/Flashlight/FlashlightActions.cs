@@ -115,13 +115,13 @@ public class FlashlightActions : MonoBehaviour
     {
         if (isPaused)
         {
-            Debug.Log("Paused");
+            //Debug.Log("Paused");
             paused = isPaused;
             available = false;
         }
         else
         {
-            Debug.Log("Unpaused");
+            //Debug.Log("Unpaused");
             paused = isPaused;
             if (cooldownCoroutineTimer != flashlightCooldownTime && cooldownCoroutineTimer != 0)
             {
