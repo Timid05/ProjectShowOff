@@ -9,15 +9,36 @@ public class MapAnimation : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        MapVisibility.OnMapButtonPressed += MapVisibilityChange;
     }
 
-    private void OnEnable()
+    void MapVisibilityChange(bool mapVisibility)
     {
-        if(anim != null) { anim.SetTrigger("mapOpen"); }
+        
+        if (anim != null)
+        {
+
+            if(mapVisibility) 
+            {
+                Debug.Log("Opening map.");
+                anim.SetTrigger("mapOpen"); 
+            }
+            else 
+            {
+                Debug.Log("Closing map.");
+                anim.SetTrigger("mapClose"); 
+            }
+
+            // Enable/Disable map visuals
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(mapVisibility);
+            }
+        }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        if(anim != null) { anim.SetTrigger("mapClose"); }
+        MapVisibility.OnMapButtonPressed += MapVisibilityChange;
     }
 }

@@ -65,7 +65,7 @@ ModelImporter:
       name: Map Idle
       takeName: Take 001
       internalID: -998496362607748373
-      firstFrame: 42
+      firstFrame: 40
       lastFrame: 70
       wrapMode: 0
       orientationOffsetY: 0
