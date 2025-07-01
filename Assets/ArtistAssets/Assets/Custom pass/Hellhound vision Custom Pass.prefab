@@ -124,3 +124,6 @@ MonoBehaviour:
   targetObject: {fileID: 0}
   triggerDistance: 10
   customPassToToggle: {fileID: 412792220143275832}
+  source: {fileID: 1825435711988793621, guid: e1c8016e04d814e47afeedee62366a75, type: 3}
+  clip: {fileID: 8300000, guid: a72f722f84f40b64e8165d52b7d358aa, type: 3}
+  clipVolume: 1

@@ -17,11 +17,11 @@ position: -126,-211
 	Tanfana: You have my chalice? Impressive, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound. #line:Tanfana_First_Interaction_Chalice_3
 	<<jump ChaliceChoice>>
 <<else>>
-	<<playVoice TanfanaFNC1>>
+	<<playVoice Tanfana_First_Interaction_No_Chalice_1>>
 	Tanfana: I can sense your desperation mortal, and I know what troubles you. #line:Tanfana1
-	<<playVoice TanfanaFNC2>>
+	<<playVoice Tanfana_First_Interaction_No_Chalice_2>>
 	Tanfana: The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. #line:Tanfana2
-	<<playVoice TanfanaFNC3>>
+	<<playVoice Tanfana_First_Interaction_No_Chalice_3>>
 	Tanfana: But I cannot help you just yet. I need my chalice. Bring it to me, mortal, and I shall make you my holy champion. #line:Tanfana3
 <<endif>>
 ===
@@ -36,16 +36,16 @@ position: 206,-86
  <<playVoice Player_Agree>>
  Tanfana: As expected. Take my blessing, mortal, and rid me of that wretched stray. #line:Player_Agree
  <<TanfanaChoice>>
- <<stop>>
-//  <<jump PostTanfanaChoice>>
+//  <<stop>>
+ <<jump PostTanfanaChoice>>
 -> Don't offer your soul #line:0c548eb 
  <<set $tanfana_choice = "rejected">>
  <<set $tanfana_visited = true>>
  <<playVoice Player_Disagree>>
  Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this! #line:Player_Disagree
  <<Refused GameManager>>
- <<stop>>
-//  <<jump PostTanfanaChoice>>
+//  <<stop>>
+ <<jump PostTanfanaChoice>>
 ===
 
 title: PostTanfanaChoice

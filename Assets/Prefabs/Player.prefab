@@ -628,7 +628,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 42d3d2c8abcd047448132a7de69e6d75, type: 3}
   - {fileID: 8300000, guid: cbae8c8fb0cb6554d8ce0754a4fd304f, type: 3}
   - {fileID: 8300000, guid: c473b50bf7331fe4886f1c54e68ff53f, type: 3}
-  audioClipHint: {fileID: 8300000, guid: 2d6db23adc2492141b7e18de4b86de82, type: 3}
+  audioClipHint: {fileID: 8300000, guid: 43be105614f45cb41bff3808f759e101, type: 3}
 --- !u!114 &829231066916244761
 MonoBehaviour:
   m_ObjectHideFlags: 0
