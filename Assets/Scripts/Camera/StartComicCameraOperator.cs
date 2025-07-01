@@ -85,7 +85,7 @@ public class StartComicCameraOperator : MonoBehaviour
             {
                 if (isStartComic)
                 {
-                    MoveToMainScene();
+                    ControlsPopup.OnShowControls?.Invoke();
                 }
                 else
                 {
@@ -113,7 +113,6 @@ public class StartComicCameraOperator : MonoBehaviour
 
     void MoveToMainMenu()
     {
-        loading = true;
-        LoadingScreen.OnLoadingScene?.Invoke("MainMenuScene");
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
