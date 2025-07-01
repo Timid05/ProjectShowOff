@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // Receive the NPC dictionary once it's created.
+        Time.timeScale = 1.0f;
         CreateNPCDict.OnDictCreated += ReceiveNPCs;
         _dialogueRunner.AddCommandHandler<string>("playVoice", PlayVoiceClip);
     }

@@ -33,17 +33,17 @@ public class LoadingScreen : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
-        asyncLoad.allowSceneActivation = false;
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
 
-
-        while (asyncLoad.progress < 0.9f)
+        while (!asyncLoad.isDone)
         {
             yield return null;
         }
 
-        yield return new WaitForSecondsRealtime(3f);
+        Debug.Log("Loading done");
 
-        asyncLoad.allowSceneActivation = true;
+        yield return new WaitForSecondsRealtime(1f);
+
+        SceneManager.UnloadSceneAsync("Comic");
     }
 }
