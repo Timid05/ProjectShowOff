@@ -22,8 +22,8 @@ public class TreeColliderManager : MonoBehaviour
     {
         terrainData = gameObject.GetComponent<Terrain>().terrainData;
         if(terrainData == null) { return; }
-        updatedTreeInstances = new List<TreeInstance>(terrainData.treeInstances);
         startTreeInstances = terrainData.treeInstances;
+        updatedTreeInstances = new List<TreeInstance>(terrainData.treeInstances);
         Debug.Log("Amount of tree instances before deletion: " + terrainData.treeInstanceCount);
 
         // Add colliders to all trees.
@@ -83,7 +83,11 @@ public class TreeColliderManager : MonoBehaviour
     void OnApplicationQuit()
     {
         // restore original trees
-        terrainData.treeInstances = startTreeInstances;
+        if(startTreeInstances != null)
+        {
+            Debug.Log("Reset tree count to: " + startTreeInstances.Length);
+            terrainData.treeInstances = startTreeInstances;
+        }
     }
 
     private void OnDestroy()
