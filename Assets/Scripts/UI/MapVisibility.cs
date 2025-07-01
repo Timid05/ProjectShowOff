@@ -5,7 +5,7 @@ using System;
 
 public class MapVisibility : MonoBehaviour
 {
-    [SerializeField] KeyCode mapButton;
+    //[SerializeField] KeyCode mapButton;
     [SerializeField]
     float openingTimer = 15f;
     bool mapAvailable = true;
@@ -14,7 +14,8 @@ public class MapVisibility : MonoBehaviour
 
     private void Awake()
     {
-        PlayerInteraction.OnCharacterTalk += MapAvailable;       
+        PlayerInteraction.OnCharacterTalk += MapAvailable;
+        MapAnimation.OnMapVisibilityChanged += MapVisibilityChanged;
     }
 
     private void Start()
@@ -26,15 +27,18 @@ public class MapVisibility : MonoBehaviour
     private void OnDisable()
     {
         PlayerInteraction.OnCharacterTalk -= MapAvailable;
+        MapAnimation.OnMapVisibilityChanged -= MapVisibilityChanged;
     }
 
-    void Update()
+    void MapVisibilityChanged(bool mapVisibility)
     {
         if(mapAvailable && transform.childCount != 0)
         {
+            //Debug.Log("Setting children visiblity to: " + mapVisibility);
+            ChangeChildrenVisibility(mapVisibility);
             // Map is visible if the player holds down the map button
-            if (Input.GetKeyDown(mapButton)) { ChangeChildrenVisibility(true); }
-            if (Input.GetKeyUp(mapButton)) { ChangeChildrenVisibility(false); }
+            //if (Input.GetKeyDown(mapButton)) { ChangeChildrenVisibility(true); }
+            //if (Input.GetKeyUp(mapButton)) { ChangeChildrenVisibility(false); }
         }
     }
 
