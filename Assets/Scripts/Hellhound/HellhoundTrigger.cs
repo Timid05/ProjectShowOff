@@ -24,9 +24,14 @@ public class HellhoundTrigger : MonoBehaviour
     }
 
     private void Awake()
-    {
-        HideHound();
+    {   
         canTrigger = false;
+    }
+
+    private void Start()
+    {
+        GuidancePointsActions.OnHellhoundSpawned?.Invoke(transform.position);
+        HideHound();
     }
 
     public void ToggleTrigger(bool enable)

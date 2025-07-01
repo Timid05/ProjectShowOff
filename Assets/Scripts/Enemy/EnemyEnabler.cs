@@ -40,14 +40,17 @@ public class EnemyEnabler : MonoBehaviour
        
         if (paused)
         {
-            Debug.Log("audio pause");
+            //Debug.Log("audio pause");
             source.enabled = false;
             gamePaused = true;
         }
-        else
-        {
-            Debug.Log("audio unpause");
-            source.enabled = true;
+        else 
+        {        
+            if (GameStateActions.mapOpened)
+            {
+               // Debug.Log("audio unpause");
+                source.enabled = true;
+            }
             gamePaused = false;
         }
     }
@@ -79,7 +82,7 @@ public class EnemyEnabler : MonoBehaviour
     IEnumerator WaitForAudio()
     {
         waitingOnAudio = true;
-        Debug.Log("coroutine started");
+       // Debug.Log("coroutine started");
         yield return new WaitForSeconds(audioWaitTime);
         waitingOnAudio = false;
         source.enabled = false;

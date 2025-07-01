@@ -58,7 +58,7 @@ public class DecoySpawner : MonoBehaviour
 
     void DestroyDecoys(GameObject removedEnemy)
     {
-        Debug.Log("Destroyed enemy decoy disappearance");
+       // Debug.Log("Destroyed enemy decoy disappearance");
         if (removedEnemy == gameObject && enemyController.fsm.currentStateName == EnemyStateMachine.State.Enraged)
         {
             for (int i = decoys.Count - 1; i >= 0; i--)
@@ -69,7 +69,7 @@ public class DecoySpawner : MonoBehaviour
                 }
                 decoys.RemoveAt(i);
             }
-            Debug.Log("Destroyed decoys");
+            //Debug.Log("Destroyed decoys");
         }
     }
 
@@ -85,13 +85,13 @@ public class DecoySpawner : MonoBehaviour
     {
         if (enemyController.fsm.currentStateName != EnemyStateMachine.State.Enraged && decoys.Count != 0)
         {
-            Debug.Log("State change decoy disappearance");
+            //Debug.Log("State change decoy disappearance");
             for (int i = decoys.Count - 1; i >= 0; i--)
             {
                 decoys[i].GetComponent<WitteWievenDecoy>().Disappear();
                 decoys.RemoveAt(i);
             }
-            Debug.Log("Destroyed decoys");
+            //Debug.Log("Destroyed decoys");
         }
     }
 }

@@ -108,7 +108,7 @@ public static class EnemiesInfo
             cachedEnemyPositions.Add(m, g.transform.position);
         }
         OnEnemyAdded?.Invoke();
-        Debug.Log("Enemy Added");
+       // Debug.Log("Enemy Added");
     }
 
     public static void EnableCachedEnemies()
@@ -127,7 +127,7 @@ public static class EnemiesInfo
         {
             GameObject toRemoveG = Enemies[m];
             Enemies.Remove(m);
-            Debug.Log("Enemy Removed");
+            //Debug.Log("Enemy Removed");
             OnEnemyObjectRemoved?.Invoke(toRemoveG);
             OnEnemyRemoved?.Invoke();
         }
@@ -135,7 +135,7 @@ public static class EnemiesInfo
 
     public static void RemoveAllEnemies()
     {
-        Debug.Log("Removing all enemies");
+        //Debug.Log("Removing all enemies");
         for (int i = Enemies.Count - 1; i >= 0; i--)
         {
             RemoveEnemy(GetEnemyStateMachines()[i]);

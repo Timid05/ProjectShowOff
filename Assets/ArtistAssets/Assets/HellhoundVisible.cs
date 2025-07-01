@@ -8,6 +8,10 @@ public class DistanceTriggerWithCustomPass : MonoBehaviour
     public GameObject targetObject;
     public float triggerDistance = 10f;
     public CustomPassVolume customPassToToggle;
+    public AudioSource source;
+    public AudioClip clip;
+    [Range(0f, 1f)]
+    public float clipVolume = 1f;
 
     private bool isInRange = false;
 
@@ -39,6 +43,7 @@ public class DistanceTriggerWithCustomPass : MonoBehaviour
         Debug.Log($"{targetObject.name} is now within range. Enabling custom pass.");
         customPassToToggle.enabled = true;
         HellhoundActions.OnHellhoundVisible?.Invoke();
+        source.PlayOneShot(clip, clipVolume);
         await Task.Delay(1000);
         customPassToToggle.enabled = false;
     }

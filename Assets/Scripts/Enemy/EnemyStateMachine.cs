@@ -45,14 +45,14 @@ public class EnemyStateMachine
     public void UpdateSpeeds(Dictionary<State, float> speeds)
     {
         stateSpeeds = speeds;
-        Debug.Log("fsm speeds updated");
+       // Debug.Log("fsm speeds updated");
     }
 
     public void SetState(State state)
     {
         if (state == currentStateName) return;
 
-        Debug.Log("Setting state to " + state);
+       // Debug.Log("Setting state to " + state);
         currentState?.Exit();
 
         if (states[state] != null)
