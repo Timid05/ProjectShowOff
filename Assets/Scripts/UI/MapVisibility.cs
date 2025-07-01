@@ -49,10 +49,10 @@ public class MapVisibility : MonoBehaviour
             EnemiesInfo.EnableEnemies();
         }
 
-        //for (int i = 0; i < transform.childCount; i++)
-        //{
-        //    transform.GetChild(i).gameObject.SetActive(newVisibility);
-        //}
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(newVisibility);
+        }
         mapOpen = newVisibility;
 
         // Prevents characters from being talked to when the flashlight is active.

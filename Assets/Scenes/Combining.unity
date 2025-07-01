@@ -21860,6 +21860,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map Physical
       objectReference: {fileID: 0}
+    - target: {fileID: 6620033222394422194, guid: 913223f88f9b8da4bad3eb994d843999,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7059078648500627199, guid: 913223f88f9b8da4bad3eb994d843999,
         type: 3}
       propertyPath: m_IsActive
