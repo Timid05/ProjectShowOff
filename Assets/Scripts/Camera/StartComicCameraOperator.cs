@@ -111,7 +111,7 @@ public class StartComicCameraOperator : MonoBehaviour
         LoadingScreen.OnLoadingScene?.Invoke("Combining");
     }
 
-    void MoveToMainMenu()
+    public void MoveToMainMenu()
     {
         SceneManager.LoadScene("MainMenuScene");
     }

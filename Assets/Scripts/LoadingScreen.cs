@@ -42,7 +42,7 @@ public class LoadingScreen : MonoBehaviour
 
         Debug.Log("Loading done");
 
-        yield return new WaitForSecondsRealtime(10f);
+        yield return new WaitForSecondsRealtime(1f);
 
         SceneManager.UnloadSceneAsync("Comic");
     }
