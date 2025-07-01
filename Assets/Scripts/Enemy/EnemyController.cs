@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
         }
 
         fsm = new EnemyStateMachine(followPath, stateSpeeds);
-        EnemiesInfo.AddEnemy(fsm, gameObject);
+        EnemiesInfo.AddEnemy(fsm, this.gameObject);
         fsm.AddState(EnemyStateMachine.State.Docile, new DocileState());
         fsm.AddState(EnemyStateMachine.State.Aggressive, new AggressiveState());
         fsm.AddState(EnemyStateMachine.State.Enraged, new EnragedState());
