@@ -112,7 +112,7 @@ public class FollowPath : MonoBehaviour
     {
         if ((navmeshAgent.destination - transform.position).magnitude < targetOffset && followType == FollowType.Target)
         {
-            Debug.Log("Reached target");
+           // Debug.Log("Reached target");
             return true;
         }
         else return false;
@@ -122,7 +122,7 @@ public class FollowPath : MonoBehaviour
     {  
         if ((navmeshAgent.destination - transform.position).magnitude < waypointOffset)
         {
-            Debug.Log("Destination reached");
+            //Debug.Log("Destination reached");
             return true;
         }
         else return false;
@@ -137,7 +137,7 @@ public class FollowPath : MonoBehaviour
     {
         if (AtTarget())
         {
-            Debug.Log("slay");
+           // Debug.Log("slay");
         }
 
         if (followType == FollowType.Target)

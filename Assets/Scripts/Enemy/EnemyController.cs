@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour
     public void EditStateSpeed(EnemyStateMachine.State state, float speed)
     {
         stateSpeeds[state] = speed;
-        Debug.Log("Speed set to " + stateSpeeds[state]);
+       // Debug.Log("Speed set to " + stateSpeeds[state]);
         fsm.UpdateSpeeds(stateSpeeds);
     }
 
@@ -96,13 +96,13 @@ public class EnemyController : MonoBehaviour
     {
         if (!choice)
         {
-            Debug.Log("enraged");
+           // Debug.Log("enraged");
             fsm.SetState(EnemyStateMachine.State.Enraged);
             GameStateActions.acceptedChoice = false;
         }
         else
         {
-            Debug.Log("docile");
+           // Debug.Log("docile");
             fsm.SetState(EnemyStateMachine.State.Docile);
             GameStateActions.acceptedChoice = true;
         }

@@ -23,6 +23,7 @@ public class ChaliceToggle : MonoBehaviour
     {
         if (chalice != null)
         {
+            GuidancePointsActions.OnChaliceSpawned?.Invoke(chalice.transform.position);
             chaliceName = chalice.name;
         }
     }

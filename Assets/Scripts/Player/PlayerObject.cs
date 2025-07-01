@@ -47,6 +47,7 @@ public class PlayerObject : MonoBehaviour
                 Debug.LogFormat("Not carrying object. Clicked on object {0} with tag {1} ", hitinfo.collider.gameObject.name, hitinfo.collider.gameObject.tag);
                 if (hitinfo.collider.gameObject.CompareTag("PickUpObject"))
                 {
+                    GameStateActions.OnChaliceCollected?.Invoke();
                     //Debug.Log("Clicked on PickupObject, duplicating.");
                     carryingObject = true;
                     carriedObject = hitinfo.collider.gameObject;

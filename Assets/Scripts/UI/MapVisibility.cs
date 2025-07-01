@@ -10,6 +10,7 @@ public class MapVisibility : MonoBehaviour
     float openingTimer = 15f;
     bool mapAvailable = true;
     public static event Action<bool> OnMapButtonPressed;
+    bool mapOpen = false;
 
     private void Awake()
     {
@@ -40,7 +41,8 @@ public class MapVisibility : MonoBehaviour
 
     void ChangeChildrenVisibility(bool newVisibility)
     {
-        if (!GameStateActions.mapOpened && newVisibility == false)
+        
+        if (!GameStateActions.mapOpened && newVisibility == false && mapOpen)
         {
             GameStateActions.OnFirstMapOpen?.Invoke();
             GameStateActions.mapOpened = true;
@@ -51,9 +53,10 @@ public class MapVisibility : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(newVisibility);
         }
-        
+        mapOpen = newVisibility;
+
         // Prevents characters from being talked to when the flashlight is active.
-        if(OnMapButtonPressed != null) { OnMapButtonPressed(newVisibility); }
+        if (OnMapButtonPressed != null) { OnMapButtonPressed(newVisibility); }
     }
 
     void MapAvailable(bool characterTalking)
