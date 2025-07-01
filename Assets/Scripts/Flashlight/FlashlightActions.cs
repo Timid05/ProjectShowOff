@@ -71,7 +71,7 @@ public class FlashlightActions : MonoBehaviour
 
         if (!flashlightCooldownActive && available)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !flashbangActive)
             {
                 //Play Sound
                 audioSource.PlayOneShot(flashlightSound[UnityEngine.Random.Range(0, flashlightSound.Length)]);
@@ -79,10 +79,7 @@ public class FlashlightActions : MonoBehaviour
                 ChangeFlashlightStatus();
             }
 
-            //Debug option. REMOVE later.
-            if (Input.GetKeyDown(KeyCode.T)) { HolyFlashlight(); }
-
-            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            else if (Input.GetKeyDown(KeyCode.Mouse1) && !flashbangActive)
             {
                 light.enabled = true;
 
@@ -90,7 +87,7 @@ public class FlashlightActions : MonoBehaviour
                 audioSource.PlayOneShot(flashbangSound[UnityEngine.Random.Range(0, flashbangSound.Length)]);
 
                 Flashbang();
-            }           
+            }
         }
 
         if (light.enabled)
@@ -151,7 +148,7 @@ public class FlashlightActions : MonoBehaviour
     void Hide()
     {
         light.enabled = false;
-        foreach(MeshRenderer mr in transform.parent.GetComponentsInChildren<MeshRenderer>())
+        foreach (MeshRenderer mr in transform.parent.GetComponentsInChildren<MeshRenderer>())
         {
             mr.enabled = false;
         }
@@ -195,7 +192,6 @@ public class FlashlightActions : MonoBehaviour
         }
         cooldownCoroutineTimer = 0f;
         flashlightCooldownActive = false;
-        available = true;
         Debug.Log("Flashlight cooldown ended.");
     }
 

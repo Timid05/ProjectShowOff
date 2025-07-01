@@ -11,6 +11,11 @@ public class DistanceTriggerWithCustomPass : MonoBehaviour
 
     private bool isInRange = false;
 
+    private void Awake()
+    {
+        customPassToToggle.enabled = false;
+    }
+
     void Update()
     {
         if (player == null || targetObject == null || customPassToToggle == null) return;
@@ -33,7 +38,8 @@ public class DistanceTriggerWithCustomPass : MonoBehaviour
     {
         Debug.Log($"{targetObject.name} is now within range. Enabling custom pass.");
         customPassToToggle.enabled = true;
-        await Task.Delay(4000);
+        HellhoundActions.OnHellhoundVisible?.Invoke();
+        await Task.Delay(1000);
         customPassToToggle.enabled = false;
     }
 

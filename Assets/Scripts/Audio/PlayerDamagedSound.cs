@@ -42,6 +42,6 @@ public class PlayerDamagedSound : MonoBehaviour
 
     void PlayEnemyHint()
     {
-        audioSource.PlayOneShot(audioClipHint);
+        SubtitleHandler.OnPlayAudioWithSubtitles?.Invoke(audioClipHint);
     }
 }

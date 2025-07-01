@@ -20,6 +20,7 @@ public static class GameStateActions
     public static Action OnChaliceReturned;
     //Action that tells listeners which choice the startPos made with tanfana, false being rejection and true being acceptance
     public static Action<bool> OnChoiceMade;
+    public static bool acceptedChoice;
     //Action that notifies when the game gets pauses/unpaused
     public static Action<bool> OnGamePause;
     //Bool that keeps track of the players's dialogue state
@@ -41,5 +42,6 @@ public static class GameStateActions
         domeVisited = false;
         firstEnemyEncountered = false;
         playerDead = false;
+        HellhoundActions.hellhoundFightOngoing = false;
     }
  }

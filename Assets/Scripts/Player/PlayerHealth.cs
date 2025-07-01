@@ -45,7 +45,8 @@ public class PlayerHealth : MonoBehaviour
         PlayerActions.OnHealthUpdated?.Invoke(maxHealth, currentHealth);
         if (currentHealth <= 0)
         {
-            PlayerActions.OnPlayerDead?.Invoke();           
+            PlayerActions.OnPlayerDead?.Invoke();
+            GameStateActions.playerDead = true;
         }
     }
 }

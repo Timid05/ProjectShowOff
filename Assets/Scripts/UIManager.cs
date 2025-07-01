@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
         PlayerActions.OnHealthUpdated -= UpdateHealth;
         GameStateActions.OnGamePause -= GamePaused;
         GameStateActions.OnFirstMapOpen -= DisableMapPrompt;
-        PlayerActions.OnPlayerHitBy += HellhoundAttack;
+        PlayerActions.OnPlayerHitBy -= HellhoundAttack;
     }
 
     private void Awake()
