@@ -141,4 +141,11 @@ public static class EnemiesInfo
             RemoveEnemy(GetEnemyStateMachines()[i]);
         }
     }
+
+    public static void Reset()
+    {
+        Enemies.Clear();
+        cachedEnemies.Clear();
+        cachedEnemyPositions.Clear();
+    }
 }

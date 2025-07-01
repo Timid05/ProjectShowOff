@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(NavMeshAgent))]
-
 public class FollowPath : MonoBehaviour
 {
     public enum FollowType { BackAndForth, Cycle, Target}
@@ -28,7 +26,7 @@ public class FollowPath : MonoBehaviour
 
     void Awake()
     {
-        navmeshAgent = GetComponent<NavMeshAgent>();  
+        navmeshAgent = transform.parent.gameObject.GetComponent<NavMeshAgent>();  
 
         if (path.Count < 2)
         {
@@ -44,7 +42,7 @@ public class FollowPath : MonoBehaviour
 
     public void AssignAgent()
     {
-        navmeshAgent = GetComponent<NavMeshAgent>();
+        navmeshAgent = transform.parent.gameObject.GetComponent<NavMeshAgent>();
     }
 
     void NextWaypoint()
