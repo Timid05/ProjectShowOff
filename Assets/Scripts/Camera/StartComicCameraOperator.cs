@@ -59,7 +59,7 @@ public class StartComicCameraOperator : MonoBehaviour
 
     float GetCurrentClipLength()
     {
-        if (camsToAudio.Keys.Contains(cameras[currentCamera]))
+        if (camsToAudio.Keys.Contains(cameras[currentCamera]) && camsToAudio[cameras[currentCamera]] != null)
         {
             return camsToAudio[cameras[currentCamera]].length;
         }

@@ -8,7 +8,6 @@ public class EnemyAudio : MonoBehaviour
 
     [SerializeField]
     AudioClip[] spawnClips;
-
     [SerializeField]
     AudioClip[] jumpscareClips;
     [SerializeField]
@@ -34,7 +33,8 @@ public class EnemyAudio : MonoBehaviour
 
     private void Awake()
     {
-        source = transform.parent.gameObject.GetComponent<AudioSource>();
+        //source = transform.parent.gameObject.GetComponent<AudioSource>();
+        source = GetComponent<AudioSource>();
     }
 
     public void PlayClip(AudioClip clip)
