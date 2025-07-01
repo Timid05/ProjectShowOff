@@ -38,6 +38,7 @@ public static class GameStateActions
 
     public static void Reset()
     {
+        EnemiesInfo.Reset();
         mapOpened = false;
         domeVisited = false;
         firstEnemyEncountered = false;
