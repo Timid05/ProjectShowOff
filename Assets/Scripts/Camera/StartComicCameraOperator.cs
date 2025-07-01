@@ -1,12 +1,15 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartComicCameraOperator : MonoBehaviour
 {
+    [SerializeField]
+    UDictionary<GameObject, AudioClip> camsToAudio = new UDictionary<GameObject, AudioClip>();
     CinemachineBrain brain;
     [SerializeField]
     string mainSceneName, menuSceneName;
@@ -15,9 +18,10 @@ public class StartComicCameraOperator : MonoBehaviour
     [SerializeField]
     float transitionTime = 1f;
     [SerializeField]
-    float waitTime = 1f;
+    float additionalWaitTime = 1f;
     [SerializeField]
     bool isStartComic = true;
+
     int currentCamera = 0;
     float lastSwitchTime = 0f;
     bool running = false;
@@ -30,6 +34,7 @@ public class StartComicCameraOperator : MonoBehaviour
         if (cameras.Length > 0)
         {
             cameras[0].SetActive(true);
+            SubtitleHandler.OnPlayAudioWithSubtitles?.Invoke(camsToAudio[cameras[0]]);
         }
     }
 
@@ -50,18 +55,28 @@ public class StartComicCameraOperator : MonoBehaviour
         startTime = Time.time;
     }
 
+    float GetCurrentClipLength()
+    {
+        if (camsToAudio.Keys.Contains(cameras[currentCamera]))
+        {
+            return camsToAudio[cameras[currentCamera]].length;
+        }
+        else return 0;
+    }
+
     private void Update()
     {
-        if (lastSwitchTime == 0f && Time.time - startTime >= waitTime && running)
+        if (lastSwitchTime == 0f && Time.time - startTime >= GetCurrentClipLength() + additionalWaitTime && running)
         {
             cameras[currentCamera].SetActive(false);
             cameras[currentCamera + 1].SetActive(true);
             lastSwitchTime = Time.time;
             currentCamera++;
+            SubtitleHandler.OnPlayAudioWithSubtitles?.Invoke(camsToAudio[cameras[currentCamera]]);
             return;
         }
 
-        if (lastSwitchTime != 0f && Time.time - lastSwitchTime >= waitTime && running)
+        if (lastSwitchTime != 0f && Time.time - lastSwitchTime >= GetCurrentClipLength() + additionalWaitTime && running)
         {
             if (currentCamera == cameras.Length - 1)
             {
@@ -82,6 +97,7 @@ public class StartComicCameraOperator : MonoBehaviour
             cameras[currentCamera + 1].SetActive(true);
             lastSwitchTime = Time.time;
             currentCamera++;
+            SubtitleHandler.OnPlayAudioWithSubtitles?.Invoke(camsToAudio[cameras[currentCamera]]);
         }
     }
 
