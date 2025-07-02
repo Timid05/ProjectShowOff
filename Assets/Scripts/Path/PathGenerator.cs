@@ -39,7 +39,12 @@ public class PathGenerator : MonoBehaviour
         // We also don't generate if the waypoints per area hasn't been filled in yet.
         // Othwerwise  we decide what the next waypoint should be.
         if (!currentWaypoint.visited && entryWaypointsPerArea.Count != 0) { GeneratePath(); }
-        //else { Debug.Log("Generation ended at " + currentWaypoint); }
+        // If we don't end on the end waypoint that means that generation has failed. As a failsafe, we generate the path again.
+        else if(currentWaypoint.visited && !currentWaypoint.endWaypoint) 
+        {
+            Debug.Log("Path generation failed. Trying again.");
+
+        }
     }
 
     void GeneratePath()

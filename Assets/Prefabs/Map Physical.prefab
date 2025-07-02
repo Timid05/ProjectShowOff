@@ -62,7 +62,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f16ea74cd91e3764c9031446d05c7499, type: 2}
+      objectReference: {fileID: 2100000, guid: d7d8767be23e32745b91161dda66f43a, type: 2}
     - target: {fileID: -5266785677919700964, guid: 475d6f3edf0e3a24d99eee92bcff2320,
         type: 3}
       propertyPath: m_IsActive
@@ -130,4 +130,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242185bddb34b224897a9e108d59d3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapButton: 0
+  mapButton: 9
+  mapToggleMode: 1
