@@ -35,17 +35,21 @@ position: 206,-86
  <<set $tanfana_visited = true>>
  <<playVoice Player_Agree>>
  Tanfana: As expected. Take my blessing, mortal, and rid me of that wretched stray. #line:Player_Agree
+ <<playVoice After_Agree>>
+ Tanfana: Follow my voice.
  <<TanfanaChoice>>
-//  <<stop>>
- <<jump PostTanfanaChoice>>
+ <<stop>>
+//  <<jump PostTanfanaChoice>>
 -> Don't offer your soul #line:0c548eb 
  <<set $tanfana_choice = "rejected">>
  <<set $tanfana_visited = true>>
  <<playVoice Player_Disagree>>
  Tanfana: You dare scorn me, mortal?! Wait until you feel my wrath, you will regret this! #line:Player_Disagree
+ <<playVoice After_Disagree>>
+ Tanfana: Get out of my sight! GET OUT!
  <<Refused GameManager>>
-//  <<stop>>
- <<jump PostTanfanaChoice>>
+ <<stop>>
+//  <<jump PostTanfanaChoice>>
 ===
 
 title: PostTanfanaChoice

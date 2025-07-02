@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Yarn.Unity;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -38,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     private float stepDelay;
 
     [SerializeField] AudioSource staminaSoundSource;
+
+    public static bool isDialogueActive = false;
+    public bool overrideStaminaAudio = false;
 
     public static event Action<bool> OnMoveStatusChange;
 
@@ -105,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (staminaSoundSource != null)
+        if (staminaSoundSource != null && !overrideStaminaAudio)
         {
             if (currentStamina <= maxStamina / 3)
             {
