@@ -5,6 +5,7 @@ using System;
 
 public class PathCategorizeWaypoint : MonoBehaviour
 {
+    public static event Action<List<PathWaypoint>, CapsuleCollider> OnEntryWaypointsCategorized;
     public static event Action<List<PathWaypoint>, CapsuleCollider> OnWaypointsCategorized;
     List<PathWaypoint> waypointsInArea;
     List<PathWaypoint> entryWaypointsInArea;
@@ -21,13 +22,17 @@ public class PathCategorizeWaypoint : MonoBehaviour
     private void Update()
     {
         //Convert the list of waypoints in the area to only the ones accessible from outside of that area.
-        if (waypointsInArea.Count != 0 && entryWaypointsInArea.Count == 0) { EntryWaypoint(); }
+        if (waypointsInArea.Count != 0 && entryWaypointsInArea.Count == 0 && !waypointsSent) 
+        { 
+            if(OnWaypointsCategorized != null) { OnWaypointsCategorized(waypointsInArea, area); }
+            EntryWaypoint(); 
+        }
 
         //If the list of waypoints hasn't been sent yet, it can be sent.
-        if (area != null && OnWaypointsCategorized != null && entryWaypointsInArea.Count != 0 && !waypointsSent)
+        if (area != null && OnEntryWaypointsCategorized != null && entryWaypointsInArea.Count != 0 && !waypointsSent)
         {
             waypointsSent = true;
-            OnWaypointsCategorized(entryWaypointsInArea, area);
+            OnEntryWaypointsCategorized(entryWaypointsInArea, area);
             //Debug.LogFormat("Area {0} sent waypoints with size {1}", gameObject.name, entryWaypointsInArea.Count);
         }
     }
