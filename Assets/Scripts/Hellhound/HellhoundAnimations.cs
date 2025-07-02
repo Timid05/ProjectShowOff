@@ -21,11 +21,6 @@ public class HellhoundAnimations : MonoBehaviour
         HellhoundActions.OnPounce += TriggerPounce;
     }
 
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-
     private void TriggerCharge()
     {
         animator.SetBool("pouncing", false);
@@ -63,4 +58,13 @@ public class HellhoundAnimations : MonoBehaviour
     {
         return animator.GetCurrentAnimatorStateInfo(0);  
     }
+
+    private void Update()
+    {
+        if (animator == null && gameObject.TryGetComponent<Animator>(out Animator anim))
+        {
+            animator = anim;
+        }
+    }
 }
+
