@@ -11,7 +11,9 @@ public class PathGenerator : MonoBehaviour
     List<bool> pastDirections;
     bool generateRight;
     Dictionary<List<PathWaypoint>, CapsuleCollider> entryWaypointsPerArea;
+    Dictionary<List<PathWaypoint>, CapsuleCollider> startEntryWaypointsPerArea;
     List<CapsuleCollider> unvisitedAreas;
+    List<CapsuleCollider> startUnvisitedAreas;
 
     public static event Action OnPathGenerated;
     public static event Action<GameObject> OnPathObjectEnabled;
@@ -43,7 +45,11 @@ public class PathGenerator : MonoBehaviour
         else if(currentWaypoint.visited && !currentWaypoint.endWaypoint) 
         {
             Debug.Log("Path generation failed. Trying again.");
-
+            // Resetting all values to start so we can generate again from a clean slate.
+            //prevWaypoint = startWaypoint.waypoints.Keys[1];
+            //currentWaypoint = startWaypoint;
+            //entryWaypointsPerArea = startEntryWaypointsPerArea;
+            //unvisitedAreas = startUnvisitedAreas;
         }
     }
 
@@ -304,11 +310,13 @@ public class PathGenerator : MonoBehaviour
     void GetEntryWaypointsInArea(List<PathWaypoint> waypoints, CapsuleCollider area)
     {
         entryWaypointsPerArea.Add(waypoints, area);
+        startEntryWaypointsPerArea.Add(waypoints, area);
     }
 
     void GetAreas(List<CapsuleCollider> areas)
     {
         unvisitedAreas = areas;
+        startUnvisitedAreas = areas;
         //Debug.Log("Amount of unvisited areas: " + unvisitedAreas.Count);
     }
 
