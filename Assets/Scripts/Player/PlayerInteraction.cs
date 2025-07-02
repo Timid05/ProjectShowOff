@@ -23,7 +23,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Awake()
     {
         GameManager.OnGiveGManager += ReceiveGManager;
-        MapVisibility.OnMapButtonPressed += PlayerStatus;
+        MapAnimation.OnMapButtonPressed += PlayerStatus;
        
     }
 
@@ -151,7 +151,7 @@ public class PlayerInteraction : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.OnGiveGManager -= ReceiveGManager;
-        MapVisibility.OnMapButtonPressed -= PlayerStatus;
+        MapAnimation.OnMapButtonPressed -= PlayerStatus;
         dialogueRunner.onDialogueComplete.RemoveListener(OnCompleteDialogue);
         dialogueRunner.onDialogueStart.RemoveListener(UnlockCursor);
         dialogueRunner.onDialogueStart.RemoveListener(OnStartDialogue);

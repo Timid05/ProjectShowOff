@@ -8,13 +8,13 @@ public class MapVisibility : MonoBehaviour
     //[SerializeField] KeyCode mapButton;
     [SerializeField]
     float openingTimer = 15f;
-    bool mapAvailable = true;
-    public static event Action<bool> OnMapButtonPressed;
+    
+    //public static event Action<bool> OnMapButtonPressed;
     bool mapOpen = false;
 
     private void Awake()
     {
-        PlayerInteraction.OnCharacterTalk += MapAvailable;
+        
         MapAnimation.OnMapVisibilityChanged += MapVisibilityChanged;
     }
 
@@ -26,13 +26,12 @@ public class MapVisibility : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerInteraction.OnCharacterTalk -= MapAvailable;
         MapAnimation.OnMapVisibilityChanged -= MapVisibilityChanged;
     }
 
     void MapVisibilityChanged(bool mapVisibility)
     {
-        if(mapAvailable && transform.childCount != 0)
+        if(transform.childCount != 0)
         {
             //Debug.Log("Setting children visiblity to: " + mapVisibility);
             ChangeChildrenVisibility(mapVisibility);
@@ -60,14 +59,7 @@ public class MapVisibility : MonoBehaviour
         mapOpen = newVisibility;
 
         // Prevents characters from being talked to when the flashlight is active.
-        if (OnMapButtonPressed != null) { OnMapButtonPressed(newVisibility); }
-    }
-
-    void MapAvailable(bool characterTalking)
-    {
-        // Makes map unavailable when talking to characters and vice versa.
-        mapAvailable = !characterTalking;
-        if(characterTalking) { ChangeChildrenVisibility(false); }
+        //if (OnMapButtonPressed != null) { OnMapButtonPressed(newVisibility); }
     }
 
     IEnumerator MapOpenTimer()
