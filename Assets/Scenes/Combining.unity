@@ -2450,7 +2450,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2810,9 +2810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 15806598}
   audioSourcesToFade:
-  - {fileID: 1514147028}
   - {fileID: 755420090}
-  - {fileID: 872464802}
   fadeDuration: 0.5
 --- !u!1 &252328292 stripped
 GameObject:
@@ -3386,7 +3384,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -9322,12 +9320,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1076116725}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &872464802 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7213997641918052879, guid: 28ac164ce824eb048b80b99fbfea2944,
-    type: 3}
-  m_PrefabInstance: {fileID: 443462218}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &885719147
 GameObject:
   m_ObjectHideFlags: 0
@@ -14433,7 +14425,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -15194,7 +15186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 824c65483aafa1f4c922a72f116a6edc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7ace9ea511c5c244a9226dcbfe91cad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15383,7 +15375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1349524819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16909,7 +16901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 482, y: -40}
+  m_AnchoredPosition: {x: 490, y: -40}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1500012154
@@ -16932,7 +16924,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 79105f35185d316479a948de329c68ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e339a7e525224a64382a3de796b8b21f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20031,7 +20023,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10
     distanceFadeEnd: 40
-    textureOffset: {x: 0, y: 0, z: 0}
+    textureOffset: {x: -0, y: -0, z: -0}
     falloffMode: 0
     maskMode: 0
     materialMask: {fileID: 0}
@@ -20894,7 +20886,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -23603,7 +23595,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

@@ -8,8 +8,10 @@ public class MapAnimation : MonoBehaviour
     Animator anim;
     bool currentVisibility = false;
     [SerializeField] KeyCode mapButton;
+    [SerializeField] bool mapToggleMode = true;
     bool mapAvailable = true;
     bool mapOpened = false;
+    
 
     public static event Action<bool> OnMapVisibilityChanged;
     public static event Action<bool> OnMapButtonPressed;
@@ -24,15 +26,24 @@ public class MapAnimation : MonoBehaviour
 
     private void Update()
     {
-        // Map is visible if the player holds down the map button
-        if (Input.GetKeyDown(mapButton)) { MapVisibilityChange(true); }
-        if (Input.GetKeyUp(mapButton)) { MapVisibilityChange(false); }
+        // Whether map is hold or toggle
+        if(mapToggleMode)
+        {
+            // Map toggles when player presses button.
+            if (Input.GetKeyDown(mapButton)) { MapVisibilityChange(!mapOpened); }
+        }
+        else
+        {
+            // Map is visible if the player holds down the map button
+            if (Input.GetKeyDown(mapButton)) { MapVisibilityChange(true); }
+            if (Input.GetKeyUp(mapButton)) { MapVisibilityChange(false); }
+        }
 
         // Send out delegate once we've reached the idle stage or returning to start after clsoing the map, if the delegate hasn't been send yet.
         if(anim != null && mapAvailable && ((anim.GetCurrentAnimatorStateInfo(0).IsName("Map Idle") && !currentVisibility) || (anim.GetCurrentAnimatorStateInfo(0).IsName("Start") && currentVisibility)) && transform.GetChild(0).gameObject.activeSelf != currentVisibility) 
         {
             currentVisibility = transform.GetChild(0).gameObject.activeSelf;
-            //Debug.LogFormat(" Changing map status when: Visibility {0}", currentVisibility);
+            Debug.LogFormat(" Changing map status when: Visibility {0}", currentVisibility);
             if (OnMapVisibilityChanged != null) 
             { 
                 OnMapVisibilityChanged(currentVisibility);
@@ -53,14 +64,14 @@ public class MapAnimation : MonoBehaviour
 
             if (mapVisibility) 
             {
-                //Debug.Log("Opening map.");
+                Debug.Log("Opening map.");
                 anim.SetTrigger("mapOpen");
                 mapOpened = true;
             }
             // This prevents a bug where it tries to close the map when it was never opened. This can happen if the first press is negated by talking to Tanfana.
             else if(mapOpened)
             {
-                //Debug.Log("Closing map.");
+                Debug.Log("Closing map.");
                 anim.SetTrigger("mapClose");
                 mapOpened = false;
             }
