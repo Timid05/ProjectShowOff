@@ -10,6 +10,7 @@ public class PathGenerator : MonoBehaviour
     PathWaypoint prevWaypoint;
     List<bool> pastDirections;
     bool generateRight;
+    Dictionary<List<PathWaypoint>, CapsuleCollider> waypointsPerArea;
     Dictionary<List<PathWaypoint>, CapsuleCollider> entryWaypointsPerArea;
     Dictionary<List<PathWaypoint>, CapsuleCollider> startEntryWaypointsPerArea;
     List<CapsuleCollider> unvisitedAreas;
@@ -20,12 +21,16 @@ public class PathGenerator : MonoBehaviour
 
     private void Awake()
     {
-        PathCategorizeWaypoint.OnWaypointsCategorized += GetEntryWaypointsInArea;
+        PathCategorizeWaypoint.OnWaypointsCategorized += GetWaypointsInArea;
+        PathCategorizeWaypoint.OnEntryWaypointsCategorized += GetEntryWaypointsInArea;
         ShareAreas.OnAreaShare += GetAreas;
 
         pastDirections = new List<bool>();
+        waypointsPerArea = new Dictionary<List<PathWaypoint>, CapsuleCollider>();
         entryWaypointsPerArea = new Dictionary<List<PathWaypoint>, CapsuleCollider>();
+        startEntryWaypointsPerArea = new Dictionary<List<PathWaypoint>, CapsuleCollider>();
         unvisitedAreas = new List<CapsuleCollider>();
+        startUnvisitedAreas = new List<CapsuleCollider>();
     }
 
     void Start()
@@ -41,21 +46,31 @@ public class PathGenerator : MonoBehaviour
         // We also don't generate if the waypoints per area hasn't been filled in yet.
         // Othwerwise  we decide what the next waypoint should be.
         if (!currentWaypoint.visited && entryWaypointsPerArea.Count != 0) { GeneratePath(); }
-        // If we don't end on the end waypoint that means that generation has failed. As a failsafe, we generate the path again.
-        else if(currentWaypoint.visited && !currentWaypoint.endWaypoint) 
+        else if (currentWaypoint.visited && !currentWaypoint.endWaypoint)
         {
-            Debug.Log("Path generation failed. Trying again.");
+            // If we don't end on the end waypoint that means that generation has failed. As a failsafe, we generate the path again.
+            Debug.LogFormat("Path generation failed at waypoint {0}. Trying again.", currentWaypoint.name);
             // Resetting all values to start so we can generate again from a clean slate.
-            //prevWaypoint = startWaypoint.waypoints.Keys[1];
-            //currentWaypoint = startWaypoint;
-            //entryWaypointsPerArea = startEntryWaypointsPerArea;
-            //unvisitedAreas = startUnvisitedAreas;
+            prevWaypoint = startWaypoint.waypoints.Keys[1];
+            currentWaypoint = startWaypoint;
+            entryWaypointsPerArea = startEntryWaypointsPerArea;
+            unvisitedAreas = startUnvisitedAreas;
+
+            // Reset all waypoints visit counts.
+            foreach (List<PathWaypoint> waypoints in waypointsPerArea.Keys)
+            {
+                foreach(PathWaypoint waypoint in waypoints)
+                {
+                    if(waypoint != null) { waypoint.visited = false; }
+                }
+            }
         }
     }
 
     void GeneratePath()
     {
-        Debug.Log("Generating for waypoint: " + currentWaypoint.name);
+        Debug.LogFormat("Generating for waypoint: {0}", currentWaypoint.name);
+        //Debug.Log("From waypoint " + prevWaypoint.name);
         // Mark a waypoint as visited.
         currentWaypoint.visited = true;
 
@@ -75,7 +90,7 @@ public class PathGenerator : MonoBehaviour
                     //Make the previous path section visible.
                     EnablePathSection(i);
 
-                    // If it the final waypoint we don't need to check for the next one.
+                    // If it is the final waypoint we don't need to check for the next one.
                     if (currentWaypoint.endWaypoint)
                     {
                         //Debug.Log("Unvisited areas: " + unvisitedAreas.Count);
@@ -98,13 +113,31 @@ public class PathGenerator : MonoBehaviour
                     possibleNextWaypoints.Add(currentWaypoint.waypoints.Keys[i+1], currentWaypoint.waypoints.Values[i+1]);
 
                     //Remove current waypoint and possible waypoints from the original dict. This will allow the option to add a backup option if necessary.
-                    currentWaypoint.waypoints.Keys.Remove(prevWaypoint);
+                    //currentWaypoint.waypoints.Keys.Remove(prevWaypoint);
 
                     //Check if one of the waypoints is the ending one, we need to go to that one, so the rest can be skipped.
-                    if (CheckForEndWaypoint(currentWaypoint)) { return; }
+                    if (CheckForEndWaypoint(currentWaypoint)) 
+                    {
+                        //Debug.Log("Found ending waypoint from waypoint " + currentWaypoint.name);
+                        return; 
+                    }
 
-                    currentWaypoint.waypoints.Remove(possibleNextWaypoints.Keys[0]);
-                    currentWaypoint.waypoints.Remove(possibleNextWaypoints.Keys[1]);
+                    //currentWaypoint.waypoints.Remove(possibleNextWaypoints.Keys[0]);
+                    //currentWaypoint.waypoints.Remove(possibleNextWaypoints.Keys[1]);
+                    break;
+                }
+            }
+
+            int replacementIndex = -1;
+            // Checking if there is a backup option that can replace it
+            for (int j = 0; j < currentWaypoint.waypoints.Count; j++)
+            {
+                PathWaypoint replacementWaypoint;
+                replacementWaypoint = currentWaypoint.waypoints.Keys[j];
+                if (replacementWaypoint != null && replacementWaypoint != prevWaypoint && !possibleNextWaypoints.ContainsKey(replacementWaypoint))
+                {
+                    //Debug.Log("Found replacement waypoint " + currentWaypoint.waypoints.Keys[j]);
+                    replacementIndex = j;
                     break;
                 }
             }
@@ -112,22 +145,22 @@ public class PathGenerator : MonoBehaviour
             for (int i = 0; i < possibleNextWaypoints.Count; i++)
             {
                 //Check if one of the possible waypoints is missing.
-                if (possibleNextWaypoints.Keys[i] == null && currentWaypoint.waypoints.Keys[0] != null)
+                if (possibleNextWaypoints.Keys[i] == null && replacementIndex >= 0)
                 {
                     //Debug.LogFormat("Replacing missing waypoint at {0} with {1}", possibleNextWaypoints.Keys[i], currentWaypoint.waypoints.Keys[0]);
                     //Replacing waypoint with the one remaining waypoint in the original dict.
-                    possibleNextWaypoints.Keys[i] = currentWaypoint.waypoints.Keys[0];
-                    possibleNextWaypoints.Values[i] = currentWaypoint.waypoints.Values[0];
+                    possibleNextWaypoints.Keys[i] = currentWaypoint.waypoints.Keys[replacementIndex];
+                    possibleNextWaypoints.Values[i] = currentWaypoint.waypoints.Values[replacementIndex];
                     break;
                 }
             }
 
             // Add the third waypoint as a choice if both regular waypoints are invalid
-            if (!CheckValidity(new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[0], possibleNextWaypoints.Values[0])) && !CheckValidity(new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[1], possibleNextWaypoints.Values[1]))) 
+            if (!CheckValidity(new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[0], possibleNextWaypoints.Values[0])) && !CheckValidity(new KeyValuePair<PathWaypoint, bool>(possibleNextWaypoints.Keys[1], possibleNextWaypoints.Values[1])) && replacementIndex >= 0) 
             {
-                Debug.LogFormat("Replacing invallid waypoint at {0} with {1}", possibleNextWaypoints.Keys[0], currentWaypoint.waypoints.Keys[0]);
-                possibleNextWaypoints.Keys[0] = currentWaypoint.waypoints.Keys[0];
-                possibleNextWaypoints.Values[0] = currentWaypoint.waypoints.Values[0];
+                //Debug.LogFormat("Replacing invallid waypoint at {0} with {1}", possibleNextWaypoints.Keys[0], currentWaypoint.waypoints.Keys[0]);
+                possibleNextWaypoints.Keys[0] = currentWaypoint.waypoints.Keys[replacementIndex];
+                possibleNextWaypoints.Values[0] = currentWaypoint.waypoints.Values[replacementIndex];
             }
 
             //Debug.LogFormat("Possible waypoints {0} and {1}.", possibleNextWaypoints.Keys[0].name, possibleNextWaypoints.Keys[1].name);
@@ -307,6 +340,12 @@ public class PathGenerator : MonoBehaviour
         }
     }
 
+    void GetWaypointsInArea(List<PathWaypoint> waypoints, CapsuleCollider area)
+    {
+        //Debug.Log("Got waypoints from area " + area.name);
+        waypointsPerArea.Add(waypoints, area);
+    }
+
     void GetEntryWaypointsInArea(List<PathWaypoint> waypoints, CapsuleCollider area)
     {
         entryWaypointsPerArea.Add(waypoints, area);
@@ -342,7 +381,8 @@ public class PathGenerator : MonoBehaviour
 
     private void OnDestroy()
     {
-        PathCategorizeWaypoint.OnWaypointsCategorized -= GetEntryWaypointsInArea;
+        PathCategorizeWaypoint.OnWaypointsCategorized -= GetWaypointsInArea;
+        PathCategorizeWaypoint.OnEntryWaypointsCategorized -= GetEntryWaypointsInArea;
         ShareAreas.OnAreaShare -= GetAreas;
     }
 }
