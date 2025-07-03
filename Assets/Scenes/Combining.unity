@@ -3059,6 +3059,8 @@ MonoBehaviour:
   dialogueRunner: {fileID: 15806598}
   audioSourcesToFade:
   - {fileID: 755420090}
+  - {fileID: 1514147028}
+  - {fileID: 2100661541}
   fadeDuration: 0.5
 --- !u!1 &252328292 stripped
 GameObject:
@@ -10824,7 +10826,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.8
+  m_fontSize: 50
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -24995,6 +24997,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eba9522c0d09b144ea2b2cb55b18222a, type: 3}
+--- !u!82 &2100661541 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7213997641918052879, guid: 28ac164ce824eb048b80b99fbfea2944,
+    type: 3}
+  m_PrefabInstance: {fileID: 443462218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2102370195
 GameObject:
   m_ObjectHideFlags: 0
