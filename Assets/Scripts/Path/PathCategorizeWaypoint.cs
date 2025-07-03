@@ -6,7 +6,6 @@ using System;
 public class PathCategorizeWaypoint : MonoBehaviour
 {
     public static event Action<List<PathWaypoint>, CapsuleCollider> OnEntryWaypointsCategorized;
-    public static event Action<List<PathWaypoint>, CapsuleCollider> OnWaypointsCategorized;
     List<PathWaypoint> waypointsInArea;
     List<PathWaypoint> entryWaypointsInArea;
     bool waypointsSent = false;
@@ -24,7 +23,6 @@ public class PathCategorizeWaypoint : MonoBehaviour
         //Convert the list of waypoints in the area to only the ones accessible from outside of that area.
         if (waypointsInArea.Count != 0 && entryWaypointsInArea.Count == 0 && !waypointsSent) 
         { 
-            if(OnWaypointsCategorized != null) { OnWaypointsCategorized(waypointsInArea, area); }
             EntryWaypoint(); 
         }
 

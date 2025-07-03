@@ -9,6 +9,7 @@ public class MapPath : MonoBehaviour
     private void Awake()
     {
         PathGenerator.OnPathObjectEnabled += AddMapPath;
+        PathGenerator.OnPathFail += ResetMapPath;
     }
 
     void AddMapPath(GameObject pathObject)
@@ -18,9 +19,16 @@ public class MapPath : MonoBehaviour
         if (mapPathObject != null) { mapPathObject.SetActive(true); }
     }
 
+    void ResetMapPath()
+    {
+        // If path generation fails we reset all map paths to not be visible.
+        foreach(GameObject mapPath in pathMapConversion.Values) { mapPath.SetActive(false); }
+    }
+
     private void OnDestroy()
     {
         PathGenerator.OnPathObjectEnabled -= AddMapPath;
+        PathGenerator.OnPathFail -= ResetMapPath;
     }
 
 }

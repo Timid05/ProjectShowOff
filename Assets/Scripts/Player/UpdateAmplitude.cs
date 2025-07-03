@@ -7,6 +7,7 @@ public class UpdateAmplitude : MonoBehaviour
 {
     CinemachineVirtualCamera vCamera;
     CinemachineBasicMultiChannelPerlin cameraNoise;
+    float prevMoveAmplitude;
     float noiseMoveAmplitude = 1;
     [SerializeField] float noiseSprintAmplitude = 5f;
 
@@ -19,6 +20,7 @@ public class UpdateAmplitude : MonoBehaviour
         cameraNoise = vCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         // The regular move amplitude is the starting amplitude.
         noiseMoveAmplitude = cameraNoise.m_AmplitudeGain;
+        prevMoveAmplitude = noiseMoveAmplitude;
     }
 
     void AmplitudeChange(bool sprintStatus)
