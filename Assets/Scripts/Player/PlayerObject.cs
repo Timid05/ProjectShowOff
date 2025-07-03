@@ -73,7 +73,8 @@ public class PlayerObject : MonoBehaviour
             {
                 Debug.Log("Putting down object.");
                 carryingObject = false;
-                carriedObject.AddComponent<Rigidbody>();
+                Rigidbody newRB = carriedObject.AddComponent<Rigidbody>();
+                newRB.useGravity = true;
                 carriedObject.transform.parent = null;
                 carriedObject.transform.position = hitinfo.point;
 
