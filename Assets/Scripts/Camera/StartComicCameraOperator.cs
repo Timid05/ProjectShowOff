@@ -2,7 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Build.Content;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,7 +30,8 @@ public class StartComicCameraOperator : MonoBehaviour
 
     private void Awake()
     {
-       
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         brain = GetComponent<CinemachineBrain>();
         brain.m_DefaultBlend.m_Time = transitionTime;
         if (cameras.Length > 0)

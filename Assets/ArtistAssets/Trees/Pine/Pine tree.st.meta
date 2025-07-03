@@ -1,7 +1,17 @@
 fileFormatVersion: 2
 guid: 3d6b47452bb9242499a5a089f65febe4
 SpeedTreeImporter:
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bark
+    second: {fileID: 2100000, guid: c514e3b9e5298a94f91c24450459b98d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pine tree
+    second: {fileID: 2100000, guid: 81c9ca7a01266e547a63f703aad170de, type: 2}
   serializedVersion: 7
   mainColor: {r: 1, g: 1, b: 1, a: 1}
   hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}

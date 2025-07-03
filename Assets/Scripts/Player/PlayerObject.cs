@@ -25,7 +25,12 @@ public class PlayerObject : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(pickUpButton)) { ObjectPlacement(pickUpButton); }
+        if (_camera == null)
+        {
+            _camera = Camera.main;
+        }
+
+        if (Input.GetKeyDown(pickUpButton)) { ObjectPlacement(pickUpButton); }
         else if (Input.GetKeyDown(putDownButton)) { ObjectPlacement(putDownButton); }
 
         // Check if an object was given to Tanfana
@@ -61,6 +66,7 @@ public class PlayerObject : MonoBehaviour
                     }
 
                     hitinfo.collider.gameObject.transform.parent = _camera.transform;
+                    hitinfo.collider.enabled = false;
                     hitinfo.collider.gameObject.transform.position = carriedObjectPosition.transform.position;
                     hitinfo.collider.gameObject.transform.rotation = carriedObjectPosition.transform.rotation;
 
@@ -73,7 +79,9 @@ public class PlayerObject : MonoBehaviour
             {
                 Debug.Log("Putting down object.");
                 carryingObject = false;
-                carriedObject.AddComponent<Rigidbody>();
+                carriedObject.GetComponent<BoxCollider>().enabled = true;
+                Rigidbody newRB = carriedObject.AddComponent<Rigidbody>();
+                newRB.useGravity = true;
                 carriedObject.transform.parent = null;
                 carriedObject.transform.position = hitinfo.point;
 
@@ -91,5 +99,10 @@ public class PlayerObject : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.OnGiveGManager -= ReceiveGameManager;
+
+        if (carryingObject)
+        {
+            carriedObject.GetComponent<BoxCollider>().enabled = true;
+        }
     }
 }

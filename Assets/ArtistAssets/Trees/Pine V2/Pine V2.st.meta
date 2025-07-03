@@ -1,7 +1,22 @@
 fileFormatVersion: 2
 guid: de1d0e0450878fe4385fc02a4282e9a0
 SpeedTreeImporter:
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bark
+    second: {fileID: 2100000, guid: 74acfb8f3a7bb8f4da8bed24aa177003, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pine V2
+    second: {fileID: 2100000, guid: 10bf31b4a434aa14e989015476792319, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pine V2_Billboard
+    second: {fileID: 2100000, guid: 125b47a8f74146e46abd115b4ab27411, type: 2}
   serializedVersion: 7
   mainColor: {r: 1, g: 1, b: 1, a: 1}
   hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}

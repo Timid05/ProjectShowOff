@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8958056643107317589, guid: b333a1fce82eb974c84e505080e37eb5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -97,6 +102,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6890397603182397745}
     m_Modifications:
+    - target: {fileID: 5193086435328219298, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.25878817
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193086435328219298, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.38280934
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193086435328219298, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.0054454207
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193086435328219298, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.18831365
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193086435328219298, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.007627547
+      objectReference: {fileID: 0}
     - target: {fileID: 7614538511169060811, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -115,17 +145,17 @@ PrefabInstance:
     - target: {fileID: 7614538511169060811, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0104
+      value: 0.01054
       objectReference: {fileID: 0}
     - target: {fileID: 7614538511169060811, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.024582276
+      value: 0.02472
       objectReference: {fileID: 0}
     - target: {fileID: 7614538511169060811, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00544
+      value: 0.00001
       objectReference: {fileID: 0}
     - target: {fileID: 7614538511169060811, guid: 9a0b8872ea5ffdf44815811b90aa52d6,
         type: 3}
@@ -265,6 +295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mary_Chapel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 541467cc605898b4baa1471452e14c7c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -522,6 +557,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8958056643107317589, guid: b333a1fce82eb974c84e505080e37eb5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

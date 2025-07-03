@@ -5,20 +5,26 @@ using UnityEngine;
 
 public class HellhoundAnimations : MonoBehaviour
 {
+    [SerializeField]
     Animator animator;
     AnimationClip currentClip;
     public static Action OnPounceAnimDone;
 
     private void OnEnable()
-    {
+    {      
         HellhoundActions.OnCharge += TriggerCharge;
         HellhoundActions.OnPounce += TriggerPounce;
     }
 
     private void OnDisable()
     {
-        HellhoundActions.OnCharge += TriggerCharge;
-        HellhoundActions.OnPounce += TriggerPounce;
+        HellhoundActions.OnCharge -= TriggerCharge;
+        HellhoundActions.OnPounce -= TriggerPounce;      
+    }
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
     }
 
     private void TriggerCharge()
@@ -57,14 +63,6 @@ public class HellhoundAnimations : MonoBehaviour
     AnimatorStateInfo GetCurrenStateInfo()
     {
         return animator.GetCurrentAnimatorStateInfo(0);  
-    }
-
-    private void Update()
-    {
-        if (animator == null && gameObject.TryGetComponent<Animator>(out Animator anim))
-        {
-            animator = anim;
-        }
     }
 }
 
