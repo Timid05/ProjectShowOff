@@ -11,6 +11,8 @@ public static class GameStateActions
     //Logic to see if the map has been opened for the first time
     public static Action OnFirstMapOpen;
     public static bool mapOpened = false;
+    public static Action<bool> OnFirstSignSpotted;
+    public static bool firstSignSpotted = false;
     //Notifying the first dome visit of the startPos in a run
     public static Action OnFirstDomeVisit;
     public static bool domeVisited = false;
@@ -40,6 +42,7 @@ public static class GameStateActions
     {
         EnemiesInfo.Reset();
         mapOpened = false;
+        firstSignSpotted = false;
         domeVisited = false;
         firstEnemyEncountered = false;
         playerDead = false;

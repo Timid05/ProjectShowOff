@@ -11,6 +11,7 @@ public class MapAnimation : MonoBehaviour
     [SerializeField] bool mapToggleMode = true;
     bool mapAvailable = true;
     bool mapOpened = false;
+    bool pause = false;
     
 
     public static event Action<bool> OnMapVisibilityChanged;
@@ -21,6 +22,7 @@ public class MapAnimation : MonoBehaviour
         anim = GetComponent<Animator>();
 
         PlayerInteraction.OnCharacterTalk += MapAvailable;
+        GameStateActions.OnGamePause += Paused;
         //MapVisibility.OnMapButtonPressed += MapVisibilityChange;
     }
 
@@ -30,13 +32,13 @@ public class MapAnimation : MonoBehaviour
         if(mapToggleMode)
         {
             // Map toggles when player presses button.
-            if (Input.GetKeyDown(mapButton)) { MapVisibilityChange(!mapOpened); }
+            if (Input.GetKeyDown(mapButton) && !pause) { MapVisibilityChange(!mapOpened); }
         }
         else
         {
             // Map is visible if the player holds down the map button
-            if (Input.GetKeyDown(mapButton)) { MapVisibilityChange(true); }
-            if (Input.GetKeyUp(mapButton)) { MapVisibilityChange(false); }
+            if (Input.GetKeyDown(mapButton) && !pause) { MapVisibilityChange(true); }
+            if (Input.GetKeyUp(mapButton) && !pause) { MapVisibilityChange(false); }
         }
 
         // Send out delegate once we've reached the idle stage or returning to start after clsoing the map, if the delegate hasn't been send yet.
@@ -96,9 +98,16 @@ public class MapAnimation : MonoBehaviour
         //if (characterTalking) { SwitchPhysicalMapVisibility(false); }
     }
 
+    void Paused(bool p)
+    {
+        pause = p;
+        if (p) { MapVisibilityChange(false);}
+    }
+
     private void OnDestroy()
     {
         PlayerInteraction.OnCharacterTalk -= MapAvailable;
+        GameStateActions.OnGamePause -= Paused;
         //MapVisibility.OnMapButtonPressed += MapVisibilityChange;
     }
 }

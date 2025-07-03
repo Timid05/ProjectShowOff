@@ -8,14 +8,14 @@ public class MapVisibility : MonoBehaviour
     //[SerializeField] KeyCode mapButton;
     [SerializeField]
     float openingTimer = 15f;
-    
-    //public static event Action<bool> OnMapButtonPressed;
-    bool mapOpen = false;
 
-    private void Awake()
+    public static bool mapOpen = false;
+
+
+    private void OnEnable()
     {
-        
         MapAnimation.OnMapVisibilityChanged += MapVisibilityChanged;
+        GameStateActions.OnGamePause += Paused;
     }
 
     private void Start()
@@ -27,11 +27,12 @@ public class MapVisibility : MonoBehaviour
     private void OnDisable()
     {
         MapAnimation.OnMapVisibilityChanged -= MapVisibilityChanged;
+        GameStateActions.OnGamePause -= Paused;
     }
 
     void MapVisibilityChanged(bool mapVisibility)
     {
-        if(transform.childCount != 0)
+        if (transform.childCount != 0)
         {
             //Debug.Log("Setting children visiblity to: " + mapVisibility);
             ChangeChildrenVisibility(mapVisibility);
@@ -44,7 +45,7 @@ public class MapVisibility : MonoBehaviour
 
     void ChangeChildrenVisibility(bool newVisibility)
     {
-        
+
         if (!GameStateActions.mapOpened && newVisibility == false && mapOpen)
         {
             GameStateActions.OnFirstMapOpen?.Invoke();
@@ -68,5 +69,16 @@ public class MapVisibility : MonoBehaviour
         GameStateActions.OnFirstMapOpen?.Invoke();
         GameStateActions.mapOpened = true;
         EnemiesInfo.EnableEnemies();
+    }
+
+    void Paused(bool pause)
+    {
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+        mapOpen = false;
+
     }
 }

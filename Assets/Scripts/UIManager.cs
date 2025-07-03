@@ -12,8 +12,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject deathMessage;
     [SerializeField]
-    TextMeshProUGUI mapPrompt;
-    [SerializeField]
     GameObject hellhoundFX;
 
     Animator animator;
@@ -28,7 +26,6 @@ public class UIManager : MonoBehaviour
         PlayerActions.OnPlayerDead += DisplayDeath;
         PlayerActions.OnHealthUpdated += UpdateHealth;
         GameStateActions.OnGamePause += GamePaused;
-        GameStateActions.OnFirstMapOpen += DisableMapPrompt;
     }
 
     private void OnDisable()
@@ -36,7 +33,6 @@ public class UIManager : MonoBehaviour
         PlayerActions.OnPlayerDead -= DisplayDeath;
         PlayerActions.OnHealthUpdated -= UpdateHealth;
         GameStateActions.OnGamePause -= GamePaused;
-        GameStateActions.OnFirstMapOpen -= DisableMapPrompt;
         PlayerActions.OnPlayerHitBy -= HellhoundAttack;
     }
 
@@ -104,13 +100,5 @@ public class UIManager : MonoBehaviour
     {
         if (paused) { health.enabled = false; }
         if (!paused) { health.enabled = true; }
-    }
-
-    void DisableMapPrompt()
-    {
-        if (mapPrompt != null)
-        {
-            mapPrompt.enabled = false;
-        }
     }
 }
