@@ -14,6 +14,10 @@ public class SignClose : MonoBehaviour
         {
             Debug.LogFormat("Player enter sign {0} highlight zone.", gameObject.name);
             OnSignPlayerDistanceStatusChange(gameObject, true);
+            if (!GameStateActions.firstSignSpotted)
+            {
+                GameStateActions.OnFirstSignSpotted?.Invoke(true);
+            }
         }
     }
 
@@ -23,6 +27,10 @@ public class SignClose : MonoBehaviour
         {
             Debug.LogFormat("Player exit sign {0} highlight zone.", gameObject.name);
             OnSignPlayerDistanceStatusChange(gameObject, false);
+            if (!GameStateActions.firstSignSpotted)
+            {
+                GameStateActions.OnFirstSignSpotted?.Invoke(false);
+            }
         }
     }
 }

@@ -8,13 +8,11 @@ public class MapVisibility : MonoBehaviour
     //[SerializeField] KeyCode mapButton;
     [SerializeField]
     float openingTimer = 15f;
-    
-    //public static event Action<bool> OnMapButtonPressed;
-    bool mapOpen = false;
+  
+    public static bool mapOpen = false;
 
     private void Awake()
-    {
-        
+    {      
         MapAnimation.OnMapVisibilityChanged += MapVisibilityChanged;
     }
 
