@@ -12,6 +12,7 @@ public class DialogueMuter : MonoBehaviour
     private bool wasDialogueRunning = false;
     private Coroutine fadeCoroutine;
     private PlayerMovement playerMovement;
+    private float[] originalVolumes;
 
     void Start()
     {
@@ -24,6 +25,14 @@ public class DialogueMuter : MonoBehaviour
         if (playerMovement == null)
         {
             Debug.LogWarning("PlayerMovement script not found in scene.");
+        }
+
+        // Save the original volumes at start
+        originalVolumes = new float[audioSourcesToFade.Length];
+        for (int i = 0; i < audioSourcesToFade.Length; i++)
+        {
+            if (audioSourcesToFade[i] != null)
+                originalVolumes[i] = audioSourcesToFade[i].volume;
         }
     }
 
@@ -52,13 +61,6 @@ public class DialogueMuter : MonoBehaviour
 
         float timer = 0f;
 
-        float[] originalVolumes = new float[audioSourcesToFade.Length];
-        for (int i = 0; i < audioSourcesToFade.Length; i++)
-        {
-            if (audioSourcesToFade[i] != null)
-                originalVolumes[i] = audioSourcesToFade[i].volume;
-        }
-
         while (timer < fadeDuration)
         {
             timer += Time.deltaTime;
@@ -77,7 +79,7 @@ public class DialogueMuter : MonoBehaviour
             yield return null;
         }
 
-        // Final volume clamp
+        // Clamp final volume
         for (int i = 0; i < audioSourcesToFade.Length; i++)
         {
             if (audioSourcesToFade[i] != null)
