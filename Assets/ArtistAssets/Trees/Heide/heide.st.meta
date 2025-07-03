@@ -1,7 +1,22 @@
 fileFormatVersion: 2
 guid: 768f90b8b4a35704887bcaf076d1d4c4
 SpeedTreeImporter:
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bark_2
+    second: {fileID: 2100000, guid: 47853a7792d61cc41b155fdaf608afbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: heide
+    second: {fileID: 2100000, guid: bb61118b3e2abfe409bbafd5905056e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: heide_Billboard
+    second: {fileID: 2100000, guid: 69f9ac60bcb45fc4c903a8c083402b7f, type: 2}
   serializedVersion: 7
   mainColor: {r: 1, g: 1, b: 1, a: 1}
   hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
