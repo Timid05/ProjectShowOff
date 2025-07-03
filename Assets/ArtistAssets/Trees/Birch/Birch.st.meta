@@ -1,7 +1,22 @@
 fileFormatVersion: 2
 guid: c821c0f5b2e2b4b4298b74f80b07abc6
 SpeedTreeImporter:
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Birch
+    second: {fileID: 2100000, guid: b6c9ee2355db89e4f9aeafbdc594ddba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Birch_Billboard
+    second: {fileID: 2100000, guid: d596cce0dd43b9e4bbfafaf2e6b47bce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sample
+    second: {fileID: 2100000, guid: f88d092e2c4464a4f984366705ea4305, type: 2}
   serializedVersion: 7
   mainColor: {r: 1, g: 1, b: 1, a: 1}
   hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
