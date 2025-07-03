@@ -50,12 +50,8 @@ public class PathGenerator : MonoBehaviour
         else if (currentWaypoint.visited && !currentWaypoint.endWaypoint)
         {
             // If we don't end on the end waypoint that means that generation has failed. As a failsafe, we generate the path again.
-            Debug.LogFormat("Path generation failed at waypoint {0}. Trying again.", currentWaypoint.name);
-            Debug.LogFormat("Pre reset status. Visited: {0} Unvisited areas: {1}", currentWaypoint.visited, unvisitedAreas.Count);
-            foreach(List<PathWaypoint> entryWaypoints in entryWaypointsPerArea.Keys)
-            {
-                Debug.Log("Pre reset status entry waypoint " + entryWaypoints.Count);
-            }
+            //Debug.LogFormat("Path generation failed at waypoint {0}. Trying again.", currentWaypoint.name);
+            //Debug.LogFormat("Pre reset status. Visited: {0} Unvisited areas: {1}", currentWaypoint.visited, unvisitedAreas.Count);
 
             if(OnPathFail != null) { OnPathFail(); }
 
@@ -74,11 +70,7 @@ public class PathGenerator : MonoBehaviour
             unvisitedAreas.Clear();
             foreach (CapsuleCollider area in startUnvisitedAreas) { unvisitedAreas.Add(area); }
 
-            Debug.LogFormat("Backup values status. StartUnvisited areas: {0}", startUnvisitedAreas.Count);
-            foreach (List<PathWaypoint> startEntryWaypoints in startEntryWaypointsPerArea.Keys)
-            {
-                Debug.Log("Backup status entry waypoint " + startEntryWaypoints.Count);
-            }
+            //Debug.LogFormat("Backup values status. StartUnvisited areas: {0}", startUnvisitedAreas.Count);
 
             // Reset all waypoints visit counts.
             foreach (PathWaypoint waypoint in allWaypoints)
@@ -89,11 +81,7 @@ public class PathGenerator : MonoBehaviour
                     //Debug.LogFormat("Set waypoint {0} visit status to {1}.", waypoint, waypoint.visited);
                 }
             }
-            Debug.LogFormat("Post reset status. Visited: {0} Unvisited areas: {1}", currentWaypoint.visited, unvisitedAreas.Count);
-            foreach (List<PathWaypoint> entryWaypoints in entryWaypointsPerArea.Keys)
-            {
-                Debug.Log("Post reset status entry waypoint " + entryWaypoints.Count);
-            }
+            //Debug.LogFormat("Post reset status. Visited: {0} Unvisited areas: {1}", currentWaypoint.visited, unvisitedAreas.Count);
         }
     }
 
