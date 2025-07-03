@@ -44,6 +44,11 @@ public class MapSignPrompt : MonoBehaviour
             GameStateActions.firstSignSpotted = true;
         }
 
+        if (GameStateActions.inDialogue && prompt.activeSelf)
+        {
+            HidePrompt();
+        }
+
         if (GameStateActions.playerDead && prompt.activeSelf)
         {
             HidePrompt();
