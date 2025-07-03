@@ -10826,7 +10826,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 55.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15411,7 +15411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.18577085, y: 0.7962963}
   m_AnchorMax: {x: 0.82031244, y: 1}
-  m_AnchoredPosition: {x: -6, y: -55.989807}
+  m_AnchoredPosition: {x: -6, y: -19}
   m_SizeDelta: {x: -11.266724, y: -104.609985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1305747333
@@ -15434,7 +15434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stand nearby signposts to see your location on the map!
+  m_text: Press [Tab] nearby a sign to see your location on the map!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1bc1883a0a387f541aceb8e5ef021998, type: 2}
   m_sharedMaterial: {fileID: -4275037324147213798, guid: 1bc1883a0a387f541aceb8e5ef021998,
@@ -15462,10 +15462,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.7
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
