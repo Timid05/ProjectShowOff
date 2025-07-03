@@ -25678,6 +25678,11 @@ PrefabInstance:
       objectReference: {fileID: 1514147025}
     - target: {fileID: 842796707804832064, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
+      propertyPath: canTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 842796707804832064, guid: 10c694909d2549643a722386761ec60d,
+        type: 3}
       propertyPath: triggerRadius
       value: 30
       objectReference: {fileID: 0}
@@ -25774,7 +25779,7 @@ PrefabInstance:
     - target: {fileID: 4061748099052865570, guid: 10c694909d2549643a722386761ec60d,
         type: 3}
       propertyPath: growlsBeforeAttacking
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4980957781335904777, guid: 10c694909d2549643a722386761ec60d,
         type: 3}

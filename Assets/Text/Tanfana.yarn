@@ -13,6 +13,7 @@ position: -126,-211
 	Tanfana: I can sense your desperation mortal, and I know what troubles you. #line:Tanfana_First_Interaction_Chalice_1
 	<<playVoice Tanfana_First_Interaction_Chalice_2>>
 	Tanfana: The Hellhound... that pest keeps trespassing in my sacred forest! I want it gone, and I think we share that goal. #line:Tanfana_First_Interaction_Chalice_2
+	<<ReturnChalice GameManager>>
 	<<playVoice Tanfana_First_Interaction_Chalice_3>>
 	Tanfana: You have my chalice? Impressive, mortal. Become my servant, pledge your soul to me, and I shall bestow upon you the power to kill the Hellhound. #line:Tanfana_First_Interaction_Chalice_3
 	<<jump ChaliceChoice>>

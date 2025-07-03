@@ -61,7 +61,6 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameStateActions.Reset();
-        HellhoundActions.hellhoundFightOngoing = false;
     }
 
     void HellhoundAttack(GameObject attacker)

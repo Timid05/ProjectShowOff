@@ -1962,7 +1962,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8e0db44f81c1598418b2894fe9a9ba50, type: 3}
   - {fileID: 8300000, guid: 11315154b857e284b97f747e58e37abf, type: 3}
   - {fileID: 8300000, guid: 1990d6011090d734db7521bc2bf16ea4, type: 3}
-  flashedClips: []
+  flashedClips:
+  - {fileID: 8300000, guid: 66ce2d54362ceba45b14185b4f1d5666, type: 3}
   deathClip: {fileID: 8300000, guid: 35ca10ac038aa4a418314662b868a24f, type: 3}
 --- !u!114 &350177682
 MonoBehaviour:
@@ -6416,7 +6417,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1712667186}
   deathMessage: {fileID: 186328495}
-  mapPrompt: {fileID: 742912690}
   hellhoundFX: {fileID: 1952741935}
 --- !u!1 &1571649971 stripped
 GameObject:
