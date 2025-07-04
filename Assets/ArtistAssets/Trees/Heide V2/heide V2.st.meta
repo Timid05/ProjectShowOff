@@ -25,7 +25,7 @@ SpeedTreeImporter:
   enableBumpMapping: 1
   enableSubsurfaceScattering: 1
   bestWindQuality: 4
-  selectedWindQuality: 4
+  selectedWindQuality: 3
   enableShadowCasting: 1
   enableShadowReceiving: 1
   enableLightProbes: 1
