@@ -130,9 +130,6 @@ public class PathGenerator : MonoBehaviour
                     possibleNextWaypoints.Add(currentWaypoint.waypoints.Keys[i], currentWaypoint.waypoints.Values[i]);
                     possibleNextWaypoints.Add(currentWaypoint.waypoints.Keys[i + 1], currentWaypoint.waypoints.Values[i + 1]);
 
-                    //Remove current waypoint and possible waypoints from the original dict. This will allow the option to add a backup option if necessary.
-                    //currentWaypoint.waypoints.Keys.Remove(prevWaypoint);
-
                     //Check if one of the waypoints is the ending one, we need to go to that one, so the rest can be skipped.
                     if (CheckForEndWaypoint(currentWaypoint))
                     {
@@ -140,14 +137,12 @@ public class PathGenerator : MonoBehaviour
                         return;
                     }
 
-                    //currentWaypoint.waypoints.Remove(possibleNextWaypoints.Keys[0]);
-                    //currentWaypoint.waypoints.Remove(possibleNextWaypoints.Keys[1]);
                     break;
                 }
             }
 
             int replacementIndex = -1;
-            // Checking if there is a backup option that can replace it
+            // Checking if there is a backup option that can replace a missing waypoint
             for (int j = 0; j < currentWaypoint.waypoints.Count; j++)
             {
                 PathWaypoint replacementWaypoint;

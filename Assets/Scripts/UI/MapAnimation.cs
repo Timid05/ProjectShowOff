@@ -41,18 +41,28 @@ public class MapAnimation : MonoBehaviour
             if (Input.GetKeyUp(mapButton) && !pause) { MapVisibilityChange(false); }
         }
 
-        // Send out delegate once we've reached the idle stage or returning to start after clsoing the map, if the delegate hasn't been send yet.
-        if(anim != null && mapAvailable && ((anim.GetCurrentAnimatorStateInfo(0).IsName("Map Idle") && !currentVisibility) || (anim.GetCurrentAnimatorStateInfo(0).IsName("Start") && currentVisibility)) && transform.GetChild(0).gameObject.activeSelf != currentVisibility) 
+        // Send out delegate once we've reached the idle stage or returning to start after closing the map, if the delegate hasn't been send yet.
+        if (anim != null && mapAvailable && mapOpened != currentVisibility)
         {
-            currentVisibility = transform.GetChild(0).gameObject.activeSelf;
-            Debug.LogFormat(" Changing map status when: Visibility {0}", currentVisibility);
-            if (OnMapVisibilityChanged != null) 
-            { 
-                OnMapVisibilityChanged(currentVisibility);
+            // Changing the visibility of the map UI
+            if ((anim.GetCurrentAnimatorStateInfo(0).IsName("Map Idle") && !currentVisibility) || (anim.GetCurrentAnimatorStateInfo(0).IsName("Map Close") && currentVisibility))
+            {
+                currentVisibility = mapOpened;
+                //Debug.LogFormat(" Changing map status when: Visibility {0}", currentVisibility);
+                if (OnMapVisibilityChanged != null)
+                {
+                    OnMapVisibilityChanged(currentVisibility);
 
-                // We hide the physical map once the UI is up to make the animation match better without being able to see the map from behind the UI.
-                if (currentVisibility) { SwitchPhysicalMapVisibility(!currentVisibility); }
+                    // We hide the physical map once the UI is up to make the animation match better without being able to see the map from behind the UI.
+                    //if (currentVisibility) { SwitchPhysicalMapVisibility(!currentVisibility); }
+                }
             }
+        }
+        // Turn off the visibility of the physical map after it has closed
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Start") && transform.GetChild(0).gameObject.activeSelf && !mapOpened) 
+        {
+            //Debug.Log("Turning off physical map once it is closed.");
+            SwitchPhysicalMapVisibility(false); 
         }
     }
 
@@ -66,19 +76,18 @@ public class MapAnimation : MonoBehaviour
 
             if (mapVisibility) 
             {
-                Debug.Log("Opening map.");
+                //Debug.Log("Opening map.");
                 anim.SetTrigger("mapOpen");
                 mapOpened = true;
+                SwitchPhysicalMapVisibility(mapVisibility);
             }
             // This prevents a bug where it tries to close the map when it was never opened. This can happen if the first press is negated by talking to Tanfana.
             else if(mapOpened)
             {
-                Debug.Log("Closing map.");
+                //Debug.Log("Closing map.");
                 anim.SetTrigger("mapClose");
                 mapOpened = false;
             }
-
-            SwitchPhysicalMapVisibility(mapVisibility);
         }
     }
 
